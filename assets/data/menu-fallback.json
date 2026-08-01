@@ -1,0 +1,106 @@
+{
+  "_comment": "Static fallback rendered when the Square Catalog API is unreachable. Mirrors the approved prototype menu. `image` MUST be a real URL or root-relative path — it is assigned straight to img.src, matching the shape the Square sync returns.",
+  "source": "fallback",
+  "categories": [
+    {
+      "name": "Bowls",
+      "items": [
+        {
+          "id": "fb-b1",
+          "kind": "Bowl",
+          "name": "Berry Much Love U",
+          "note": "Classic Açaí",
+          "price": "9.50",
+          "calories": 367,
+          "image": "/assets/img/menu/berry-much-love-u.jpg"
+        },
+        {
+          "id": "fb-b2",
+          "kind": "Bowl",
+          "name": "Mango Coco",
+          "note": "Inspired by Thai Mango Sticky Rice",
+          "price": "9.50",
+          "calories": 280,
+          "image": "/assets/img/menu/mango-coco.jpg"
+        },
+        {
+          "id": "fb-b3",
+          "kind": "Bowl",
+          "name": "The Balance Bowl",
+          "note": "Yogurt",
+          "price": "8.75",
+          "calories": 275,
+          "image": "/assets/img/menu/balance-bowl.jpg"
+        },
+        {
+          "id": "fb-b4",
+          "kind": "Bowl",
+          "name": "Recovery Bowl",
+          "note": "40g Protein",
+          "price": "15.75",
+          "calories": 747,
+          "image": "/assets/img/menu/recovery-bowl.jpg"
+        },
+        {
+          "id": "fb-b5",
+          "kind": "Bowl",
+          "name": "Layers Chia & Oat Pudding",
+          "note": "",
+          "price": "8.75",
+          "calories": null,
+          "image": "/assets/img/menu/chia-oat-pudding.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Smoothies",
+      "items": [
+        {
+          "id": "fb-s1",
+          "kind": "Smoothie",
+          "name": "Strawesome",
+          "note": "Skin Health & Antioxidant",
+          "price": "10.75",
+          "calories": 255,
+          "image": "/assets/img/menu/strawesome.jpg"
+        },
+        {
+          "id": "fb-s2",
+          "kind": "Smoothie",
+          "name": "Beny’s Blendy",
+          "note": "Focus & Brain Support",
+          "price": "10.75",
+          "calories": 302,
+          "image": "/assets/img/menu/benys-blendy.jpg"
+        },
+        {
+          "id": "fb-s3",
+          "kind": "Smoothie",
+          "name": "Greenergy",
+          "note": "Daily Greens & Inner Balance",
+          "price": "10.75",
+          "calories": 245,
+          "image": "/assets/img/menu/greenergy.jpg"
+        },
+        {
+          "id": "fb-s4",
+          "kind": "Smoothie",
+          "name": "Blue-Tiful-Day",
+          "note": "Hydration & Mineral Support",
+          "price": "10.75",
+          "calories": 275,
+          "image": "/assets/img/menu/blue-tiful-day.jpg"
+        },
+        {
+          "id": "fb-s5",
+          "kind": "Smoothie",
+          "name": "Think Well",
+          "note": "30g Plant Protein Focus & Energy",
+          "price": "14.00",
+          "calories": 390,
+          "image": "/assets/img/menu/think-well.jpg"
+        }
+      ]
+    }
+  ]
+}

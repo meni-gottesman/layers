@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menu | Layers Superfood Bar</title>
+<!-- Meta description — to be supplied by client before launch. -->
+<link rel="canonical" href="https://layerssuperfoodbar.com/menu">
+<meta name="theme-color" content="#FCFAF4">
+<link rel="icon" href="/layers/assets/img/face-mark.png" type="image/png">
+<link rel="apple-touch-icon" href="/layers/assets/img/face-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Spectral:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/layers/assets/css/styles.css">
+</head>
+<body class="page-menu">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header id="site-header" class="header header--static" data-state="solid">
+  <div class="header__inner">
+    <a class="header__brand" href="/layers/" aria-label="Layers Superfood Bar — home">
+      <img class="header__wordmark header__wordmark--cream" src="/layers/assets/img/wordmark-cream.png" alt="Layers Superfood Bar" width="121" height="52">
+      <img class="header__wordmark header__wordmark--ink" src="/layers/assets/img/wordmark-ink.png" alt="" aria-hidden="true" width="121" height="52">
+    </a>
+
+    <nav class="header__nav" aria-label="Primary">
+      <a data-nav href="/layers/menu" aria-current="page">Menu</a>
+      <a data-nav href="/layers/story">Our Story</a>
+      <a data-nav href="/layers/how-we-make-it">How We Make It</a>
+      <a data-nav href="/layers/catering">Catering</a>
+      <a data-nav href="/layers/visit">Visit</a>
+      <a data-nav class="header__gift" href="/layers/gift-cards">Gift Cards</a>
+      <a id="header-order" data-headorder class="btn btn--butter btn--sm" href="https://layers.square.site" target="_blank" rel="noopener">
+        Order on Square
+        <svg class="icon-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+    </nav>
+
+    <a class="btn btn--butter btn--sm header__m-order" href="https://layers.square.site" target="_blank" rel="noopener">Order</a>
+    <button id="m-burger" class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="m-drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div id="m-scrim" class="drawer-scrim" hidden></div>
+<aside id="m-drawer" class="drawer" aria-label="Mobile menu" aria-hidden="true" hidden>
+  <div class="drawer__head">
+    <img src="/layers/assets/img/wordmark-ink.png" alt="Layers Superfood Bar" width="110" height="47">
+    <button id="m-close" class="drawer__close" type="button" aria-label="Close menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <nav class="drawer__nav" aria-label="Mobile primary">
+    <a data-drawer href="/layers/menu" aria-current="page">Menu</a>
+    <a data-drawer href="/layers/story">Our Story</a>
+    <a data-drawer href="/layers/how-we-make-it">How We Make It</a>
+    <a data-drawer href="/layers/what-you-get">What You Get</a>
+    <a data-drawer href="/layers/day-in-the-life">Day in the Life</a>
+    <a data-drawer href="/layers/catering">Catering</a>
+    <a data-drawer href="/layers/gift-cards">Gift Cards</a>
+    <a data-drawer href="/layers/loyalty">Loyalty</a>
+    <a data-drawer href="/layers/faq">FAQ</a>
+    <a data-drawer href="/layers/visit">Visit</a>
+  </nav>
+  <div class="drawer__foot">
+    <a class="btn btn--sage btn--block" href="https://layers.square.site" target="_blank" rel="noopener">Order on Square</a>
+    <a class="btn btn--ghost btn--block" href="/layers/gift-cards">Gift Cards</a>
+  </div>
+</aside>
+
+<main id="main">
+<!-- ============ PAGE HEAD — composition B ============ -->
+<section class="section section--cream pagehead">
+  <div class="wrap comp-b">
+    <div class="comp-b__main">
+      <p class="eyebrow">Menu</p>
+      <h1 class="h2 pagehead__title">A rotating menu of smoothies and bowls made with house bases, real fruit, and functional ingredients.</h1>
+      <p class="menu__note">
+        <span class="menu__dot" data-menu-dot aria-hidden="true"></span>
+        <span data-menu-status>Live menu syncs from Square. Items, pricing, and availability may vary.</span>
+      </p>
+    </div>
+    <div class="comp-b__low">
+      <!-- The six things Layers makes — stepped hairline list, no cards, no icons -->
+      <ol class="steplist steplist--tight">
+        <li>performance smoothies</li>
+        <li>protein bowls</li>
+        <li>functional ingredients</li>
+        <li>nutrient-dense meals</li>
+        <li>convenient wellness</li>
+        <li>food designed for everyday life</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATEGORY CHIP RAIL — sticky, scrollable ============ -->
+<nav class="chiprail" data-chip-rail aria-label="Menu categories">
+  <div class="wrap chiprail__track" data-chip-track>
+    <a class="chip" href="#cat-bowls" data-chip="cat-bowls">Bowls</a>
+    <a class="chip" href="#cat-smoothies" data-chip="cat-smoothies">Smoothies</a>
+  </div>
+</nav>
+
+<!-- ============ MENU — server/Square-rendered ============ -->
+<div class="wrap menu-wrap">
+  <!-- Ships with the last-known-good menu so the page is never empty with JS off
+       or Square down; replaced in place on a successful sync. First category
+       header carries the page's single Sage Deep field. -->
+  <div id="menu-root" data-menu-root data-menu-page>
+    <section class="menu-group" id="cat-bowls" data-cat-section>
+      <header class="cathead cathead--field">
+        <p class="eyebrow eyebrow--onsage">Made in house</p>
+        <h2 class="cathead__name">Bowls</h2>
+      </header>
+      <div class="menu-grid">
+        <article class="menu-card" data-item='{"kind":"Bowl","name":"Berry Much Love U","note":"Classic Açaí","price":"9.50","calories":367,"image":"/assets/img/menu/berry-much-love-u.jpg"}'>
+          <button class="menu-card__open" type="button" aria-label="Berry Much Love U — details">
+            <span class="menu-card__media"><img src="/layers/assets/img/menu/berry-much-love-u.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
+            <span class="menu-card__body">
+              <span class="menu-card__kind">Bowl</span>
+              <span class="menu-card__name">Berry Much Love U <span class="menu-card__note">(Classic Açaí)</span></span>
+              <span class="menu-card__meta"><span class="menu-card__price">$9.50</span><span class="menu-card__cal">367 CAL</span></span>
+            </span>
+          </button>
+          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order Berry Much Love U on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+        </article>
+        <article class="menu-card" data-item='{"kind":"Bowl","name":"Mango Coco","note":"Inspired by Thai Mango Sticky Rice","price":"9.50","calories":280,"image":"/assets/img/menu/mango-coco.jpg"}'>
+          <button class="menu-card__open" type="button" aria-label="Mango Coco — details">
+            <span class="menu-card__media"><img src="/layers/assets/img/menu/mango-coco.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
+            <span class="menu-card__body">
+              <span class="menu-card__kind">Bowl</span>
+              <span class="menu-card__name">Mango Coco <span class="menu-card__note">(Inspired by Thai Mango Sticky Rice)</span></span>
+              <span class="menu-card__meta"><span class="menu-card__price">$9.50</span><span class="menu-card__cal">280 CAL</span></span>
+            </span>
+          </button>
+          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order Mango Coco on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+        </article>
+        <article class="menu-card" data-item='{"kind":"Bowl","name":"The Balance Bowl","note":"Yogurt","price":"8.75","calories":275,"image":"/assets/img/menu/balance-bowl.jpg"}'>
+          <button class="menu-card__open" type="button" aria-label="The Balance Bowl — details">
+            <span class="menu-card__media"><img src="/layers/assets/img/menu/balance-bowl.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
+            <span class="menu-card__body">
+              <span class="menu-card__kind">Bowl</span>
+              <span class="menu-card__name">The Balance Bowl <span class="menu-card__note">(Yogurt)</span></span>
+              <span class="menu-card__meta"><span class="menu-card__price">$8.75</span><span class="menu-card__cal">275 CAL</span></span>
+            </span>
+          </button>
+          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order The Balance Bowl on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+        </article>
+        <article class="menu-card" data-item='{"kind":"Bowl","name":"Recovery Bowl","note":"40g Protein","price":"15.75","calories":747,"image":"/assets/img/menu/recovery-bowl.jpg"}'>
+          <button class="menu-card__open" type="button" aria-label="Recovery Bowl — details">
+            <span class="menu-card__media"><img src="/layers/assets/img/menu/recovery-bowl.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
+            <span class="menu-card__body">
+              <span class="menu-card__kind">Bowl</span>
+              <span class="menu-card__name">Recovery Bowl <span class="menu-card__note">(40g Protein)</span></span>
+              <span class="menu-card__meta"><span class="menu-card__price">$15.75</span><span class="menu-card__cal">747 CAL</span></span>
+            </span>
+          </button>
+          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order Recovery Bowl on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+        </article>
+        <article class="menu-card" data-item='{"kind":"Bowl","name":"Layers Chia & Oat Pudding","note":"","price":"8.75","calories":null,"image":"/assets/img/menu/chia-oat-pudding.jpg"}'>
+          <button class="menu-card__open" type="button" aria-label="Layers Chia and Oat Pudding — details">
+            <span class="menu-card__media"><img src="/layers/assets/img/menu/chia-oat-pudding.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
+            <span class="menu-card__body">
+              <span class="menu-card__kind">Bowl</span>
+              <span class="menu-card__name">Layers Chia &amp; Oat Pudding</span>
+              <span class="menu-card__meta"><span class="menu-card__price">$8.75</span></span>
+            </span>
+          </button>
+          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order Layers Chia and Oat Pudding on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="menu-group" id="cat-smoothies" data-cat-section>
+      <header class="cathead">
+        <p class="eyebrow">Smoothies</p>
+      </header>
+      <div class="menu-grid">
+        <article class="menu-card" data-item='{"kind":"Smoothie","name":"Strawesome","note":"Skin Health & Antioxidant","price":"10.75","calories":255,"image":"/assets/img/menu/strawesome.jpg"}'>
+          <button class="menu-card__open" type="button" aria-label="Strawesome — details">
+            <span class="menu-card__media"><img src="/layers/assets/img/menu/strawesome.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
+            <span class="menu-card__body">
+              <span class="menu-card__kind">Smoothie</span>
+              <span class="menu-card__name">Strawesome <span class="menu-card__note">(Skin Health &amp; Antioxidant)</span></span>
+              <span class="menu-card__meta"><span class="menu-card__price">$10.75</span><span class="menu-card__cal">255 CAL</span></span>
+            </span>
+          </button>
+          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order Strawesome on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+        </article>
+        <article class="menu-card" data-item='{"kind":"Smoothie","name":"Beny’s Blendy","note":"Focus & Brain Support","price":"10.75","calories":302,"image":"/assets/img/menu/benys-blendy.jpg"}'>
+          <button class="menu-card__open" type="button" aria-label="Beny’s Blendy — details">
+            <span class="menu-card__media"><img src="/layers/assets/img/menu/benys-blendy.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
+            <span class="menu-card__body">
+              <span class="menu-card__kind">Smoothie</span>
+              <span class="menu-card__name">Beny’s Blendy <span class="menu-card__note">(Focus &amp; Brain Support)</span></span>
+              <span class="menu-card__meta"><span class="menu-card__price">$10.75</span><span class="menu-card__cal">302 CAL</span></span>
+            </span>
+          </button>
+          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order Beny’s Blendy on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+        </article>
+        <article class="menu-card" data-item='{"kind":"Smoothie","name":"Greenergy","note":"Daily Greens & Inner Balance","price":"10.75","calories":245,"image":"/assets/img/menu/greenergy.jpg"}'>
+          <button class="menu-card__open" type="button" aria-label="Greenergy — details">
+            <span class="menu-card__media"><img src="/layers/assets/img/menu/greenergy.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
+            <span class="menu-card__body">
+              <span class="menu-card__kind">Smoothie</span>
+              <span class="menu-card__name">Greenergy <span class="menu-card__note">(Daily Greens &amp; Inner Balance)</span></span>
+              <span class="menu-card__meta"><span class="menu-card__price">$10.75</span><span class="menu-card__cal">245 CAL</span></span>
+            </span>
+          </button>
+          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order Greenergy on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+        </article>
+        <article class="menu-card" data-item='{"kind":"Smoothie","name":"Blue-Tiful-Day","note":"Hydration & Mineral Support","price":"10.75","calories":275,"image":"/assets/img/menu/blue-tiful-day.jpg"}'>
+          <button class="menu-card__open" type="button" aria-label="Blue-Tiful-Day — details">
+            <span class="menu-card__media"><img src="/layers/assets/img/menu/blue-tiful-day.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
+            <span class="menu-card__body">
+              <span class="menu-card__kind">Smoothie</span>
+              <span class="menu-card__name">Blue-Tiful-Day <span class="menu-card__note">(Hydration &amp; Mineral Support)</span></span>
+              <span class="menu-card__meta"><span class="menu-card__price">$10.75</span><span class="menu-card__cal">275 CAL</span></span>
+            </span>
+          </button>
+          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order Blue-Tiful-Day on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+        </article>
+        <article class="menu-card" data-item='{"kind":"Smoothie","name":"Think Well","note":"30g Plant Protein Focus & Energy","price":"14.00","calories":390,"image":"/assets/img/menu/think-well.jpg"}'>
+          <button class="menu-card__open" type="button" aria-label="Think Well — details">
+            <span class="menu-card__media"><img src="/layers/assets/img/menu/think-well.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
+            <span class="menu-card__body">
+              <span class="menu-card__kind">Smoothie</span>
+              <span class="menu-card__name">Think Well <span class="menu-card__note">(30g Plant Protein Focus &amp; Energy)</span></span>
+              <span class="menu-card__meta"><span class="menu-card__price">$14.00</span><span class="menu-card__cal">390 CAL</span></span>
+            </span>
+          </button>
+          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order Think Well on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+        </article>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ============ ITEM DETAIL SHEET ============ -->
+<div id="item-sheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-name" hidden>
+  <div class="sheet__backdrop" data-sheet-close></div>
+  <div class="sheet__panel">
+    <button class="sheet__close" type="button" data-sheet-close aria-label="Close">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="sheet__media" data-sheet-media></div>
+    <div class="sheet__body">
+      <p class="menu-card__kind" data-sheet-kind></p>
+      <h2 class="sheet__name" id="sheet-name" data-sheet-name></h2>
+      <p class="sheet__meta"><span class="menu-card__price" data-sheet-price></span><span class="menu-card__cal" data-sheet-cal></span></p>
+      <p class="sheet__allergen placeholder-copy">[Allergen statement — client to confirm. Suggested: “Prepared in a shop that handles nuts, dairy, soy and gluten — ask our team about allergens.”]</p>
+    </div>
+    <a class="btn btn--sage btn--block sheet__order" data-sheet-order href="https://layers.square.site" target="_blank" rel="noopener">Order on Square</a>
+  </div>
+</div>
+</main>
+
+<!-- Brand sign-off: identical on every page. The tagline appears here and only here. -->
+<section class="signoff" aria-label="Layers Superfood Bar">
+  <img class="signoff__mark" src="/layers/assets/img/face.png" alt="" width="88" height="88" loading="lazy">
+  <p class="signoff__eyebrow">Superfood Bar · 2436 Channing Way, Berkeley</p>
+  <p class="signoff__tagline">Always pure, never watered down.</p>
+</section>
+
+<footer id="visit-footer" class="footer">
+  <div class="wrap footer__grid">
+    <div class="footer__brand">
+      <img src="/layers/assets/img/logo-wordmark-cream.png" alt="Layers Superfood Bar" width="190" height="49" loading="lazy">
+      <p class="footer__tagline">A Berkeley superfood bar. Clean smoothies and bowls, made fresh.</p>
+      <a class="btn btn--butter" href="https://layers.square.site" target="_blank" rel="noopener">
+        Order on Square
+        <svg class="icon-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+    </div>
+    <div class="footer__col">
+      <h2 class="footer__head">Visit</h2>
+      <address class="footer__addr">2436 Channing Way<br>Berkeley, CA 94704</address>
+      <p class="footer__hours">Mon–Fri · 10am–5pm<br>Sat–Sun · 10am–4pm</p>
+    </div>
+    <div class="footer__col">
+      <h2 class="footer__head">Explore</h2>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="/layers/story">Our Story</a>
+        <a href="/layers/menu">Menu</a>
+        <a href="/layers/how-we-make-it">How We Make It</a>
+        <a href="/layers/what-you-get">What You Get</a>
+        <a href="/layers/day-in-the-life">Day in the Life</a>
+        <a href="/layers/catering">Catering</a>
+        <a href="/layers/gift-cards">Gift Cards</a>
+        <a href="/layers/loyalty">Loyalty</a>
+        <a href="/layers/faq">FAQ</a>
+        <a href="/layers/visit">Visit</a>
+      </nav>
+    </div>
+    <div class="footer__col">
+      <h2 class="footer__head">Follow</h2>
+      <nav class="footer__links" aria-label="Social">
+        <a href="https://www.instagram.com/layerssuperfoodbar/" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+  </div>
+  <div class="footer__bar">
+    <p>© <span data-year>2026</span> Layers Superfood Bar</p>
+    <p class="footer__credit">Site by <a href="https://menigottesman.com" target="_blank" rel="noopener">Meni Gottesman’s Web Services</a></p>
+  </div>
+</footer>
+
+<script src="/layers/assets/js/vendor/gsap.min.js" defer></script>
+<script src="/layers/assets/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="/layers/assets/js/main.js" defer></script>
+</body>
+</html>
