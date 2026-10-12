@@ -219,8 +219,8 @@
 
     var order = $('[data-sheet-order]', sheet);
     var cat = /^[A-Z0-9]{8,40}$/.test(item.category_id || '') ? item.category_id : '';
-    order.href = '/layers/order' + (cat ? '?c=' + cat : '');
-    order.setAttribute('aria-label', 'Order ' + (item.name || 'item'));
+    order.href = SQUARE_ORDER + (cat ? '/#' + cat : '');   // the store scrolls to #<category id>
+    order.setAttribute('aria-label', 'Order ' + (item.name || 'item') + ' on Square (opens in a new tab)');
     order.style.display = item.soldOut ? 'none' : '';
 
     sheet.hidden = false; sheetOpen = true;
@@ -479,6 +479,74 @@
     var url = SQUARE_ORDER.replace(/\/$/, '') + '/#' + m[1];   // the store scrolls to #<category id>
     frame.src = url;
     $$('[data-order-out]').forEach(function (a) { a.href = url; });
+  }
+
+  /* --------------------------------------------------------------------- */
+  /* Albums: cover tiles open a full-screen viewer. Arrows / swipe to move,  */
+  /* Esc to close; focus stays inside and returns to the tile on close.      */
+  /* --------------------------------------------------------------------- */
+  function initAlbums() {
+    var dataEl = $('#albums-data'), viewer = $('#album-viewer');
+    if (!dataEl || !viewer) return;
+    var albums = {};
+    try { JSON.parse(dataEl.textContent).forEach(function (a) { albums[a.slug] = a; }); } catch (e) { return; }
+    var img = $('.viewer__img', viewer), source = $('source', viewer),
+        title = $('#viewer-title'), count = $('.viewer__count', viewer),
+        altEl = $('[data-viewer-alt]', viewer);
+    var current = null, index = 0, lastFocus = null, touchX = null;
+
+    function show(i) {
+      var photos = current.photos;
+      index = (i + photos.length) % photos.length;
+      var p = photos[index];
+      source.srcset = p.src + '.webp';
+      img.src = p.src + '.jpg';
+      img.width = p.w; img.height = p.h;
+      img.alt = p.alt;
+      altEl.textContent = p.alt;
+      count.textContent = (index + 1) + ' / ' + photos.length;
+      var next = photos[(index + 1) % photos.length];      // warm the next one
+      if (next) { var pre = new Image(); pre.src = next.src + '.jpg'; }
+    }
+    function open(slug, from) {
+      current = albums[slug];
+      if (!current) return;
+      lastFocus = from || document.activeElement;
+      title.textContent = current.title;
+      show(0);
+      viewer.hidden = false;
+      void viewer.offsetWidth;
+      viewer.setAttribute('data-open', '');
+      lockScroll();
+      $('[data-viewer-close]', viewer).focus();
+    }
+    function close() {
+      if (viewer.hidden) return;
+      viewer.removeAttribute('data-open');
+      viewer.hidden = true;
+      unlockScroll();
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    $$('[data-album]').forEach(function (tile) {
+      tile.addEventListener('click', function () { open(tile.getAttribute('data-album'), tile); });
+    });
+    $('[data-viewer-close]', viewer).addEventListener('click', close);
+    $('[data-viewer-prev]', viewer).addEventListener('click', function () { show(index - 1); });
+    $('[data-viewer-next]', viewer).addEventListener('click', function () { show(index + 1); });
+    viewer.addEventListener('click', function (e) { if (e.target === viewer || e.target.classList.contains('viewer__stage')) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (viewer.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') show(index - 1);
+      else if (e.key === 'ArrowRight') show(index + 1);
+      else if (e.key === 'Tab') trapFocus(viewer, e);
+    });
+    viewer.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+    viewer.addEventListener('touchend', function (e) {
+      if (touchX === null) return;
+      var dx = e.changedTouches[0].clientX - touchX; touchX = null;
+      if (Math.abs(dx) > 40) show(index + (dx < 0 ? 1 : -1));
+    });
   }
 
   function initOpenNow() {
@@ -814,6 +882,7 @@
     initMenu();
     initOpenNow();
     initOrderFrame();
+    initAlbums();
     initFilm();
     initCateringForm();
     initMotion();

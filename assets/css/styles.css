@@ -1282,3 +1282,31 @@ section.menu-group{scroll-margin-top:calc(var(--header-h) + 64px)}
   .order__frame iframe{height:calc(100svh - var(--header-h, 64px) - 96px);min-height:560px}
   .order__fine{padding:0 var(--gutter)}
 }
+
+/* ---- Albums (A Day at Layers): cover tiles + full-screen viewer ---------- */
+.albums .ed-intro{text-align:center}
+.albums__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(28px,3vw,44px) clamp(12px,1.6vw,24px);padding:0 var(--gutter);max-width:1440px;margin:0 auto}
+.album-tile{appearance:none;border:0;background:none;padding:0;text-align:center;cursor:pointer;font:inherit;color:inherit;width:100%}
+.album-tile .ed-media{aspect-ratio:4/5}
+.album-tile .ed-media img{height:100%;object-fit:cover}
+.album-tile:hover .ed-media img,.album-tile:focus-visible .ed-media img{transform:scale(1.025)}
+.album-tile__count{display:block;margin-top:4px;font:400 13px var(--display);letter-spacing:.06em;color:var(--stone)}
+.viewer{position:fixed;inset:0;z-index:200;background:rgba(24,22,19,.96);display:flex;align-items:center;justify-content:center}
+.viewer[hidden]{display:none}
+.viewer__top{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;gap:16px;padding:14px 16px 14px 24px;color:var(--warm-white)}
+.viewer__title{font:600 14px var(--display);font-stretch:var(--narrow);letter-spacing:.1em;text-transform:uppercase;margin:0;flex:1}
+.viewer__count{font:400 14px var(--display);margin:0;color:rgba(252,250,244,.8)}
+.viewer__close,.viewer__nav{appearance:none;border:0;background:none;color:var(--warm-white);cursor:pointer;width:48px;height:48px;display:flex;align-items:center;justify-content:center}
+.viewer__stage{margin:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:72px 72px 40px}
+.viewer__stage img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block}
+.viewer__nav{position:absolute;top:50%;transform:translateY(-50%)}
+.viewer__nav--prev{left:8px}
+.viewer__nav--next{right:8px}
+.viewer :focus-visible{outline-color:var(--warm-white);box-shadow:none}
+@media (max-width:720px){
+  .albums__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .viewer__stage{padding:64px 0 24px}
+  .viewer__nav{top:auto;bottom:12px;transform:none}
+}
+.ed-more{text-align:center;margin:clamp(36px,4vw,56px) 0 0}
+.ed-more .ed-label__cta{font-size:14px}
