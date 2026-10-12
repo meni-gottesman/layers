@@ -4,15 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Menu | Layers Superfood Bar</title>
-<!-- Meta description — to be supplied by client before launch. -->
+<meta name="description" content="The Layers menu: açaí and layered bowls, functional smoothies and the Wellness Market shelf, with prices, ingredients and nutrition. Order on Square for pickup at 2436 Channing Way, Berkeley.">
 <link rel="canonical" href="https://layerssuperfoodbar.com/menu">
-<meta name="theme-color" content="#FCFAF4">
-<link rel="icon" href="/layers/assets/img/face-mark.png" type="image/png">
-<link rel="apple-touch-icon" href="/layers/assets/img/face-mark.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Layers Superfood Bar">
+<meta property="og:title" content="Menu | Layers Superfood Bar">
+<meta property="og:description" content="The Layers menu: açaí and layered bowls, functional smoothies and the Wellness Market shelf, with prices, ingredients and nutrition. Order on Square for pickup at 2436 Channing Way, Berkeley.">
+<meta property="og:url" content="https://layerssuperfoodbar.com/menu">
+<meta property="og:image" content="https://layerssuperfoodbar.com/assets/img/home/hero-1440.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#E5E0D8">
+<link rel="icon" href="/layers/assets/img/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="icon" href="/layers/assets/img/face-mark.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/layers/assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Spectral:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Archivo: the closest open-licence match to Happier's editorial grotesk (Scout).
+     One family, two widths: 87.5% for display/labels/navigation, 100% for reading. -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87.5..100,400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/layers/assets/css/styles.css">
+<meta name="layers-hours" content='{"1":[540,1080],"2":[540,1080],"3":[540,1080],"4":[540,1080],"5":[540,1080],"6":[540,960],"0":[540,960]}'>
 </head>
 <body class="page-menu">
 
@@ -22,7 +33,7 @@
   <div class="header__inner">
     <a class="header__brand" href="/layers/" aria-label="Layers Superfood Bar — home">
       <img class="header__wordmark header__wordmark--cream" src="/layers/assets/img/wordmark-cream.png" alt="Layers Superfood Bar" width="121" height="52">
-      <img class="header__wordmark header__wordmark--ink" src="/layers/assets/img/wordmark-ink.png" alt="" aria-hidden="true" width="121" height="52">
+      <img class="header__wordmark header__wordmark--ink" src="/layers/assets/img/wordmark-green.png" alt="" aria-hidden="true" width="121" height="52">
     </a>
 
     <nav class="header__nav" aria-label="Primary">
@@ -31,14 +42,13 @@
       <a data-nav href="/layers/how-we-make-it">How We Make It</a>
       <a data-nav href="/layers/catering">Catering</a>
       <a data-nav href="/layers/visit">Visit</a>
-      <a data-nav class="header__gift" href="/layers/gift-cards">Gift Cards</a>
-      <a id="header-order" data-headorder class="btn btn--butter btn--sm" href="https://layers.square.site" target="_blank" rel="noopener">
+      <a id="header-order" data-headorder class="btn btn--butter btn--sm" href="/layers/order">
         Order on Square
         <svg class="icon-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
     </nav>
 
-    <a class="btn btn--butter btn--sm header__m-order" href="https://layers.square.site" target="_blank" rel="noopener">Order</a>
+    <a class="btn btn--butter btn--sm header__m-order" href="/layers/order">Order</a>
     <button id="m-burger" class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="m-drawer">
       <span></span><span></span><span></span>
     </button>
@@ -48,7 +58,7 @@
 <div id="m-scrim" class="drawer-scrim" hidden></div>
 <aside id="m-drawer" class="drawer" aria-label="Mobile menu" aria-hidden="true" hidden>
   <div class="drawer__head">
-    <img src="/layers/assets/img/wordmark-ink.png" alt="Layers Superfood Bar" width="110" height="47">
+    <img src="/layers/assets/img/wordmark-green.png" alt="Layers Superfood Bar" width="110" height="47">
     <button id="m-close" class="drawer__close" type="button" aria-label="Close menu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
@@ -57,188 +67,96 @@
     <a data-drawer href="/layers/menu" aria-current="page">Menu</a>
     <a data-drawer href="/layers/story">Our Story</a>
     <a data-drawer href="/layers/how-we-make-it">How We Make It</a>
-    <a data-drawer href="/layers/what-you-get">What You Get</a>
+    <a data-drawer href="/layers/what-you-get">What We Make</a>
     <a data-drawer href="/layers/day-in-the-life">Day in the Life</a>
     <a data-drawer href="/layers/catering">Catering</a>
-    <a data-drawer href="/layers/gift-cards">Gift Cards</a>
-    <a data-drawer href="/layers/loyalty">Loyalty</a>
     <a data-drawer href="/layers/faq">FAQ</a>
     <a data-drawer href="/layers/visit">Visit</a>
   </nav>
   <div class="drawer__foot">
-    <a class="btn btn--sage btn--block" href="https://layers.square.site" target="_blank" rel="noopener">Order on Square</a>
-    <a class="btn btn--ghost btn--block" href="/layers/gift-cards">Gift Cards</a>
+    <a class="btn btn--sage btn--block" href="/layers/order">Order on Square</a>
   </div>
 </aside>
 
 <main id="main">
-<!-- ============ PAGE HEAD — composition B ============ -->
-<section class="section section--cream pagehead">
-  <div class="wrap comp-b">
-    <div class="comp-b__main">
-      <p class="eyebrow">Menu</p>
-      <h1 class="h2 pagehead__title">A rotating menu of smoothies and bowls made with house bases, real fruit, and functional ingredients.</h1>
-      <p class="menu__note">
-        <span class="menu__dot" data-menu-dot aria-hidden="true"></span>
-        <span data-menu-status>Live menu syncs from Square. Items, pricing, and availability may vary.</span>
-      </p>
-    </div>
-    <div class="comp-b__low">
-      <!-- The six things Layers makes — stepped hairline list, no cards, no icons -->
-      <ol class="steplist steplist--tight">
-        <li>performance smoothies</li>
-        <li>protein bowls</li>
-        <li>functional ingredients</li>
-        <li>nutrient-dense meals</li>
-        <li>convenient wellness</li>
-        <li>food designed for everyday life</li>
-      </ol>
-    </div>
-  </div>
-</section>
+<!-- Menu — rendered at build time from data/menu-fallback.json, which
+     tools/sync-menu-from-store.py writes from Layers' public Square store
+     (names, prices, ingredients, nutrition and allergen notes, verbatim).
+     Once a Square token is configured, /api/menu updates prices and sold-out
+     states on these same cards in place. -->
 
-<!-- ============ CATEGORY CHIP RAIL — sticky, scrollable ============ -->
-<nav class="chiprail" data-chip-rail aria-label="Menu categories">
-  <div class="wrap chiprail__track" data-chip-track>
-    <a class="chip" href="#cat-bowls" data-chip="cat-bowls">Bowls</a>
-    <a class="chip" href="#cat-smoothies" data-chip="cat-smoothies">Smoothies</a>
+<header class="story-head menu-head">
+  <p class="eyebrow">Menu</p>
+  <h1 class="story-head__title">The Menu</h1>
+  <p class="story-head__lede">Smoothies and bowls made with house-made bases, whole fruit and functional ingredients.</p>
+  <p class="menu__note"><span class="menu__dot" data-menu-dot aria-hidden="true"></span><span data-menu-status>Prices and availability are confirmed on Square when you order.</span></p>
+  <div class="ed-ctas">
+    <a class="btn btn--sage" href="/layers/order">Order on Square</a>
   </div>
-</nav>
+</header>
 
-<!-- ============ MENU — server/Square-rendered ============ -->
-<div class="wrap menu-wrap">
-  <!-- Ships with the last-known-good menu so the page is never empty with JS off
-       or Square down; replaced in place on a successful sync. First category
-       header carries the page's single Sage Deep field. -->
-  <div id="menu-root" data-menu-root data-menu-page>
-    <section class="menu-group" id="cat-bowls" data-cat-section>
-      <header class="cathead cathead--field">
-        <p class="eyebrow eyebrow--onsage">Made in house</p>
-        <h2 class="cathead__name">Bowls</h2>
-      </header>
-      <div class="menu-grid">
-        <article class="menu-card" data-item='{"kind":"Bowl","name":"Berry Much Love U","note":"Classic Açaí","price":"9.50","calories":367,"image":"/assets/img/menu/berry-much-love-u.jpg"}'>
-          <button class="menu-card__open" type="button" aria-label="Berry Much Love U — details">
-            <span class="menu-card__media"><img src="/layers/assets/img/menu/berry-much-love-u.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
-            <span class="menu-card__body">
-              <span class="menu-card__kind">Bowl</span>
-              <span class="menu-card__name">Berry Much Love U <span class="menu-card__note">(Classic Açaí)</span></span>
-              <span class="menu-card__meta"><span class="menu-card__price">$9.50</span><span class="menu-card__cal">367 CAL</span></span>
-            </span>
-          </button>
-          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order Berry Much Love U on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-        </article>
-        <article class="menu-card" data-item='{"kind":"Bowl","name":"Mango Coco","note":"Inspired by Thai Mango Sticky Rice","price":"9.50","calories":280,"image":"/assets/img/menu/mango-coco.jpg"}'>
-          <button class="menu-card__open" type="button" aria-label="Mango Coco — details">
-            <span class="menu-card__media"><img src="/layers/assets/img/menu/mango-coco.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
-            <span class="menu-card__body">
-              <span class="menu-card__kind">Bowl</span>
-              <span class="menu-card__name">Mango Coco <span class="menu-card__note">(Inspired by Thai Mango Sticky Rice)</span></span>
-              <span class="menu-card__meta"><span class="menu-card__price">$9.50</span><span class="menu-card__cal">280 CAL</span></span>
-            </span>
-          </button>
-          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order Mango Coco on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-        </article>
-        <article class="menu-card" data-item='{"kind":"Bowl","name":"The Balance Bowl","note":"Yogurt","price":"8.75","calories":275,"image":"/assets/img/menu/balance-bowl.jpg"}'>
-          <button class="menu-card__open" type="button" aria-label="The Balance Bowl — details">
-            <span class="menu-card__media"><img src="/layers/assets/img/menu/balance-bowl.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
-            <span class="menu-card__body">
-              <span class="menu-card__kind">Bowl</span>
-              <span class="menu-card__name">The Balance Bowl <span class="menu-card__note">(Yogurt)</span></span>
-              <span class="menu-card__meta"><span class="menu-card__price">$8.75</span><span class="menu-card__cal">275 CAL</span></span>
-            </span>
-          </button>
-          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order The Balance Bowl on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-        </article>
-        <article class="menu-card" data-item='{"kind":"Bowl","name":"Recovery Bowl","note":"40g Protein","price":"15.75","calories":747,"image":"/assets/img/menu/recovery-bowl.jpg"}'>
-          <button class="menu-card__open" type="button" aria-label="Recovery Bowl — details">
-            <span class="menu-card__media"><img src="/layers/assets/img/menu/recovery-bowl.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
-            <span class="menu-card__body">
-              <span class="menu-card__kind">Bowl</span>
-              <span class="menu-card__name">Recovery Bowl <span class="menu-card__note">(40g Protein)</span></span>
-              <span class="menu-card__meta"><span class="menu-card__price">$15.75</span><span class="menu-card__cal">747 CAL</span></span>
-            </span>
-          </button>
-          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order Recovery Bowl on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-        </article>
-        <article class="menu-card" data-item='{"kind":"Bowl","name":"Layers Chia & Oat Pudding","note":"","price":"8.75","calories":null,"image":"/assets/img/menu/chia-oat-pudding.jpg"}'>
-          <button class="menu-card__open" type="button" aria-label="Layers Chia and Oat Pudding — details">
-            <span class="menu-card__media"><img src="/layers/assets/img/menu/chia-oat-pudding.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
-            <span class="menu-card__body">
-              <span class="menu-card__kind">Bowl</span>
-              <span class="menu-card__name">Layers Chia &amp; Oat Pudding</span>
-              <span class="menu-card__meta"><span class="menu-card__price">$8.75</span></span>
-            </span>
-          </button>
-          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order Layers Chia and Oat Pudding on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-        </article>
-      </div>
-    </section>
-
-    <section class="menu-group" id="cat-smoothies" data-cat-section>
-      <header class="cathead">
-        <p class="eyebrow">Smoothies</p>
-      </header>
-      <div class="menu-grid">
-        <article class="menu-card" data-item='{"kind":"Smoothie","name":"Strawesome","note":"Skin Health & Antioxidant","price":"10.75","calories":255,"image":"/assets/img/menu/strawesome.jpg"}'>
-          <button class="menu-card__open" type="button" aria-label="Strawesome — details">
-            <span class="menu-card__media"><img src="/layers/assets/img/menu/strawesome.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
-            <span class="menu-card__body">
-              <span class="menu-card__kind">Smoothie</span>
-              <span class="menu-card__name">Strawesome <span class="menu-card__note">(Skin Health &amp; Antioxidant)</span></span>
-              <span class="menu-card__meta"><span class="menu-card__price">$10.75</span><span class="menu-card__cal">255 CAL</span></span>
-            </span>
-          </button>
-          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order Strawesome on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-        </article>
-        <article class="menu-card" data-item='{"kind":"Smoothie","name":"Beny’s Blendy","note":"Focus & Brain Support","price":"10.75","calories":302,"image":"/assets/img/menu/benys-blendy.jpg"}'>
-          <button class="menu-card__open" type="button" aria-label="Beny’s Blendy — details">
-            <span class="menu-card__media"><img src="/layers/assets/img/menu/benys-blendy.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
-            <span class="menu-card__body">
-              <span class="menu-card__kind">Smoothie</span>
-              <span class="menu-card__name">Beny’s Blendy <span class="menu-card__note">(Focus &amp; Brain Support)</span></span>
-              <span class="menu-card__meta"><span class="menu-card__price">$10.75</span><span class="menu-card__cal">302 CAL</span></span>
-            </span>
-          </button>
-          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order Beny’s Blendy on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-        </article>
-        <article class="menu-card" data-item='{"kind":"Smoothie","name":"Greenergy","note":"Daily Greens & Inner Balance","price":"10.75","calories":245,"image":"/assets/img/menu/greenergy.jpg"}'>
-          <button class="menu-card__open" type="button" aria-label="Greenergy — details">
-            <span class="menu-card__media"><img src="/layers/assets/img/menu/greenergy.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
-            <span class="menu-card__body">
-              <span class="menu-card__kind">Smoothie</span>
-              <span class="menu-card__name">Greenergy <span class="menu-card__note">(Daily Greens &amp; Inner Balance)</span></span>
-              <span class="menu-card__meta"><span class="menu-card__price">$10.75</span><span class="menu-card__cal">245 CAL</span></span>
-            </span>
-          </button>
-          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order Greenergy on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-        </article>
-        <article class="menu-card" data-item='{"kind":"Smoothie","name":"Blue-Tiful-Day","note":"Hydration & Mineral Support","price":"10.75","calories":275,"image":"/assets/img/menu/blue-tiful-day.jpg"}'>
-          <button class="menu-card__open" type="button" aria-label="Blue-Tiful-Day — details">
-            <span class="menu-card__media"><img src="/layers/assets/img/menu/blue-tiful-day.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
-            <span class="menu-card__body">
-              <span class="menu-card__kind">Smoothie</span>
-              <span class="menu-card__name">Blue-Tiful-Day <span class="menu-card__note">(Hydration &amp; Mineral Support)</span></span>
-              <span class="menu-card__meta"><span class="menu-card__price">$10.75</span><span class="menu-card__cal">275 CAL</span></span>
-            </span>
-          </button>
-          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order Blue-Tiful-Day on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-        </article>
-        <article class="menu-card" data-item='{"kind":"Smoothie","name":"Think Well","note":"30g Plant Protein Focus & Energy","price":"14.00","calories":390,"image":"/assets/img/menu/think-well.jpg"}'>
-          <button class="menu-card__open" type="button" aria-label="Think Well — details">
-            <span class="menu-card__media"><img src="/layers/assets/img/menu/think-well.jpg" alt="" loading="lazy" decoding="async" width="800" height="800"></span>
-            <span class="menu-card__body">
-              <span class="menu-card__kind">Smoothie</span>
-              <span class="menu-card__name">Think Well <span class="menu-card__note">(30g Plant Protein Focus &amp; Energy)</span></span>
-              <span class="menu-card__meta"><span class="menu-card__price">$14.00</span><span class="menu-card__cal">390 CAL</span></span>
-            </span>
-          </button>
-          <a class="menu-card__order" href="https://layers.square.site" target="_blank" rel="noopener" aria-label="Order Think Well on Square">Order on Square<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
-        </article>
-      </div>
-    </section>
-  </div>
-</div>
+<nav class="chiprail" data-chip-rail aria-label="Menu categories"><div class="wrap chiprail__track" data-chip-track><a class="chip" href="#cat-bowls" data-chip="cat-bowls">Bowls</a><a class="chip" href="#cat-smoothies" data-chip="cat-smoothies">Smoothies</a><a class="chip" href="#cat-wellness-market" data-chip="cat-wellness-market">Wellness Market</a></div></nav>
+<div class="wrap menu-wrap"><div id="menu-root" data-menu-root data-menu-page>
+<section class="menu-group menu-group--cards" id="cat-bowls" data-cat-section aria-labelledby="cat-bowls-h">
+<header class="cathead"><h2 class="cathead__name" id="cat-bowls-h">Bowls</h2><p class="cathead__line">Spoonable bases, layered with fruit, crunch, and protein.</p></header>
+<div class="menu-grid">
+<article class="menu-card" data-id="WCXFIIWG7UHLHK4YSLDSIWNZ" data-item="{&quot;id&quot;: &quot;WCXFIIWG7UHLHK4YSLDSIWNZ&quot;, &quot;kind&quot;: &quot;Bowl&quot;, &quot;name&quot;: &quot;Berry Much Love U&quot;, &quot;note&quot;: &quot;Classic Açaí&quot;, &quot;price&quot;: &quot;9.75&quot;, &quot;calories&quot;: 367, &quot;highlights&quot;: [&quot;No refined sugar — naturally sweetened with whole fruit&quot;, &quot;Antioxidant-Rich&quot;, &quot;Fiber-Rich&quot;], &quot;base&quot;: [&quot;Organic Unsweetened Açaí&quot;, &quot;Banana&quot;, &quot;Organic Mix Blueberries&quot;, &quot;Organic Mango&quot;, &quot;Organic Dates&quot;, &quot;Organic Coconut Milk&quot;], &quot;toppings&quot;: [&quot;Layers Crumble&quot;, &quot;Organic Granola&quot;, &quot;Banana&quot;, &quot;Organic Straw &amp; blueberries&quot;, &quot;Organic Goji berry&quot;, &quot;Organic Cacao nibs&quot;, &quot;Organic Layers Oat/Chia pudding (contains almond milk)&quot;], &quot;allergens&quot;: [&quot;Layers Crumble: Contains all tree nuts and dairy. Cross-contact with other nuts is possible.&quot;], &quot;category_id&quot;: &quot;U3ZVIEUXB6FUAMEYRMCFYIBH&quot;, &quot;image&quot;: &quot;/layers/assets/img/menu/berry-much-love-u-720.jpg&quot;, &quot;image_small&quot;: true}"><button class="menu-card__open" type="button" aria-label="Berry Much Love U — details"><span class="menu-card__media"><picture><source type="image/webp" srcset="/layers/assets/img/menu/berry-much-love-u-480.webp 480w, /layers/assets/img/menu/berry-much-love-u-720.webp 720w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw"><img src="/layers/assets/img/menu/berry-much-love-u-720.jpg" srcset="/layers/assets/img/menu/berry-much-love-u-480.jpg 480w, /layers/assets/img/menu/berry-much-love-u-720.jpg 720w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw" width="720" height="720" alt="" loading="lazy" decoding="async"></picture></span><span class="menu-card__body"><span class="menu-card__name">Berry Much Love U</span><span class="menu-card__note">Classic Açaí</span><span class="menu-card__meta"><span class="menu-card__price">$9.75</span><span class="menu-card__cal">367 cal</span></span></span></button></article>
+<article class="menu-card" data-id="VLK7BDLF3CHWWWUKENU3PK4C" data-item="{&quot;id&quot;: &quot;VLK7BDLF3CHWWWUKENU3PK4C&quot;, &quot;kind&quot;: &quot;Bowl&quot;, &quot;name&quot;: &quot;Bananoffee&quot;, &quot;price&quot;: &quot;9.75&quot;, &quot;calories&quot;: 280, &quot;highlights&quot;: [&quot;Steady Energy&quot;, &quot;Fiber-Rich&quot;, &quot;Greens + Spirulina&quot;, &quot;No added sugar — naturally sweetened with whole fruit&quot;], &quot;base&quot;: [&quot;Banana&quot;, &quot;Organic Mango&quot;, &quot;Organic Coconut Cream&quot;, &quot;Organic Dates&quot;, &quot;Organic Spinach&quot;, &quot;Organic Ginger&quot;, &quot;Organic Hawaiian Spirulina&quot;, &quot;Sea Salt&quot;], &quot;toppings&quot;: [&quot;Layers Crumble&quot;, &quot;Banana&quot;, &quot;Organic Blueberries&quot;, &quot;Layers Granola&quot;, &quot;Organic Cacao Nibs&quot;, &quot;Layers Oat &amp; Chia Pudding (contains almond milk)&quot;, &quot;Organic Cacao Powder&quot;], &quot;allergens&quot;: [&quot;Layers Crumble: Contains all tree nuts and dairy. Cross-contact with other nuts is possible.&quot;], &quot;category_id&quot;: &quot;U3ZVIEUXB6FUAMEYRMCFYIBH&quot;, &quot;image&quot;: &quot;/layers/assets/img/menu/bananoffee-960.jpg&quot;}"><button class="menu-card__open" type="button" aria-label="Bananoffee — details"><span class="menu-card__media"><picture><source type="image/webp" srcset="/layers/assets/img/menu/bananoffee-480.webp 480w, /layers/assets/img/menu/bananoffee-720.webp 720w, /layers/assets/img/menu/bananoffee-960.webp 960w, /layers/assets/img/menu/bananoffee-1440.webp 1440w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw"><img src="/layers/assets/img/menu/bananoffee-1440.jpg" srcset="/layers/assets/img/menu/bananoffee-480.jpg 480w, /layers/assets/img/menu/bananoffee-720.jpg 720w, /layers/assets/img/menu/bananoffee-960.jpg 960w, /layers/assets/img/menu/bananoffee-1440.jpg 1440w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw" width="1440" height="1440" alt="" loading="lazy" decoding="async"></picture></span><span class="menu-card__body"><span class="menu-card__name">Bananoffee</span><span class="menu-card__meta"><span class="menu-card__price">$9.75</span><span class="menu-card__cal">280 cal</span></span></span></button></article>
+<article class="menu-card" data-id="SE5PJMNKX4A4G7JWWR55MDLC" data-item="{&quot;id&quot;: &quot;SE5PJMNKX4A4G7JWWR55MDLC&quot;, &quot;kind&quot;: &quot;Bowl&quot;, &quot;name&quot;: &quot;Pink Pink Pink&quot;, &quot;price&quot;: &quot;9.75&quot;, &quot;calories&quot;: 280, &quot;highlights&quot;: [&quot;No refined sugar — naturally sweetened with whole fruit&quot;], &quot;base&quot;: [&quot;Organic Mango&quot;, &quot;Banana&quot;, &quot;Organic Dark Cherry&quot;, &quot;Organic Red Dragon Fruit&quot;, &quot;Organic Strawberry&quot;, &quot;Coconut Milk&quot;, &quot;Organic Dates&quot;, &quot;Organic Flaxseed&quot;], &quot;toppings&quot;: [&quot;Layers Crumble&quot;, &quot;Strawberry&quot;, &quot;Blueberries&quot;, &quot;Organic Layers Granola&quot;, &quot;Organic Cacao Nibs&quot;, &quot;Organic Pumpkin Seeds&quot;, &quot;Organic Layers Oat &amp; Chia Pudding&quot;], &quot;allergens&quot;: [&quot;Oat &amp; Chia Pudding contains tree nuts (almond milk).&quot;, &quot;Layers Crumble contains tree nuts and dairy. Cross-contact with other nuts is possible.&quot;], &quot;category_id&quot;: &quot;U3ZVIEUXB6FUAMEYRMCFYIBH&quot;, &quot;image&quot;: null}"><button class="menu-card__open" type="button" aria-label="Pink Pink Pink — details"><span class="menu-card__media menu-card__media--ph"><img src="/layers/assets/img/face.png" alt="" width="88" height="88" loading="lazy"></span><span class="menu-card__body"><span class="menu-card__name">Pink Pink Pink</span><span class="menu-card__meta"><span class="menu-card__price">$9.75</span><span class="menu-card__cal">280 cal</span></span></span></button></article>
+<article class="menu-card" data-id="77SYUYS4GZELUOU7VIXH7P3H" data-item="{&quot;id&quot;: &quot;77SYUYS4GZELUOU7VIXH7P3H&quot;, &quot;kind&quot;: &quot;Bowl&quot;, &quot;name&quot;: &quot;Recovery Bowl&quot;, &quot;note&quot;: &quot;40g Protein&quot;, &quot;price&quot;: &quot;16.20&quot;, &quot;calories&quot;: 747, &quot;highlights&quot;: [&quot;40g Protein&quot;, &quot;Muscle Recovery&quot;, &quot;Fiber-Rich&quot;, &quot;No added sugar — naturally sweetened with whole fruit&quot;], &quot;base&quot;: [&quot;Organic Unsweetened Acai&quot;, &quot;Banana&quot;, &quot;Organic Mix Blueberries&quot;, &quot;Organic Mango&quot;, &quot;Organic Dates&quot;, &quot;Organic Coconut Milk&quot;, &quot;Organic pea protein powder unflavored&quot;], &quot;toppings&quot;: [&quot;Layers Crumble&quot;, &quot;Organic layers Granola&quot;, &quot;Banana&quot;, &quot;Organic Straw &amp; blueberries&quot;, &quot;Organic Sliced Almonds&quot;, &quot;Organic Hemp Heart&quot;, &quot;Organic Pumpkin seed&quot;, &quot;Organic Cacao nibs&quot;, &quot;Organic Goji berry&quot;, &quot;Organic Flaxseed&quot;, &quot;Organic Layers Oat/Chia pudding (contains almond milk)&quot;], &quot;allergens&quot;: [&quot;Layers Crumble: Contains all tree nuts and dairy. Cross-contact with other nuts is possible.&quot;], &quot;category_id&quot;: &quot;U3ZVIEUXB6FUAMEYRMCFYIBH&quot;, &quot;image&quot;: &quot;/layers/assets/img/menu/recovery-bowl-707.jpg&quot;, &quot;image_small&quot;: true}"><button class="menu-card__open" type="button" aria-label="Recovery Bowl — details"><span class="menu-card__media"><picture><source type="image/webp" srcset="/layers/assets/img/menu/recovery-bowl-480.webp 480w, /layers/assets/img/menu/recovery-bowl-707.webp 707w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw"><img src="/layers/assets/img/menu/recovery-bowl-707.jpg" srcset="/layers/assets/img/menu/recovery-bowl-480.jpg 480w, /layers/assets/img/menu/recovery-bowl-707.jpg 707w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw" width="707" height="707" alt="" loading="lazy" decoding="async"></picture></span><span class="menu-card__body"><span class="menu-card__name">Recovery Bowl</span><span class="menu-card__note">40g Protein</span><span class="menu-card__meta"><span class="menu-card__price">$16.20</span><span class="menu-card__cal">747 cal</span></span></span></button></article>
+<article class="menu-card" data-id="LHK6P6SKF2PQ2EOCHOU7FCF3" data-item="{&quot;id&quot;: &quot;LHK6P6SKF2PQ2EOCHOU7FCF3&quot;, &quot;kind&quot;: &quot;Bowl&quot;, &quot;name&quot;: &quot;Balance Bowl&quot;, &quot;note&quot;: &quot;Yogurt · 17g Protein&quot;, &quot;price&quot;: &quot;9.50&quot;, &quot;calories&quot;: 275, &quot;base&quot;: [&quot;Lactose Free Plain Greek Yogurt&quot;], &quot;toppings&quot;: [&quot;Banana&quot;, &quot;Organic Strawberry&quot;, &quot;Organic Blueberry&quot;, &quot;Layers granola&quot;, &quot;Organic Cacao nibs&quot;, &quot;Organic Coconut flower nectar&quot;], &quot;macros&quot;: {&quot;protein&quot;: 17}, &quot;category_id&quot;: &quot;U3ZVIEUXB6FUAMEYRMCFYIBH&quot;, &quot;image&quot;: &quot;/layers/assets/img/menu/balance-bowl-960.jpg&quot;}"><button class="menu-card__open" type="button" aria-label="Balance Bowl — details"><span class="menu-card__media"><picture><source type="image/webp" srcset="/layers/assets/img/menu/balance-bowl-480.webp 480w, /layers/assets/img/menu/balance-bowl-720.webp 720w, /layers/assets/img/menu/balance-bowl-960.webp 960w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw"><img src="/layers/assets/img/menu/balance-bowl-960.jpg" srcset="/layers/assets/img/menu/balance-bowl-480.jpg 480w, /layers/assets/img/menu/balance-bowl-720.jpg 720w, /layers/assets/img/menu/balance-bowl-960.jpg 960w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw" width="960" height="960" alt="" loading="lazy" decoding="async"></picture></span><span class="menu-card__body"><span class="menu-card__name">Balance Bowl</span><span class="menu-card__note">Yogurt · 17g Protein</span><span class="menu-card__meta"><span class="menu-card__price">$9.50</span><span class="menu-card__cal">275 cal</span></span></span></button></article>
+<article class="menu-card" data-id="FYZITBC7G6D37EE5GCGQQ3ZS" data-item="{&quot;id&quot;: &quot;FYZITBC7G6D37EE5GCGQQ3ZS&quot;, &quot;kind&quot;: &quot;Bowl&quot;, &quot;name&quot;: &quot;Chia &amp; Oat Pudding&quot;, &quot;price&quot;: &quot;8.75&quot;, &quot;base&quot;: [&quot;Organic Coconut milk&quot;, &quot;Almond milk&quot;, &quot;Organic chia seed&quot;, &quot;Organic raw oat&quot;, &quot;Organic sea salt&quot;], &quot;toppings&quot;: [&quot;Banana&quot;, &quot;Organic Strawberry&quot;, &quot;Organic Blueberry&quot;, &quot;Layers granola&quot;, &quot;Organic Cacao nibs&quot;, &quot;Organic Coconut flower nectar&quot;], &quot;category_id&quot;: &quot;U3ZVIEUXB6FUAMEYRMCFYIBH&quot;, &quot;image&quot;: &quot;/layers/assets/img/menu/chia-oat-pudding-960.jpg&quot;}"><button class="menu-card__open" type="button" aria-label="Chia &amp; Oat Pudding — details"><span class="menu-card__media"><picture><source type="image/webp" srcset="/layers/assets/img/menu/chia-oat-pudding-480.webp 480w, /layers/assets/img/menu/chia-oat-pudding-720.webp 720w, /layers/assets/img/menu/chia-oat-pudding-960.webp 960w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw"><img src="/layers/assets/img/menu/chia-oat-pudding-960.jpg" srcset="/layers/assets/img/menu/chia-oat-pudding-480.jpg 480w, /layers/assets/img/menu/chia-oat-pudding-720.jpg 720w, /layers/assets/img/menu/chia-oat-pudding-960.jpg 960w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw" width="960" height="960" alt="" loading="lazy" decoding="async"></picture></span><span class="menu-card__body"><span class="menu-card__name">Chia &amp; Oat Pudding</span><span class="menu-card__meta"><span class="menu-card__price">$8.75</span></span></span></button></article>
+<article class="menu-card" data-id="GU5VYQ27LDDOP7GJ2AG2OCP2" data-item="{&quot;id&quot;: &quot;GU5VYQ27LDDOP7GJ2AG2OCP2&quot;, &quot;kind&quot;: &quot;Bowl&quot;, &quot;name&quot;: &quot;Build Your Bowl&quot;, &quot;price&quot;: &quot;13.50&quot;, &quot;highlights&quot;: [&quot;No added sugar — naturally sweetened with whole fruit&quot;], &quot;allergens&quot;: [&quot;Layers Crumble: Contains all tree nuts and dairy. Cross-contact with other nuts is possible.&quot;], &quot;category_id&quot;: &quot;U3ZVIEUXB6FUAMEYRMCFYIBH&quot;, &quot;image&quot;: &quot;/layers/assets/img/menu/build-your-bowl-960.jpg&quot;}"><button class="menu-card__open" type="button" aria-label="Build Your Bowl — details"><span class="menu-card__media"><picture><source type="image/webp" srcset="/layers/assets/img/menu/build-your-bowl-480.webp 480w, /layers/assets/img/menu/build-your-bowl-720.webp 720w, /layers/assets/img/menu/build-your-bowl-960.webp 960w, /layers/assets/img/menu/build-your-bowl-1440.webp 1440w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw"><img src="/layers/assets/img/menu/build-your-bowl-1440.jpg" srcset="/layers/assets/img/menu/build-your-bowl-480.jpg 480w, /layers/assets/img/menu/build-your-bowl-720.jpg 720w, /layers/assets/img/menu/build-your-bowl-960.jpg 960w, /layers/assets/img/menu/build-your-bowl-1440.jpg 1440w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw" width="1440" height="1440" alt="" loading="lazy" decoding="async"></picture></span><span class="menu-card__body"><span class="menu-card__name">Build Your Bowl</span><span class="menu-card__meta"><span class="menu-card__price">$13.50</span></span></span></button></article>
+</div></section>
+<section class="menu-group menu-group--cards" id="cat-smoothies" data-cat-section aria-labelledby="cat-smoothies-h">
+<header class="cathead"><h2 class="cathead__name" id="cat-smoothies-h">Smoothies</h2><p class="cathead__line">Real fruit and clean bases, with boosts for energy, focus, and recovery.</p></header>
+<div class="menu-grid">
+<article class="menu-card" data-id="3ISNAOFVDY4UBUYP4WDE6MPV" data-item="{&quot;id&quot;: &quot;3ISNAOFVDY4UBUYP4WDE6MPV&quot;, &quot;kind&quot;: &quot;Smoothie&quot;, &quot;name&quot;: &quot;Strawesome&quot;, &quot;note&quot;: &quot;Skin Health &amp; Antioxidant&quot;, &quot;price&quot;: &quot;11.20&quot;, &quot;calories&quot;: 240, &quot;highlights&quot;: [&quot;No added sugar — naturally sweetened with whole fruit&quot;], &quot;ingredients&quot;: [&quot;Organic Strawberry &amp; Organic Beet&quot;, &quot;Banana&quot;, &quot;Organic Lucuma Powder&quot;, &quot;Organic Naked Reds&quot;, &quot;Organic Dates&quot;, &quot;Organic Blue spirulina greek yogurt (lactose free)&quot;], &quot;macros&quot;: {&quot;protein&quot;: 4, &quot;fiber&quot;: 13, &quot;sugar&quot;: 33}, &quot;allergens&quot;: [&quot;Nut-free and tree-nut-free (no cross-contact).&quot;], &quot;category_id&quot;: &quot;5W3OSXQNGMS6S7VWCABEDN5Y&quot;, &quot;image&quot;: &quot;/layers/assets/img/menu/strawesome-960.jpg&quot;}"><button class="menu-card__open" type="button" aria-label="Strawesome — details"><span class="menu-card__media"><picture><source type="image/webp" srcset="/layers/assets/img/menu/strawesome-480.webp 480w, /layers/assets/img/menu/strawesome-720.webp 720w, /layers/assets/img/menu/strawesome-960.webp 960w, /layers/assets/img/menu/strawesome-1440.webp 1440w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw"><img src="/layers/assets/img/menu/strawesome-1440.jpg" srcset="/layers/assets/img/menu/strawesome-480.jpg 480w, /layers/assets/img/menu/strawesome-720.jpg 720w, /layers/assets/img/menu/strawesome-960.jpg 960w, /layers/assets/img/menu/strawesome-1440.jpg 1440w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw" width="1440" height="1440" alt="" loading="lazy" decoding="async"></picture></span><span class="menu-card__body"><span class="menu-card__name">Strawesome</span><span class="menu-card__note">Skin Health &amp; Antioxidant</span><span class="menu-card__meta"><span class="menu-card__price">$11.20</span><span class="menu-card__cal">240 cal</span></span></span></button></article>
+<article class="menu-card" data-id="LSJQNGQMULXRS23WZB2TYWXE" data-item="{&quot;id&quot;: &quot;LSJQNGQMULXRS23WZB2TYWXE&quot;, &quot;kind&quot;: &quot;Smoothie&quot;, &quot;name&quot;: &quot;Blue-Tiful-Day&quot;, &quot;note&quot;: &quot;Hydration &amp; Mineral Support&quot;, &quot;price&quot;: &quot;11.20&quot;, &quot;calories&quot;: 260, &quot;highlights&quot;: [&quot;No added sugar — naturally sweetened with whole fruit&quot;], &quot;ingredients&quot;: [&quot;Banana&quot;, &quot;Organic Pineapple&quot;, &quot;Organic Mango&quot;, &quot;Organic Blue spirulina&quot;, &quot;Organic Sea moss powder&quot;, &quot;Organic Dates&quot;, &quot;Organic Greek yogurt (lactose free)&quot;], &quot;macros&quot;: {&quot;protein&quot;: 4, &quot;fiber&quot;: 8, &quot;sugar&quot;: 41}, &quot;allergens&quot;: [&quot;Nut-free and tree-nut-free (no cross-contact).&quot;], &quot;category_id&quot;: &quot;5W3OSXQNGMS6S7VWCABEDN5Y&quot;, &quot;image&quot;: &quot;/layers/assets/img/menu/blue-tiful-day-960.jpg&quot;}"><button class="menu-card__open" type="button" aria-label="Blue-Tiful-Day — details"><span class="menu-card__media"><picture><source type="image/webp" srcset="/layers/assets/img/menu/blue-tiful-day-480.webp 480w, /layers/assets/img/menu/blue-tiful-day-720.webp 720w, /layers/assets/img/menu/blue-tiful-day-960.webp 960w, /layers/assets/img/menu/blue-tiful-day-1440.webp 1440w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw"><img src="/layers/assets/img/menu/blue-tiful-day-1440.jpg" srcset="/layers/assets/img/menu/blue-tiful-day-480.jpg 480w, /layers/assets/img/menu/blue-tiful-day-720.jpg 720w, /layers/assets/img/menu/blue-tiful-day-960.jpg 960w, /layers/assets/img/menu/blue-tiful-day-1440.jpg 1440w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw" width="1440" height="1440" alt="" loading="lazy" decoding="async"></picture></span><span class="menu-card__body"><span class="menu-card__name">Blue-Tiful-Day</span><span class="menu-card__note">Hydration &amp; Mineral Support</span><span class="menu-card__meta"><span class="menu-card__price">$11.20</span><span class="menu-card__cal">260 cal</span></span></span></button></article>
+<article class="menu-card" data-id="UJQTWNXGOKCTJJT3NL6C4FMP" data-item="{&quot;id&quot;: &quot;UJQTWNXGOKCTJJT3NL6C4FMP&quot;, &quot;kind&quot;: &quot;Smoothie&quot;, &quot;name&quot;: &quot;Greenergy&quot;, &quot;note&quot;: &quot;Daily Greens &amp; Inner Balance&quot;, &quot;price&quot;: &quot;11.20&quot;, &quot;calories&quot;: 270, &quot;highlights&quot;: [&quot;No added sugar — naturally sweetened with whole fruit&quot;], &quot;ingredients&quot;: [&quot;Banana&quot;, &quot;Organic Pineapple&quot;, &quot;Organic Mango&quot;, &quot;Organic Hawaii green spirulina powder&quot;, &quot;Organic Sea moss powder&quot;, &quot;Organic Blue spirulina greek yogurt (lactose free)&quot;, &quot;Organic Fresh spinach&quot;, &quot;Organic Dates&quot;], &quot;macros&quot;: {&quot;protein&quot;: 5, &quot;fiber&quot;: 9, &quot;sugar&quot;: 41}, &quot;allergens&quot;: [&quot;Nut-free and tree-nut-free (no cross-contact).&quot;], &quot;category_id&quot;: &quot;5W3OSXQNGMS6S7VWCABEDN5Y&quot;, &quot;image&quot;: &quot;/layers/assets/img/menu/greenergy-960.jpg&quot;}"><button class="menu-card__open" type="button" aria-label="Greenergy — details"><span class="menu-card__media"><picture><source type="image/webp" srcset="/layers/assets/img/menu/greenergy-480.webp 480w, /layers/assets/img/menu/greenergy-720.webp 720w, /layers/assets/img/menu/greenergy-960.webp 960w, /layers/assets/img/menu/greenergy-1440.webp 1440w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw"><img src="/layers/assets/img/menu/greenergy-1440.jpg" srcset="/layers/assets/img/menu/greenergy-480.jpg 480w, /layers/assets/img/menu/greenergy-720.jpg 720w, /layers/assets/img/menu/greenergy-960.jpg 960w, /layers/assets/img/menu/greenergy-1440.jpg 1440w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw" width="1440" height="1440" alt="" loading="lazy" decoding="async"></picture></span><span class="menu-card__body"><span class="menu-card__name">Greenergy</span><span class="menu-card__note">Daily Greens &amp; Inner Balance</span><span class="menu-card__meta"><span class="menu-card__price">$11.20</span><span class="menu-card__cal">270 cal</span></span></span></button></article>
+<article class="menu-card" data-id="TU7J64UXJX4R4SDRQFVQKTDW" data-item="{&quot;id&quot;: &quot;TU7J64UXJX4R4SDRQFVQKTDW&quot;, &quot;kind&quot;: &quot;Smoothie&quot;, &quot;name&quot;: &quot;Beny’s Blendy&quot;, &quot;note&quot;: &quot;Focus &amp; Brain Support&quot;, &quot;price&quot;: &quot;11.20&quot;, &quot;calories&quot;: 280, &quot;highlights&quot;: [&quot;No added sugar — naturally sweetened with whole fruit&quot;], &quot;ingredients&quot;: [&quot;Banana&quot;, &quot;Organic Mix Berries&quot;, &quot;Organic Fresh Spinach&quot;, &quot;Organic Flaxseed&quot;, &quot;Organic Dates&quot;, &quot;Organic Blue spirulina greek yogurt (Lactose free)&quot;], &quot;macros&quot;: {&quot;protein&quot;: 6, &quot;fiber&quot;: 13, &quot;sugar&quot;: 35}, &quot;allergens&quot;: [&quot;Nut-free and tree-nut-free (no cross-contact).&quot;], &quot;category_id&quot;: &quot;5W3OSXQNGMS6S7VWCABEDN5Y&quot;, &quot;image&quot;: &quot;/layers/assets/img/menu/benys-blendy-960.jpg&quot;}"><button class="menu-card__open" type="button" aria-label="Beny’s Blendy — details"><span class="menu-card__media"><picture><source type="image/webp" srcset="/layers/assets/img/menu/benys-blendy-480.webp 480w, /layers/assets/img/menu/benys-blendy-720.webp 720w, /layers/assets/img/menu/benys-blendy-960.webp 960w, /layers/assets/img/menu/benys-blendy-1440.webp 1440w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw"><img src="/layers/assets/img/menu/benys-blendy-1440.jpg" srcset="/layers/assets/img/menu/benys-blendy-480.jpg 480w, /layers/assets/img/menu/benys-blendy-720.jpg 720w, /layers/assets/img/menu/benys-blendy-960.jpg 960w, /layers/assets/img/menu/benys-blendy-1440.jpg 1440w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw" width="1440" height="1440" alt="" loading="lazy" decoding="async"></picture></span><span class="menu-card__body"><span class="menu-card__name">Beny’s Blendy</span><span class="menu-card__note">Focus &amp; Brain Support</span><span class="menu-card__meta"><span class="menu-card__price">$11.20</span><span class="menu-card__cal">280 cal</span></span></span></button></article>
+<article class="menu-card" data-id="P7ZNOVRDETCUEG7BNAJ6HXS2" data-item="{&quot;id&quot;: &quot;P7ZNOVRDETCUEG7BNAJ6HXS2&quot;, &quot;kind&quot;: &quot;Smoothie&quot;, &quot;name&quot;: &quot;Mango Mellow&quot;, &quot;note&quot;: &quot;19g Protein · 7g Fiber&quot;, &quot;price&quot;: &quot;14.50&quot;, &quot;calories&quot;: 350, &quot;highlights&quot;: [&quot;No added sugar — naturally sweetened with whole fruit&quot;, &quot;19g Collagen Protein&quot;, &quot;5g Creatine&quot;, &quot;7g Fiber&quot;], &quot;ingredients&quot;: [&quot;Banana&quot;, &quot;Organic passion fruit&quot;, &quot;Organic Mango&quot;, &quot;Organic Coconut Milk&quot;, &quot;Organic Medjool Dates&quot;, &quot;Organic Lion's Mane&quot;, &quot;Organic Creatine&quot;, &quot;Organic Sea Salt&quot;, &quot;Organic Flaxseed&quot;, &quot;Organic Collagen&quot;, &quot;Organic Blue Greek Yogurt (Lactose free)&quot;], &quot;category_id&quot;: &quot;5W3OSXQNGMS6S7VWCABEDN5Y&quot;, &quot;image&quot;: &quot;/layers/assets/img/menu/mango-mellow-960.jpg&quot;}"><button class="menu-card__open" type="button" aria-label="Mango Mellow — details"><span class="menu-card__media"><picture><source type="image/webp" srcset="/layers/assets/img/menu/mango-mellow-480.webp 480w, /layers/assets/img/menu/mango-mellow-720.webp 720w, /layers/assets/img/menu/mango-mellow-960.webp 960w, /layers/assets/img/menu/mango-mellow-1440.webp 1440w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw"><img src="/layers/assets/img/menu/mango-mellow-1440.jpg" srcset="/layers/assets/img/menu/mango-mellow-480.jpg 480w, /layers/assets/img/menu/mango-mellow-720.jpg 720w, /layers/assets/img/menu/mango-mellow-960.jpg 960w, /layers/assets/img/menu/mango-mellow-1440.jpg 1440w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw" width="1440" height="1440" alt="" loading="lazy" decoding="async"></picture></span><span class="menu-card__body"><span class="menu-card__name">Mango Mellow</span><span class="menu-card__note">19g Protein · 7g Fiber</span><span class="menu-card__meta"><span class="menu-card__price">$14.50</span><span class="menu-card__cal">350 cal</span></span></span></button></article>
+<article class="menu-card" data-id="VHUIIAGO6PIUDF74DIBKM5O6" data-item="{&quot;id&quot;: &quot;VHUIIAGO6PIUDF74DIBKM5O6&quot;, &quot;kind&quot;: &quot;Smoothie&quot;, &quot;name&quot;: &quot;Think Well&quot;, &quot;note&quot;: &quot;33g Protein · 10g Fiber&quot;, &quot;price&quot;: &quot;14.20&quot;, &quot;calories&quot;: 500, &quot;highlights&quot;: [&quot;Focus&quot;, &quot;Energy&quot;, &quot;Recover&quot;, &quot;No added sugar — naturally sweetened with whole fruit&quot;], &quot;ingredients&quot;: [&quot;Organic Coconut Milk&quot;, &quot;Layers Freeze-Dried Banana&quot;, &quot;Organic Greek Yogurt (Lactose Free)&quot;, &quot;Organic Chocolate Pea Protein&quot;, &quot;Organic Almond Butter (or Peanut Butter upon request)&quot;, &quot;Organic Medjool Dates&quot;, &quot;Organic Flaxseed&quot;, &quot;Organic Lion's Mane&quot;, &quot;Organic Maca&quot;, &quot;Organic Sea Salt&quot;], &quot;macros&quot;: {&quot;protein&quot;: 33, &quot;fiber&quot;: 10, &quot;sugar&quot;: 30}, &quot;category_id&quot;: &quot;5W3OSXQNGMS6S7VWCABEDN5Y&quot;, &quot;image&quot;: &quot;/layers/assets/img/menu/think-well-960.jpg&quot;}"><button class="menu-card__open" type="button" aria-label="Think Well — details"><span class="menu-card__media"><picture><source type="image/webp" srcset="/layers/assets/img/menu/think-well-480.webp 480w, /layers/assets/img/menu/think-well-720.webp 720w, /layers/assets/img/menu/think-well-960.webp 960w, /layers/assets/img/menu/think-well-1440.webp 1440w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw"><img src="/layers/assets/img/menu/think-well-1440.jpg" srcset="/layers/assets/img/menu/think-well-480.jpg 480w, /layers/assets/img/menu/think-well-720.jpg 720w, /layers/assets/img/menu/think-well-960.jpg 960w, /layers/assets/img/menu/think-well-1440.jpg 1440w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw" width="1440" height="1440" alt="" loading="lazy" decoding="async"></picture></span><span class="menu-card__body"><span class="menu-card__name">Think Well</span><span class="menu-card__note">33g Protein · 10g Fiber</span><span class="menu-card__meta"><span class="menu-card__price">$14.20</span><span class="menu-card__cal">500 cal</span></span></span></button></article>
+<article class="menu-card" data-id="VG77GD5AI2VQ53RSUC6LJHRJ" data-item="{&quot;id&quot;: &quot;VG77GD5AI2VQ53RSUC6LJHRJ&quot;, &quot;kind&quot;: &quot;Smoothie&quot;, &quot;name&quot;: &quot;Her Power&quot;, &quot;note&quot;: &quot;38g Plant Protein&quot;, &quot;price&quot;: &quot;14.75&quot;, &quot;calories&quot;: 465, &quot;highlights&quot;: [&quot;No added sugar — naturally sweetened with whole fruit&quot;, &quot;38g Plant Protein&quot;], &quot;ingredients&quot;: [&quot;Organic Blue spirulina powder&quot;, &quot;Organic Plant-based pea protein&quot;, &quot;Organic Creatine&quot;, &quot;Organic Cordyceps&quot;, &quot;Organic Hemp hearts&quot;, &quot;Organic Pineapple&quot;, &quot;Banana&quot;, &quot;Organic Mango&quot;, &quot;Organic Greek yogurt (lactose free)&quot;], &quot;allergens&quot;: [&quot;Nut-free and tree-nut-free (no cross-contact).&quot;], &quot;category_id&quot;: &quot;5W3OSXQNGMS6S7VWCABEDN5Y&quot;, &quot;image&quot;: &quot;/layers/assets/img/menu/her-power-687.jpg&quot;, &quot;image_small&quot;: true}"><button class="menu-card__open" type="button" aria-label="Her Power — details"><span class="menu-card__media"><picture><source type="image/webp" srcset="/layers/assets/img/menu/her-power-480.webp 480w, /layers/assets/img/menu/her-power-687.webp 687w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw"><img src="/layers/assets/img/menu/her-power-687.jpg" srcset="/layers/assets/img/menu/her-power-480.jpg 480w, /layers/assets/img/menu/her-power-687.jpg 687w" sizes="(max-width: 720px) 50vw, (max-width: 1100px) 33vw, 25vw" width="687" height="687" alt="" loading="lazy" decoding="async"></picture></span><span class="menu-card__body"><span class="menu-card__name">Her Power</span><span class="menu-card__note">38g Plant Protein</span><span class="menu-card__meta"><span class="menu-card__price">$14.75</span><span class="menu-card__cal">465 cal</span></span></span></button></article>
+</div></section>
+<section class="menu-group menu-group--list" id="cat-wellness-market" data-cat-section aria-labelledby="cat-wellness-market-h">
+<header class="cathead"><h2 class="cathead__name" id="cat-wellness-market-h">Wellness Market</h2><p class="cathead__line">Also on the shelf at Layers.</p></header>
+<ul class="menu-list">
+<li class="menu-list__item" data-id="2KT64T7RQG4ILDI7HYBZZFUK"><span class="menu-list__name">100% Cacao Organic Vegan Dark Chocolate Bar with Cocoa Nibs</span><span class="menu-list__price">$5.50</span></li>
+<li class="menu-list__item" data-id="NR7HXLVCA46POCLST4M47UYI"><span class="menu-list__name">10g Protein Organic Peanut Butter Bar</span><span class="menu-list__price">$2.75</span></li>
+<li class="menu-list__item" data-id="JSJOPLV3QD3MGSJ5R5WBJU2A"><span class="menu-list__name">15g Protein Banana Bread Bars</span><span class="menu-list__price">$3.45</span></li>
+<li class="menu-list__item" data-id="5PNCQGLYLZCUGBIVIIEUAQW7"><span class="menu-list__name">70% Cacao Organic Vegan Dark Chocolate Bar</span><span class="menu-list__price">$5.50</span></li>
+<li class="menu-list__item" data-id="JU62YMPYMTY6JE6PR2XO73D3"><span class="menu-list__name">70% Cacao Organic Vegan Dark Chocolate Bar with Coffee</span><span class="menu-list__price">$5.50</span></li>
+<li class="menu-list__item" data-id="CQRBDHC6OWIGJYLNRNDKX23O"><span class="menu-list__name">Albacore Tuna in Olive Oil</span><span class="menu-list__price">$9.95</span></li>
+<li class="menu-list__item" data-id="C7D5N5YAAUDEFQB3766DBWFU"><span class="menu-list__name">Almond Espresso Butter- Naked</span><span class="menu-list__price">$6.50</span></li>
+<li class="menu-list__item" data-id="OJUDNTGDLRIXTNQHOGVYQI7R"><span class="menu-list__name">Almond Java Crunch</span><span class="menu-list__price">$6.95</span></li>
+<li class="menu-list__item" data-id="JRGNURLJHW37VON2KOL5EXAL"><span class="menu-list__name">Beet Chips — Vegan Veggie Chips</span><span class="menu-list__price">$7.95</span></li>
+<li class="menu-list__item" data-id="IT4UUOROE5S6FNQ2FBDOWHHU"><span class="menu-list__name">Cantabrian Anchovies in Extra Virgin Olive Oil</span><span class="menu-list__price">$9.95</span></li>
+<li class="menu-list__item" data-id="QQBOAWT3GWYBRCRBV2XU3QKT"><span class="menu-list__name">Cauliflower Veggie Chips</span><span class="menu-list__price">$7.95</span></li>
+<li class="menu-list__item" data-id="GXEYNARGGCFARAHVHQITPBER"><span class="menu-list__name">Classic Dill Pickle Chips</span><span class="menu-list__price">$2.95</span></li>
+<li class="menu-list__item" data-id="BLRFQ42DSZQFF3HHNKGLMAI6"><span class="menu-list__name">David Protein Bar Carton</span><span class="menu-list__price">$3.65</span></li>
+<li class="menu-list__item" data-id="Q4H75D4TN4JHRSLYTQN3NYG7"><span class="menu-list__name">Garlic Dill Mini Pickles</span><span class="menu-list__price">$2.95</span></li>
+<li class="menu-list__item" data-id="GUPZWN6YF6WGPWVALLOGHSJO"><span class="menu-list__name">Hazelnut Praline Dark Chocolate Medjool Dates</span><span class="menu-list__price">$6.50</span></li>
+<li class="menu-list__item" data-id="UC2XIYBE7SRZAWMA6U3XCXJ3"><span class="menu-list__name">Kalamata Olives Extra Virgin Olive Oil</span><span class="menu-list__price">$3.95</span></li>
+<li class="menu-list__item" data-id="A5NUGOLNWZ32FFB27JQLG7ON"><span class="menu-list__name">Key Lime Pie Dates- Naked</span><span class="menu-list__price">$6.50</span></li>
+<li class="menu-list__item" data-id="6VNNK7OCN34UAWN242QTHK3R"><span class="menu-list__name">Lemon Garlic Green Olives</span><span class="menu-list__price">$1.95</span></li>
+<li class="menu-list__item" data-id="ZRW6S6SEQXNQMDFBIDJEKEPP"><span class="menu-list__name">Mediterranean Herb Olive Medley</span><span class="menu-list__price">$1.95</span></li>
+<li class="menu-list__item" data-id="KY2YK265FHPXFAZW4C5WQBI3"><span class="menu-list__name">Mix Veggie Chips</span><span class="menu-list__price">$7.95</span></li>
+<li class="menu-list__item" data-id="RNPG2TBOASLFQWN6SYO63VRY"><span class="menu-list__name">Organic Vegan White Bar</span><span class="menu-list__price">$6.50</span></li>
+<li class="menu-list__item" data-id="5M7EGMLOA3TDIPTOSOTRVJIK"><span class="menu-list__name">Original Dried Sweet Potato Sticks</span><span class="menu-list__price">$3.50</span></li>
+<li class="menu-list__item" data-id="R2HGBDRR5ESTRO2W7ADXLARL"><span class="menu-list__name">Pistachio Date Bark</span><span class="menu-list__price">$13.95</span></li>
+<li class="menu-list__item" data-id="654R5F7MTGZ6VYJGINQ324ZT"><span class="menu-list__name">Protein Chocolate &amp; Peanut Butter Chia Pudding</span><span class="menu-list__price">$5.50</span></li>
+<li class="menu-list__item" data-id="5VFMOQ6X727M2DJ4R2LH3IXX"><span class="menu-list__name">Protein Chocolate Chia Pudding</span><span class="menu-list__price">$5.50</span></li>
+<li class="menu-list__item" data-id="UIBLNQWPT6BL4FVSI6VTLN7L"><span class="menu-list__name">Protein Vanilla Chia Pudding</span><span class="menu-list__price">$5.50</span></li>
+<li class="menu-list__item" data-id="TVIWX6AVMCT26GSDF4KLD657"><span class="menu-list__name">Royal Cinnamon Baklava</span><span class="menu-list__price">$6.95</span></li>
+<li class="menu-list__item" data-id="JOALURJM4X2PCE3VVHKSAZET"><span class="menu-list__name">Sardines with Hot Pepper</span><span class="menu-list__price">$9.95</span></li>
+<li class="menu-list__item" data-id="3AANKNCMOI4F2PXYZ4LOL262"><span class="menu-list__name">Sea Salt Avocado Oil Kettle Potato Chips</span><span class="menu-list__price">$2.50</span></li>
+<li class="menu-list__item" data-id="YKIRNDDNDPNQTOSS43ELA4MA"><span class="menu-list__name">Signature Avocado Oil Kettle Chips, Lil Heat Lil Sweet</span><span class="menu-list__price">$2.50</span></li>
+<li class="menu-list__item" data-id="V4IRYST3245TON4DKS3XK4HA"><span class="menu-list__name">Spicy Dill Pickle Chips</span><span class="menu-list__price">$2.95</span></li>
+<li class="menu-list__item" data-id="O5Y4LBP5P63HIKICYONBRA3X"><span class="menu-list__name">Tomato Chips</span><span class="menu-list__price">$7.95</span></li>
+<li class="menu-list__item" data-id="X4E37WSVHAWXU4GMQRG2KIT4"><span class="menu-list__name">Zucchini Chips — Vegan Veggie Chips</span><span class="menu-list__price">$7.95</span></li>
+</ul></section>
+</div></div>
 
 <!-- ============ ITEM DETAIL SHEET ============ -->
 <div id="item-sheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-name" hidden>
@@ -251,15 +169,19 @@
     <div class="sheet__body">
       <p class="menu-card__kind" data-sheet-kind></p>
       <h2 class="sheet__name" id="sheet-name" data-sheet-name></h2>
+      <p class="sheet__note" data-sheet-note></p>
       <p class="sheet__meta"><span class="menu-card__price" data-sheet-price></span><span class="menu-card__cal" data-sheet-cal></span></p>
-      <p class="sheet__allergen placeholder-copy">[Allergen statement — client to confirm. Suggested: “Prepared in a shop that handles nuts, dairy, soy and gluten — ask our team about allergens.”]</p>
+      <ul class="sheet__tags" data-sheet-tags></ul>
+      <dl class="sheet__facts" data-sheet-facts></dl>
+      <p class="sheet__macros" data-sheet-macros></p>
+      <div class="sheet__allergen" data-sheet-allergens></div>
+      <p class="sheet__allergen sheet__allergen--general">Allergen questions? Ask our team before you order.</p>
     </div>
-    <a class="btn btn--sage btn--block sheet__order" data-sheet-order href="https://layers.square.site" target="_blank" rel="noopener">Order on Square</a>
+    <a class="btn btn--sage btn--block sheet__order" data-sheet-order href="/layers/order">Order on Square</a>
   </div>
 </div>
 </main>
 
-<!-- Brand sign-off: identical on every page. The tagline appears here and only here. -->
 <section class="signoff" aria-label="Layers Superfood Bar">
   <img class="signoff__mark" src="/layers/assets/img/face.png" alt="" width="88" height="88" loading="lazy">
   <p class="signoff__eyebrow">Superfood Bar · 2436 Channing Way, Berkeley</p>
@@ -269,9 +191,9 @@
 <footer id="visit-footer" class="footer">
   <div class="wrap footer__grid">
     <div class="footer__brand">
-      <img src="/layers/assets/img/logo-wordmark-cream.png" alt="Layers Superfood Bar" width="190" height="49" loading="lazy">
+      <img class="footer__logo" src="/layers/assets/img/wordmark-cream.png" alt="Layers Superfood Bar" width="140" height="60" loading="lazy">
       <p class="footer__tagline">A Berkeley superfood bar. Clean smoothies and bowls, made fresh.</p>
-      <a class="btn btn--butter" href="https://layers.square.site" target="_blank" rel="noopener">
+      <a class="btn btn--butter" href="/layers/order">
         Order on Square
         <svg class="icon-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
@@ -279,7 +201,7 @@
     <div class="footer__col">
       <h2 class="footer__head">Visit</h2>
       <address class="footer__addr">2436 Channing Way<br>Berkeley, CA 94704</address>
-      <p class="footer__hours">Mon–Fri · 10am–5pm<br>Sat–Sun · 10am–4pm</p>
+      <p class="footer__hours">Mon–Fri · 9am–6pm<br>Sat–Sun · 9am–4pm</p>
     </div>
     <div class="footer__col">
       <h2 class="footer__head">Explore</h2>
@@ -287,11 +209,9 @@
         <a href="/layers/story">Our Story</a>
         <a href="/layers/menu">Menu</a>
         <a href="/layers/how-we-make-it">How We Make It</a>
-        <a href="/layers/what-you-get">What You Get</a>
+        <a href="/layers/what-you-get">What We Make</a>
         <a href="/layers/day-in-the-life">Day in the Life</a>
         <a href="/layers/catering">Catering</a>
-        <a href="/layers/gift-cards">Gift Cards</a>
-        <a href="/layers/loyalty">Loyalty</a>
         <a href="/layers/faq">FAQ</a>
         <a href="/layers/visit">Visit</a>
       </nav>

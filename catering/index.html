@@ -4,15 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Catering | Layers Superfood Bar</title>
-<!-- Meta description — to be supplied by client before launch. -->
+<meta name="description" content="Layers catering for team breakfasts, wellness events, corporate meetings and private celebrations in Berkeley — smoothies, house-made bowls and more. Send an inquiry and we'll reply within 1–2 business days.">
 <link rel="canonical" href="https://layerssuperfoodbar.com/catering">
-<meta name="theme-color" content="#FCFAF4">
-<link rel="icon" href="/layers/assets/img/face-mark.png" type="image/png">
-<link rel="apple-touch-icon" href="/layers/assets/img/face-mark.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Layers Superfood Bar">
+<meta property="og:title" content="Catering | Layers Superfood Bar">
+<meta property="og:description" content="Layers catering for team breakfasts, wellness events, corporate meetings and private celebrations in Berkeley — smoothies, house-made bowls and more. Send an inquiry and we'll reply within 1–2 business days.">
+<meta property="og:url" content="https://layerssuperfoodbar.com/catering">
+<meta property="og:image" content="https://layerssuperfoodbar.com/assets/img/home/hero-1440.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#E5E0D8">
+<link rel="icon" href="/layers/assets/img/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="icon" href="/layers/assets/img/face-mark.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/layers/assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Spectral:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Archivo: the closest open-licence match to Happier's editorial grotesk (Scout).
+     One family, two widths: 87.5% for display/labels/navigation, 100% for reading. -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87.5..100,400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/layers/assets/css/styles.css">
+<meta name="layers-hours" content='{"1":[540,1080],"2":[540,1080],"3":[540,1080],"4":[540,1080],"5":[540,1080],"6":[540,960],"0":[540,960]}'>
 </head>
 <body class="page-catering">
 
@@ -22,7 +33,7 @@
   <div class="header__inner">
     <a class="header__brand" href="/layers/" aria-label="Layers Superfood Bar — home">
       <img class="header__wordmark header__wordmark--cream" src="/layers/assets/img/wordmark-cream.png" alt="Layers Superfood Bar" width="121" height="52">
-      <img class="header__wordmark header__wordmark--ink" src="/layers/assets/img/wordmark-ink.png" alt="" aria-hidden="true" width="121" height="52">
+      <img class="header__wordmark header__wordmark--ink" src="/layers/assets/img/wordmark-green.png" alt="" aria-hidden="true" width="121" height="52">
     </a>
 
     <nav class="header__nav" aria-label="Primary">
@@ -31,14 +42,13 @@
       <a data-nav href="/layers/how-we-make-it">How We Make It</a>
       <a data-nav href="/layers/catering" aria-current="page">Catering</a>
       <a data-nav href="/layers/visit">Visit</a>
-      <a data-nav class="header__gift" href="/layers/gift-cards">Gift Cards</a>
-      <a id="header-order" data-headorder class="btn btn--butter btn--sm" href="https://layers.square.site" target="_blank" rel="noopener">
+      <a id="header-order" data-headorder class="btn btn--butter btn--sm" href="/layers/order">
         Order on Square
         <svg class="icon-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
     </nav>
 
-    <a class="btn btn--butter btn--sm header__m-order" href="https://layers.square.site" target="_blank" rel="noopener">Order</a>
+    <a class="btn btn--butter btn--sm header__m-order" href="/layers/order">Order</a>
     <button id="m-burger" class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="m-drawer">
       <span></span><span></span><span></span>
     </button>
@@ -48,7 +58,7 @@
 <div id="m-scrim" class="drawer-scrim" hidden></div>
 <aside id="m-drawer" class="drawer" aria-label="Mobile menu" aria-hidden="true" hidden>
   <div class="drawer__head">
-    <img src="/layers/assets/img/wordmark-ink.png" alt="Layers Superfood Bar" width="110" height="47">
+    <img src="/layers/assets/img/wordmark-green.png" alt="Layers Superfood Bar" width="110" height="47">
     <button id="m-close" class="drawer__close" type="button" aria-label="Close menu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
@@ -57,50 +67,53 @@
     <a data-drawer href="/layers/menu">Menu</a>
     <a data-drawer href="/layers/story">Our Story</a>
     <a data-drawer href="/layers/how-we-make-it">How We Make It</a>
-    <a data-drawer href="/layers/what-you-get">What You Get</a>
+    <a data-drawer href="/layers/what-you-get">What We Make</a>
     <a data-drawer href="/layers/day-in-the-life">Day in the Life</a>
     <a data-drawer href="/layers/catering" aria-current="page">Catering</a>
-    <a data-drawer href="/layers/gift-cards">Gift Cards</a>
-    <a data-drawer href="/layers/loyalty">Loyalty</a>
     <a data-drawer href="/layers/faq">FAQ</a>
     <a data-drawer href="/layers/visit">Visit</a>
   </nav>
   <div class="drawer__foot">
-    <a class="btn btn--sage btn--block" href="https://layers.square.site" target="_blank" rel="noopener">Order on Square</a>
-    <a class="btn btn--ghost btn--block" href="/layers/gift-cards">Gift Cards</a>
+    <a class="btn btn--sage btn--block" href="/layers/order">Order on Square</a>
   </div>
 </aside>
 
 <main id="main">
-<section class="section section--cream pagehead">
-  <div class="wrap comp-b">
-    <div class="comp-b__main">
-      <p class="eyebrow">Catering</p>
-      <h1 class="display">Catering for the way you gather</h1>
-      <p class="lede">Layers offers a thoughtful catering experience, from the first conversation to the final delivery. Team breakfasts, wellness events, corporate meetings, private celebrations — we make nourishing your guests simple.</p>
-      <p class="body">Performance smoothies, house-made bowls, sourdough toasts, specialty coffee, matcha, and wellness offerings, crafted with real ingredients and prepared with intention.</p>
-    </div>
-    <div class="comp-b__low">
-      <img class="frame-img" src="/layers/assets/img/day/ingredient-sourcing.jpg" alt="" loading="lazy" decoding="async" width="900" height="1100">
-    </div>
-  </div>
-</section>
+<!-- Catering — the client's approved copy, verbatim, in the editorial system. -->
 
-<section class="section section--linen" aria-label="Catering gallery">
-  <div class="wrap day-teaser-panels day-teaser-panels--three">
-    <div class="ph-panel" role="img" aria-label="Photograph to be shot"><span>[Catering shot — to be shot]</span></div>
-    <div class="ph-panel" role="img" aria-label="Photograph to be shot"><span>[Catering shot — to be shot]</span></div>
-    <div class="ph-panel" role="img" aria-label="Photograph to be shot"><span>[Catering shot — to be shot]</span></div>
+<header class="story-head story-head--inner">
+  <p class="eyebrow">Catering</p>
+  <h1 class="story-head__title story-head__title--long">Catering for the way you gather</h1>
+  <div class="ed-ctas">
+    <a class="btn btn--sage" href="#catering">Send an inquiry</a>
   </div>
-</section>
+</header>
 
+<figure class="ed-tile ed-tile--wide">
+  <span class="ed-media"><picture><source type="image/webp" srcset="/layers/assets/img/catering/hero-960.webp 960w, /layers/assets/img/catering/hero-1440.webp 1440w, /layers/assets/img/catering/hero-1920.webp 1920w, /layers/assets/img/catering/hero-2560.webp 2560w" sizes="100vw"><img src="/layers/assets/img/catering/hero-1440.jpg" srcset="/layers/assets/img/catering/hero-960.jpg 960w, /layers/assets/img/catering/hero-1440.jpg 1440w, /layers/assets/img/catering/hero-1920.jpg 1920w, /layers/assets/img/catering/hero-2560.jpg 2560w" sizes="100vw" width="1440" height="617" alt="Four friends with Layers bowls around a table inside the shop" fetchpriority="high" decoding="async"></picture></span>
+</figure>
+
+<div class="catering-lede">
+  <p>Layers offers a thoughtful catering experience, from the first conversation to the final delivery. Team breakfasts, wellness events, corporate meetings, private celebrations — we make nourishing your guests simple.</p>
+  <p>Performance smoothies, house-made bowls, sourdough toasts, specialty coffee, matcha, and wellness offerings, crafted with real ingredients and prepared with intention.</p>
+</div>
+
+<div class="ed-block">
+  <div class="ed-row ed-row--3">
+    <figure class="ed-tile"><span class="ed-media"><picture><source type="image/webp" srcset="/layers/assets/img/catering/1-480.webp 480w, /layers/assets/img/catering/1-717.webp 717w" sizes="(max-width: 720px) 100vw, 34vw"><img src="/layers/assets/img/catering/1-717.jpg" srcset="/layers/assets/img/catering/1-480.jpg 480w, /layers/assets/img/catering/1-717.jpg 717w" sizes="(max-width: 720px) 100vw, 34vw" width="717" height="896" alt="A green Layers smoothie swirled with yogurt, beside avocado, banana and celery" loading="lazy" decoding="async"></picture></span></figure>
+    <figure class="ed-tile"><span class="ed-media"><picture><source type="image/webp" srcset="/layers/assets/img/catering/2-480.webp 480w, /layers/assets/img/catering/2-720.webp 720w, /layers/assets/img/catering/2-960.webp 960w, /layers/assets/img/catering/2-1280.webp 1280w" sizes="(max-width: 720px) 50vw, 34vw"><img src="/layers/assets/img/catering/2-1280.jpg" srcset="/layers/assets/img/catering/2-480.jpg 480w, /layers/assets/img/catering/2-720.jpg 720w, /layers/assets/img/catering/2-960.jpg 960w, /layers/assets/img/catering/2-1280.jpg 1280w" sizes="(max-width: 720px) 50vw, 34vw" width="1280" height="1600" alt="A Layers team member hugging a friend on graduation day, green Layers smoothie in hand" loading="lazy" decoding="async"></picture></span></figure>
+    <figure class="ed-tile"><span class="ed-media"><picture><source type="image/webp" srcset="/layers/assets/img/catering/3-480.webp 480w, /layers/assets/img/catering/3-720.webp 720w, /layers/assets/img/catering/3-960.webp 960w" sizes="(max-width: 720px) 50vw, 34vw"><img src="/layers/assets/img/catering/3-960.jpg" srcset="/layers/assets/img/catering/3-480.jpg 480w, /layers/assets/img/catering/3-720.jpg 720w, /layers/assets/img/catering/3-960.jpg 960w" sizes="(max-width: 720px) 50vw, 34vw" width="960" height="1200" alt="Layers team members serving energy bites at a pop-up table" loading="lazy" decoding="async"></picture></span></figure>
+  </div>
+</div>
+
+<div class="ed-block"></div>
 <!-- The form is this page's single sage field. Destination inbox lives only as
      the server-side CATERING_TO secret and is never rendered here. -->
 <section id="catering" class="section section--sage" aria-label="Catering inquiry">
   <div class="wrap catering">
     <div class="catering__formwrap catering__formwrap--page">
       <h2 class="h3 catering__formtitle">Tell us about your event</h2>
-      <form id="catering-form" class="form" action="/api/catering" method="post" novalidate>
+      <form id="catering-form" class="form" action="/layers/api/catering" method="post" novalidate>
         <div class="field">
           <label for="cf-name">Name</label>
           <input id="cf-name" name="name" type="text" autocomplete="name" required maxlength="120">
@@ -154,7 +167,6 @@
 </section>
 </main>
 
-<!-- Brand sign-off: identical on every page. The tagline appears here and only here. -->
 <section class="signoff" aria-label="Layers Superfood Bar">
   <img class="signoff__mark" src="/layers/assets/img/face.png" alt="" width="88" height="88" loading="lazy">
   <p class="signoff__eyebrow">Superfood Bar · 2436 Channing Way, Berkeley</p>
@@ -164,9 +176,9 @@
 <footer id="visit-footer" class="footer">
   <div class="wrap footer__grid">
     <div class="footer__brand">
-      <img src="/layers/assets/img/logo-wordmark-cream.png" alt="Layers Superfood Bar" width="190" height="49" loading="lazy">
+      <img class="footer__logo" src="/layers/assets/img/wordmark-cream.png" alt="Layers Superfood Bar" width="140" height="60" loading="lazy">
       <p class="footer__tagline">A Berkeley superfood bar. Clean smoothies and bowls, made fresh.</p>
-      <a class="btn btn--butter" href="https://layers.square.site" target="_blank" rel="noopener">
+      <a class="btn btn--butter" href="/layers/order">
         Order on Square
         <svg class="icon-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
@@ -174,7 +186,7 @@
     <div class="footer__col">
       <h2 class="footer__head">Visit</h2>
       <address class="footer__addr">2436 Channing Way<br>Berkeley, CA 94704</address>
-      <p class="footer__hours">Mon–Fri · 10am–5pm<br>Sat–Sun · 10am–4pm</p>
+      <p class="footer__hours">Mon–Fri · 9am–6pm<br>Sat–Sun · 9am–4pm</p>
     </div>
     <div class="footer__col">
       <h2 class="footer__head">Explore</h2>
@@ -182,11 +194,9 @@
         <a href="/layers/story">Our Story</a>
         <a href="/layers/menu">Menu</a>
         <a href="/layers/how-we-make-it">How We Make It</a>
-        <a href="/layers/what-you-get">What You Get</a>
+        <a href="/layers/what-you-get">What We Make</a>
         <a href="/layers/day-in-the-life">Day in the Life</a>
         <a href="/layers/catering">Catering</a>
-        <a href="/layers/gift-cards">Gift Cards</a>
-        <a href="/layers/loyalty">Loyalty</a>
         <a href="/layers/faq">FAQ</a>
         <a href="/layers/visit">Visit</a>
       </nav>

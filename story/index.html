@@ -4,15 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Layers Story | Layers Superfood Bar</title>
-<!-- Meta description — to be supplied by client before launch. -->
+<meta name="description" content="How Layers began, why it was created, and how we make every smoothie and bowl: whole ingredients, no ice, no added water, no refined sugar or syrups, house-made bases.">
 <link rel="canonical" href="https://layerssuperfoodbar.com/story">
-<meta name="theme-color" content="#FCFAF4">
-<link rel="icon" href="/layers/assets/img/face-mark.png" type="image/png">
-<link rel="apple-touch-icon" href="/layers/assets/img/face-mark.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Layers Superfood Bar">
+<meta property="og:title" content="The Layers Story | Layers Superfood Bar">
+<meta property="og:description" content="How Layers began, why it was created, and how we make every smoothie and bowl: whole ingredients, no ice, no added water, no refined sugar or syrups, house-made bases.">
+<meta property="og:url" content="https://layerssuperfoodbar.com/story">
+<meta property="og:image" content="https://layerssuperfoodbar.com/assets/img/home/hero-1440.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#E5E0D8">
+<link rel="icon" href="/layers/assets/img/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="icon" href="/layers/assets/img/face-mark.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/layers/assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Spectral:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Archivo: the closest open-licence match to Happier's editorial grotesk (Scout).
+     One family, two widths: 87.5% for display/labels/navigation, 100% for reading. -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87.5..100,400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/layers/assets/css/styles.css">
+<meta name="layers-hours" content='{"1":[540,1080],"2":[540,1080],"3":[540,1080],"4":[540,1080],"5":[540,1080],"6":[540,960],"0":[540,960]}'>
 </head>
 <body class="page-story">
 
@@ -22,7 +33,7 @@
   <div class="header__inner">
     <a class="header__brand" href="/layers/" aria-label="Layers Superfood Bar — home">
       <img class="header__wordmark header__wordmark--cream" src="/layers/assets/img/wordmark-cream.png" alt="Layers Superfood Bar" width="121" height="52">
-      <img class="header__wordmark header__wordmark--ink" src="/layers/assets/img/wordmark-ink.png" alt="" aria-hidden="true" width="121" height="52">
+      <img class="header__wordmark header__wordmark--ink" src="/layers/assets/img/wordmark-green.png" alt="" aria-hidden="true" width="121" height="52">
     </a>
 
     <nav class="header__nav" aria-label="Primary">
@@ -31,14 +42,13 @@
       <a data-nav href="/layers/how-we-make-it">How We Make It</a>
       <a data-nav href="/layers/catering">Catering</a>
       <a data-nav href="/layers/visit">Visit</a>
-      <a data-nav class="header__gift" href="/layers/gift-cards">Gift Cards</a>
-      <a id="header-order" data-headorder class="btn btn--butter btn--sm" href="https://layers.square.site" target="_blank" rel="noopener">
+      <a id="header-order" data-headorder class="btn btn--butter btn--sm" href="/layers/order">
         Order on Square
         <svg class="icon-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
     </nav>
 
-    <a class="btn btn--butter btn--sm header__m-order" href="https://layers.square.site" target="_blank" rel="noopener">Order</a>
+    <a class="btn btn--butter btn--sm header__m-order" href="/layers/order">Order</a>
     <button id="m-burger" class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="m-drawer">
       <span></span><span></span><span></span>
     </button>
@@ -48,7 +58,7 @@
 <div id="m-scrim" class="drawer-scrim" hidden></div>
 <aside id="m-drawer" class="drawer" aria-label="Mobile menu" aria-hidden="true" hidden>
   <div class="drawer__head">
-    <img src="/layers/assets/img/wordmark-ink.png" alt="Layers Superfood Bar" width="110" height="47">
+    <img src="/layers/assets/img/wordmark-green.png" alt="Layers Superfood Bar" width="110" height="47">
     <button id="m-close" class="drawer__close" type="button" aria-label="Close menu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
@@ -57,81 +67,128 @@
     <a data-drawer href="/layers/menu">Menu</a>
     <a data-drawer href="/layers/story" aria-current="page">Our Story</a>
     <a data-drawer href="/layers/how-we-make-it">How We Make It</a>
-    <a data-drawer href="/layers/what-you-get">What You Get</a>
+    <a data-drawer href="/layers/what-you-get">What We Make</a>
     <a data-drawer href="/layers/day-in-the-life">Day in the Life</a>
     <a data-drawer href="/layers/catering">Catering</a>
-    <a data-drawer href="/layers/gift-cards">Gift Cards</a>
-    <a data-drawer href="/layers/loyalty">Loyalty</a>
     <a data-drawer href="/layers/faq">FAQ</a>
     <a data-drawer href="/layers/visit">Visit</a>
   </nav>
   <div class="drawer__foot">
-    <a class="btn btn--sage btn--block" href="https://layers.square.site" target="_blank" rel="noopener">Order on Square</a>
-    <a class="btn btn--ghost btn--block" href="/layers/gift-cards">Gift Cards</a>
+    <a class="btn btn--sage btn--block" href="/layers/order">Order on Square</a>
   </div>
 </aside>
 
 <main id="main">
-<!-- Founder narrative. The client has not supplied this copy — every bracketed
-     line below is a visible placeholder, deliberately. Do not fill them in. -->
+<!-- The deeper Layers story — moved here from the homepage per the Oct 2026
+     brief. All copy is the client's approved text, verbatim. -->
 
-<section class="section section--cream pagehead">
-  <div class="wrap wrap--narrow">
-    <p class="eyebrow">Our Story</p>
-    <h1 class="display">The Layers Story</h1>
-    <p class="lede placeholder-copy">[Opening — who started Layers and why. Approx. 70 words. Client to supply.]</p>
+<header class="story-head">
+  <p class="eyebrow">Our Story</p>
+  <h1 class="story-head__title">The Layers Story</h1>
+</header>
+
+<div class="ed-row ed-row--2">
+  <figure class="ed-tile"><span class="ed-media"><picture><source type="image/webp" srcset="/layers/assets/img/story/open-1-640.webp 640w, /layers/assets/img/story/open-1-960.webp 960w, /layers/assets/img/story/open-1-1440.webp 1440w, /layers/assets/img/story/open-1-1920.webp 1920w" sizes="(max-width: 720px) 100vw, 50vw"><img src="/layers/assets/img/story/open-1-1440.jpg" srcset="/layers/assets/img/story/open-1-640.jpg 640w, /layers/assets/img/story/open-1-960.jpg 960w, /layers/assets/img/story/open-1-1440.jpg 1440w, /layers/assets/img/story/open-1-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 50vw" width="1440" height="1440" alt="Four members of the Layers team in embroidered Layers caps behind the counter" fetchpriority="high" decoding="async"></picture></span></figure>
+  <figure class="ed-tile"><span class="ed-media"><picture><source type="image/webp" srcset="/layers/assets/img/story/open-2-640.webp 640w, /layers/assets/img/story/open-2-960.webp 960w, /layers/assets/img/story/open-2-1440.webp 1440w" sizes="(max-width: 720px) 100vw, 50vw"><img src="/layers/assets/img/story/open-2-1440.jpg" srcset="/layers/assets/img/story/open-2-640.jpg 640w, /layers/assets/img/story/open-2-960.jpg 960w, /layers/assets/img/story/open-2-1440.jpg 1440w" sizes="(max-width: 720px) 100vw, 50vw" width="1440" height="1440" alt="A layered Layers cup of blue spirulina and green with kiwi, mango and toasted coconut, on a wooden board" loading="lazy" decoding="async"></picture></span></figure>
+</div>
+
+<!-- 01 -->
+<article class="chapter" aria-labelledby="ch-1">
+  <span class="chapter__num">01</span>
+  <h2 id="ch-1" class="chapter__title">Founder’s Story</h2>
+  <div class="prose">
+    <p class="prose__lead">Layers began with Nanno’s personal journey of learning what health really means.</p>
+    <p>What started as an interest in fitness gradually became a deeper understanding of how food, movement, sleep, recovery, and everyday habits work together. Living in New York introduced her to a broader wellness culture, but also made her question what “healthy” really meant when products could look healthy while still containing ingredients she would not choose for herself.</p>
+    <p>During the pandemic, Nanno spent more time studying nutrition, movement, ingredients, and recovery. She began experimenting with whole fruits, natural sweetness, texture, fiber, and function, learning how food could be both nourishing and genuinely enjoyable.</p>
+    <p>That curiosity became Layers.</p>
+    <p>The first Layers location opened in 2022. In 2024, the idea for Berkeley began, giving Nanno the opportunity to rethink and refine the recipes, menu, space, service, team, and overall experience. After more than a year of careful development, Layers Berkeley officially opened its doors in October 2025.</p>
+    <p>Today, Layers continues to grow with the same mindset it started with: stay curious, keep improving, and create something that helps people feel better in everyday life.</p>
   </div>
-</section>
+</article>
 
-<section class="section section--linen" aria-label="Founder portrait">
-  <div class="wrap comp-b">
-    <div class="comp-b__main">
-      <h2 class="h3 placeholder-copy">[Section heading]</h2>
-      <p class="body placeholder-copy">[Body copy, approx. 150 words. Client to supply.]</p>
-    </div>
-    <div class="comp-b__low">
-      <div class="ph-panel ph-panel--portrait" role="img" aria-label="Founder portrait to be shot"><span>[Founder portrait — to be shot]</span></div>
-    </div>
+<!-- 02 -->
+<article class="chapter" aria-labelledby="ch-2">
+  <span class="chapter__num">02</span>
+  <h2 id="ch-2" class="chapter__title">Why Layers Was Created</h2>
+  <div class="prose">
+    <p class="prose__lead">Layers was created from a simple belief: healthy food should feel honest.</p>
+    <p>We wanted smoothies to taste like real fruit, not fruit diluted with water or ice, or sweetness hidden behind syrups and processed sweeteners. What we say is in the cup should truly be what is in the cup.</p>
+    <p>We use whole ingredients for natural sweetness, flavor, texture, fiber, nourishment, and function. Every ingredient should have a reason to be there.</p>
+    <p>Layers was never created to be a diet brand or a place built around restriction. We believe in better ingredients, better choices, and better everyday habits without compromising taste or enjoyment.</p>
   </div>
-</section>
+  <p class="chapter__line">If we say it is not there, it is not there.</p>
+</article>
 
-<section class="section section--cream">
-  <div class="wrap wrap--narrow">
-    <h2 class="h3 placeholder-copy">[Section heading]</h2>
-    <p class="body placeholder-copy">[Body copy, approx. 150 words. Client to supply.]</p>
+<figure class="ed-tile ed-tile--wide story-media">
+  <span class="ed-media"><picture><source type="image/webp" srcset="/layers/assets/img/story/philosophy-960.webp 960w, /layers/assets/img/story/philosophy-1440.webp 1440w, /layers/assets/img/story/philosophy-1920.webp 1920w, /layers/assets/img/story/philosophy-2560.webp 2560w" sizes="100vw"><img src="/layers/assets/img/story/philosophy-1440.jpg" srcset="/layers/assets/img/story/philosophy-960.jpg 960w, /layers/assets/img/story/philosophy-1440.jpg 1440w, /layers/assets/img/story/philosophy-1920.jpg 1920w, /layers/assets/img/story/philosophy-2560.jpg 2560w" sizes="100vw" width="1440" height="617" alt="Two runners grinning and waving mid-run on a Berkeley street" loading="lazy" decoding="async"></picture></span>
+</figure>
+
+<!-- 03 -->
+<article class="chapter" aria-labelledby="ch-3">
+  <span class="chapter__num">03</span>
+  <h2 id="ch-3" class="chapter__title">Brand Philosophy</h2>
+  <div class="prose">
+    <p class="prose__lead">At Layers, we believe wellness is a whole system.</p>
+    <p>Food is one part of it, alongside movement, recovery, sleep, connection, and the habits that shape everyday life. That is why Layers is more than a place to eat.</p>
+    <p>We bring wellness into the Berkeley community through food, run clubs, Pilates, yoga, wellness events, and movement focused experiences that bring people together.</p>
+    <p>The same intention carries into everything we serve. We choose real ingredients, remove what does not need to be there, and create food that is both nourishing and enjoyable.</p>
+    <p>Our goal is to make wellness feel approachable, social, and part of everyday life.</p>
   </div>
-</section>
+  <p class="chapter__line">Real food. Real movement. Real community.</p>
+</article>
 
-<section class="pullquote" aria-label="Pull quote">
-  <div class="wrap"><blockquote class="pullquote__q placeholder-copy">[Pull quote from the founder — client to supply.]</blockquote></div>
-</section>
-
-<section class="comp-a section--cream" aria-label="The shop">
-  <img class="comp-a__media" src="/layers/assets/img/band-why.jpg" alt="" loading="lazy" decoding="async" width="2400" height="1200">
-  <div class="comp-a__panel">
-    <h2 class="h3 placeholder-copy">[Section heading]</h2>
-    <p class="body placeholder-copy">[Body copy, approx. 150 words. Client to supply.]</p>
+<!-- 04 -->
+<article class="chapter" aria-labelledby="ch-4">
+  <span class="chapter__num">04</span>
+  <h2 id="ch-4" class="chapter__title">Our Journey</h2>
+  <div class="prose">
+    <p class="prose__lead">Layers opened its first location in 2022, built through hands on learning, recipe development, customer conversations, and constant refinement.</p>
+    <p>In 2024, the vision for Berkeley began. Instead of simply recreating the original shop, we used the opportunity to evolve Layers by refining the products, curating the space, strengthening the team, and creating a more complete wellness experience.</p>
+    <p>After more than a year of testing, adjusting, and developing every detail, Layers Berkeley officially opened in October 2025.</p>
+    <p>Since then, the brand has continued to grow through its customers, team, university community, wellness partnerships, running events, Pilates, yoga, and local collaborations.</p>
+    <p>We are still learning, still refining, and still building Layers with the people around us.</p>
   </div>
-</section>
+</article>
 
-<section class="section section--linen">
-  <div class="wrap comp-b">
-    <div class="comp-b__main">
-      <h2 class="h3 placeholder-copy">[Section heading]</h2>
-      <p class="body placeholder-copy">[Body copy, approx. 150 words. Client to supply.]</p>
-    </div>
-    <div class="comp-b__low">
-      <img class="frame-img" src="/layers/assets/img/menu/berry-much-love-u.jpg" alt="" loading="lazy" decoding="async" width="800" height="800">
-    </div>
+<figure class="ed-tile ed-tile--wide story-media">
+  <span class="ed-media"><picture><source type="image/webp" srcset="/layers/assets/img/story/journey-960.webp 960w, /layers/assets/img/story/journey-1440.webp 1440w, /layers/assets/img/story/journey-1920.webp 1920w, /layers/assets/img/story/journey-2560.webp 2560w" sizes="100vw"><img src="/layers/assets/img/story/journey-1440.jpg" srcset="/layers/assets/img/story/journey-960.jpg 960w, /layers/assets/img/story/journey-1440.jpg 1440w, /layers/assets/img/story/journey-1920.jpg 1920w, /layers/assets/img/story/journey-2560.jpg 2560w" sizes="100vw" width="1440" height="617" alt="The Layers storefront on Channing Way under a blue sky, with a run club gathered along the sidewalk" loading="lazy" decoding="async"></picture></span>
+</figure>
+
+<!-- 05 -->
+<article class="chapter" aria-labelledby="ch-5">
+  <span class="chapter__num">05</span>
+  <h2 id="ch-5" class="chapter__title">How We Make It</h2>
+  <div class="prose">
+    <p class="prose__lead">At Layers, good food starts with intention.</p>
+    <p>We begin with whole ingredients and think carefully about what each one contributes, from flavor and texture to natural sweetness, fiber, nourishment, and function.</p>
+    <p>We use frozen fruit instead of ice, avoid added water, do not rely on refined sugar or syrups, and develop our bowl bases in house so we have greater control over ingredients, flavor, and texture.</p>
+    <p>Every recipe is tested and refined through real daily experience, including feedback from our team and customers.</p>
   </div>
-</section>
+  <p class="chapter__line">Real ingredients. Intentional recipes. Nothing unnecessary.</p>
+</article>
 
-<section class="pullquote pullquote--sage" aria-label="Pull quote">
-  <div class="wrap"><blockquote class="pullquote__q placeholder-copy">[Pull quote from the founder — client to supply.]</blockquote></div>
+<ol class="pillars" aria-label="How every Layers recipe is made">
+  <li class="pillar"><h3 class="pillar__name">No ice</h3><p class="pillar__desc">Frozen fruit brings the cold without diluting the flavor.</p></li>
+  <li class="pillar"><h3 class="pillar__name">No water</h3><p class="pillar__desc">Full flavor and satisfying texture, without watering things down.</p></li>
+  <li class="pillar"><h3 class="pillar__name">No refined sugar or syrups</h3><p class="pillar__desc">Natural sweetness comes from whole ingredients.</p></li>
+  <li class="pillar"><h3 class="pillar__name">House-made bases</h3><p class="pillar__desc">Developed in-house for better control over ingredients, flavor, and texture.</p></li>
+  <li class="pillar"><h3 class="pillar__name">Functional ingredients</h3><p class="pillar__desc">Chosen with intention to support the purpose of each recipe.</p></li>
+</ol>
+
+<div class="ed-row ed-row--2 story-media">
+  <figure class="ed-tile"><span class="ed-media"><picture><source type="image/webp" srcset="/layers/assets/img/story/make-1-640.webp 640w, /layers/assets/img/story/make-1-960.webp 960w, /layers/assets/img/story/make-1-1440.webp 1440w, /layers/assets/img/story/make-1-1920.webp 1920w" sizes="(max-width: 720px) 100vw, 50vw"><img src="/layers/assets/img/story/make-1-1440.jpg" srcset="/layers/assets/img/story/make-1-640.jpg 640w, /layers/assets/img/story/make-1-960.jpg 960w, /layers/assets/img/story/make-1-1440.jpg 1440w, /layers/assets/img/story/make-1-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 50vw" width="1440" height="1440" alt="A layered Layers cup with halved strawberries pressed against a pink layer, on a stone slab" loading="lazy" decoding="async"></picture></span></figure>
+  <figure class="ed-tile"><span class="ed-media"><picture><source type="image/webp" srcset="/layers/assets/img/story/make-2-640.webp 640w, /layers/assets/img/story/make-2-960.webp 960w, /layers/assets/img/story/make-2-1440.webp 1440w, /layers/assets/img/story/make-2-1920.webp 1920w" sizes="(max-width: 720px) 100vw, 50vw"><img src="/layers/assets/img/story/make-2-1440.jpg" srcset="/layers/assets/img/story/make-2-640.jpg 640w, /layers/assets/img/story/make-2-960.jpg 960w, /layers/assets/img/story/make-2-1440.jpg 1440w, /layers/assets/img/story/make-2-1920.jpg 1920w" sizes="(max-width: 720px) 100vw, 50vw" width="1440" height="1440" alt="A layered Layers bowl with a blue spirulina drip, banana and blueberries, held on an open palm" loading="lazy" decoding="async"></picture></span></figure>
+</div>
+
+<section class="story-close" aria-label="Order">
+  <h2 class="ed-statement">Real Food. Functional Fuel.</h2>
+  <div class="ed-ctas">
+    <a class="btn btn--sage" href="/layers/order">Order on Square</a>
+    <a class="btn btn--line" href="/layers/menu">Explore the menu</a>
+  </div>
 </section>
 </main>
 
-<!-- Brand sign-off: identical on every page. The tagline appears here and only here. -->
 <section class="signoff" aria-label="Layers Superfood Bar">
   <img class="signoff__mark" src="/layers/assets/img/face.png" alt="" width="88" height="88" loading="lazy">
   <p class="signoff__eyebrow">Superfood Bar · 2436 Channing Way, Berkeley</p>
@@ -141,9 +198,9 @@
 <footer id="visit-footer" class="footer">
   <div class="wrap footer__grid">
     <div class="footer__brand">
-      <img src="/layers/assets/img/logo-wordmark-cream.png" alt="Layers Superfood Bar" width="190" height="49" loading="lazy">
+      <img class="footer__logo" src="/layers/assets/img/wordmark-cream.png" alt="Layers Superfood Bar" width="140" height="60" loading="lazy">
       <p class="footer__tagline">A Berkeley superfood bar. Clean smoothies and bowls, made fresh.</p>
-      <a class="btn btn--butter" href="https://layers.square.site" target="_blank" rel="noopener">
+      <a class="btn btn--butter" href="/layers/order">
         Order on Square
         <svg class="icon-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
@@ -151,7 +208,7 @@
     <div class="footer__col">
       <h2 class="footer__head">Visit</h2>
       <address class="footer__addr">2436 Channing Way<br>Berkeley, CA 94704</address>
-      <p class="footer__hours">Mon–Fri · 10am–5pm<br>Sat–Sun · 10am–4pm</p>
+      <p class="footer__hours">Mon–Fri · 9am–6pm<br>Sat–Sun · 9am–4pm</p>
     </div>
     <div class="footer__col">
       <h2 class="footer__head">Explore</h2>
@@ -159,11 +216,9 @@
         <a href="/layers/story">Our Story</a>
         <a href="/layers/menu">Menu</a>
         <a href="/layers/how-we-make-it">How We Make It</a>
-        <a href="/layers/what-you-get">What You Get</a>
+        <a href="/layers/what-you-get">What We Make</a>
         <a href="/layers/day-in-the-life">Day in the Life</a>
         <a href="/layers/catering">Catering</a>
-        <a href="/layers/gift-cards">Gift Cards</a>
-        <a href="/layers/loyalty">Loyalty</a>
         <a href="/layers/faq">FAQ</a>
         <a href="/layers/visit">Visit</a>
       </nav>

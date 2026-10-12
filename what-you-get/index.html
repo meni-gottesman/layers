@@ -3,16 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>What You Get | Layers Superfood Bar</title>
-<!-- Meta description — to be supplied by client before launch. -->
+<title>What We Make | Layers Superfood Bar</title>
+<meta name="description" content="What Layers makes: functional smoothies, thick bowls on house-made bases, thoughtful boosts, built for real schedules. Real food first, in Berkeley.">
 <link rel="canonical" href="https://layerssuperfoodbar.com/what-you-get">
-<meta name="theme-color" content="#FCFAF4">
-<link rel="icon" href="/layers/assets/img/face-mark.png" type="image/png">
-<link rel="apple-touch-icon" href="/layers/assets/img/face-mark.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Layers Superfood Bar">
+<meta property="og:title" content="What We Make | Layers Superfood Bar">
+<meta property="og:description" content="What Layers makes: functional smoothies, thick bowls on house-made bases, thoughtful boosts, built for real schedules. Real food first, in Berkeley.">
+<meta property="og:url" content="https://layerssuperfoodbar.com/what-you-get">
+<meta property="og:image" content="https://layerssuperfoodbar.com/assets/img/home/hero-1440.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#E5E0D8">
+<link rel="icon" href="/layers/assets/img/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="icon" href="/layers/assets/img/face-mark.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/layers/assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Spectral:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Archivo: the closest open-licence match to Happier's editorial grotesk (Scout).
+     One family, two widths: 87.5% for display/labels/navigation, 100% for reading. -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87.5..100,400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/layers/assets/css/styles.css">
+<meta name="layers-hours" content='{"1":[540,1080],"2":[540,1080],"3":[540,1080],"4":[540,1080],"5":[540,1080],"6":[540,960],"0":[540,960]}'>
 </head>
 <body class="page-what">
 
@@ -22,7 +33,7 @@
   <div class="header__inner">
     <a class="header__brand" href="/layers/" aria-label="Layers Superfood Bar — home">
       <img class="header__wordmark header__wordmark--cream" src="/layers/assets/img/wordmark-cream.png" alt="Layers Superfood Bar" width="121" height="52">
-      <img class="header__wordmark header__wordmark--ink" src="/layers/assets/img/wordmark-ink.png" alt="" aria-hidden="true" width="121" height="52">
+      <img class="header__wordmark header__wordmark--ink" src="/layers/assets/img/wordmark-green.png" alt="" aria-hidden="true" width="121" height="52">
     </a>
 
     <nav class="header__nav" aria-label="Primary">
@@ -31,14 +42,13 @@
       <a data-nav href="/layers/how-we-make-it">How We Make It</a>
       <a data-nav href="/layers/catering">Catering</a>
       <a data-nav href="/layers/visit">Visit</a>
-      <a data-nav class="header__gift" href="/layers/gift-cards">Gift Cards</a>
-      <a id="header-order" data-headorder class="btn btn--butter btn--sm" href="https://layers.square.site" target="_blank" rel="noopener">
+      <a id="header-order" data-headorder class="btn btn--butter btn--sm" href="/layers/order">
         Order on Square
         <svg class="icon-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
     </nav>
 
-    <a class="btn btn--butter btn--sm header__m-order" href="https://layers.square.site" target="_blank" rel="noopener">Order</a>
+    <a class="btn btn--butter btn--sm header__m-order" href="/layers/order">Order</a>
     <button id="m-burger" class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="m-drawer">
       <span></span><span></span><span></span>
     </button>
@@ -48,7 +58,7 @@
 <div id="m-scrim" class="drawer-scrim" hidden></div>
 <aside id="m-drawer" class="drawer" aria-label="Mobile menu" aria-hidden="true" hidden>
   <div class="drawer__head">
-    <img src="/layers/assets/img/wordmark-ink.png" alt="Layers Superfood Bar" width="110" height="47">
+    <img src="/layers/assets/img/wordmark-green.png" alt="Layers Superfood Bar" width="110" height="47">
     <button id="m-close" class="drawer__close" type="button" aria-label="Close menu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
@@ -57,58 +67,48 @@
     <a data-drawer href="/layers/menu">Menu</a>
     <a data-drawer href="/layers/story">Our Story</a>
     <a data-drawer href="/layers/how-we-make-it">How We Make It</a>
-    <a data-drawer href="/layers/what-you-get" aria-current="page">What You Get</a>
+    <a data-drawer href="/layers/what-you-get" aria-current="page">What We Make</a>
     <a data-drawer href="/layers/day-in-the-life">Day in the Life</a>
     <a data-drawer href="/layers/catering">Catering</a>
-    <a data-drawer href="/layers/gift-cards">Gift Cards</a>
-    <a data-drawer href="/layers/loyalty">Loyalty</a>
     <a data-drawer href="/layers/faq">FAQ</a>
     <a data-drawer href="/layers/visit">Visit</a>
   </nav>
   <div class="drawer__foot">
-    <a class="btn btn--sage btn--block" href="https://layers.square.site" target="_blank" rel="noopener">Order on Square</a>
-    <a class="btn btn--ghost btn--block" href="/layers/gift-cards">Gift Cards</a>
+    <a class="btn btn--sage btn--block" href="/layers/order">Order on Square</a>
   </div>
 </aside>
 
 <main id="main">
-<!-- Approved copy, verbatim. Five items — "convenient wellness" and "food
-     designed for everyday life" are both covered by "Built for real schedules". -->
+<!-- Approved copy, verbatim. -->
 
-<section class="section section--cream pagehead">
-  <div class="wrap wrap--narrow">
-    <p class="eyebrow">What We Make</p>
-    <h1 class="display">Everyday nutrition, built with purpose.</h1>
-  </div>
+<header class="story-head story-head--inner">
+  <p class="eyebrow">What We Make</p>
+  <h1 class="story-head__title story-head__title--long">Everyday nutrition, built with purpose.</h1>
+</header>
+
+<figure class="ed-tile ed-contained">
+  <span class="ed-media"><picture><source type="image/webp" srcset="/layers/assets/img/what/hero-640.webp 640w, /layers/assets/img/what/hero-960.webp 960w, /layers/assets/img/what/hero-1440.webp 1440w, /layers/assets/img/what/hero-1920.webp 1920w" sizes="(max-width: 1100px) 100vw, 1100px"><img src="/layers/assets/img/what/hero-1440.jpg" srcset="/layers/assets/img/what/hero-640.jpg 640w, /layers/assets/img/what/hero-960.jpg 960w, /layers/assets/img/what/hero-1440.jpg 1440w, /layers/assets/img/what/hero-1920.jpg 1920w" sizes="(max-width: 1100px) 100vw, 1100px" width="1440" height="960" alt="Three layered Layers cups — berry, blue spirulina with kiwi, and strawberry — offered up on stacked stone against a peach wall" fetchpriority="high" decoding="async"></picture></span>
+</figure>
+
+<section class="ed-block" aria-label="What we make">
+  <ol class="steps">
+    <li><h2 class="steps__h">Functional smoothies</h2><p>Real fruit and clean bases, with boosts for energy, focus, and recovery.</p></li>
+    <li><h2 class="steps__h">Thick bowls</h2><p>Spoonable bases, layered with fruit, crunch, and protein.</p></li>
+    <li><h2 class="steps__h">Thoughtful boosts</h2><p>Lion’s mane, creatine, spirulina, hemp, flax, and more.</p></li>
+    <li><h2 class="steps__h">Built for real schedules</h2><p>Fast, clean, satisfying. Workdays, workouts, study sessions.</p></li>
+    <li><h2 class="steps__h">Real food first</h2><p>Ingredients you can recognize, prepared with intention.</p></li>
+  </ol>
 </section>
 
-<section class="comp-a section--cream" aria-label="What we make">
-  <img class="comp-a__media" src="/layers/assets/img/band-cta.jpg" alt="" loading="lazy" decoding="async" width="2400" height="1400">
-  <div class="comp-a__panel comp-a__panel--wide">
-    <ol class="steplist manifesto manifesto--tight">
-      <li><h2 class="h3">Functional smoothies</h2><p class="body">Real fruit and clean bases, with boosts for energy, focus, and recovery.</p></li>
-      <li><h2 class="h3">Thick bowls</h2><p class="body">Spoonable bases, layered with fruit, crunch, and protein.</p></li>
-      <li><h2 class="h3">Thoughtful boosts</h2><p class="body">Lion’s mane, creatine, spirulina, hemp, flax, and more.</p></li>
-      <li><h2 class="h3">Built for real schedules</h2><p class="body">Fast, clean, satisfying. Workdays, workouts, study sessions.</p></li>
-      <li><h2 class="h3">Real food first</h2><p class="body">Ingredients you can recognize, prepared with intention.</p></li>
-    </ol>
-  </div>
-</section>
-
-<section class="section section--linen" aria-label="See the menu">
-  <div class="wrap comp-b">
-    <div class="comp-b__main">
-      <h2 class="h2">See what’s on today.</h2>
-      <a class="textlink" href="/layers/menu">Browse the menu</a>
-    </div>
-    <div class="comp-b__low">
-      <img class="frame-img" src="/layers/assets/img/menu/blue-tiful-day.jpg" alt="" loading="lazy" decoding="async" width="800" height="800">
-    </div>
+<section class="story-close" aria-label="See the menu">
+  <h2 class="ed-statement">See what’s on today.</h2>
+  <div class="ed-ctas">
+    <a class="btn btn--sage" href="/layers/menu">Browse the menu</a>
+    <a class="btn btn--line" href="/layers/order">Order on Square</a>
   </div>
 </section>
 </main>
 
-<!-- Brand sign-off: identical on every page. The tagline appears here and only here. -->
 <section class="signoff" aria-label="Layers Superfood Bar">
   <img class="signoff__mark" src="/layers/assets/img/face.png" alt="" width="88" height="88" loading="lazy">
   <p class="signoff__eyebrow">Superfood Bar · 2436 Channing Way, Berkeley</p>
@@ -118,9 +118,9 @@
 <footer id="visit-footer" class="footer">
   <div class="wrap footer__grid">
     <div class="footer__brand">
-      <img src="/layers/assets/img/logo-wordmark-cream.png" alt="Layers Superfood Bar" width="190" height="49" loading="lazy">
+      <img class="footer__logo" src="/layers/assets/img/wordmark-cream.png" alt="Layers Superfood Bar" width="140" height="60" loading="lazy">
       <p class="footer__tagline">A Berkeley superfood bar. Clean smoothies and bowls, made fresh.</p>
-      <a class="btn btn--butter" href="https://layers.square.site" target="_blank" rel="noopener">
+      <a class="btn btn--butter" href="/layers/order">
         Order on Square
         <svg class="icon-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
@@ -128,7 +128,7 @@
     <div class="footer__col">
       <h2 class="footer__head">Visit</h2>
       <address class="footer__addr">2436 Channing Way<br>Berkeley, CA 94704</address>
-      <p class="footer__hours">Mon–Fri · 10am–5pm<br>Sat–Sun · 10am–4pm</p>
+      <p class="footer__hours">Mon–Fri · 9am–6pm<br>Sat–Sun · 9am–4pm</p>
     </div>
     <div class="footer__col">
       <h2 class="footer__head">Explore</h2>
@@ -136,11 +136,9 @@
         <a href="/layers/story">Our Story</a>
         <a href="/layers/menu">Menu</a>
         <a href="/layers/how-we-make-it">How We Make It</a>
-        <a href="/layers/what-you-get">What You Get</a>
+        <a href="/layers/what-you-get">What We Make</a>
         <a href="/layers/day-in-the-life">Day in the Life</a>
         <a href="/layers/catering">Catering</a>
-        <a href="/layers/gift-cards">Gift Cards</a>
-        <a href="/layers/loyalty">Loyalty</a>
         <a href="/layers/faq">FAQ</a>
         <a href="/layers/visit">Visit</a>
       </nav>

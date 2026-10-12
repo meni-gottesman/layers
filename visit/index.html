@@ -4,15 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Visit | Layers Superfood Bar</title>
-<!-- Meta description — to be supplied by client before launch. -->
+<meta name="description" content="Visit Layers Superfood Bar at 2436 Channing Way, Berkeley, by Telegraph Ave. Hours, directions, BART and AC Transit, parking and bike share.">
 <link rel="canonical" href="https://layerssuperfoodbar.com/visit">
-<meta name="theme-color" content="#FCFAF4">
-<link rel="icon" href="/layers/assets/img/face-mark.png" type="image/png">
-<link rel="apple-touch-icon" href="/layers/assets/img/face-mark.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Layers Superfood Bar">
+<meta property="og:title" content="Visit | Layers Superfood Bar">
+<meta property="og:description" content="Visit Layers Superfood Bar at 2436 Channing Way, Berkeley, by Telegraph Ave. Hours, directions, BART and AC Transit, parking and bike share.">
+<meta property="og:url" content="https://layerssuperfoodbar.com/visit">
+<meta property="og:image" content="https://layerssuperfoodbar.com/assets/img/home/hero-1440.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#E5E0D8">
+<link rel="icon" href="/layers/assets/img/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="icon" href="/layers/assets/img/face-mark.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/layers/assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Spectral:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Archivo: the closest open-licence match to Happier's editorial grotesk (Scout).
+     One family, two widths: 87.5% for display/labels/navigation, 100% for reading. -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87.5..100,400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/layers/assets/css/styles.css">
+<meta name="layers-hours" content='{"1":[540,1080],"2":[540,1080],"3":[540,1080],"4":[540,1080],"5":[540,1080],"6":[540,960],"0":[540,960]}'>
 </head>
 <body class="page-visit">
 
@@ -22,7 +33,7 @@
   <div class="header__inner">
     <a class="header__brand" href="/layers/" aria-label="Layers Superfood Bar — home">
       <img class="header__wordmark header__wordmark--cream" src="/layers/assets/img/wordmark-cream.png" alt="Layers Superfood Bar" width="121" height="52">
-      <img class="header__wordmark header__wordmark--ink" src="/layers/assets/img/wordmark-ink.png" alt="" aria-hidden="true" width="121" height="52">
+      <img class="header__wordmark header__wordmark--ink" src="/layers/assets/img/wordmark-green.png" alt="" aria-hidden="true" width="121" height="52">
     </a>
 
     <nav class="header__nav" aria-label="Primary">
@@ -31,14 +42,13 @@
       <a data-nav href="/layers/how-we-make-it">How We Make It</a>
       <a data-nav href="/layers/catering">Catering</a>
       <a data-nav href="/layers/visit" aria-current="page">Visit</a>
-      <a data-nav class="header__gift" href="/layers/gift-cards">Gift Cards</a>
-      <a id="header-order" data-headorder class="btn btn--butter btn--sm" href="https://layers.square.site" target="_blank" rel="noopener">
+      <a id="header-order" data-headorder class="btn btn--butter btn--sm" href="/layers/order">
         Order on Square
         <svg class="icon-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
     </nav>
 
-    <a class="btn btn--butter btn--sm header__m-order" href="https://layers.square.site" target="_blank" rel="noopener">Order</a>
+    <a class="btn btn--butter btn--sm header__m-order" href="/layers/order">Order</a>
     <button id="m-burger" class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="m-drawer">
       <span></span><span></span><span></span>
     </button>
@@ -48,7 +58,7 @@
 <div id="m-scrim" class="drawer-scrim" hidden></div>
 <aside id="m-drawer" class="drawer" aria-label="Mobile menu" aria-hidden="true" hidden>
   <div class="drawer__head">
-    <img src="/layers/assets/img/wordmark-ink.png" alt="Layers Superfood Bar" width="110" height="47">
+    <img src="/layers/assets/img/wordmark-green.png" alt="Layers Superfood Bar" width="110" height="47">
     <button id="m-close" class="drawer__close" type="button" aria-label="Close menu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
@@ -57,66 +67,60 @@
     <a data-drawer href="/layers/menu">Menu</a>
     <a data-drawer href="/layers/story">Our Story</a>
     <a data-drawer href="/layers/how-we-make-it">How We Make It</a>
-    <a data-drawer href="/layers/what-you-get">What You Get</a>
+    <a data-drawer href="/layers/what-you-get">What We Make</a>
     <a data-drawer href="/layers/day-in-the-life">Day in the Life</a>
     <a data-drawer href="/layers/catering">Catering</a>
-    <a data-drawer href="/layers/gift-cards">Gift Cards</a>
-    <a data-drawer href="/layers/loyalty">Loyalty</a>
     <a data-drawer href="/layers/faq">FAQ</a>
     <a data-drawer href="/layers/visit" aria-current="page">Visit</a>
   </nav>
   <div class="drawer__foot">
-    <a class="btn btn--sage btn--block" href="https://layers.square.site" target="_blank" rel="noopener">Order on Square</a>
-    <a class="btn btn--ghost btn--block" href="/layers/gift-cards">Gift Cards</a>
+    <a class="btn btn--sage btn--block" href="/layers/order">Order on Square</a>
   </div>
 </aside>
 
 <main id="main">
-<!-- One shop. No locator, no map embed — "Get directions" opens the device's
-     maps app. Transit and parking facts have not been supplied. -->
+<!-- One shop. "Get directions" opens the device's maps app. Getting-here facts
+     were checked against BART, AC Transit (current GTFS feed), the City of
+     Berkeley and Lyft's Bay Wheels feed in October 2026; hours come from
+     HOURS in tools/build-pages.py. -->
 
-<section class="section section--cream pagehead">
-  <div class="wrap comp-b">
-    <div class="comp-b__main">
-      <p class="eyebrow">Visit</p>
-      <h1 class="display">Made fresh on Channing Way.</h1>
-      <address class="visit__addr">2436 Channing Way<br>Berkeley, CA 94704</address>
-      <p class="visit__open" data-open-now></p>
+<section class="ed-split" aria-labelledby="visit-title">
+  <figure class="ed-tile ed-split__media"><span class="ed-media"><picture><source type="image/webp" srcset="/layers/assets/img/visit/hero-480.webp 480w, /layers/assets/img/visit/hero-720.webp 720w, /layers/assets/img/visit/hero-960.webp 960w, /layers/assets/img/visit/hero-1280.webp 1280w" sizes="(max-width: 820px) 100vw, 50vw"><img src="/layers/assets/img/visit/hero-1280.jpg" srcset="/layers/assets/img/visit/hero-480.jpg 480w, /layers/assets/img/visit/hero-720.jpg 720w, /layers/assets/img/visit/hero-960.jpg 960w, /layers/assets/img/visit/hero-1280.jpg 1280w" sizes="(max-width: 820px) 100vw, 50vw" width="1280" height="1600" alt="Four members of the Layers team arm in arm in front of the storefront on Channing Way" fetchpriority="high" decoding="async"></picture></span></figure>
+  <div class="ed-split__text">
+    <p class="eyebrow">Visit</p>
+    <h1 id="visit-title" class="ed-split__title">Visit Layers</h1>
+    <p><a class="visit__addr" href="https://www.google.com/maps/dir/?api=1&amp;destination=2436+Channing+Way,+Berkeley,+CA+94704" target="_blank" rel="noopener">2436 Channing Way<br>Berkeley, CA 94704</a><br><span class="visit__cross">Between Telegraph Ave and Dana St</span></p>
+    <p class="visit__open" data-open-now data-open-now-only></p>
+    <table class="hours hours--editorial" data-hours><caption class="sr-only">Opening hours</caption><tbody><tr data-dow="1"><th scope="row">Monday</th><td>9am–6pm</td></tr><tr data-dow="2"><th scope="row">Tuesday</th><td>9am–6pm</td></tr><tr data-dow="3"><th scope="row">Wednesday</th><td>9am–6pm</td></tr><tr data-dow="4"><th scope="row">Thursday</th><td>9am–6pm</td></tr><tr data-dow="5"><th scope="row">Friday</th><td>9am–6pm</td></tr><tr data-dow="6"><th scope="row">Saturday</th><td>9am–4pm</td></tr><tr data-dow="0"><th scope="row">Sunday</th><td>9am–4pm</td></tr></tbody></table>
+    <div class="ed-ctas">
       <a class="btn btn--sage" href="https://www.google.com/maps/dir/?api=1&amp;destination=2436+Channing+Way,+Berkeley,+CA+94704" target="_blank" rel="noopener">Get directions</a>
+      <a class="btn btn--line" href="/layers/order">Order ahead on Square</a>
     </div>
-    <div class="comp-b__low">
-      <table class="hours" data-hours>
-        <caption class="eyebrow hours__cap">Hours</caption>
-        <tbody>
-          <tr data-dow="1"><th scope="row">Monday</th><td>10am–5pm</td></tr>
-          <tr data-dow="2"><th scope="row">Tuesday</th><td>10am–5pm</td></tr>
-          <tr data-dow="3"><th scope="row">Wednesday</th><td>10am–5pm</td></tr>
-          <tr data-dow="4"><th scope="row">Thursday</th><td>10am–5pm</td></tr>
-          <tr data-dow="5"><th scope="row">Friday</th><td>10am–5pm</td></tr>
-          <tr data-dow="6"><th scope="row">Saturday</th><td>10am–4pm</td></tr>
-          <tr data-dow="0"><th scope="row">Sunday</th><td>10am–4pm</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <p class="ed-split__fine">Order ahead online and pick up at the front counter.</p>
   </div>
 </section>
 
-<section class="section section--linen" aria-label="Getting here">
-  <div class="wrap comp-b comp-b--flip">
-    <div class="comp-b__main">
-      <h2 class="h3">Transit</h2>
-      <p class="body placeholder-copy">[Transit — client to supply]</p>
-      <h2 class="h3 visit__gap">Parking</h2>
-      <p class="body placeholder-copy">[Parking — client to supply]</p>
+<section class="ed-block ed-block--last" aria-labelledby="getting-here">
+  <h2 id="getting-here" class="ed-section-title">Getting here</h2>
+  <div class="visit-facts">
+    <div>
+      <h3>BART &amp; bus</h3>
+      <p>Downtown Berkeley BART is about a 15-minute walk (about ¾ mile).</p>
+      <p>AC Transit line 6 stops at Telegraph Ave &amp; Haste St, about two minutes away. Lines 51B, 36, 22 and 27 stop on Durant Ave at Telegraph and at Dana, about three minutes away.</p>
     </div>
-    <div class="comp-b__low">
-      <div class="ph-panel" role="img" aria-label="Photograph to be shot"><span>[Shopfront — to be shot]</span></div>
+    <div>
+      <h3>Parking</h3>
+      <p>The city-owned Telegraph Channing Garage (2450 Durant Ave) is around the corner.</p>
+      <p>Metered street parking nearby takes coins, cards and the ParkMobile app.</p>
+    </div>
+    <div>
+      <h3>Bike</h3>
+      <p>A Bay Wheels station sits at Haste St &amp; Telegraph Ave, about two minutes away, and there are public bike racks along Telegraph.</p>
     </div>
   </div>
 </section>
 </main>
 
-<!-- Brand sign-off: identical on every page. The tagline appears here and only here. -->
 <section class="signoff" aria-label="Layers Superfood Bar">
   <img class="signoff__mark" src="/layers/assets/img/face.png" alt="" width="88" height="88" loading="lazy">
   <p class="signoff__eyebrow">Superfood Bar · 2436 Channing Way, Berkeley</p>
@@ -126,9 +130,9 @@
 <footer id="visit-footer" class="footer">
   <div class="wrap footer__grid">
     <div class="footer__brand">
-      <img src="/layers/assets/img/logo-wordmark-cream.png" alt="Layers Superfood Bar" width="190" height="49" loading="lazy">
+      <img class="footer__logo" src="/layers/assets/img/wordmark-cream.png" alt="Layers Superfood Bar" width="140" height="60" loading="lazy">
       <p class="footer__tagline">A Berkeley superfood bar. Clean smoothies and bowls, made fresh.</p>
-      <a class="btn btn--butter" href="https://layers.square.site" target="_blank" rel="noopener">
+      <a class="btn btn--butter" href="/layers/order">
         Order on Square
         <svg class="icon-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
@@ -136,7 +140,7 @@
     <div class="footer__col">
       <h2 class="footer__head">Visit</h2>
       <address class="footer__addr">2436 Channing Way<br>Berkeley, CA 94704</address>
-      <p class="footer__hours">Mon–Fri · 10am–5pm<br>Sat–Sun · 10am–4pm</p>
+      <p class="footer__hours">Mon–Fri · 9am–6pm<br>Sat–Sun · 9am–4pm</p>
     </div>
     <div class="footer__col">
       <h2 class="footer__head">Explore</h2>
@@ -144,11 +148,9 @@
         <a href="/layers/story">Our Story</a>
         <a href="/layers/menu">Menu</a>
         <a href="/layers/how-we-make-it">How We Make It</a>
-        <a href="/layers/what-you-get">What You Get</a>
+        <a href="/layers/what-you-get">What We Make</a>
         <a href="/layers/day-in-the-life">Day in the Life</a>
         <a href="/layers/catering">Catering</a>
-        <a href="/layers/gift-cards">Gift Cards</a>
-        <a href="/layers/loyalty">Loyalty</a>
         <a href="/layers/faq">FAQ</a>
         <a href="/layers/visit">Visit</a>
       </nav>

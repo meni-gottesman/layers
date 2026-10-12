@@ -4,17 +4,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>How We Make It | Layers Superfood Bar</title>
-<!-- Meta description — to be supplied by client before launch. -->
+<meta name="description" content="How every Layers smoothie and bowl is made: whole ingredients, frozen fruit instead of ice, no added water, no refined sugar or syrups, house-made bases.">
 <link rel="canonical" href="https://layerssuperfoodbar.com/how-we-make-it">
-<meta name="theme-color" content="#FCFAF4">
-<link rel="icon" href="/layers/assets/img/face-mark.png" type="image/png">
-<link rel="apple-touch-icon" href="/layers/assets/img/face-mark.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Layers Superfood Bar">
+<meta property="og:title" content="How We Make It | Layers Superfood Bar">
+<meta property="og:description" content="How every Layers smoothie and bowl is made: whole ingredients, frozen fruit instead of ice, no added water, no refined sugar or syrups, house-made bases.">
+<meta property="og:url" content="https://layerssuperfoodbar.com/how-we-make-it">
+<meta property="og:image" content="https://layerssuperfoodbar.com/assets/img/home/hero-1440.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#E5E0D8">
+<link rel="icon" href="/layers/assets/img/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="icon" href="/layers/assets/img/face-mark.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/layers/assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Spectral:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Archivo: the closest open-licence match to Happier's editorial grotesk (Scout).
+     One family, two widths: 87.5% for display/labels/navigation, 100% for reading. -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87.5..100,400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/layers/assets/css/styles.css">
+<meta name="layers-hours" content='{"1":[540,1080],"2":[540,1080],"3":[540,1080],"4":[540,1080],"5":[540,1080],"6":[540,960],"0":[540,960]}'>
 </head>
-<body class="page-how">
+<body class="page-story page-how">
 
 <a class="skip-link" href="#main">Skip to content</a>
 
@@ -22,7 +33,7 @@
   <div class="header__inner">
     <a class="header__brand" href="/layers/" aria-label="Layers Superfood Bar — home">
       <img class="header__wordmark header__wordmark--cream" src="/layers/assets/img/wordmark-cream.png" alt="Layers Superfood Bar" width="121" height="52">
-      <img class="header__wordmark header__wordmark--ink" src="/layers/assets/img/wordmark-ink.png" alt="" aria-hidden="true" width="121" height="52">
+      <img class="header__wordmark header__wordmark--ink" src="/layers/assets/img/wordmark-green.png" alt="" aria-hidden="true" width="121" height="52">
     </a>
 
     <nav class="header__nav" aria-label="Primary">
@@ -31,14 +42,13 @@
       <a data-nav href="/layers/how-we-make-it" aria-current="page">How We Make It</a>
       <a data-nav href="/layers/catering">Catering</a>
       <a data-nav href="/layers/visit">Visit</a>
-      <a data-nav class="header__gift" href="/layers/gift-cards">Gift Cards</a>
-      <a id="header-order" data-headorder class="btn btn--butter btn--sm" href="https://layers.square.site" target="_blank" rel="noopener">
+      <a id="header-order" data-headorder class="btn btn--butter btn--sm" href="/layers/order">
         Order on Square
         <svg class="icon-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
     </nav>
 
-    <a class="btn btn--butter btn--sm header__m-order" href="https://layers.square.site" target="_blank" rel="noopener">Order</a>
+    <a class="btn btn--butter btn--sm header__m-order" href="/layers/order">Order</a>
     <button id="m-burger" class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="m-drawer">
       <span></span><span></span><span></span>
     </button>
@@ -48,7 +58,7 @@
 <div id="m-scrim" class="drawer-scrim" hidden></div>
 <aside id="m-drawer" class="drawer" aria-label="Mobile menu" aria-hidden="true" hidden>
   <div class="drawer__head">
-    <img src="/layers/assets/img/wordmark-ink.png" alt="Layers Superfood Bar" width="110" height="47">
+    <img src="/layers/assets/img/wordmark-green.png" alt="Layers Superfood Bar" width="110" height="47">
     <button id="m-close" class="drawer__close" type="button" aria-label="Close menu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
@@ -57,60 +67,57 @@
     <a data-drawer href="/layers/menu">Menu</a>
     <a data-drawer href="/layers/story">Our Story</a>
     <a data-drawer href="/layers/how-we-make-it" aria-current="page">How We Make It</a>
-    <a data-drawer href="/layers/what-you-get">What You Get</a>
+    <a data-drawer href="/layers/what-you-get">What We Make</a>
     <a data-drawer href="/layers/day-in-the-life">Day in the Life</a>
     <a data-drawer href="/layers/catering">Catering</a>
-    <a data-drawer href="/layers/gift-cards">Gift Cards</a>
-    <a data-drawer href="/layers/loyalty">Loyalty</a>
     <a data-drawer href="/layers/faq">FAQ</a>
     <a data-drawer href="/layers/visit">Visit</a>
   </nav>
   <div class="drawer__foot">
-    <a class="btn btn--sage btn--block" href="https://layers.square.site" target="_blank" rel="noopener">Order on Square</a>
-    <a class="btn btn--ghost btn--block" href="/layers/gift-cards">Gift Cards</a>
+    <a class="btn btn--sage btn--block" href="/layers/order">Order on Square</a>
   </div>
 </aside>
 
 <main id="main">
-<!-- The quiet manifesto. Approved copy, verbatim — six statements exactly. -->
+<!-- How We Make It — the client's approved Oct 2026 copy (section 05 of the
+     Layers Story plus the five principles), so this page and /story agree. -->
 
-<section class="section section--cream pagehead">
-  <div class="wrap comp-b">
-    <div class="comp-b__main">
-      <p class="eyebrow">Why Layers</p>
-      <h1 class="display">Made the harder way, because clean food should still feel good.</h1>
-      <p class="lede">Whole ingredients, house-made bases, functional add-ons. No ice, no refined sugar, no syrups, no fillers.</p>
-    </div>
-    <div class="comp-b__low">
-      <img class="frame-img" src="/layers/assets/img/menu/recovery-bowl.jpg" alt="" loading="lazy" decoding="async" width="800" height="800">
-    </div>
+<header class="story-head">
+  <p class="eyebrow">How We Make It</p>
+  <h1 class="story-head__title">Nothing Unnecessary</h1>
+  <p class="story-head__lede">At Layers, good food starts with intention.</p>
+</header>
+
+<figure class="ed-tile ed-tile--wide">
+  <span class="ed-media"><picture><source type="image/webp" srcset="/layers/assets/img/how/hero-960.webp 960w, /layers/assets/img/how/hero-1440.webp 1440w, /layers/assets/img/how/hero-1920.webp 1920w, /layers/assets/img/how/hero-2560.webp 2560w" sizes="100vw"><img src="/layers/assets/img/how/hero-1440.jpg" srcset="/layers/assets/img/how/hero-960.jpg 960w, /layers/assets/img/how/hero-1440.jpg 1440w, /layers/assets/img/how/hero-1920.jpg 1920w, /layers/assets/img/how/hero-2560.jpg 2560w" sizes="100vw" width="1440" height="617" alt="Two Layers team members cutting fresh fruit at the prep counter" fetchpriority="high" decoding="async"></picture></span>
+</figure>
+
+<article class="chapter" aria-label="How we make it">
+  <div class="prose">
+    <p class="prose__lead">We begin with whole ingredients and think carefully about what each one contributes, from flavor and texture to natural sweetness, fiber, nourishment, and function.</p>
+    <p>We use frozen fruit instead of ice, avoid added water, do not rely on refined sugar or syrups, and develop our bowl bases in house so we have greater control over ingredients, flavor, and texture.</p>
+    <p>Every recipe is tested and refined through real daily experience, including feedback from our team and customers.</p>
   </div>
-</section>
+  <p class="chapter__line">Real ingredients. Intentional recipes. Nothing unnecessary.</p>
+</article>
 
-<section class="section section--cream" aria-label="What we refuse">
-  <div class="wrap">
-    <ol class="steplist manifesto">
-      <li><h2 class="h3">No ice</h2><p class="body">Thick, cold, and full-strength.</p></li>
-      <li><h2 class="h3">No watered-down blends</h2><p class="body">Fruit and house bases at full strength.</p></li>
-      <li><h2 class="h3">No syrups</h2><p class="body">Fruit carries the sweetness. No agave, no artificial sweeteners.</p></li>
-      <li><h2 class="h3">No refined sugar</h2><p class="body">Built to taste good without it.</p></li>
-      <li><h2 class="h3">No fillers</h2><p class="body">Nothing we wouldn’t stand behind.</p></li>
-    </ol>
-  </div>
-</section>
+<ol class="pillars" aria-label="How every Layers recipe is made">
+  <li class="pillar"><h2 class="pillar__name">No ice</h2><p class="pillar__desc">Frozen fruit brings the cold without diluting the flavor.</p></li>
+  <li class="pillar"><h2 class="pillar__name">No water</h2><p class="pillar__desc">Full flavor and satisfying texture, without watering things down.</p></li>
+  <li class="pillar"><h2 class="pillar__name">No refined sugar or syrups</h2><p class="pillar__desc">Natural sweetness comes from whole ingredients.</p></li>
+  <li class="pillar"><h2 class="pillar__name">House-made bases</h2><p class="pillar__desc">Developed in-house for better control over ingredients, flavor, and texture.</p></li>
+  <li class="pillar"><h2 class="pillar__name">Functional ingredients</h2><p class="pillar__desc">Chosen with intention to support the purpose of each recipe.</p></li>
+</ol>
 
-<!-- The affirmative payoff: the page's single sage field. -->
-<section class="payoff" aria-label="What we commit to">
-  <div class="wrap payoff__inner">
-    <p class="eyebrow eyebrow--onsage">And one thing we always do</p>
-    <h2 class="payoff__title">Real ingredients, made daily</h2>
-    <p class="payoff__sub">House-made bases, whole fruit, functional boosts.</p>
-    <a class="btn btn--butter" href="https://layers.square.site" target="_blank" rel="noopener">Order on Square</a>
+<section class="story-close" aria-label="Read more">
+  <a class="textlink" href="/layers/story">Read the full Layers story</a>
+  <div class="ed-ctas">
+    <a class="btn btn--sage" href="/layers/menu">See the menu</a>
+    <a class="btn btn--line" href="/layers/order">Order on Square</a>
   </div>
 </section>
 </main>
 
-<!-- Brand sign-off: identical on every page. The tagline appears here and only here. -->
 <section class="signoff" aria-label="Layers Superfood Bar">
   <img class="signoff__mark" src="/layers/assets/img/face.png" alt="" width="88" height="88" loading="lazy">
   <p class="signoff__eyebrow">Superfood Bar · 2436 Channing Way, Berkeley</p>
@@ -120,9 +127,9 @@
 <footer id="visit-footer" class="footer">
   <div class="wrap footer__grid">
     <div class="footer__brand">
-      <img src="/layers/assets/img/logo-wordmark-cream.png" alt="Layers Superfood Bar" width="190" height="49" loading="lazy">
+      <img class="footer__logo" src="/layers/assets/img/wordmark-cream.png" alt="Layers Superfood Bar" width="140" height="60" loading="lazy">
       <p class="footer__tagline">A Berkeley superfood bar. Clean smoothies and bowls, made fresh.</p>
-      <a class="btn btn--butter" href="https://layers.square.site" target="_blank" rel="noopener">
+      <a class="btn btn--butter" href="/layers/order">
         Order on Square
         <svg class="icon-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
@@ -130,7 +137,7 @@
     <div class="footer__col">
       <h2 class="footer__head">Visit</h2>
       <address class="footer__addr">2436 Channing Way<br>Berkeley, CA 94704</address>
-      <p class="footer__hours">Mon–Fri · 10am–5pm<br>Sat–Sun · 10am–4pm</p>
+      <p class="footer__hours">Mon–Fri · 9am–6pm<br>Sat–Sun · 9am–4pm</p>
     </div>
     <div class="footer__col">
       <h2 class="footer__head">Explore</h2>
@@ -138,11 +145,9 @@
         <a href="/layers/story">Our Story</a>
         <a href="/layers/menu">Menu</a>
         <a href="/layers/how-we-make-it">How We Make It</a>
-        <a href="/layers/what-you-get">What You Get</a>
+        <a href="/layers/what-you-get">What We Make</a>
         <a href="/layers/day-in-the-life">Day in the Life</a>
         <a href="/layers/catering">Catering</a>
-        <a href="/layers/gift-cards">Gift Cards</a>
-        <a href="/layers/loyalty">Loyalty</a>
         <a href="/layers/faq">FAQ</a>
         <a href="/layers/visit">Visit</a>
       </nav>

@@ -18,7 +18,7 @@
   var $  = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
-  var SQUARE_ORDER = 'https://layers.square.site';
+  var SQUARE_ORDER = 'https://layerssuperfoodbar.square.site';
   var PLACEHOLDER_FACE = '/layers/assets/img/face.png';
 
   /* --------------------------------------------------------------------- */
@@ -152,7 +152,7 @@
     });
 
     if (window.matchMedia) {
-      var mq = window.matchMedia('(min-width:1001px)');
+      var mq = window.matchMedia('(min-width:1101px)');
       var onChange = function (e) { if (e.matches) setOpen(false); };
       if (mq.addEventListener) mq.addEventListener('change', onChange);
       else if (mq.addListener) mq.addListener(onChange);
@@ -170,6 +170,7 @@
 
     var media = $('[data-sheet-media]', sheet);
     media.innerHTML = '';
+    media.classList.toggle('sheet__media--small', !!item.image_small);
     if (item.image) {
       var img = document.createElement('img');
       img.src = item.image; img.alt = item.name || '';
@@ -183,20 +184,43 @@
     }
 
     $('[data-sheet-kind]', sheet).textContent = item.kind || '';
-    var nameEl = $('[data-sheet-name]', sheet);
-    nameEl.textContent = item.name || '';
-    if (item.note) {
-      var note = document.createElement('span');
-      note.className = 'menu-card__note';
-      note.textContent = ' (' + item.note + ')';
-      nameEl.appendChild(note);
-    }
+    $('[data-sheet-name]', sheet).textContent = item.name || '';
+    $('[data-sheet-note]', sheet).textContent = item.note || '';
     var priceEl = $('[data-sheet-price]', sheet);
     priceEl.textContent = item.price ? money(item.price) : '';
     var calEl = $('[data-sheet-cal]', sheet);
-    calEl.textContent = item.calories ? item.calories + ' CAL' : (item.soldOut ? 'Sold out' : '');
+    calEl.textContent = item.calories ? item.calories + ' cal' : (item.soldOut ? 'Sold out' : '');
+
+    // Details come verbatim from the shop's own Square descriptions. Built
+    // with textContent only — nothing from the data is parsed as HTML.
+    var tags = $('[data-sheet-tags]', sheet);
+    tags.innerHTML = '';
+    (Array.isArray(item.highlights) ? item.highlights : []).forEach(function (t) {
+      var li = document.createElement('li'); li.textContent = t; tags.appendChild(li);
+    });
+    var facts = $('[data-sheet-facts]', sheet);
+    facts.innerHTML = '';
+    [['Base', item.base], ['Toppings', item.toppings], ['Ingredients', item.ingredients]].forEach(function (row) {
+      if (!Array.isArray(row[1]) || !row[1].length) return;
+      var dt = document.createElement('dt'); dt.textContent = row[0];
+      var dd = document.createElement('dd'); dd.textContent = row[1].join(', ');
+      facts.appendChild(dt); facts.appendChild(dd);
+    });
+    var mac = item.macros || {}, parts = [];
+    ['protein', 'fiber', 'sugar'].forEach(function (k) {
+      if (typeof mac[k] === 'number') parts.push(k.charAt(0).toUpperCase() + k.slice(1) + ' ' + mac[k] + 'g');
+    });
+    $('[data-sheet-macros]', sheet).textContent = parts.join(' · ');
+    var al = $('[data-sheet-allergens]', sheet);
+    al.innerHTML = '';
+    (Array.isArray(item.allergens) ? item.allergens : []).forEach(function (t) {
+      var p = document.createElement('p'); p.textContent = t; al.appendChild(p);
+    });
+
     var order = $('[data-sheet-order]', sheet);
-    order.setAttribute('aria-label', 'Order ' + (item.name || 'item') + ' on Square');
+    var cat = /^[A-Z0-9]{8,40}$/.test(item.category_id || '') ? item.category_id : '';
+    order.href = '/layers/order' + (cat ? '?c=' + cat : '');
+    order.setAttribute('aria-label', 'Order ' + (item.name || 'item'));
     order.style.display = item.soldOut ? 'none' : '';
 
     sheet.hidden = false; sheetOpen = true;
@@ -242,25 +266,8 @@
   }
 
   /* --------------------------------------------------------------------- */
-  /* 4 · Category chip rail: build from rendered sections + scroll-spy      */
+  /* 4 · Category chip rail: scroll-spy                                     */
   /* --------------------------------------------------------------------- */
-  function rebuildChips() {
-    var track = $('[data-chip-track]');
-    if (!track) return;
-    var sections = $$('[data-cat-section]');
-    track.innerHTML = '';
-    sections.forEach(function (sec) {
-      var name = $('.cathead__name', sec) || $('.cathead .eyebrow', sec);
-      var a = document.createElement('a');
-      a.className = 'chip';
-      a.href = '#' + sec.id;
-      a.setAttribute('data-chip', sec.id);
-      a.textContent = name ? name.textContent : sec.id;
-      track.appendChild(a);
-    });
-    spyChips();
-  }
-
   function spyChips() {
     var sections = $$('[data-cat-section]');
     if (!sections.length) return;
@@ -304,11 +311,13 @@
     return 'cat-' + String(name || 'menu').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   }
 
-  var ARROW = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>';
 
+  /* A card for an item that is live on Square but not in the curated menu
+     (a new launch). Same markup the build emits; photo from Square if any. */
   function buildCard(item) {
     var card = document.createElement('article');
     card.className = 'menu-card';
+    if (item.id) card.setAttribute('data-id', item.id);
     if (item.soldOut) card.setAttribute('data-sold-out', '');
     card.dataset.item = JSON.stringify({
       kind: item.kind || '', name: item.name || '', note: item.note || '',
@@ -324,42 +333,45 @@
     var media = document.createElement('span');
     media.className = 'menu-card__media';
     var src = safeImageSrc(item.image);
+    function placeholder() {
+      media.className = 'menu-card__media menu-card__media--ph';
+      media.innerHTML = '<img src="' + PLACEHOLDER_FACE + '" alt="" width="88" height="88">';
+    }
     if (src) {
       var img = document.createElement('img');
       img.src = src; img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
       img.width = 800; img.height = 800;
-      img.addEventListener('error', function handle() {
-        img.removeEventListener('error', handle);
-        media.innerHTML = '';
-        media.className = 'menu-card__media menu-card__media--ph';
-        media.innerHTML = '<img src="' + PLACEHOLDER_FACE + '" alt="" width="88" height="88">';
-      });
+      img.addEventListener('error', function handle() { img.removeEventListener('error', handle); placeholder(); });
       media.appendChild(img);
     } else {
-      // No photo: branded placeholder at the same 1:1 ratio — grid never reflows.
-      media.className = 'menu-card__media menu-card__media--ph';
-      media.innerHTML = '<img src="' + PLACEHOLDER_FACE + '" alt="" width="88" height="88">';
+      placeholder();
     }
 
     var body = document.createElement('span');
     body.className = 'menu-card__body';
-
-    var kind = document.createElement('span');
-    kind.className = 'menu-card__kind';
-    kind.textContent = item.kind || '';
-
     var name = document.createElement('span');
     name.className = 'menu-card__name';
     name.textContent = item.name || '';
+    body.appendChild(name);
     if (item.note) {
       var note = document.createElement('span');
       note.className = 'menu-card__note';
-      note.textContent = ' (' + item.note + ')';
-      name.appendChild(note);
+      note.textContent = item.note;
+      body.appendChild(note);
     }
-
     var meta = document.createElement('span');
     meta.className = 'menu-card__meta';
+    body.appendChild(meta);
+    open.appendChild(media); open.appendChild(body);
+    card.appendChild(open);
+    setCardMeta(card, item);
+    return card;
+  }
+
+  function setCardMeta(card, item) {
+    var meta = $('.menu-card__meta', card);
+    if (!meta) return;
+    meta.innerHTML = '';
     if (item.price != null && item.price !== '') {
       var price = document.createElement('span');
       price.className = 'menu-card__price';
@@ -369,7 +381,7 @@
     if (item.calories) {
       var cal = document.createElement('span');
       cal.className = 'menu-card__cal';
-      cal.textContent = item.calories + ' CAL';
+      cal.textContent = item.calories + ' cal';
       meta.appendChild(cal);
     }
     if (item.soldOut) {
@@ -378,24 +390,14 @@
       so.textContent = 'Sold out';
       meta.appendChild(so);
     }
-
-    body.appendChild(kind); body.appendChild(name); body.appendChild(meta);
-    open.appendChild(media); open.appendChild(body);
-    card.appendChild(open);
-
-    // Sold out: the ordering control is removed entirely, not disabled.
-    if (!item.soldOut) {
-      var order = document.createElement('a');
-      order.className = 'menu-card__order';
-      order.href = SQUARE_ORDER;
-      order.target = '_blank'; order.rel = 'noopener';
-      order.setAttribute('aria-label', 'Order ' + (item.name || 'item') + ' on Square');
-      order.innerHTML = 'Order on Square' + ARROW;
-      card.appendChild(order);
-    }
-    return card;
   }
 
+  /* The build ships the curated menu (sharp studio photos, ingredients,
+     nutrition). When Square is connected, live data only updates what can
+     change during the day — sold-out, a brand-new item — so the curated photos
+     and details are never replaced by Square's thumbnails. Prices come from
+     tools/sync-menu-from-store.py, which reads the price the store shows
+     (including the required +$0.25 option the Catalog API leaves out). */
   function initMenu() {
     var root = $('[data-menu-page]');
     if (!root) return;
@@ -403,64 +405,49 @@
 
     function markCached() {
       if (dot) dot.setAttribute('data-state', 'stale');
-      if (statusEl) {
-        statusEl.textContent =
-          'Showing our current menu. Live pricing and availability are on Square.';
-      }
     }
 
-    fetch('/api/menu', { headers: { accept: 'application/json' } })
+    fetch('/layers/api/menu', { headers: { accept: 'application/json' } })
       .then(function (r) { if (!r.ok) throw new Error('menu ' + r.status); return r.json(); })
       .then(function (data) {
         if (!data || !Array.isArray(data.categories) || !data.categories.length) return;
         if (data.source === 'fallback') { markCached(); return; }
 
-        var frag = document.createDocumentFragment();
-        var first = true;
+        var changed = false;
         data.categories.forEach(function (cat) {
-          if (!cat.items || !cat.items.length) return;   // empty never renders
-          var sec = document.createElement('section');
-          sec.className = 'menu-group';
-          sec.id = slugify(cat.name);
-          sec.setAttribute('data-cat-section', '');
-
-          var head = document.createElement('header');
-          if (first) {
-            head.className = 'cathead cathead--field';
-            head.innerHTML = '<p class="eyebrow eyebrow--onsage">Made in house</p>' +
-              '<h2 class="cathead__name"></h2>';
-            $('.cathead__name', head).textContent = cat.name || 'Menu';
-            first = false;
-          } else {
-            head.className = 'cathead';
-            var ey = document.createElement('p');
-            ey.className = 'eyebrow';
-            ey.textContent = cat.name || 'Menu';
-            head.appendChild(ey);
-          }
-          sec.appendChild(head);
-
-          var grid = document.createElement('div');
-          grid.className = 'menu-grid';
-          cat.items.forEach(function (it) { grid.appendChild(buildCard(it)); });
-          sec.appendChild(grid);
-          frag.appendChild(sec);
+          (cat.items || []).forEach(function (it) {
+            var card = it.id ? root.querySelector('.menu-card[data-id="' + String(it.id).replace(/"/g, '') + '"]') : null;
+            if (card) {
+              var cur = {};
+              try { cur = JSON.parse(card.dataset.item || '{}'); } catch (e) {}
+              cur.soldOut = !!it.soldOut;
+              card.dataset.item = JSON.stringify(cur);
+              if (it.soldOut) card.setAttribute('data-sold-out', ''); else card.removeAttribute('data-sold-out');
+              setCardMeta(card, cur);
+              return;
+            }
+            // New on Square: add it to the matching section (by name), if any.
+            var sec = root.querySelector('#' + slugify(cat.name)) ||
+                      root.querySelector('#' + slugify(String(cat.name || '').replace(/^layers\s+/i, '')));
+            var grid = sec && $('.menu-grid', sec);
+            if (grid) { grid.appendChild(buildCard(it)); changed = true; }
+          });
         });
-        if (!frag.childNodes.length) return;
-
-        root.innerHTML = '';
-        root.appendChild(frag);
-        rebuildChips();
-        if (window.gsap && window.ScrollTrigger) window.ScrollTrigger.refresh();
+        if (dot) dot.setAttribute('data-state', 'live');
+        if (statusEl) statusEl.textContent = 'Live from Square. Prices and availability are confirmed when you order.';
+        if (changed) {
+          document.dispatchEvent(new CustomEvent('layers:menu-rendered'));
+          if (window.gsap && window.ScrollTrigger) window.ScrollTrigger.refresh();
+        }
       })
-      .catch(markCached);   // Square unreachable — pre-rendered menu stays put
+      .catch(markCached);   // Square unreachable — the curated menu stays as built
 
     spyChips();
   }
 
   /* --------------------------------------------------------------------- */
   /* 6 · Open-now line + hours table                                        */
-  /*     Hours: Mon–Fri 10–17, Sat–Sun 10–16, America/Los_Angeles.          */
+  /*     Hours: from <meta name="layers-hours">, America/Los_Angeles.        */
   /* --------------------------------------------------------------------- */
   function shopClock() {
     try {
@@ -480,6 +467,20 @@
     } catch (e) { return null; }
   }
 
+  /* --------------------------------------------------------------------- */
+  /* Order page: the Square store, embedded. ?c=<Square category id> opens  */
+  /* the store at that category; only ids of the expected shape are used.   */
+  /* --------------------------------------------------------------------- */
+  function initOrderFrame() {
+    var frame = $('#order-frame');
+    if (!frame) return;
+    var m = /[?&]c=([A-Z0-9]{8,40})(?:&|$)/.exec(window.location.search);
+    if (!m) return;
+    var url = SQUARE_ORDER.replace(/\/$/, '') + '/#' + m[1];   // the store scrolls to #<category id>
+    frame.src = url;
+    $$('[data-order-out]').forEach(function (a) { a.href = url; });
+  }
+
   function initOpenNow() {
     var els = $$('[data-open-now]');
     var table = $('[data-hours]');
@@ -488,11 +489,25 @@
     var now = shopClock();
     if (!now) return;
 
-    var weekend = now.dow === 0 || now.dow === 6;
-    var closeMins = weekend ? 16 * 60 : 17 * 60;
-    var openMins = 10 * 60;
-    var isOpen = now.mins >= openMins && now.mins < closeMins;
-    var line = isOpen ? 'Open now' : 'Closed · opens 10am';
+    // Hours come from the build (tools/build-pages.py HOURS), so they live in
+    // one place: {"0":[openMins, closeMins], …} with 0 = Sunday.
+    var hours = {};
+    try { hours = JSON.parse(($('meta[name="layers-hours"]') || {}).content || '{}'); } catch (e) {}
+    var today = hours[String(now.dow)];
+    if (!today) return;
+    function label(m) {
+      var h = Math.floor(m / 60), mm = m % 60, suf = h < 12 ? 'am' : 'pm';
+      h = h % 12 || 12;
+      return h + (mm ? ':' + (mm < 10 ? '0' : '') + mm : '') + suf;
+    }
+    var isOpen = now.mins >= today[0] && now.mins < today[1];
+    var line;
+    if (isOpen) line = 'Open now · until ' + label(today[1]);
+    else if (now.mins < today[0]) line = 'Closed · opens ' + label(today[0]);
+    else {
+      var next = hours[String((now.dow + 1) % 7)];
+      line = next ? 'Closed · opens ' + label(next[0]) + ' tomorrow' : 'Closed now';
+    }
 
     els.forEach(function (el) {
       // The home visit band keeps its full hours line and appends the state;
@@ -550,7 +565,7 @@
       submit.setAttribute('data-busy', '');
       say('Sending…');
 
-      fetch('/api/catering', {
+      fetch('/layers/api/catering', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
@@ -588,6 +603,107 @@
     });
   }
 
+
+  /* --------------------------------------------------------------------- */
+  /* 7b · Film band (home). Muted loop that plays only while on screen and  */
+  /*      downloads nothing until it is about to be seen. Reduced motion or */
+  /*      Save-Data: poster only, with the toggle offered to play it.       */
+  /*      The toggle is the WCAG 2.2.2 pause control for moving content.    */
+  /* --------------------------------------------------------------------- */
+  function initFilm() {
+    var film = $('[data-film]');
+    if (!film) return;
+    var video = $('video', film), toggle = $('[data-film-toggle]', film);
+    if (!video) return;
+
+    var saveData = !!(navigator.connection && navigator.connection.saveData);
+    var userPaused = reduceMotion || saveData;   // the visitor's choice wins
+    var inView = false;
+
+    // Phones get the vertical cut. preload="none" means nothing has been fetched
+    // yet, so swapping the source here costs nothing.
+    var narrowSrc = film.getAttribute('data-src-narrow');
+    if (narrowSrc && window.matchMedia && window.matchMedia('(max-width: 720px)').matches) {
+      video.src = narrowSrc;
+    }
+    // The poster is a responsive <picture> under the video; the video fades in
+    // over it once real frames are playing.
+    video.addEventListener('playing', function () { film.setAttribute('data-playing', ''); });
+
+    function reflect() {
+      var paused = video.paused;
+      if (paused) film.setAttribute('data-paused', '');
+      else film.removeAttribute('data-paused');
+      if (toggle) toggle.setAttribute('aria-label', paused ? 'Play the film' : 'Pause the film');
+    }
+    function play() {
+      if (video.preload !== 'auto') video.preload = 'auto';
+      var p = video.play();
+      // Autoplay refused (e.g. iOS Low Power Mode): stay on the poster and stop
+      // retrying on every scroll — the visitor can still press play.
+      if (p && p.catch) p.catch(function () { userPaused = true; reflect(); });
+    }
+    function check() {
+      var r = film.getBoundingClientRect();
+      inView = r.bottom > -160 && r.top < (window.innerHeight || 800) + 160;
+      if (inView && !userPaused && !document.hidden) { if (video.paused) play(); }
+      else if (!video.paused) video.pause();
+    }
+
+    video.addEventListener('play', reflect);
+    video.addEventListener('pause', reflect);
+    reflect();
+
+    if (toggle) {
+      toggle.hidden = false;
+      toggle.addEventListener('click', function () {
+        if (video.paused) { userPaused = false; play(); }
+        else { userPaused = true; video.pause(); }
+      });
+    }
+
+    // Both an observer and a plain scroll check: observers ride rAF, which is
+    // throttled to zero in background tabs (see the notes at the top).
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(check, { rootMargin: '160px 0px' }).observe(film);
+    }
+    var t = null;
+    window.addEventListener('scroll', function () {
+      if (t) return;
+      t = window.setTimeout(function () { t = null; check(); }, 150);
+    }, { passive: true });
+    document.addEventListener('visibilitychange', check);
+    window.addEventListener('pageshow', check);
+    check();
+  }
+
+
+  /* --------------------------------------------------------------------- */
+  /* 7c · Deep links. ScrollTrigger's load-time refresh restores the saved  */
+  /*      scroll position and cancels the browser's jump to #hash, and the  */
+  /*      live menu re-renders above it. Re-land until the visitor scrolls. */
+  /* --------------------------------------------------------------------- */
+  function initHashLanding() {
+    var id = location.hash ? decodeURIComponent(location.hash.slice(1)) : '';
+    var target = id && document.getElementById(id);
+    if (!target) return;
+    var moved = false;
+    ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (t) {
+      window.addEventListener(t, function () { moved = true; }, { passive: true, once: true });
+    });
+    function land() {
+      if (moved) return;
+      var el = document.getElementById(id);   // the menu may have replaced it
+      if (el) el.scrollIntoView({ block: 'start', behavior: 'instant' });
+    }
+    document.addEventListener('layers:menu-rendered', land);
+    window.addEventListener('load', function () { window.setTimeout(land, 60); });
+    if (window.ScrollTrigger && window.ScrollTrigger.addEventListener) {
+      window.ScrollTrigger.addEventListener('refresh', land);
+    }
+    [400, 1200, 2600].forEach(function (ms) { window.setTimeout(land, ms); });
+  }
+
   /* --------------------------------------------------------------------- */
   /* 8 · Motion — reveals per section, hero load-in, rescue sweep           */
   /* --------------------------------------------------------------------- */
@@ -601,9 +717,9 @@
     var heroItems = $$('[data-hero-item]');
     if (heroItems.length) {
       heroItems.forEach(function (el) { el.classList.add('dc-reveal-armed'); });
-      gsap.set(heroItems, { autoAlpha: 0, y: 26 });
+      gsap.set(heroItems, { opacity: 0, y: 26 });
       gsap.to(heroItems, {
-        autoAlpha: 1, y: 0, duration: .9, ease: 'power3.out', stagger: .14, delay: .15,
+        opacity: 1, y: 0, duration: .9, ease: 'power3.out', stagger: .14, delay: .15,
         onStart: function () {
           heroItems.forEach(function (el) { el.classList.remove('dc-reveal-armed'); });
         }
@@ -613,7 +729,9 @@
     var heroImg = $('#hero');
     if (heroImg) {
       gsap.to(heroImg, {
-        yPercent: 12, ease: 'none',
+        // 10%, not more: .hero__media extends 12% above the hero (styles.css),
+        // so this travel can never expose the ground behind the image.
+        yPercent: 10, ease: 'none',
         scrollTrigger: { trigger: '#who', start: 'top top', end: 'bottom top', scrub: true }
       });
     }
@@ -625,15 +743,39 @@
       $$(':scope > .wrap, :scope > .comp-a__panel, :scope > .band__quote, :scope > .band__inner', sec)
         .forEach(function (el) {
           el.classList.add('dc-reveal-armed');
-          gsap.set(el, { autoAlpha: 0, y: 30 });
+          gsap.set(el, { opacity: 0, y: 30 });
           ST.create({
             trigger: el, start: 'top 88%', once: true,
             onEnter: function () {
               el.classList.remove('dc-reveal-armed');
-              gsap.to(el, { autoAlpha: 1, y: 0, duration: .85, ease: 'power3.out' });
+              gsap.to(el, { opacity: 1, y: 0, duration: .85, ease: 'power3.out' });
             }
           });
         });
+    });
+
+    // V3 editorial blocks opt in explicitly: only the few lines of copy move.
+    // Photographs never fade in — an image-led page must not make people wait.
+    $$('[data-reveal]').forEach(function (el) {
+      if (el.classList.contains('dc-reveal-armed')) return;
+      el.classList.add('dc-reveal-armed');
+      gsap.set(el, { opacity: 0, y: 30 });
+      ST.create({
+        trigger: el, start: 'top 90%', once: true,
+        onEnter: function () {
+          el.classList.remove('dc-reveal-armed');
+          gsap.to(el, { opacity: 1, y: 0, duration: .85, ease: 'power3.out' });
+        }
+      });
+    });
+
+    // Keyboard rescue: an armed (still transparent) element that takes focus is
+    // revealed at once, so focus never lands on something invisible.
+    document.addEventListener('focusin', function (e) {
+      var el = e.target && e.target.closest ? e.target.closest('.dc-reveal-armed') : null;
+      if (!el) return;
+      el.classList.remove('dc-reveal-armed');
+      gsap.set(el, { opacity: 1, y: 0 });
     });
 
     /* Rescue sweep: timers fire when rAF does not. Un-hides only what is in
@@ -644,7 +786,7 @@
         var r = el.getBoundingClientRect();
         if (r.top < window.innerHeight && r.bottom > 0) {
           el.classList.remove('dc-reveal-armed');
-          gsap.set(el, { autoAlpha: 1, y: 0 });
+          gsap.set(el, { opacity: 1, y: 0 });
         }
       });
       return armed.length;
@@ -671,8 +813,11 @@
     initSheet();
     initMenu();
     initOpenNow();
+    initOrderFrame();
+    initFilm();
     initCateringForm();
     initMotion();
+    initHashLanding();
   }
 
   if (document.readyState !== 'loading') boot();
