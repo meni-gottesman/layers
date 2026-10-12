@@ -1285,7 +1285,7 @@ section.menu-group{scroll-margin-top:calc(var(--header-h) + 64px)}
 
 /* ---- Albums (A Day at Layers): cover tiles + full-screen viewer ---------- */
 .albums .ed-intro{text-align:center}
-.albums__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(28px,3vw,44px) clamp(12px,1.6vw,24px);padding:0 var(--gutter);max-width:1440px;margin:0 auto}
+.albums__grid{display:grid;align-items:start;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(28px,3vw,44px) clamp(12px,1.6vw,24px);padding:0 var(--gutter);max-width:1440px;margin:0 auto}
 .album-tile{appearance:none;border:0;background:none;padding:0;text-align:center;cursor:pointer;font:inherit;color:inherit;width:100%}
 .album-tile .ed-media{aspect-ratio:4/5}
 .album-tile .ed-media img{height:100%;object-fit:cover}
@@ -1303,8 +1303,8 @@ section.menu-group{scroll-margin-top:calc(var(--header-h) + 64px)}
 .viewer__nav--prev{left:8px}
 .viewer__nav--next{right:8px}
 .viewer :focus-visible{outline-color:var(--warm-white);box-shadow:none}
+@media (max-width:1100px){.albums__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:720px){
-  .albums__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .viewer__stage{padding:64px 0 24px}
   .viewer__nav{top:auto;bottom:12px;transform:none}
 }
