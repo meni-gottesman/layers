@@ -1,0 +1,44 @@
+{#- "Coming up": upcoming published events (content/events/*.json), soonest
+    first; past ones drop out at the next build, and main.js hides one the day
+    after it ("data-until"). Used in the homepage community section and on
+    /links. Import WITH context:
+      {% import "partials/events.html" as events with context %}
+      {{ events.list(events_upcoming, "h3") }} -#}
+{%- import "partials/icons.html" as icons -%}
+
+{% macro list(items, h="h3") -%}
+{#- with any photo in the list, an event without one keeps the photo column
+    (empty), so every title starts at the same edge #}
+{%- set with_media = items|selectattr("image")|list|length > 0 %}
+<div class="events" data-reveal>
+  <{{ h }} class="events__title">Coming up</{{ h }}>
+  <ul class="events__list" role="list">
+{% for e in items %}
+{%- set when = event_when(e) %}
+    <li class="event" data-until="{{ e.date }}">
+{% if e.image %}
+      <span class="event__media ed-media">{{ pic("events/" ~ e.slug, alt=e.image_alt, sizes="96px") }}</span>
+{% elif with_media %}
+      <span class="event__media event__media--none" aria-hidden="true"></span>
+{% endif %}
+      <div class="event__body">
+        <p class="event__when"><time datetime="{{ when[0] }}">{{ when[1] }}</time></p>
+        <p class="event__name">{{ e.title }}</p>
+{% if e.partner %}
+        <p class="event__partner">With {{ e.partner }}</p>
+{% endif %}
+{% if e.location %}
+        <p class="event__where">{{ e.location }}</p>
+{% endif %}
+{% if e.description %}
+        <div class="event__desc">{{ md(e.description) }}</div>
+{% endif %}
+{% if e.link_url and e.link_label %}
+        <a class="ed-label__cta event__link" href="{{ e.link_url }}"{{ link_target(e.link_url) }}>{{ e.link_label }} {{ icons.arrow_right() }}{{ link_hint(e.link_url) }}</a>
+{% endif %}
+      </div>
+    </li>
+{% endfor %}
+  </ul>
+</div>
+{%- endmacro %}

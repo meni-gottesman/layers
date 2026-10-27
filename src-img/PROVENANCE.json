@@ -1,0 +1,430 @@
+{
+ "_comment": "Where every photo on the site comes from. originals/ files are full-resolution copies (orientation applied) of the owner's shared Google Drive folder 'Mani Web designer' (Oct 2026), the studio library of the old Wix site (layerssuperfoodbar.com, media 0e39c8_*), or the shop's Square Online store. 'used_in' lists the slots in slots.json.",
+ "originals": {
+  "counter-handoff.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers vibes Team",
+   "file": "IMG_2122.jpeg",
+   "camera": "Canon EOS R50",
+   "pixels": "5328x4000",
+   "used_in": [
+    "home/fresh-3"
+   ]
+  },
+  "counter-receipt-laugh.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers vibes Team",
+   "file": "IMG_2217.jpeg",
+   "camera": "Canon EOS R50",
+   "pixels": "5328x4000",
+   "used_in": [
+    "home/hero-m"
+   ]
+  },
+  "friends-at-storefront.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers vibes Team",
+   "file": "IMG_8927.HEIC",
+   "camera": "iPhone 15 Pro Max",
+   "pixels": "4284x5712",
+   "used_in": [
+    "home/visit"
+   ]
+  },
+  "graduation-pink-cup.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers vibes Team",
+   "file": "IMG_5199.HEIC",
+   "camera": "iPhone 15 Pro Max",
+   "pixels": "4284x5712",
+   "used_in": [
+    "home/community-6"
+   ]
+  },
+  "instinct-group-storefront.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers-instinct First run for new semester in sep",
+   "file": "IMG_3638.jpeg",
+   "camera": "Canon PowerShot G7 X Mark III",
+   "pixels": "5472x3648",
+   "used_in": [
+    "home/community-1"
+   ]
+  },
+  "instinct-smoothie-toast.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers-instinct First run for new semester in sep",
+   "file": "IMG_3665.jpeg",
+   "camera": "Canon PowerShot G7 X Mark III",
+   "pixels": "3648x5472",
+   "used_in": [
+    "home/community-2"
+   ]
+  },
+  "pique-table-bowls.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers - students housing pique brand)",
+   "file": "IMG_3982 2.jpeg",
+   "camera": "iPhone 15",
+   "pixels": "4284x5712",
+   "used_in": [
+    "catering/hero"
+   ]
+  },
+  "prep-cap-topdown.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers vibes Team",
+   "file": "DSCF1343(1).jpeg",
+   "camera": "X-T30 III",
+   "pixels": "6240x4160",
+   "used_in": [
+    "home/hero"
+   ]
+  },
+  "runners-waving-midrun.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers-instinct First run for new semester in sep",
+   "file": "IMG_3645.jpeg",
+   "camera": "Canon PowerShot G7 X Mark III",
+   "pixels": "3648x5472",
+   "used_in": [
+    "story/philosophy"
+   ]
+  },
+  "serving-with-a-laugh.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers vibes Team",
+   "file": "IMG_0846.HEIC",
+   "camera": "iPhone 15 Pro Max",
+   "pixels": "4284x5712",
+   "used_in": [
+    "home/fresh-2"
+   ]
+  },
+  "slicing-bananas.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers vibes Team",
+   "file": "IMG_2087(1).jpeg",
+   "camera": "Canon EOS R50",
+   "pixels": "4000x5328",
+   "used_in": [
+    "home/fresh-1"
+   ]
+  },
+  "storefront-run-crowd.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers-instinct First run for new semester in sep",
+   "file": "IMG_1907.jpeg",
+   "camera": "iPhone 16 Pro Max",
+   "pixels": "4032x3024",
+   "used_in": [
+    "story/journey"
+   ]
+  },
+  "studio-berry-cup-stone.jpg": {
+   "source": "Wix media library (old site)",
+   "file": "0e39c8_9d9faf651e40431a814898fb760d7c50~mv2.jpg",
+   "camera": "X-T2",
+   "pixels": "3965x5947",
+   "used_in": [
+    "home/bowls"
+   ]
+  },
+  "studio-blue-drip-palm.jpg": {
+   "source": "Wix media library (old site)",
+   "file": "0e39c8_234f7f308bb54a459d34306cf6e45183~mv2.jpg",
+   "camera": "X-T2",
+   "pixels": "4000x6000",
+   "used_in": [
+    "story/make-2"
+   ]
+  },
+  "studio-build-your-bowl-hand.jpg": {
+   "source": "Wix media library (old site)",
+   "file": "0e39c8_da6d0b05d1d14474b579f7fffdb74502~mv2.jpg",
+   "camera": "X-T2",
+   "pixels": "3484x5226",
+   "used_in": [
+    "menu/build-your-bowl"
+   ]
+  },
+  "studio-smoothies-cheers.jpg": {
+   "source": "Wix media library (old site)",
+   "file": "0e39c8_2c7109652a884d7797b9606f7cbcea7f~mv2.jpg",
+   "camera": "X-T2",
+   "pixels": "4000x6000",
+   "used_in": [
+    "home/smoothies"
+   ]
+  },
+  "studio-strawberry-cup.jpg": {
+   "source": "Wix media library (old site)",
+   "file": "0e39c8_01bc531f4c4a4c71a65f9a5a1ad864aa~mv2.jpg",
+   "camera": "",
+   "pixels": "2000x2000",
+   "used_in": [
+    "story/make-1"
+   ]
+  },
+  "one-year-sunflowers.jpg": {
+   "source": "Instagram @layerssuperfoodbar",
+   "post": "https://www.instagram.com/p/Dd7rSmvietV/",
+   "date": "2026-09-30",
+   "caption": "One year of Layers. Thank you Berkeley for making it ours.",
+   "pixels": "3277x4096",
+   "used_in": [
+    "story/open-1"
+   ]
+  },
+  "shop-interior-pendants.jpg": {
+   "source": "Instagram @layerssuperfoodbar",
+   "post": "https://www.instagram.com/p/Dd7rSmvietV/",
+   "date": "2026-09-30",
+   "caption": "One year of Layers. Thank you Berkeley for making it ours.",
+   "pixels": "2274x2842",
+   "used_in": [
+    "story/open-2"
+   ]
+  },
+  "blade-sign-face-logo.jpg": {
+   "source": "Instagram @layerssuperfoodbar",
+   "post": "https://www.instagram.com/p/Dd7rSmvietV/",
+   "date": "2026-09-30",
+   "caption": "One year of Layers. Thank you Berkeley for making it ours.",
+   "pixels": "3277x4096",
+   "used_in": [
+    "visit/hero"
+   ]
+  },
+  "she-runs-berkeley-cafe-table.jpg": {
+   "source": "Instagram @layerssuperfoodbar",
+   "post": "https://www.instagram.com/p/DeKbt0joBZx/",
+   "date": "2026-10-06",
+   "caption": "a busy saturday morning with @sherunsberkeley",
+   "pixels": "3024x4032",
+   "used_in": [
+    "home/community-3"
+   ]
+  },
+  "tri-delta-smoothies.jpg": {
+   "source": "Instagram @layerssuperfoodbar",
+   "post": "https://www.instagram.com/p/Dd4xpEAktac/",
+   "date": "2026-09-29",
+   "caption": "with love, layers × tri delta (Dude, it's for St. Jude)",
+   "pixels": "3277x4096",
+   "used_in": [
+    "home/community-4"
+   ]
+  }
+ },
+ "menu": {
+  "sq-balance-bowl.png": {
+   "source": "Square Online store product photo (layerssuperfoodbar.square.site)"
+  },
+  "sq-bananoffee.jpeg": {
+   "source": "Square Online store product photo (layerssuperfoodbar.square.site)"
+  },
+  "sq-benys-blendy.jpeg": {
+   "source": "Square Online store product photo (layerssuperfoodbar.square.site)"
+  },
+  "sq-berry-much-love-u.png": {
+   "source": "Square Online store product photo (layerssuperfoodbar.square.site)"
+  },
+  "sq-blue-tiful-day.jpeg": {
+   "source": "Square Online store product photo (layerssuperfoodbar.square.site)"
+  },
+  "sq-build-your-bowl.png": {
+   "source": "Square Online store product photo (layerssuperfoodbar.square.site)"
+  },
+  "sq-chia-oat-pudding.jpeg": {
+   "source": "Square Online store product photo (layerssuperfoodbar.square.site)"
+  },
+  "sq-greenergy.jpeg": {
+   "source": "Square Online store product photo (layerssuperfoodbar.square.site)"
+  },
+  "sq-her-power.png": {
+   "source": "Square Online store product photo (layerssuperfoodbar.square.site)"
+  },
+  "sq-mango-mellow.jpeg": {
+   "source": "Square Online store product photo (layerssuperfoodbar.square.site)"
+  },
+  "sq-recovery-bowl.png": {
+   "source": "Square Online store product photo (layerssuperfoodbar.square.site)"
+  },
+  "sq-strawesome.jpeg": {
+   "source": "Square Online store product photo (layerssuperfoodbar.square.site)"
+  },
+  "sq-think-well.jpeg": {
+   "source": "Square Online store product photo (layerssuperfoodbar.square.site)"
+  }
+ },
+ "retired": {
+  "team-in-caps.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers vibes Team",
+   "file": "IMG_3694.jpeg",
+   "camera": "Canon PowerShot G7 X Mark III",
+   "pixels": "3648x5472",
+   "now": "albums/01-behind-the-counter/06.jpg"
+  },
+  "birthday-bowl.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers vibes Team",
+   "file": "IMG_0462.HEIC",
+   "camera": "iPhone 15 Pro Max",
+   "pixels": "3024x4032",
+   "now": "library/drive/"
+  },
+  "sigma-kappa-rooftop-yoga.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers - Yoga (Sigma Kappa)",
+   "file": "IMG_8883.jpeg",
+   "camera": "iPhone 15",
+   "pixels": "1536x2048",
+   "now": "library/drive/"
+  },
+  "studio-coconut-cup-board.jpg": {
+   "source": "Wix media library (old site)",
+   "file": "0e39c8_7d36fe9aba854f0b900b5c5bf9c516b1~mv2.jpg",
+   "camera": "",
+   "pixels": "1789x1789",
+   "now": "library/wix/"
+  },
+  "cutting-fruit-two.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers vibes Team",
+   "file": "IMG_2107(1).jpeg",
+   "camera": "Canon EOS R50",
+   "pixels": "5328x4000",
+   "now": "not kept here (source: the shared Drive folder)"
+  },
+  "equinox-sampling-table.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers x equinox berkeley.",
+   "file": "P1020550.jpeg",
+   "camera": "DMC-FZ300",
+   "pixels": "3000x4000",
+   "now": "not kept here (source: the shared Drive folder)"
+  },
+  "full-house.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers vibes Team",
+   "file": "IMG_2153.jpeg",
+   "camera": "Canon EOS R50",
+   "pixels": "6000x4000",
+   "now": "not kept here (source: the shared Drive folder)"
+  },
+  "grads-at-storefront.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers vibes Team",
+   "file": "IMG_5188.HEIC",
+   "camera": "iPhone 15 Pro Max",
+   "pixels": "4284x5712",
+   "now": "not kept here (source: the shared Drive folder)"
+  },
+  "ordering-at-tablet.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers vibes Team",
+   "file": "IMG_9628.HEIC",
+   "camera": "iPhone 15 Pro Max",
+   "pixels": "3024x4032",
+   "now": "not kept here (source: the shared Drive folder)"
+  },
+  "projecteee-under-sign.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers - first running club with Project.eee",
+   "file": "339751D1-AD39-408D-813C-5F86BEE307F9-93688-000036D0DBAC140C.jpeg",
+   "camera": "X-T20",
+   "pixels": "1776x1184",
+   "now": "not kept here (source: the shared Drive folder)"
+  },
+  "receipt-moment.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers vibes Team",
+   "file": "IMG_2219.jpeg",
+   "camera": "Canon EOS R50",
+   "pixels": "5328x4000",
+   "now": "not kept here (source: the shared Drive folder)"
+  },
+  "regular-with-dog.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers vibes Team",
+   "file": "IMG_0156.HEIC",
+   "camera": "iPhone 15 Pro Max",
+   "pixels": "3024x4032",
+   "now": "not kept here (source: the shared Drive folder)"
+  },
+  "runners-clinking-cups.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers-instinct First run for new semester in sep",
+   "file": "IMG_3666.jpeg",
+   "camera": "Canon PowerShot G7 X Mark III",
+   "pixels": "3648x5472",
+   "now": "not kept here (source: the shared Drive folder)"
+  },
+  "slicing-fruit-profile.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers vibes Team",
+   "file": "IMG_2113(1).jpeg",
+   "camera": "Canon EOS R50",
+   "pixels": "4000x5328",
+   "now": "not kept here (source: the shared Drive folder)"
+  },
+  "studio-berry-cup-sage.jpg": {
+   "source": "Wix media library (old site)",
+   "file": "0e39c8_39385b5e332643bf87d7c3f8ae373311~mv2.jpg",
+   "camera": "X-T2",
+   "pixels": "4000x6000",
+   "now": "not kept here (source: the old Wix media library)"
+  },
+  "studio-berry-cup-square.jpg": {
+   "source": "Wix media library (old site)",
+   "file": "0e39c8_3e134391b1a24a4ea4ad170df14d9c7a~mv2.jpg",
+   "camera": "",
+   "pixels": "2000x2000",
+   "now": "not kept here (source: the old Wix media library)"
+  },
+  "studio-blue-tiful-day.jpg": {
+   "source": "Square Online store",
+   "item": "Blue-Tiful-Day",
+   "camera": "",
+   "pixels": "2880x2880",
+   "now": "not kept here (source: Square Online store)"
+  },
+  "studio-four-smoothies.jpg": {
+   "source": "Wix media library (old site)",
+   "file": "0e39c8_85dffc639d894a5db8eeae9162fa45c7~mv2.jpg",
+   "camera": "X-T2",
+   "pixels": "3623x5434",
+   "now": "not kept here (source: the old Wix media library)"
+  },
+  "studio-smoothie-cheers-pair.jpg": {
+   "source": "Wix media library (old site)",
+   "file": "0e39c8_b3d83ab6caec425cb5f2b7084f3fbbbe~mv2.jpg",
+   "camera": "",
+   "pixels": "2000x1116",
+   "now": "not kept here (source: the old Wix media library)"
+  },
+  "studio-yogurt-top-hand.jpg": {
+   "source": "Wix media library (old site)",
+   "file": "0e39c8_9228ce7b6de741748f68474219ea4edb~mv2.jpg",
+   "camera": "",
+   "pixels": "1909x1909",
+   "now": "not kept here (source: the old Wix media library)"
+  },
+  "team-on-sidewalk.jpg": {
+   "source": "Google Drive",
+   "folder": "Layers vibes Team",
+   "file": "IMG_5173.HEIC",
+   "camera": "iPhone 15 Pro Max",
+   "pixels": "4284x5712",
+   "now": "library/drive/team-on-sidewalk.jpg"
+  }
+ },
+ "albums_instagram": {
+  "02-run-clubs/13-15.jpg": "https://www.instagram.com/p/DeKbt0joBZx/ (She Runs Berkeley, 2026-10-06)",
+  "02-run-clubs/16.jpg": "https://www.instagram.com/p/DeIBhzaIEcx/ (INSYNC, 2026-10-05)",
+  "03-community/11-12.jpg": "https://www.instagram.com/p/Dd4xpEAktac/ (Layers × Tri Delta, 2026-09-29)",
+  "04-the-regulars/*": "https://www.instagram.com/p/DeFwOJmj8zc/ ('the regulars lately', 2026-10-04)"
+ }
+}

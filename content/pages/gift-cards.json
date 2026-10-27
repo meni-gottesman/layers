@@ -1,0 +1,37 @@
+{
+  "published": false,
+  "eyebrow": "Gift Cards",
+  "title": "A Layers gift card.",
+  "photos": {
+    "hero": {
+      "alt": "A smiling guest holding up a Layers bowl topped with a gold number-one candle",
+      "focus": "auto",
+      "zoom": "auto"
+    }
+  },
+  "text": "Layers gift cards are issued and managed by Square. Buy one online and it works the same way in the shop.",
+  "buy_label": "Buy a gift card on Square",
+  "buy_url": "https://squareup.com/gift/LAYERS/order",
+  "fine_print": "You’ll finish on Square’s secure checkout.",
+  "how": {
+    "heading": "How it works",
+    "steps": [
+      {
+        "heading": "Buy on Square",
+        "text": "Tap the button above and choose your card on Square’s page."
+      },
+      {
+        "heading": "Send or keep it",
+        "text": "Square delivers the card by email — to you or straight to them."
+      },
+      {
+        "heading": "Use it anywhere we are",
+        "text": "It works online and at the counter on Channing Way."
+      }
+    ]
+  },
+  "seo": {
+    "title": "Gift Cards | Layers Superfood Bar",
+    "description": "Give a Layers gift card. Bought and delivered through Square, and good online or at the counter on Channing Way, Berkeley."
+  }
+}

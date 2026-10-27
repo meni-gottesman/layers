@@ -1,0 +1,33 @@
+{
+  "title": "In the shop",
+  "order": 5,
+  "published": true,
+  "cover": "src-img/albums/05-in-the-shop/01.jpg",
+  "cover_focus": "auto",
+  "photos": [
+    {
+      "image": "src-img/albums/05-in-the-shop/01.jpg",
+      "alt": "A guest eating a Layers bowl by the front window, beside a small table lamp and a fiddle-leaf plant"
+    },
+    {
+      "image": "src-img/albums/05-in-the-shop/02.jpg",
+      "alt": "Two guests laughing with their Layers bowls in front of the counter and a wall of bananas"
+    },
+    {
+      "image": "src-img/albums/05-in-the-shop/03.jpg",
+      "alt": "Two friends in sunglasses eating Layers bowls at the café tables outside the shop"
+    },
+    {
+      "image": "src-img/albums/05-in-the-shop/04.jpg",
+      "alt": "The dining room on a busy afternoon: guests along the counter seating under the draped ceiling"
+    },
+    {
+      "image": "src-img/albums/05-in-the-shop/05.jpg",
+      "alt": "Friends at an outdoor table with a green Layers bowl and a berry bowl"
+    },
+    {
+      "image": "src-img/albums/05-in-the-shop/06.jpg",
+      "alt": "Guests relaxing at the sidewalk tables outside Layers on Channing Way"
+    }
+  ]
+}

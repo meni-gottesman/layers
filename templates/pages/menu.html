@@ -1,0 +1,54 @@
+{#- Menu — rendered at build time from data/menu-fallback.json, which
+    tools/sync-menu-from-store.py writes from Layers' public Square store
+    (names, prices, ingredients, nutrition and allergen notes, verbatim) and
+    content/menu.json (display names, notes, photos, order, hidden items).
+    Once a Square token is configured, /api/menu updates prices and sold-out
+    states on these same cards in place. Page copy: content/menu.json. -#}
+{% extends "base.html" %}
+{% import "partials/icons.html" as icons %}
+{% import "partials/specials.html" as specials with context %}
+{% block main %}
+
+<header class="story-head menu-head">
+  <p class="eyebrow">{{ page.eyebrow }}</p>
+  <h1 class="story-head__title">{{ page.title }}</h1>
+{% if page.intro %}
+  <p class="story-head__lede">{{ md_inline(page.intro) }}</p>
+{% endif %}
+  <p class="menu__note"><span class="menu__dot" data-menu-dot aria-hidden="true"></span><span data-menu-status>{{ page.status_note }}</span></p>
+  <div class="ed-ctas">
+    <a class="btn btn--sage" href="{{ site.ordering.square_url }}" target="_blank" rel="noopener">{{ page.order_label }}{{ icons.sq_hint() }}</a>
+  </div>
+</header>
+{% if specials_menu %}
+{# Limited-time specials ("Show on the menu"), above the Square menu #}
+<section class="menu-specials" aria-label="Limited-time specials">
+  {{ specials.band(specials_menu, "h2", "specials--menu") }}
+</section>
+{% endif %}
+
+{{ menu_html() }}
+
+{# ============ ITEM DETAIL SHEET ============ #}
+<div id="item-sheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-name" hidden>
+  <div class="sheet__backdrop" data-sheet-close></div>
+  <div class="sheet__panel">
+    <button class="sheet__close" type="button" data-sheet-close aria-label="Close">
+      {{ icons.close(24) }}
+    </button>
+    <div class="sheet__media" data-sheet-media></div>
+    <div class="sheet__body">
+      <p class="menu-card__kind" data-sheet-kind></p>
+      <h2 class="sheet__name" id="sheet-name" data-sheet-name></h2>
+      <p class="sheet__note" data-sheet-note></p>
+      <p class="sheet__meta"><span class="menu-card__price" data-sheet-price></span><span class="menu-card__cal" data-sheet-cal></span></p>
+      <ul class="sheet__tags" data-sheet-tags></ul>
+      <dl class="sheet__facts" data-sheet-facts></dl>
+      <p class="sheet__macros" data-sheet-macros></p>
+      <div class="sheet__allergen" data-sheet-allergens></div>
+      <p class="sheet__allergen sheet__allergen--general">{{ page.allergen_note }}</p>
+    </div>
+    <a class="btn btn--sage btn--block sheet__order" data-sheet-order href="{{ site.ordering.square_url }}" target="_blank" rel="noopener">Order on Square</a>
+  </div>
+</div>
+{% endblock %}

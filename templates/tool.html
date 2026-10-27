@@ -1,0 +1,25 @@
+{#- Light chrome for the staff tools (/photo-prep, /brand): the wordmark, a
+    "Staff tools" switcher and a one-line footer. They are for the Layers team,
+    not customers: never indexed, not in the navigation or sitemap
+    (PAGE_CONFIG in tools/render.py). Their words are developer copy in these
+    templates, not CMS content. A tool page extends this and fills
+    {% block main %} (and {% block scripts %} for its script). -#}
+{% extends "base.html" %}
+
+{% block header %}
+<header class="tool-head">
+  <a class="tool-head__brand" href="/" aria-label="{{ site.business.name }} — home">
+    <img src="/assets/img/wordmark-green.png" alt="{{ site.business.name }}" width="121" height="52">
+  </a>
+  <nav class="tool-head__nav" aria-label="Staff tools">
+    <a href="/photo-prep"{% if cfg.nav == "photo-prep" %} aria-current="page"{% endif %}>Prepare a photo</a>
+    <a href="/brand"{% if cfg.nav == "brand" %} aria-current="page"{% endif %}>Brand kit</a>
+  </nav>
+</header>
+{% endblock %}
+
+{% block footer %}
+<footer class="tool-foot">
+  <p>A staff tool for the {{ site.business.name }} team. It isn’t linked from the website, and search engines leave it out.</p>
+</footer>
+{% endblock %}

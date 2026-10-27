@@ -1,0 +1,397 @@
+{
+ "catering/hero": {
+  "aspect": 2.333,
+  "fp": "5c56d75eefcaea2d8727",
+  "widths": [
+   960,
+   1440,
+   1920,
+   2560
+  ]
+ },
+ "home/bowls": {
+  "aspect": 1.0,
+  "fp": "5ae6125e044eb96ea8be",
+  "widths": [
+   640,
+   960,
+   1440,
+   1920
+  ]
+ },
+ "home/community-1": {
+  "aspect": 2.333,
+  "fp": "bafe360fb27a4857a586",
+  "widths": [
+   960,
+   1440,
+   1920,
+   2560
+  ]
+ },
+ "home/community-2": {
+  "aspect": 1.0,
+  "fp": "970d68dbb3b70af6176b",
+  "widths": [
+   640,
+   960,
+   1440,
+   1920
+  ]
+ },
+ "home/community-3": {
+  "aspect": 1.0,
+  "fp": "d43dfb72d67a28773013",
+  "widths": [
+   640,
+   960,
+   1440,
+   1920
+  ]
+ },
+ "home/community-4": {
+  "aspect": 1.0,
+  "fp": "f1e41703cdf7424db778",
+  "widths": [
+   640,
+   960,
+   1440,
+   1920
+  ]
+ },
+ "home/community-6": {
+  "aspect": 1.0,
+  "fp": "7d6514091561a4791a0a",
+  "widths": [
+   640,
+   960,
+   1440,
+   1920
+  ]
+ },
+ "home/fresh-1": {
+  "aspect": 0.8,
+  "fp": "eb3746d34f9738727a1f",
+  "widths": [
+   480,
+   720,
+   960,
+   1280
+  ]
+ },
+ "home/fresh-2": {
+  "aspect": 0.8,
+  "fp": "a7bfb4fc8cdba2792046",
+  "widths": [
+   480,
+   720,
+   960,
+   1280
+  ]
+ },
+ "home/fresh-3": {
+  "aspect": 0.8,
+  "fp": "3db42487e36929d298ed",
+  "widths": [
+   480,
+   720,
+   960,
+   1280
+  ]
+ },
+ "home/hero": {
+  "aspect": 1.6,
+  "fp": "74287066c09cf19b7d19",
+  "widths": [
+   960,
+   1440,
+   1920,
+   2560
+  ]
+ },
+ "home/hero-m": {
+  "aspect": 0.75,
+  "fp": "e4cbc29fd48e2b6a58ad",
+  "widths": [
+   640,
+   960,
+   1280,
+   1440
+  ]
+ },
+ "home/smoothies": {
+  "aspect": 1.0,
+  "fp": "1871f38534c6880ce935",
+  "widths": [
+   640,
+   960,
+   1440,
+   1920
+  ]
+ },
+ "home/visit": {
+  "aspect": 2.333,
+  "fp": "2f76ad96dc5ca054b335",
+  "widths": [
+   960,
+   1440,
+   1920,
+   2560
+  ]
+ },
+ "instagram/1": {
+  "aspect": 1.0,
+  "fp": "b28af753e63a1d09aa04",
+  "widths": [
+   480,
+   720,
+   960
+  ]
+ },
+ "instagram/2": {
+  "aspect": 1.0,
+  "fp": "75ec82737026ec6d5aff",
+  "widths": [
+   480,
+   720,
+   960
+  ]
+ },
+ "instagram/3": {
+  "aspect": 1.0,
+  "fp": "629ea6ebfd7e09662226",
+  "widths": [
+   480,
+   720,
+   960
+  ]
+ },
+ "instagram/4": {
+  "aspect": 1.0,
+  "fp": "0abd7c768a3fc13e7ba3",
+  "widths": [
+   480,
+   720,
+   960
+  ]
+ },
+ "menu/balance-bowl": {
+  "aspect": 1.0,
+  "fp": "00066964b97e098a52d6",
+  "widths": [
+   480,
+   720,
+   960
+  ]
+ },
+ "menu/benys-blendy": {
+  "aspect": 1.0,
+  "fp": "0378b39f139920bd8193",
+  "widths": [
+   480,
+   720,
+   960,
+   1440
+  ]
+ },
+ "menu/berry-much-love-u": {
+  "aspect": 1.0,
+  "fp": "c26221512bbfae844f9c",
+  "widths": [
+   480,
+   720
+  ]
+ },
+ "menu/blue-tiful-day": {
+  "aspect": 1.0,
+  "fp": "3fe12b33cf3ac6bf41cb",
+  "widths": [
+   480,
+   720,
+   960,
+   1440
+  ]
+ },
+ "menu/build-your-bowl": {
+  "aspect": 1.0,
+  "fp": "60feaf28300dcd5e290e",
+  "widths": [
+   480,
+   720,
+   960,
+   1440
+  ]
+ },
+ "menu/chia-oat-pudding": {
+  "aspect": 1.0,
+  "fp": "413bc793c29b78ee1a02",
+  "widths": [
+   480,
+   720,
+   960
+  ]
+ },
+ "menu/greenergy": {
+  "aspect": 1.0,
+  "fp": "e9364a2618e2e02ec1b6",
+  "widths": [
+   480,
+   720,
+   960,
+   1440
+  ]
+ },
+ "menu/her-power": {
+  "aspect": 1.0,
+  "fp": "412f05b2f4f0b2c3182d",
+  "widths": [
+   480,
+   687
+  ]
+ },
+ "menu/mango-coco": {
+  "aspect": 1.0,
+  "fp": "2907498d1e2d15bfc722",
+  "widths": [
+   337
+  ]
+ },
+ "menu/mango-mellow": {
+  "aspect": 1.0,
+  "fp": "be234521be979a1dc80b",
+  "widths": [
+   480,
+   720,
+   960,
+   1440
+  ]
+ },
+ "menu/pink-pink-pink": {
+  "aspect": 1.0,
+  "fp": "03a7da3b7e5317e200b5",
+  "widths": [
+   480,
+   720,
+   960,
+   1365
+  ]
+ },
+ "menu/recovery-bowl": {
+  "aspect": 1.0,
+  "fp": "5f7e584730fd4c8c9a29",
+  "widths": [
+   480,
+   720,
+   960,
+   1440
+  ]
+ },
+ "menu/strawesome": {
+  "aspect": 1.0,
+  "fp": "159246df1e363830c274",
+  "widths": [
+   480,
+   720,
+   960,
+   1440
+  ]
+ },
+ "menu/think-well": {
+  "aspect": 1.0,
+  "fp": "337a102fd0a0676cd129",
+  "widths": [
+   480,
+   720,
+   960,
+   1440
+  ]
+ },
+ "specials/phi-velvet": {
+  "aspect": 0.8,
+  "fp": "a2510e11acfa3a9b6a75",
+  "widths": [
+   480,
+   608
+  ]
+ },
+ "story/journey": {
+  "aspect": 2.333,
+  "fp": "66fdef0528fbecfa093c",
+  "widths": [
+   960,
+   1440,
+   1920,
+   2560
+  ]
+ },
+ "story/make-1": {
+  "aspect": 1.0,
+  "fp": "1585c9e6dcd17433fcc9",
+  "widths": [
+   640,
+   960,
+   1440,
+   1920
+  ]
+ },
+ "story/make-2": {
+  "aspect": 1.0,
+  "fp": "d97e249799377bc2aa1a",
+  "widths": [
+   640,
+   960,
+   1440,
+   1920
+  ]
+ },
+ "story/open-1": {
+  "aspect": 1.0,
+  "fp": "ab00ad9824ed25a3a771",
+  "widths": [
+   640,
+   960,
+   1440,
+   1920
+  ]
+ },
+ "story/open-2": {
+  "aspect": 1.0,
+  "fp": "39e33e4c7e8e0903c070",
+  "widths": [
+   640,
+   960,
+   1440,
+   1920
+  ]
+ },
+ "story/philosophy": {
+  "aspect": 2.333,
+  "fp": "f76ecde2075eeb494dae",
+  "widths": [
+   960,
+   1440,
+   1920,
+   2560
+  ]
+ },
+ "visit/hero": {
+  "aspect": 0.8,
+  "fp": "c6fef2670f8ea4d15d41",
+  "widths": [
+   480,
+   720,
+   960,
+   1280
+  ]
+ },
+ "what/hero": {
+  "aspect": 1.5,
+  "fp": "89f88c3020bca4c4864c",
+  "widths": [
+   640,
+   960,
+   1440,
+   1920
+  ]
+ }
+}

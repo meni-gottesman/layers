@@ -1,0 +1,23 @@
+{
+  "eyebrow": "Catering",
+  "title": "Catering for the way you gather",
+  "inquiry_label": "Send an inquiry",
+  "photos": {
+    "hero": {
+      "image": "src-img/originals/pique-table-bowls.jpg",
+      "alt": "Four friends with Layers bowls around a table inside the shop",
+      "focus": "auto",
+      "zoom": "auto"
+    }
+  },
+  "intro": "Layers offers a thoughtful catering experience, from the first conversation to the final delivery. Team breakfasts, wellness events, corporate meetings, private celebrations — we make nourishing your guests simple.\n\nPerformance smoothies, house-made bowls, sourdough toasts, specialty coffee, matcha, and wellness offerings, crafted with real ingredients and prepared with intention.",
+  "form": {
+    "heading": "Tell us about your event",
+    "submit_label": "Send inquiry",
+    "reply_note": "We’ll reply within 1–2 business days."
+  },
+  "seo": {
+    "title": "Catering | Layers Superfood Bar",
+    "description": "Layers catering for team breakfasts, wellness events, corporate meetings and private celebrations in Berkeley — smoothies, house-made bowls and more. Send an inquiry and we'll reply within 1–2 business days."
+  }
+}

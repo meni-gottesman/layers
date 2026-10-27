@@ -1,0 +1,64 @@
+{#- The deeper Layers story. All copy is the client's approved text, verbatim
+    (content/pages/story.json). Wide photos sit after chapters 2 and 4 — or,
+    with fewer chapters, after the last one, so a photo the CMS still asks for
+    never silently disappears. -#}
+{% extends "base.html" %}
+{% import "partials/icons.html" as icons %}
+{% block main %}
+
+<header class="story-head">
+  <p class="eyebrow">{{ page.eyebrow }}</p>
+  <h1 class="story-head__title">{{ page.title }}</h1>
+</header>
+
+<div class="ed-row ed-row--2">
+  <figure class="ed-tile"><span class="ed-media">{{ pic("story/open-1", sizes="(max-width: 720px) 100vw, 50vw", eager=True) }}</span></figure>
+  <figure class="ed-tile"><span class="ed-media">{{ pic("story/open-2", sizes="(max-width: 720px) 100vw, 50vw") }}</span></figure>
+</div>
+{% for ch in page.chapters %}
+{%- set n = loop.index %}
+
+<article class="chapter" aria-labelledby="ch-{{ n }}">
+  <span class="chapter__num">{{ "%02d" | format(n) }}</span>
+  <h2 id="ch-{{ n }}" class="chapter__title">{{ ch.title }}</h2>
+  <div class="prose">
+    <p class="prose__lead">{{ ch.lead|br }}</p>
+    {{ md(ch.body) }}
+  </div>
+{% if ch.closing_line %}
+  <p class="chapter__line">{{ ch.closing_line }}</p>
+{% endif %}
+</article>
+{% if n == 2 or (loop.last and n < 2) %}
+
+<figure class="ed-tile ed-tile--wide story-media">
+  <span class="ed-media">{{ pic("story/philosophy", sizes="100vw") }}</span>
+</figure>
+{% endif %}
+{% if n == 4 or (loop.last and n < 4) %}
+
+<figure class="ed-tile ed-tile--wide story-media">
+  <span class="ed-media">{{ pic("story/journey", sizes="100vw") }}</span>
+</figure>
+{% endif %}
+{% endfor %}
+
+<ol class="pillars" aria-label="How every Layers recipe is made">
+{% for p in page.pillars %}
+  <li class="pillar"><h3 class="pillar__name">{{ p.name }}</h3><p class="pillar__desc">{{ p.description|br }}</p></li>
+{% endfor %}
+</ol>
+
+<div class="ed-row ed-row--2 story-media">
+  <figure class="ed-tile"><span class="ed-media">{{ pic("story/make-1", sizes="(max-width: 720px) 100vw, 50vw") }}</span></figure>
+  <figure class="ed-tile"><span class="ed-media">{{ pic("story/make-2", sizes="(max-width: 720px) 100vw, 50vw") }}</span></figure>
+</div>
+
+<section class="story-close" aria-label="Order">
+  <h2 class="ed-statement">{{ page.closing.statement }}</h2>
+  <div class="ed-ctas">
+    <a class="btn btn--sage" href="{{ site.ordering.square_url }}" target="_blank" rel="noopener">{{ page.closing.order_label }}{{ icons.sq_hint() }}</a>
+    <a class="btn btn--line" href="/menu">{{ page.closing.menu_label }}</a>
+  </div>
+</section>
+{% endblock %}

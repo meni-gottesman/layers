@@ -1,0 +1,42 @@
+{
+  "eyebrow": "FAQ",
+  "title": "Questions, answered",
+  "items": [
+    {
+      "question": "How do I order?",
+      "answer": "Order at the counter, or ahead [online](https://layerssuperfoodbar.square.site) and pick up at the front counter. For delivery, Layers is on DoorDash and Uber Eats."
+    },
+    {
+      "question": "What goes into your bowls and smoothies?",
+      "answer": "Whole ingredients, chosen with intention. We use frozen fruit instead of ice, add no water, don’t rely on refined sugar or syrups, and make our bowl bases in house. No factory blends, no premade mixes. Every item’s ingredients are on the [menu](/menu)."
+    },
+    {
+      "question": "What makes your smoothies different?",
+      "answer": "No ice, no water, no shortcuts. They come in two textures: Thick is creamy and spoonable; Classic is lighter and smooth."
+    },
+    {
+      "question": "Why is the açaí bowl slightly icy?",
+      "answer": "It’s intentional: more açaí and berries, less banana, for a lighter texture and fewer calories overall."
+    },
+    {
+      "question": "Is there added sugar?",
+      "answer": "Our smoothies and bowls are sweetened with whole fruit, not refined sugar. A couple of toppings — the coconut flower nectar on the yogurt and chia bowls — add a little natural sweetness, and every ingredient is listed on the [menu](/menu)."
+    },
+    {
+      "question": "What about allergens?",
+      "answer": "Each item’s allergen notes are listed on the [menu](/menu) — for example, the Layers Crumble contains tree nuts and dairy. If you have an allergy, please ask our team before you order."
+    },
+    {
+      "question": "Do you cater?",
+      "answer": "Yes — team breakfasts, wellness events, corporate meetings and private celebrations. Tell us your date and guest count through the [catering form](/catering#catering) and we’ll reply within 1–2 business days."
+    },
+    {
+      "question": "Where are you, and when are you open?",
+      "answer": "2436 Channing Way, Berkeley, CA 94704, between Telegraph Ave and Dana St. {hours}. [Getting here](/visit)."
+    }
+  ],
+  "seo": {
+    "title": "FAQ | Layers Superfood Bar",
+    "description": "How to order from Layers, what goes into the bowls and smoothies, allergens, catering, and where to find us in Berkeley."
+  }
+}

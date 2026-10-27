@@ -1,0 +1,57 @@
+{#- /links — the "link in bio" page for Instagram (content/links.json).
+    Mobile-first and light on chrome: the wordmark, the buttons (plus DoorDash /
+    Uber Eats when their links are set in content/site.json), then any
+    limited-time specials and upcoming events, and where to find the shop.
+    Never indexed (PAGE_CONFIG noindex), not in the navigation or sitemap.
+    Links to other sites open in a new tab, like everywhere on the site. -#}
+{% extends "base.html" %}
+{% import "partials/specials.html" as specials with context %}
+{% import "partials/events.html" as events with context %}
+
+{% block header %}
+<header class="links-head">
+  <a class="links-head__brand" href="/" aria-label="{{ site.business.name }} — home">
+    <img src="/assets/img/wordmark-green.png" alt="{{ site.business.name }}" width="140" height="60">
+  </a>
+</header>
+{% endblock %}
+
+{% block main %}
+<section class="links" aria-labelledby="links-title">
+  <h1 id="links-title" class="links__title">{{ page.heading }}</h1>
+{% if page.intro %}
+  <div class="links__intro">{{ md(page.intro) }}</div>
+{% endif %}
+  <ul class="links__buttons" role="list">
+{% for b in page.buttons %}
+    <li><a class="btn {{ 'btn--sage' if b.highlight else 'btn--line' }} btn--block" href="{{ b.url }}"{{ link_target(b.url) }}>{{ b.label }}{{ link_hint(b.url) }}</a></li>
+{% endfor %}
+{#- delivery services with a link set (content/site.json → Ordering), unless a
+    button above already goes there #}
+{% set button_urls = page.buttons|map(attribute="url")|map("trim")|list %}
+{% for name, url in delivery_links if url not in button_urls %}
+    <li><a class="btn btn--line btn--block" href="{{ url }}" target="_blank" rel="noopener">Delivery on {{ name }}<span class="sr-only"> (opens in a new tab)</span></a></li>
+{% endfor %}
+  </ul>
+</section>
+{% if page.show_specials and specials_active %}
+
+<section class="links__more" aria-label="Limited-time specials">
+  {{ specials.band(specials_active, "h2", "specials--links") }}
+</section>
+{% endif %}
+{% if page.show_events and events_upcoming %}
+
+<section class="links__more">
+  {{ events.list(events_upcoming, "h2") }}
+</section>
+{% endif %}
+
+<p class="links__visit"><a href="{{ directions_url }}" target="_blank" rel="noopener">{{ site.business.street }}, {{ site.business.city }}<span class="sr-only"> (directions, opens in a new tab)</span></a><br><span data-open-now>{{ hours_line }}</span></p>
+{% endblock %}
+
+{% block footer %}
+<footer class="links-foot">
+  <p>© <span data-year>{{ today.year }}</span> {{ site.business.name }}</p>
+</footer>
+{% endblock %}

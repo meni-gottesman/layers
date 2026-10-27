@@ -1,0 +1,286 @@
+{
+ "_comment": "Photos that were in the repo before the CMS went live (Oct 27 2026), each with the spots it was placed, cropped and checked in by hand. In THOSE spots the photo-size rule in tools/validate_content.py doesn't apply to it; anywhere else it is checked like any other photo (a small Square product photo can't be picked for the homepage hero). Spots are named as content.photo_spot() names them: a page photo by its content binding (the format of slot-specs.json, “pages/home:photos.hero”), a photo in a list of like spots by its kind (“menu”, “instagram”, “specials”, “events”, “albums”). Not edited in the CMS; not regenerated.",
+ "photos": {
+  "src-img/albums/01-behind-the-counter/01.jpg": [
+   "albums"
+  ],
+  "src-img/albums/01-behind-the-counter/02.jpg": [
+   "albums"
+  ],
+  "src-img/albums/01-behind-the-counter/03.jpg": [
+   "albums"
+  ],
+  "src-img/albums/01-behind-the-counter/04.jpg": [
+   "albums"
+  ],
+  "src-img/albums/01-behind-the-counter/05.jpg": [
+   "albums"
+  ],
+  "src-img/albums/01-behind-the-counter/06.jpg": [
+   "albums"
+  ],
+  "src-img/albums/01-behind-the-counter/07.jpg": [
+   "albums"
+  ],
+  "src-img/albums/01-behind-the-counter/08.jpg": [
+   "albums"
+  ],
+  "src-img/albums/02-run-clubs/01.jpg": [
+   "albums"
+  ],
+  "src-img/albums/02-run-clubs/02.jpg": [
+   "albums"
+  ],
+  "src-img/albums/02-run-clubs/03.jpg": [
+   "albums"
+  ],
+  "src-img/albums/02-run-clubs/04.jpg": [
+   "albums"
+  ],
+  "src-img/albums/02-run-clubs/06.jpg": [
+   "albums"
+  ],
+  "src-img/albums/02-run-clubs/07.jpg": [
+   "albums"
+  ],
+  "src-img/albums/02-run-clubs/08.jpg": [
+   "albums"
+  ],
+  "src-img/albums/02-run-clubs/09.jpg": [
+   "albums"
+  ],
+  "src-img/albums/02-run-clubs/10.jpg": [
+   "albums"
+  ],
+  "src-img/albums/02-run-clubs/11.jpg": [
+   "albums"
+  ],
+  "src-img/albums/02-run-clubs/12.jpg": [
+   "albums"
+  ],
+  "src-img/albums/02-run-clubs/13.jpg": [
+   "albums"
+  ],
+  "src-img/albums/02-run-clubs/14.jpg": [
+   "albums",
+   "instagram"
+  ],
+  "src-img/albums/02-run-clubs/15.jpg": [
+   "albums"
+  ],
+  "src-img/albums/02-run-clubs/16.jpg": [
+   "albums",
+   "instagram"
+  ],
+  "src-img/albums/02-run-clubs/17.jpg": [
+   "albums"
+  ],
+  "src-img/albums/02-run-clubs/18.jpg": [
+   "albums"
+  ],
+  "src-img/albums/03-community/01.jpg": [
+   "albums"
+  ],
+  "src-img/albums/03-community/02.jpg": [
+   "albums"
+  ],
+  "src-img/albums/03-community/03.jpg": [
+   "albums"
+  ],
+  "src-img/albums/03-community/04.jpg": [
+   "albums"
+  ],
+  "src-img/albums/03-community/05.jpg": [
+   "albums"
+  ],
+  "src-img/albums/03-community/06.jpg": [
+   "albums"
+  ],
+  "src-img/albums/03-community/07.jpg": [
+   "albums"
+  ],
+  "src-img/albums/03-community/08.jpg": [
+   "albums"
+  ],
+  "src-img/albums/03-community/09.jpg": [
+   "albums"
+  ],
+  "src-img/albums/03-community/10.jpg": [
+   "albums"
+  ],
+  "src-img/albums/03-community/11.jpg": [
+   "albums"
+  ],
+  "src-img/albums/03-community/12.jpg": [
+   "albums",
+   "instagram"
+  ],
+  "src-img/albums/03-community/13.jpg": [
+   "albums"
+  ],
+  "src-img/albums/03-community/14.jpg": [
+   "albums"
+  ],
+  "src-img/albums/03-community/15.jpg": [
+   "albums"
+  ],
+  "src-img/albums/03-community/16.jpg": [
+   "albums"
+  ],
+  "src-img/albums/04-the-regulars/01.jpg": [
+   "albums"
+  ],
+  "src-img/albums/04-the-regulars/02.jpg": [
+   "albums"
+  ],
+  "src-img/albums/04-the-regulars/03.jpg": [
+   "albums"
+  ],
+  "src-img/albums/04-the-regulars/04.jpg": [
+   "albums",
+   "instagram"
+  ],
+  "src-img/albums/04-the-regulars/05.jpg": [
+   "albums"
+  ],
+  "src-img/albums/05-in-the-shop/01.jpg": [
+   "albums"
+  ],
+  "src-img/albums/05-in-the-shop/02.jpg": [
+   "albums"
+  ],
+  "src-img/albums/05-in-the-shop/03.jpg": [
+   "albums"
+  ],
+  "src-img/albums/05-in-the-shop/04.jpg": [
+   "albums"
+  ],
+  "src-img/albums/05-in-the-shop/05.jpg": [
+   "albums"
+  ],
+  "src-img/albums/05-in-the-shop/06.jpg": [
+   "albums"
+  ],
+  "src-img/menu/sq-balance-bowl.png": [
+   "menu"
+  ],
+  "src-img/menu/sq-bananoffee.jpeg": [
+   "menu"
+  ],
+  "src-img/menu/sq-benys-blendy.jpeg": [
+   "menu"
+  ],
+  "src-img/menu/sq-berry-much-love-u.png": [
+   "menu"
+  ],
+  "src-img/menu/sq-blue-tiful-day.jpeg": [
+   "menu"
+  ],
+  "src-img/menu/sq-build-your-bowl.png": [
+   "menu"
+  ],
+  "src-img/menu/sq-chia-oat-pudding.jpeg": [
+   "menu"
+  ],
+  "src-img/menu/sq-greenergy.jpeg": [
+   "menu"
+  ],
+  "src-img/menu/sq-her-power.png": [
+   "menu"
+  ],
+  "src-img/menu/sq-mango-coco.png": [
+   "menu"
+  ],
+  "src-img/menu/sq-mango-mellow.jpeg": [
+   "menu"
+  ],
+  "src-img/menu/sq-pink-pink-pink.jpeg": [
+   "menu"
+  ],
+  "src-img/menu/sq-recovery-bowl.png": [
+   "menu"
+  ],
+  "src-img/menu/sq-strawesome.jpeg": [
+   "menu",
+   "pages/loyalty:photos.side"
+  ],
+  "src-img/menu/sq-think-well.jpeg": [
+   "menu"
+  ],
+  "src-img/originals/blade-sign-face-logo.jpg": [
+   "pages/story:photos.open_2"
+  ],
+  "src-img/originals/counter-handoff.jpg": [
+   "pages/home:photos.fresh_3"
+  ],
+  "src-img/originals/counter-receipt-laugh.jpg": [
+   "pages/home:photos.hero_mobile"
+  ],
+  "src-img/originals/friends-at-storefront.jpg": [
+   "pages/home:photos.visit"
+  ],
+  "src-img/originals/graduation-pink-cup.jpg": [
+   "pages/home:community.squares.3.photo"
+  ],
+  "src-img/originals/instinct-group-storefront.jpg": [
+   "pages/home:community.wide.photo"
+  ],
+  "src-img/originals/instinct-smoothie-toast.jpg": [
+   "pages/home:community.squares.0.photo"
+  ],
+  "src-img/originals/one-year-sunflowers.jpg": [
+   "pages/story:photos.open_1"
+  ],
+  "src-img/originals/pique-table-bowls.jpg": [
+   "pages/catering:photos.hero"
+  ],
+  "src-img/originals/prep-cap-topdown.jpg": [
+   "pages/home:photos.hero"
+  ],
+  "src-img/originals/runners-waving-midrun.jpg": [
+   "pages/story:photos.philosophy"
+  ],
+  "src-img/originals/serving-with-a-laugh.jpg": [
+   "pages/home:photos.fresh_2"
+  ],
+  "src-img/originals/she-runs-berkeley-cafe-table.jpg": [
+   "pages/home:community.squares.1.photo"
+  ],
+  "src-img/originals/shop-interior-pendants.jpg": [
+   "pages/visit:photos.hero"
+  ],
+  "src-img/originals/slicing-bananas.jpg": [
+   "pages/home:photos.fresh_1"
+  ],
+  "src-img/originals/special-phi-velvet-cup.jpg": [
+   "specials"
+  ],
+  "src-img/originals/storefront-run-crowd.jpg": [
+   "pages/story:photos.journey"
+  ],
+  "src-img/originals/studio-berry-cup-stone.jpg": [
+   "pages/home:photos.bowls"
+  ],
+  "src-img/originals/studio-blue-drip-palm.jpg": [
+   "pages/story:photos.make_2"
+  ],
+  "src-img/originals/studio-build-your-bowl-hand.jpg": [
+   "menu"
+  ],
+  "src-img/originals/studio-recovery-bowl.jpg": [
+   "menu"
+  ],
+  "src-img/originals/studio-smoothies-cheers.jpg": [
+   "pages/home:photos.smoothies"
+  ],
+  "src-img/originals/studio-strawberry-cup.jpg": [
+   "pages/story:photos.make_1"
+  ],
+  "src-img/originals/studio-three-cups.jpg": [
+   "pages/what:photos.hero"
+  ],
+  "src-img/originals/tri-delta-smoothies.jpg": [
+   "pages/home:community.squares.2.photo"
+  ]
+ }
+}

@@ -1,0 +1,100 @@
+{
+ "_comment": "Homepage film cut \u2014 see tools/compose-film.py. Clips are Layers' own footage from the shared Drive (src-video/clips/). Column order is chosen so the two yoga takes and the two packed-shop takes are never on screen together (column 2 runs ~0.8 clip ahead of column 1).",
+ "clips": {
+  "counter-bananas": {
+   "src": "clips/counter-bananas.mov",
+   "start": 0.6,
+   "x": 0.5
+  },
+  "rooftop-yoga-2": {
+   "src": "clips/rooftop-yoga-2.mov",
+   "start": 0.4,
+   "x": 0.5,
+   "grade": {
+    "contrast": 1.0,
+    "saturation": 0.9,
+    "gamma": 1.04
+   }
+  },
+  "crew-wave": {
+   "src": "clips/crew-wave.mov",
+   "start": 0.0,
+   "x": 0.64,
+   "speed": 0.8
+  },
+  "packed-shop": {
+   "src": "clips/packed-shop.mp4",
+   "start": 3.0,
+   "x": 0.5
+  },
+  "birthday-bowl": {
+   "src": "clips/birthday-bowl.mov",
+   "start": 0.3,
+   "x": 0.5,
+   "y": 0.3
+  },
+  "rooftop-yoga": {
+   "src": "clips/rooftop-yoga.mov",
+   "start": 0.3,
+   "x": 0.5,
+   "grade": {
+    "contrast": 1.0,
+    "saturation": 0.9
+   }
+  },
+  "door-dance": {
+   "src": "clips/door-dance.mov",
+   "start": 0.2,
+   "x": 0.5
+  },
+  "pique-line-street": {
+   "src": "clips/pique-line-street.mov",
+   "start": 2.0,
+   "x": 0.5
+  },
+  "packed-shop-2": {
+   "src": "clips/packed-shop.mp4",
+   "start": 9.0,
+   "x": 0.5
+  }
+ },
+ "wide": {
+  "size": [
+   2400,
+   1030
+  ],
+  "seg": 4.2,
+  "columns": [
+   [
+    "counter-bananas",
+    "rooftop-yoga",
+    "packed-shop-2"
+   ],
+   [
+    "crew-wave",
+    "door-dance",
+    "birthday-bowl"
+   ],
+   [
+    "rooftop-yoga-2",
+    "packed-shop",
+    "pique-line-street"
+   ]
+  ]
+ },
+ "narrow": {
+  "size": [
+   720,
+   900
+  ],
+  "seg": 3.6,
+  "sequence": [
+   "crew-wave",
+   "counter-bananas",
+   "packed-shop",
+   "rooftop-yoga",
+   "birthday-bowl",
+   "door-dance"
+  ]
+ }
+}

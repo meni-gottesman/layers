@@ -1,0 +1,129 @@
+{
+  "photos": {
+    "hero": {
+      "image": "src-img/originals/prep-cap-topdown.jpg",
+      "alt": "A Layers team member at work behind the counter",
+      "focus": "auto",
+      "zoom": "auto"
+    },
+    "hero_mobile": {
+      "image": "src-img/originals/counter-receipt-laugh.jpg",
+      "focus": "auto",
+      "zoom": "auto"
+    },
+    "fresh_1": {
+      "image": "src-img/originals/slicing-bananas.jpg",
+      "alt": "A Layers team member slicing bananas beside a wall of fresh bananas",
+      "focus": "auto",
+      "zoom": "auto"
+    },
+    "fresh_2": {
+      "image": "src-img/originals/serving-with-a-laugh.jpg",
+      "alt": "A Layers team member laughing with a customer across the counter, bunches of bananas in front of him",
+      "focus": "auto",
+      "zoom": "auto"
+    },
+    "fresh_3": {
+      "image": "src-img/originals/counter-handoff.jpg",
+      "alt": "A Layers team member handing an order across the counter as customers wait",
+      "focus": "auto",
+      "zoom": "auto"
+    },
+    "bowls": {
+      "image": "src-img/originals/studio-berry-cup-stone.jpg",
+      "alt": "A layered Layers bowl of açaí, banana and strawberry under a yogurt top with blueberries and goji, on stacked stone",
+      "focus": "auto",
+      "zoom": "auto"
+    },
+    "smoothies": {
+      "image": "src-img/originals/studio-smoothies-cheers.jpg",
+      "alt": "Two Layers smoothies raised in hand above a third on the table",
+      "focus": "auto",
+      "zoom": "auto"
+    },
+    "visit": {
+      "image": "src-img/originals/friends-at-storefront.jpg",
+      "alt": "The white Layers storefront on Channing Way, with its script wordmark, Superfood Bar lettering and 2436 street number",
+      "focus": "auto",
+      "zoom": "auto"
+    }
+  },
+  "hero": {
+    "heading": "Layers",
+    "line": "Real Food. Functional Fuel.",
+    "order_label": "Order on Square"
+  },
+  "fresh": {
+    "statement": "Made fresh at Layers."
+  },
+  "film": {
+    "label": "A short film from life at Layers",
+    "description": "Three side-by-side scenes from life at Layers: a bowl topped with granola at the counter, the banana-lined counter, and rooftop yoga; the team waving hello, the shop packed on a run club day, and a first-birthday bowl with a gold candle; rooftop yoga, dancing at the door, and a line down the street."
+  },
+  "products": {
+    "bowls_label": "Bowls",
+    "smoothies_label": "Smoothies",
+    "menu_label": "Explore the menu"
+  },
+  "community": {
+    "heading": "Layers in the Community",
+    "text": "Movement, wellness, and people bringing Berkeley together.",
+    "wide": {
+      "photo": {
+        "image": "src-img/originals/instinct-group-storefront.jpg",
+        "alt": "About thirty INSYNC run club members gathered outside Layers on Channing Way",
+        "focus": "auto",
+        "zoom": "auto"
+      },
+      "caption": "First run of the semester with INSYNC"
+    },
+    "squares": [
+      {
+        "photo": {
+          "image": "src-img/originals/instinct-smoothie-toast.jpg",
+          "alt": "Three run club members raising two Layers smoothies in a toast",
+          "focus": "auto",
+          "zoom": "auto"
+        },
+        "caption": "After the run"
+      },
+      {
+        "photo": {
+          "image": "src-img/originals/she-runs-berkeley-cafe-table.jpg",
+          "alt": "Two She Runs Berkeley runners with Layers bowls at a café table outside the shop",
+          "focus": "auto",
+          "zoom": "auto"
+        },
+        "caption": "Saturday morning with She Runs Berkeley"
+      },
+      {
+        "photo": {
+          "image": "src-img/originals/tri-delta-smoothies.jpg",
+          "alt": "Two friends sipping Layers smoothies side by side against a plain wall",
+          "focus": "auto",
+          "zoom": "auto"
+        },
+        "caption": "Layers × Tri Delta, for St. Jude"
+      },
+      {
+        "photo": {
+          "image": "src-img/originals/graduation-pink-cup.jpg",
+          "alt": "A UC Berkeley graduate in her gown holding up a pink Layers smoothie outside the shop",
+          "focus": "auto",
+          "zoom": "auto"
+        },
+        "caption": "Graduation day, Class of 2026"
+      }
+    ],
+    "albums_label": "See every album"
+  },
+  "visit": {
+    "heading": "Visit Layers",
+    "directions_label": "Get directions",
+    "order_label": "Order on Square"
+  },
+  "seo": {
+    "title": "Layers Superfood Bar | Smoothies & Bowls in Berkeley",
+    "description": "Layers Superfood Bar — real food, functional fuel. Smoothies and bowls made fresh from whole ingredients at 2436 Channing Way, Berkeley. Order on Square."
+  }
+}

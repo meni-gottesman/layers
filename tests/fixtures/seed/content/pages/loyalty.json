@@ -1,0 +1,23 @@
+{
+  "published": false,
+  "eyebrow": "Loyalty",
+  "title": "Regulars get looked after.",
+  "photos": {
+    "side": {
+      "image": "src-img/menu/sq-strawesome.jpeg",
+      "focus": "auto",
+      "zoom": "auto"
+    }
+  },
+  "text": "[How the programme works — client to supply, approx. 50 words.]",
+  "join_line": "Join at the register — just give us your number.",
+  "how_heading": "How it works",
+  "steps": [
+    "[Step 1 — client to supply]",
+    "[Step 2 — client to supply]",
+    "[Step 3 — client to supply]"
+  ],
+  "seo": {
+    "title": "Loyalty | Layers Superfood Bar"
+  }
+}

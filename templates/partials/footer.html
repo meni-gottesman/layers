@@ -1,0 +1,52 @@
+{#- Footer: business details from content/site.json, hours from content/hours.json.
+    Phone, public email and social links appear only when they are filled in. -#}
+{%- import "partials/icons.html" as icons -%}
+{%- set b = site.business -%}
+<footer id="visit-footer" class="footer">
+  <div class="wrap footer__grid">
+    <div class="footer__brand">
+      <img class="footer__logo" src="/assets/img/wordmark-cream.png" alt="{{ b.name }}" width="140" height="60" loading="lazy">
+      <p class="footer__tagline">{{ site.footer_tagline }}</p>
+      <a class="btn btn--butter" href="{{ site.ordering.square_url }}" target="_blank" rel="noopener">
+        Order on Square
+        {{ icons.arrow_ne() }}
+      </a>
+    </div>
+    <div class="footer__col">
+      <h2 class="footer__head">Visit</h2>
+      <address class="footer__addr">{{ b.street }}<br>{{ b.city }}, {{ b.region }} {{ b.postal_code }}</address>
+      <p class="footer__hours">
+        {%- for days, span in hours_groups %}{{ days }} · {{ span }}{% if not loop.last %}<br>{% endif %}{% endfor -%}
+      </p>
+{% if b.phone or b.public_email %}
+      <p class="footer__hours">
+        {%- if b.phone %}<a href="tel:{{ b.phone | tel }}">{{ b.phone }}</a>{% endif %}
+        {%- if b.phone and b.public_email %}<br>{% endif %}
+        {%- if b.public_email %}<a href="mailto:{{ b.public_email }}">{{ b.public_email }}</a>{% endif -%}
+      </p>
+{% endif %}
+    </div>
+    <div class="footer__col">
+      <h2 class="footer__head">Explore</h2>
+      <nav class="footer__links" aria-label="Footer">
+{% for key, href, label in footer_links %}
+        <a href="{{ href }}">{{ label }}</a>
+{% endfor %}
+      </nav>
+    </div>
+{% if social_links %}
+    <div class="footer__col">
+      <h2 class="footer__head">Follow</h2>
+      <nav class="footer__links" aria-label="Social">
+{% for label, url in social_links %}
+        <a href="{{ url }}" target="_blank" rel="noopener">{{ label }}</a>
+{% endfor %}
+      </nav>
+    </div>
+{% endif %}
+  </div>
+  <div class="footer__bar">
+    <p>© <span data-year>{{ today.year }}</span> {{ b.name }}</p>
+    <p class="footer__credit">Site by <a href="https://menigottesman.com" target="_blank" rel="noopener">Meni Gottesman’s Web Services</a></p>
+  </div>
+</footer>

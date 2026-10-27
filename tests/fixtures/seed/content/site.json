@@ -1,0 +1,21 @@
+{
+  "business": {
+    "name": "Layers Superfood Bar",
+    "street": "2436 Channing Way",
+    "city": "Berkeley",
+    "region": "CA",
+    "postal_code": "94704",
+    "cross_streets": "Between Telegraph Ave and Dana St"
+  },
+  "ordering": {
+    "square_url": "https://layerssuperfoodbar.square.site"
+  },
+  "social": {
+    "instagram_handle": "layerssuperfoodbar"
+  },
+  "seo": {
+    "default_description": "Layers Superfood Bar — real food, functional fuel. Smoothies and bowls made fresh at 2436 Channing Way, Berkeley."
+  },
+  "footer_tagline": "A Berkeley superfood bar. Clean smoothies and bowls, made fresh.",
+  "signoff_tagline": "Always pure, never watered down."
+}

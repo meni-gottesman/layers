@@ -1,0 +1,39 @@
+{#- How We Make It — the client's approved Oct 2026 copy (section 05 of the
+    Layers Story plus the five principles), from content/pages/how.json. -#}
+{% extends "base.html" %}
+{% import "partials/icons.html" as icons %}
+{% block main %}
+
+<header class="story-head">
+  <p class="eyebrow">{{ page.eyebrow }}</p>
+  <h1 class="story-head__title">{{ page.title }}</h1>
+{% if page.lede %}
+  <p class="story-head__lede">{{ page.lede }}</p>
+{% endif %}
+</header>
+
+
+<article class="chapter" aria-label="How we make it">
+  <div class="prose">
+    <p class="prose__lead">{{ page.lead|br }}</p>
+    {{ md(page.body) }}
+  </div>
+{% if page.closing_line %}
+  <p class="chapter__line">{{ page.closing_line }}</p>
+{% endif %}
+</article>
+
+<ol class="pillars" aria-label="How every Layers recipe is made">
+{% for p in page.pillars %}
+  <li class="pillar"><h2 class="pillar__name">{{ p.name }}</h2><p class="pillar__desc">{{ p.description|br }}</p></li>
+{% endfor %}
+</ol>
+
+<section class="story-close" aria-label="Read more">
+  <a class="textlink" href="/story">{{ page.story_link_label }}</a>
+  <div class="ed-ctas">
+    <a class="btn btn--sage" href="/menu">{{ page.menu_label }}</a>
+    <a class="btn btn--line" href="{{ site.ordering.square_url }}" target="_blank" rel="noopener">{{ page.order_label }}{{ icons.sq_hint() }}</a>
+  </div>
+</section>
+{% endblock %}

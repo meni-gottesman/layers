@@ -1,0 +1,30 @@
+{#- The homepage Instagram section (content/instagram.json), before the Visit
+    band. The posts were chosen at BUILD time (tools/instagram.py: hand-picked,
+    or the Behold feed) and their photos built like every other photo, so the
+    page makes no request to Instagram or Behold. No posts -> only the
+    "Follow @handle" link, never an empty grid. -#}
+{%- import "partials/icons.html" as icons -%}
+{% if instagram_on and (instagram_posts or instagram_url) %}
+{%- set n = instagram_posts|length %}
+<section class="ed ed--instagram" aria-labelledby="instagram-title">
+  <header class="ed-intro ig__head" data-reveal>
+    <h2 id="instagram-title" class="ed-statement">{{ instagram.heading }}</h2>
+{% if instagram_url %}
+    <p class="ig__follow"><a class="ed-label__cta" href="{{ instagram_url }}" target="_blank" rel="noopener">Follow @{{ instagram_handle }} {{ icons.arrow_ne() }}<span class="sr-only"> on Instagram (opens in a new tab)</span></a></p>
+{% endif %}
+  </header>
+{% if n %}
+  {#- balanced rows, as for the albums: 5 -> 3 + 2, 6 -> 3 + 3; phones: 2 across (3 posts: 3).
+      One or two posts keep the size of a 3-across tile, centred — never blown
+      up across the page. `sizes` follows the columns, so the browser picks a
+      photo as wide as the tile. #}
+  {%- set cols = 3 if n < 3 else n if n <= 4 else 3 if n in (5, 6, 9) else 4 %}
+  {%- set cols_m = 3 if n == 3 else 2 %}
+  <ul class="ig__grid" role="list" aria-label="Instagram posts" style="--ig-cols:{{ cols }};--ig-cols-m:{{ cols_m }}">
+{% for p in instagram_posts %}
+    <li class="ig__item"><a class="ed-tile ig__tile" href="{{ p.post_url }}" target="_blank" rel="noopener"><span class="ed-media">{{ pic(p.slot, alt=p.alt, sizes="(max-width: 720px) " ~ (33 if cols_m == 3 else 50) ~ "vw, " ~ (33 if cols == 3 else 25) ~ "vw") }}</span><span class="sr-only"> (opens Instagram in a new tab)</span></a></li>
+{% endfor %}
+  </ul>
+{% endif %}
+</section>
+{% endif %}

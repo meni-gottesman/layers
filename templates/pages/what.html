@@ -1,0 +1,30 @@
+{#- What We Make — approved copy, verbatim (content/pages/what.json). -#}
+{% extends "base.html" %}
+{% import "partials/icons.html" as icons %}
+{% block main %}
+
+<header class="story-head story-head--inner">
+  <p class="eyebrow">{{ page.eyebrow }}</p>
+  <h1 class="story-head__title story-head__title--long">{{ page.title }}</h1>
+</header>
+
+<figure class="ed-tile ed-contained">
+  <span class="ed-media">{{ pic("what/hero", sizes="(max-width: 1100px) 100vw, 1100px", eager=True) }}</span>
+</figure>
+
+<section class="ed-block" aria-label="What we make">
+  <ol class="steps">
+{% for it in page["items"] %}
+    <li><h2 class="steps__h">{{ it.heading }}</h2><p>{{ it.text|br }}</p></li>
+{% endfor %}
+  </ol>
+</section>
+
+<section class="story-close" aria-label="See the menu">
+  <h2 class="ed-statement">{{ page.closing.statement }}</h2>
+  <div class="ed-ctas">
+    <a class="btn btn--sage" href="/menu">{{ page.closing.menu_label }}</a>
+    <a class="btn btn--line" href="{{ site.ordering.square_url }}" target="_blank" rel="noopener">{{ page.closing.order_label }}{{ icons.sq_hint() }}</a>
+  </div>
+</section>
+{% endblock %}

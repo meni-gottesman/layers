@@ -1,0 +1,659 @@
+{
+  "_comment": "TECHNICAL photo specs, not edited in the CMS. Per slot: where its photo comes from (content), the crop aspect, the output width set (see WIDTHS in tools/build-home-media.py), an optional max_width, and 'tuned': the hand-tuned crop + retouch for the photo chosen today. While the content still points at tuned.image with focus/zoom on 'auto', the tuned focal/zoom/edit are used exactly; any other photo gets the focus/zoom keywords and the gentle default retouch. Edit keys: tools/photo_edit.py.",
+  "home/hero": {
+    "content": "pages/home:photos.hero",
+    "aspect": "16:10",
+    "widths": "full",
+    "tuned": {
+      "image": "src-img/originals/prep-cap-topdown.jpg",
+      "focal": [0.58, 0.5],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0.3,
+        "exposure": 0.35,
+        "shadows": 0.3,
+        "highlights": 0.1,
+        "saturation": -0.08,
+        "denoise": 1
+      }
+    }
+  },
+  "home/hero-m": {
+    "content": "pages/home:photos.hero_mobile",
+    "aspect": "3:4",
+    "widths": "phone",
+    "tuned": {
+      "image": "src-img/originals/counter-receipt-laugh.jpg",
+      "focal": [0.36, 0.6],
+      "zoom": 1.15,
+      "edit": {
+        "wb": 0.4,
+        "temp": 0.1,
+        "denoise": 1.5,
+        "highlights": 0.12,
+        "shadows": 0.1
+      }
+    }
+  },
+  "home/fresh-1": {
+    "content": "pages/home:photos.fresh_1",
+    "aspect": "4:5",
+    "widths": "tall",
+    "tuned": {
+      "image": "src-img/originals/slicing-bananas.jpg",
+      "focal": [0.6, 0.56],
+      "zoom": 1.12,
+      "edit": {
+        "wb": 0.7,
+        "temp": -0.08,
+        "shadows": 0.1,
+        "denoise": 2
+      }
+    }
+  },
+  "home/fresh-2": {
+    "content": "pages/home:photos.fresh_2",
+    "aspect": "4:5",
+    "widths": "tall",
+    "tuned": {
+      "image": "src-img/originals/serving-with-a-laugh.jpg",
+      "focal": [0.44, 0.5],
+      "zoom": 1.3,
+      "edit": {
+        "wb": 0.5,
+        "contrast": 0.1,
+        "highlights": 0.2,
+        "rotate": -1
+      }
+    }
+  },
+  "home/fresh-3": {
+    "content": "pages/home:photos.fresh_3",
+    "aspect": "4:5",
+    "widths": "tall",
+    "tuned": {
+      "image": "src-img/originals/counter-handoff.jpg",
+      "focal": [0.42, 0.45],
+      "zoom": 1.1,
+      "edit": {
+        "wb": 0.5,
+        "temp": 0.1,
+        "highlights": 0.3,
+        "denoise": 1
+      }
+    }
+  },
+  "home/bowls": {
+    "content": "pages/home:photos.bowls",
+    "aspect": "1",
+    "widths": "half",
+    "tuned": {
+      "image": "src-img/originals/studio-berry-cup-stone.jpg",
+      "focal": [0.5, 0.62],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4
+      }
+    }
+  },
+  "home/smoothies": {
+    "content": "pages/home:photos.smoothies",
+    "aspect": "1",
+    "widths": "half",
+    "tuned": {
+      "image": "src-img/originals/studio-smoothies-cheers.jpg",
+      "focal": [0.5, 0.58],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0.3,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4
+      }
+    }
+  },
+  "home/community-1": {
+    "content": "pages/home:community.wide.photo",
+    "aspect": "2.333",
+    "widths": "full",
+    "tuned": {
+      "image": "src-img/originals/instinct-group-storefront.jpg",
+      "focal": [0.5, 0.53],
+      "zoom": 1.0,
+      "edit": {
+        "highlights": 0.3,
+        "shadows": 0.15
+      }
+    }
+  },
+  "home/community-2": {
+    "content": "pages/home:community.squares.0.photo",
+    "aspect": "1",
+    "widths": "half",
+    "tuned": {
+      "image": "src-img/originals/instinct-smoothie-toast.jpg",
+      "focal": [0.5, 0.52],
+      "zoom": 1.15,
+      "edit": {
+        "highlights": 0.2,
+        "shadows": 0.1
+      }
+    }
+  },
+  "home/community-3": {
+    "content": "pages/home:community.squares.1.photo",
+    "aspect": "1",
+    "widths": "half",
+    "tuned": {
+      "image": "src-img/originals/she-runs-berkeley-cafe-table.jpg",
+      "focal": [0.5, 0.6],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0.25,
+        "levels": 0.3,
+        "highlights": 0.15
+      }
+    }
+  },
+  "home/community-4": {
+    "content": "pages/home:community.squares.2.photo",
+    "aspect": "1",
+    "widths": "half",
+    "tuned": {
+      "image": "src-img/originals/tri-delta-smoothies.jpg",
+      "focal": [0.5, 0.42],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0.2,
+        "levels": 0.3
+      }
+    }
+  },
+  "home/community-6": {
+    "content": "pages/home:community.squares.3.photo",
+    "aspect": "1",
+    "widths": "half",
+    "tuned": {
+      "image": "src-img/originals/graduation-pink-cup.jpg",
+      "focal": [0.565, 0.5],
+      "zoom": 1.15,
+      "edit": {
+        "highlights": 0.3,
+        "shadows": 0.2
+      }
+    }
+  },
+  "home/visit": {
+    "content": "pages/home:photos.visit",
+    "aspect": "2.333",
+    "widths": "full",
+    "tuned": {
+      "image": "src-img/originals/friends-at-storefront.jpg",
+      "focal": [0.5, 0.3],
+      "zoom": 1.0,
+      "edit": {
+        "highlights": 0.25
+      }
+    }
+  },
+  "story/open-1": {
+    "content": "pages/story:photos.open_1",
+    "aspect": "1",
+    "widths": "half",
+    "tuned": {
+      "image": "src-img/originals/one-year-sunflowers.jpg",
+      "focal": [0.5, 0.52],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0.25,
+        "levels": 0.3,
+        "highlights": 0.15
+      }
+    }
+  },
+  "story/open-2": {
+    "content": "pages/story:photos.open_2",
+    "aspect": "1",
+    "widths": "half",
+    "tuned": {
+      "image": "src-img/originals/blade-sign-face-logo.jpg",
+      "focal": [0.56, 0.38],
+      "zoom": 1.35,
+      "edit": {
+        "wb": 0.2,
+        "levels": 0.3,
+        "contrast": 0.06
+      }
+    }
+  },
+  "story/philosophy": {
+    "content": "pages/story:photos.philosophy",
+    "aspect": "2.333",
+    "widths": "full",
+    "tuned": {
+      "image": "src-img/originals/runners-waving-midrun.jpg",
+      "focal": [0.46, 0.455],
+      "zoom": 1.1,
+      "edit": {
+        "wb": 0.4,
+        "temp": 0.08,
+        "shadows": 0.4,
+        "highlights": 0.35,
+        "denoise": 2
+      }
+    }
+  },
+  "story/journey": {
+    "content": "pages/story:photos.journey",
+    "aspect": "2.333",
+    "widths": "full",
+    "tuned": {
+      "image": "src-img/originals/storefront-run-crowd.jpg",
+      "focal": [0.49, 0.57],
+      "zoom": 1.1,
+      "edit": {
+        "wb": 0.3,
+        "highlights": 0.2,
+        "shadows": 0.15,
+        "denoise": 2,
+        "sharpen": 0.6
+      }
+    }
+  },
+  "story/make-1": {
+    "content": "pages/story:photos.make_1",
+    "aspect": "1",
+    "widths": "half",
+    "tuned": {
+      "image": "src-img/originals/studio-strawberry-cup.jpg",
+      "focal": [0.5, 0.55],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4
+      }
+    }
+  },
+  "story/make-2": {
+    "content": "pages/story:photos.make_2",
+    "aspect": "1",
+    "widths": "half",
+    "tuned": {
+      "image": "src-img/originals/studio-blue-drip-palm.jpg",
+      "focal": [0.5, 0.6],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4
+      }
+    }
+  },
+  "catering/hero": {
+    "content": "pages/catering:photos.hero",
+    "aspect": "2.333",
+    "widths": "full",
+    "tuned": {
+      "image": "src-img/originals/pique-table-bowls.jpg",
+      "focal": [0.5, 0.6],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0.5,
+        "highlights": 0.3,
+        "shadows": 0.15
+      }
+    }
+  },
+  "visit/hero": {
+    "content": "pages/visit:photos.hero",
+    "aspect": "4:5",
+    "widths": "tall",
+    "tuned": {
+      "image": "src-img/originals/shop-interior-pendants.jpg",
+      "focal": [0.5, 0.5],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0.25,
+        "levels": 0.3,
+        "highlights": 0.15,
+        "exposure": 0.15,
+        "shadows": 0.2
+      }
+    }
+  },
+  "what/hero": {
+    "content": "pages/what:photos.hero",
+    "aspect": "3:2",
+    "widths": "half",
+    "tuned": {
+      "image": "src-img/originals/studio-three-cups.jpg",
+      "focal": [0.5, 0.5],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4
+      }
+    }
+  },
+  "gift/hero": {
+    "content": "pages/gift-cards:photos.hero",
+    "aspect": "4:5",
+    "widths": "tall"
+  },
+  "loyalty/side": {
+    "content": "pages/loyalty:photos.side",
+    "aspect": "1",
+    "widths": "card"
+  },
+  "site/share": {
+    "content": "site:seo.share_image",
+    "aspect": "1200:630",
+    "widths": "share"
+  },
+  "specials/phi-velvet": {
+    "special": "phi-velvet",
+    "aspect": "4:5",
+    "widths": "tall",
+    "tuned": {
+      "image": "src-img/originals/special-phi-velvet-cup.jpg",
+      "focal": [0.5, 0.5],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4
+      }
+    }
+  },
+  "menu/balance-bowl": {
+    "square_id": "LHK6P6SKF2PQ2EOCHOU7FCF3",
+    "aspect": "1",
+    "widths": "card",
+    "tuned": {
+      "image": "src-img/menu/sq-balance-bowl.png",
+      "focal": [0.5, 0.5],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4
+      }
+    }
+  },
+  "menu/benys-blendy": {
+    "square_id": "TU7J64UXJX4R4SDRQFVQKTDW",
+    "aspect": "1",
+    "widths": "card",
+    "tuned": {
+      "image": "src-img/menu/sq-benys-blendy.jpeg",
+      "focal": [0.5, 0.263],
+      "zoom": 1.9,
+      "edit": {
+        "wb": 0,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4
+      }
+    }
+  },
+  "menu/berry-much-love-u": {
+    "square_id": "WCXFIIWG7UHLHK4YSLDSIWNZ",
+    "aspect": "1",
+    "widths": "card",
+    "tuned": {
+      "image": "src-img/menu/sq-berry-much-love-u.png",
+      "focal": [0.5, 0.5],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4
+      }
+    }
+  },
+  "menu/blue-tiful-day": {
+    "square_id": "LSJQNGQMULXRS23WZB2TYWXE",
+    "aspect": "1",
+    "widths": "card",
+    "tuned": {
+      "image": "src-img/menu/sq-blue-tiful-day.jpeg",
+      "focal": [0.5, 0.5],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4
+      }
+    }
+  },
+  "menu/build-your-bowl": {
+    "square_id": "GU5VYQ27LDDOP7GJ2AG2OCP2",
+    "aspect": "1",
+    "widths": "card",
+    "tuned": {
+      "image": "src-img/originals/studio-build-your-bowl-hand.jpg",
+      "focal": [0.49, 0.59],
+      "zoom": 1.4,
+      "edit": {
+        "wb": 0,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4
+      }
+    }
+  },
+  "menu/chia-oat-pudding": {
+    "square_id": "FYZITBC7G6D37EE5GCGQQ3ZS",
+    "aspect": "1",
+    "widths": "card",
+    "tuned": {
+      "image": "src-img/menu/sq-chia-oat-pudding.jpeg",
+      "focal": [0.5, 0.58],
+      "zoom": 1.3,
+      "edit": {
+        "wb": 0,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4
+      }
+    }
+  },
+  "menu/greenergy": {
+    "square_id": "UJQTWNXGOKCTJJT3NL6C4FMP",
+    "aspect": "1",
+    "widths": "card",
+    "tuned": {
+      "image": "src-img/menu/sq-greenergy.jpeg",
+      "focal": [0.5, 0.3125],
+      "zoom": 1.6,
+      "edit": {
+        "wb": 0,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4
+      }
+    }
+  },
+  "menu/her-power": {
+    "square_id": "VG77GD5AI2VQ53RSUC6LJHRJ",
+    "aspect": "1",
+    "widths": "card",
+    "tuned": {
+      "image": "src-img/menu/sq-her-power.png",
+      "focal": [0.5, 0.5],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4
+      }
+    }
+  },
+  "menu/mango-coco": {
+    "square_id": "VLK7BDLF3CHWWWUKENU3PK4C",
+    "aspect": "1",
+    "widths": "card",
+    "tuned": {
+      "image": "src-img/menu/sq-mango-coco.png",
+      "focal": [0.5, 0.5],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4
+      }
+    }
+  },
+  "menu/mango-mellow": {
+    "square_id": "P7ZNOVRDETCUEG7BNAJ6HXS2",
+    "aspect": "1",
+    "widths": "card",
+    "tuned": {
+      "image": "src-img/menu/sq-mango-mellow.jpeg",
+      "focal": [0.5, 0.5],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4,
+        "temp": 0.3,
+        "exposure": 0.15
+      }
+    }
+  },
+  "menu/pink-pink-pink": {
+    "square_id": "SE5PJMNKX4A4G7JWWR55MDLC",
+    "aspect": "1",
+    "widths": "card",
+    "tuned": {
+      "image": "src-img/menu/sq-pink-pink-pink.jpeg",
+      "focal": [0.5, 0.5],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4
+      }
+    }
+  },
+  "menu/recovery-bowl": {
+    "square_id": "77SYUYS4GZELUOU7VIXH7P3H",
+    "aspect": "1",
+    "widths": "card",
+    "tuned": {
+      "image": "src-img/originals/studio-recovery-bowl.jpg",
+      "focal": [0.5, 0.6],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4
+      }
+    }
+  },
+  "menu/strawesome": {
+    "square_id": "3ISNAOFVDY4UBUYP4WDE6MPV",
+    "aspect": "1",
+    "widths": "card",
+    "tuned": {
+      "image": "src-img/menu/sq-strawesome.jpeg",
+      "focal": [0.5, 0.5],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4,
+        "temp": 0.25
+      }
+    }
+  },
+  "menu/think-well": {
+    "square_id": "VHUIIAGO6PIUDF74DIBKM5O6",
+    "aspect": "1",
+    "widths": "card",
+    "tuned": {
+      "image": "src-img/menu/sq-think-well.jpeg",
+      "focal": [0.5, 0.5],
+      "zoom": 1.0,
+      "edit": {
+        "wb": 0,
+        "levels": 0.2,
+        "contrast": 0.04,
+        "vibrance": 0,
+        "house": 0.4
+      }
+    }
+  },
+  "album-cover/behind-the-counter": {
+    "album": "behind-the-counter",
+    "tuned": {
+      "image": "src-img/albums/01-behind-the-counter/06.jpg",
+      "focal": [0.55, 0.55]
+    }
+  },
+  "album-cover/run-clubs": {
+    "album": "run-clubs",
+    "tuned": {
+      "image": "src-img/albums/02-run-clubs/10.jpg",
+      "focal": [0.5, 0.55]
+    }
+  },
+  "album-cover/community": {
+    "album": "community",
+    "tuned": {
+      "image": "src-img/albums/03-community/12.jpg",
+      "focal": [0.5, 0.5]
+    }
+  },
+  "album-cover/the-regulars": {
+    "album": "the-regulars",
+    "tuned": {
+      "image": "src-img/albums/04-the-regulars/01.jpg",
+      "focal": [0.5, 0.6]
+    }
+  },
+  "album-cover/in-the-shop": {
+    "album": "in-the-shop",
+    "tuned": {
+      "image": "src-img/albums/05-in-the-shop/01.jpg",
+      "focal": [0.6, 0.5]
+    }
+  }
+}

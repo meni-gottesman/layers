@@ -1,0 +1,73 @@
+{
+  "title": "Community",
+  "order": 3,
+  "published": true,
+  "cover": "src-img/albums/03-community/12.jpg",
+  "cover_focus": "auto",
+  "photos": [
+    {
+      "image": "src-img/albums/03-community/01.jpg",
+      "alt": "A graduate in a white dress and mortarboard poses with a friend in front of the Layers storefront"
+    },
+    {
+      "image": "src-img/albums/03-community/02.jpg",
+      "alt": "A young woman in a white sleeveless top smiles blissfully, eyes closed on purpose"
+    },
+    {
+      "image": "src-img/albums/03-community/03.jpg",
+      "alt": "A UC Berkeley 2026 grad holds up a pink soft-serve-style Layers smoothie with a beaming Layers team member beside her"
+    },
+    {
+      "image": "src-img/albums/03-community/04.jpg",
+      "alt": "Two UC Berkeley Class of 2026 grads in blue gowns with gold stoles pose with a Layers team member in front of the Layers storefront"
+    },
+    {
+      "image": "src-img/albums/03-community/05.jpg",
+      "alt": "Sigma Kappa rooftop yoga class mid-flow in Warrior II: rows of women with arms extended on colorful mats"
+    },
+    {
+      "image": "src-img/albums/03-community/06.jpg",
+      "alt": "Rooftop yoga session with the Sigma Kappa sorority: about 20 women lie prone on mats while an instructor in an orange beanie walks between them"
+    },
+    {
+      "image": "src-img/albums/03-community/07.jpg",
+      "alt": "Four young women sit around a small black table inside Layers, smiling at camera and holding layered açaí-style bowls in clear cups"
+    },
+    {
+      "image": "src-img/albums/03-community/08.jpg",
+      "alt": "Four women from the Layers team stand arm-in-arm on the sidewalk in front of the white stucco Layers storefront"
+    },
+    {
+      "image": "src-img/albums/03-community/09.jpg",
+      "alt": "Two smiling young women in white tank tops and denim stand arm in arm in front of the white Layers storefront"
+    },
+    {
+      "image": "src-img/albums/03-community/10.jpg",
+      "alt": "Two young women hug and smile broadly inside the Layers shop, one in a white running tee and maroon shorts and one in a black crop top"
+    },
+    {
+      "image": "src-img/albums/03-community/11.jpg",
+      "alt": "Two Tri Delta members sipping Layers smoothies against a plain wall, for the Layers × Tri Delta St. Jude collaboration"
+    },
+    {
+      "image": "src-img/albums/03-community/12.jpg",
+      "alt": "Close-up of two hands holding Layers smoothies, from the Layers × Tri Delta St. Jude collaboration"
+    },
+    {
+      "image": "src-img/albums/03-community/13.jpg",
+      "alt": "Two Tri Delta members hugging beside their Layers smoothies, for the Layers × Tri Delta St. Jude collaboration"
+    },
+    {
+      "image": "src-img/albums/03-community/14.jpg",
+      "alt": "Bananas at the counter wearing “Delta Jude” and “Dude, it’s St. Jude” stickers, from the Layers × Tri Delta St. Jude collaboration"
+    },
+    {
+      "image": "src-img/albums/03-community/15.jpg",
+      "alt": "Two friends in yellow Alpha Phi shirts toasting with their Layers bowls"
+    },
+    {
+      "image": "src-img/albums/03-community/16.jpg",
+      "alt": "Three friends, two in Alpha Phi shirts, eating Layers bowls on the bench inside the shop"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{#- Loyalty (content/pages/loyalty.json; unpublished: no Layers loyalty
+    programme is public yet). The programme's mechanics have not been supplied
+    — no earn rate, points, tiers or thresholds are invented. Text still in
+    [brackets] is a placeholder and is flagged with .placeholder-copy. -#}
+{% extends "base.html" %}
+{% block main %}
+{%- macro ph(text) %}{% if text.startswith("[") %} placeholder-copy{% endif %}{% endmacro %}
+
+<section class="section section--cream pagehead">
+  <div class="wrap comp-b">
+    <div class="comp-b__main">
+      <p class="eyebrow">{{ page.eyebrow }}</p>
+      <h1 class="display">{{ page.title }}</h1>
+      <p class="lede{{ ph(page.text) }}">{{ page.text|br }}</p>
+{% if page.join_line %}
+      <p class="loyalty-cta">{{ page.join_line }}</p>
+{% endif %}
+    </div>
+    <div class="comp-b__low">
+      {{ pic("loyalty/side", sizes="(max-width: 720px) 100vw, 40vw", alt="", class_="frame-img") }}
+    </div>
+  </div>
+</section>
+
+<section class="section section--linen" aria-label="How it works">
+  <div class="wrap">
+    <p class="eyebrow">{{ page.how_heading }}</p>
+    <ol class="steplist manifesto manifesto--tight numbered">
+{% for s in page.steps %}
+      <li><h2 class="h3{{ ph(s) }}">{{ s }}</h2></li>
+{% endfor %}
+    </ol>
+  </div>
+</section>
+{% endblock %}

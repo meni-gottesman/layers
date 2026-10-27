@@ -1,0 +1,103 @@
+{
+  "eyebrow": "Our Story",
+  "title": "The Layers Story",
+  "photos": {
+    "open_1": {
+      "image": "src-img/originals/one-year-sunflowers.jpg",
+      "alt": "Two people smiling at the Layers counter on the shop’s first birthday, one holding a bouquet of sunflowers",
+      "focus": "auto",
+      "zoom": "auto"
+    },
+    "open_2": {
+      "image": "src-img/originals/blade-sign-face-logo.jpg",
+      "alt": "The round Layers blade sign, a line-drawn face in sunglasses, on the limewashed wall above a black lamp",
+      "focus": "auto",
+      "zoom": "auto"
+    },
+    "philosophy": {
+      "image": "src-img/originals/runners-waving-midrun.jpg",
+      "alt": "Two runners grinning and waving mid-run on a Berkeley street",
+      "focus": "auto",
+      "zoom": "auto"
+    },
+    "journey": {
+      "image": "src-img/originals/storefront-run-crowd.jpg",
+      "alt": "The Layers storefront on Channing Way under a blue sky, with a run club gathered along the sidewalk",
+      "focus": "auto",
+      "zoom": "auto"
+    },
+    "make_1": {
+      "image": "src-img/originals/studio-strawberry-cup.jpg",
+      "alt": "A layered Layers cup with halved strawberries pressed against a pink layer, on a stone slab",
+      "focus": "auto",
+      "zoom": "auto"
+    },
+    "make_2": {
+      "image": "src-img/originals/studio-blue-drip-palm.jpg",
+      "alt": "A layered Layers bowl with a blue spirulina drip, banana and blueberries, held on an open palm",
+      "focus": "auto",
+      "zoom": "auto"
+    }
+  },
+  "chapters": [
+    {
+      "title": "Founder’s Story",
+      "lead": "Layers began with Nanno’s personal journey of learning what health really means.",
+      "body": "What started as an interest in fitness gradually became a deeper understanding of how food, movement, sleep, recovery, and everyday habits work together. Living in New York introduced her to a broader wellness culture, but also made her question what “healthy” really meant when products could look healthy while still containing ingredients she would not choose for herself.\n\nDuring the pandemic, Nanno spent more time studying nutrition, movement, ingredients, and recovery. She began experimenting with whole fruits, natural sweetness, texture, fiber, and function, learning how food could be both nourishing and genuinely enjoyable.\n\nThat curiosity became Layers.\n\nThe first Layers location opened in 2022. In 2024, the idea for Berkeley began, giving Nanno the opportunity to rethink and refine the recipes, menu, space, service, team, and overall experience. After more than a year of careful development, Layers Berkeley officially opened its doors in October 2025.\n\nToday, Layers continues to grow with the same mindset it started with: stay curious, keep improving, and create something that helps people feel better in everyday life."
+    },
+    {
+      "title": "Why Layers Was Created",
+      "lead": "Layers was created from a simple belief: healthy food should feel honest.",
+      "body": "We wanted smoothies to taste like real fruit, not fruit diluted with water or ice, or sweetness hidden behind syrups and processed sweeteners. What we say is in the cup should truly be what is in the cup.\n\nWe use whole ingredients for natural sweetness, flavor, texture, fiber, nourishment, and function. Every ingredient should have a reason to be there.\n\nLayers was never created to be a diet brand or a place built around restriction. We believe in better ingredients, better choices, and better everyday habits without compromising taste or enjoyment.",
+      "closing_line": "If we say it is not there, it is not there."
+    },
+    {
+      "title": "Brand Philosophy",
+      "lead": "At Layers, we believe wellness is a whole system.",
+      "body": "Food is one part of it, alongside movement, recovery, sleep, connection, and the habits that shape everyday life. That is why Layers is more than a place to eat.\n\nWe bring wellness into the Berkeley community through food, run clubs, Pilates, yoga, wellness events, and movement focused experiences that bring people together.\n\nThe same intention carries into everything we serve. We choose real ingredients, remove what does not need to be there, and create food that is both nourishing and enjoyable.\n\nOur goal is to make wellness feel approachable, social, and part of everyday life.",
+      "closing_line": "Real food. Real movement. Real community."
+    },
+    {
+      "title": "Our Journey",
+      "lead": "Layers opened its first location in 2022, built through hands on learning, recipe development, customer conversations, and constant refinement.",
+      "body": "In 2024, the vision for Berkeley began. Instead of simply recreating the original shop, we used the opportunity to evolve Layers by refining the products, curating the space, strengthening the team, and creating a more complete wellness experience.\n\nAfter more than a year of testing, adjusting, and developing every detail, Layers Berkeley officially opened in October 2025.\n\nSince then, the brand has continued to grow through its customers, team, university community, wellness partnerships, running events, Pilates, yoga, and local collaborations.\n\nWe are still learning, still refining, and still building Layers with the people around us."
+    },
+    {
+      "title": "How We Make It",
+      "lead": "At Layers, good food starts with intention.",
+      "body": "We begin with whole ingredients and think carefully about what each one contributes, from flavor and texture to natural sweetness, fiber, nourishment, and function.\n\nWe use frozen fruit instead of ice, avoid added water, do not rely on refined sugar or syrups, and develop our bowl bases in house so we have greater control over ingredients, flavor, and texture.\n\nEvery recipe is tested and refined through real daily experience, including feedback from our team and customers.",
+      "closing_line": "Real ingredients. Intentional recipes. Nothing unnecessary."
+    }
+  ],
+  "pillars": [
+    {
+      "name": "No ice",
+      "description": "Frozen fruit brings the cold without diluting the flavor."
+    },
+    {
+      "name": "No water",
+      "description": "Full flavor and satisfying texture, without watering things down."
+    },
+    {
+      "name": "No refined sugar or syrups",
+      "description": "Natural sweetness comes from whole ingredients."
+    },
+    {
+      "name": "House-made bases",
+      "description": "Developed in-house for better control over ingredients, flavor, and texture."
+    },
+    {
+      "name": "Functional ingredients",
+      "description": "Chosen with intention to support the purpose of each recipe."
+    }
+  ],
+  "closing": {
+    "statement": "Real Food. Functional Fuel.",
+    "order_label": "Order on Square",
+    "menu_label": "Explore the menu"
+  },
+  "seo": {
+    "title": "The Layers Story | Layers Superfood Bar",
+    "description": "How Layers began, why it was created, and how we make every smoothie and bowl: whole ingredients, no ice, no added water, no refined sugar or syrups, house-made bases."
+  }
+}

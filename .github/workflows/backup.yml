@@ -1,0 +1,102 @@
+# Weekly backup (Sundays) and "Back up now" in Pages CMS: a GitHub Release
+# backup-YYYY-MM-DD-HHMM (Berkeley time) holding one zip of content/,
+# src-img/ (the files in git), data/, templates/ and the built public/.
+# The newest 12 weekly backups are kept, and separately the newest 6 made
+# with "Back up now". In a public repository, releases are public.
+# Restoring: restore.yml. Details: tools/ci/backup.py, docs/SETUP.md.
+name: Back up the website
+
+on:
+  schedule:
+    - cron: "23 4 * * 0"           # Sundays 4:23 in Berkeley
+      timezone: America/Los_Angeles
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: Filled in by Pages CMS ("Back up now"). Leave empty when running by hand.
+        type: string
+        required: false
+        default: ""
+
+permissions: {}
+
+jobs:
+  backup:
+    name: Make a backup
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    permissions:
+      contents: write              # create backup releases, delete old ones and their tags
+    concurrency:
+      group: layers-backup
+      cancel-in-progress: false
+    steps:
+      - name: Only run on main
+        if: github.ref != 'refs/heads/main'
+        run: |
+          {
+            echo "### This only runs on the main branch"
+            echo
+            echo "Backups are made from **main**. If you switched branches in Pages CMS, switch back to **main** (the branch menu at the top left) and try again. Nothing was changed."
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "::error title=Request refused::This workflow only runs on main."
+          exit 1
+
+      - name: Get the site's files
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          persist-credentials: false
+
+      - name: Check the request
+        run: python3 tools/ci/payload.py backup
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements.lock
+
+      - name: Install the build tools
+        run: python -m pip install -r requirements.txt -c requirements.lock
+
+      - name: Restore photos built by earlier runs
+        uses: actions/cache/restore@v6
+        with:
+          path: |
+            public/assets/img
+            public/assets/albums
+            src-img/media-manifest.json
+            src-img/album-manifest.json
+          key: layers-photos-v1-${{ github.run_id }}
+          restore-keys: layers-photos-v1-
+
+      # A backup is most useful exactly when something is wrong, so a content
+      # problem doesn't stop it: the build leaves public/ as committed and the
+      # backup notes that.
+      # --offline: a backup never spends a Behold feed request
+      - name: Build the site
+        id: build
+        run: |
+          if python tools/build.py --offline; then
+            echo "result=passed" >> "$GITHUB_OUTPUT"
+          else
+            echo "result=failed" >> "$GITHUB_OUTPUT"
+            echo "::warning title=Backed up anyway::The content didn't build; the backup holds it with the last committed public/."
+          fi
+
+      - name: Zip it up
+        id: zip
+        env:
+          BUILD_RESULT: ${{ steps.build.outputs.result }}
+        run: python3 tools/ci/backup.py make --out "$RUNNER_TEMP/backup" --build "$BUILD_RESULT"
+
+      - name: Publish the backup and prune old ones
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ZIP: ${{ steps.zip.outputs.zip }}
+          KIND: ${{ github.event_name == 'schedule' && 'weekly' || 'manual' }}
+        run: python3 tools/ci/backup.py publish --zip "$ZIP" --kind "$KIND"

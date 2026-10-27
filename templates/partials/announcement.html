@@ -1,0 +1,16 @@
+{#- The announcement bar (content/announcement.json), above the header on
+    every page while it is switched on and today is between its dates.
+    Dismissible; the dismissal is remembered per message (localStorage key in
+    data-ann-key), so a new message shows again. The small script below runs
+    BEFORE the bar is painted: it removes a bar this visitor already dismissed,
+    or one whose dates have passed since the last build, so it never flashes.
+    It also keeps --ann-h (on <html>) at the bar's height, which the homepage
+    hero subtracts so its Order button stays on the first screen.
+    main.js wires the close button. -#}
+{%- import "partials/icons.html" as icons -%}
+{%- set a = announcement_active -%}
+<div id="ann" class="ann ann--{{ a.tone }}" role="region" aria-label="Announcement" data-ann-key="{{ announcement_key }}" data-starts="{{ a.starts }}" data-ends="{{ a.ends }}">
+  <p class="ann__msg">{{ a.message }}{% if a.link_url and a.link_label %} <a class="ann__link" href="{{ a.link_url }}"{{ link_target(a.link_url) }}>{{ a.link_label }}{{ link_hint(a.link_url) }}</a>{% endif %}</p>
+  <button class="ann__close" type="button" data-ann-close aria-label="Dismiss this announcement">{{ icons.close(16, "2") }}</button>
+</div>
+<script>(function(){try{var b=document.getElementById('ann');if(!b)return;var p={};new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value});var t=p.year+'-'+p.month+'-'+p.day,s=b.getAttribute('data-starts'),e=b.getAttribute('data-ends'),k=null;try{k=window.localStorage.getItem('layers-ann-dismissed')}catch(x){}if((s&&t<s)||(e&&t>e)||k===b.getAttribute('data-ann-key')){b.parentNode.removeChild(b);document.body.classList.remove('has-ann');return}var r=document.documentElement,f=function(){r.style.setProperty('--ann-h',(b.isConnected?b.offsetHeight:0)+'px')};f();if(window.ResizeObserver)new ResizeObserver(f).observe(b)}catch(x){}})();</script>

@@ -1,0 +1,24 @@
+# Exact versions CI installs (pip install -r requirements.txt -c requirements.lock),
+# so a new major release of a library can't stop every publish overnight with
+# no change in this repo. Resolved for CI's Python 3.12 on Linux x86_64; every
+# pin has a wheel there. requirements.txt keeps the lower bounds for laptops.
+#
+# To upgrade deliberately: change or delete a pin, run the suite and a build,
+# then re-resolve for CI (docs/SETUP.md, "Local commands"):
+#   python3 -m pip install --dry-run --ignore-installed --quiet --report lock.json \
+#     --python-version 3.12 --platform manylinux_2_28_x86_64 --implementation cp \
+#     --only-binary=:all: --target /tmp/lock -r requirements.txt
+# and copy each "name version" from lock.json's "install" list here.
+iniconfig==2.3.1
+Jinja2==3.1.6
+MarkupSafe==3.0.4
+numpy==2.5.4
+opencv-python-headless==5.0.0.93
+packaging==26.3
+pillow==13.0.0
+pillow_heif==1.8.1
+pluggy==1.7.0
+Pygments==2.21.0
+pytest==9.1.1
+PyYAML==6.0.3
+segno==1.6.6

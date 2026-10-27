@@ -1,0 +1,102 @@
+# Refresh the menu from Layers' public Square store (names, prices, new items,
+# product photos) every morning, and from "Refresh menu from Square" in
+# Pages CMS. Saves only when what the site shows changed (tools/ci/menu.py),
+# only after the content still passes the checks, then publishes — by
+# calling build-deploy.yml, because a commit made with GITHUB_TOKEN doesn't
+# start the push-triggered build.
+# Security: CMS_SPEC §8.10 (main only; the payload is read by Python from the
+# event file, never printed). The checkout keeps no credentials: only the
+# step that saves gets the push token (GIT_PUSH_TOKEN), so the Square sync,
+# the photo downloads and pip never run with it in git's config.
+name: Refresh menu from Square
+
+on:
+  schedule:
+    - cron: "37 5 * * *"           # 5:37 every morning in Berkeley, before the daily build
+      timezone: America/Los_Angeles
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: Filled in by Pages CMS ("Refresh menu from Square"). Leave empty when running by hand.
+        type: string
+        required: false
+        default: ""
+
+permissions: {}
+
+jobs:
+  refresh:
+    name: Fetch the menu from Square
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write              # commit the refreshed menu
+    # Its own queue: a pending refresh can't push a waiting restore or undo
+    # out of a shared queue (a push race between them is retried by rebasing;
+    # tools/ci/common.py commit_and_push).
+    concurrency:
+      group: layers-menu-refresh
+      cancel-in-progress: false
+    outputs:
+      changed: ${{ steps.save.outputs.changed }}
+    steps:
+      - name: Only run on main
+        if: github.ref != 'refs/heads/main'
+        run: |
+          {
+            echo "### This only runs on the main branch"
+            echo
+            echo "The website publishes from **main**. If you switched branches in Pages CMS, switch back to **main** (the branch menu at the top left) and try again. Nothing was changed."
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "::error title=Request refused::This workflow only runs on main."
+          exit 1
+
+      - name: Get the site's files
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          persist-credentials: false
+
+      - name: Check the request
+        run: python3 tools/ci/payload.py menu-refresh
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements.lock
+
+      - name: Install the build tools
+        run: python -m pip install -r requirements.txt -c requirements.lock
+
+      - name: Fetch the live menu from Square
+        run: python tools/sync-menu-from-store.py
+
+      - name: Check the content still passes
+        run: python tools/build.py --check
+
+      - name: Save the menu if it changed
+        id: save
+        env:
+          GIT_PUSH_TOKEN: ${{ github.token }}
+        run: python3 tools/ci/menu.py commit
+
+      - name: Show what went wrong
+        if: failure()
+        run: |
+          if [ -f build-report.md ]; then cat build-report.md >> "$GITHUB_STEP_SUMMARY"; fi
+
+  publish:
+    name: Publish
+    needs: refresh
+    if: needs.refresh.outputs.changed == 'true'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+      issues: write
+    uses: ./.github/workflows/build-deploy.yml
+    secrets: inherit

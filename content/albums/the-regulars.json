@@ -1,0 +1,29 @@
+{
+  "title": "The regulars",
+  "order": 4,
+  "published": true,
+  "cover": "src-img/albums/04-the-regulars/01.jpg",
+  "cover_focus": "auto",
+  "photos": [
+    {
+      "image": "src-img/albums/04-the-regulars/01.jpg",
+      "alt": "A curly-haired dog sitting on a black café chair outside the Layers storefront, under the wordmark"
+    },
+    {
+      "image": "src-img/albums/04-the-regulars/02.jpg",
+      "alt": "A black dog with a pink collar waits at the Layers counter beside a wall of bananas while its owner orders"
+    },
+    {
+      "image": "src-img/albums/04-the-regulars/03.jpg",
+      "alt": "A blue merle Australian Shepherd lying on the wooden floor inside Layers, looking up"
+    },
+    {
+      "image": "src-img/albums/04-the-regulars/04.jpg",
+      "alt": "A woman in white headphones crouches at the Layers door beside a smiling tricolor dog"
+    },
+    {
+      "image": "src-img/albums/04-the-regulars/05.jpg",
+      "alt": "A brown-and-white dog in a red harness on the Channing Way sidewalk, looking up at its owner"
+    }
+  ]
+}

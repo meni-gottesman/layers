@@ -1,0 +1,17 @@
+# Layers site build (python3 tools/build.py) and tests (pytest -q).
+# Python >= 3.11 (CI runs 3.12; tests/test_compat.py checks 3.11 syntax).
+# Lower bounds here; CI installs the exact versions in requirements.lock
+# (pip install -r requirements.txt -c requirements.lock), so an upstream
+# release can't stop publishing overnight. Built photos are committed with
+# fingerprints of the source file, the crop/retouch recipe and the pipeline
+# code — not of the Python or library versions — so a newer
+# Pillow/numpy/OpenCV never forces a rebuild of photos that are already
+# built. A photo built for the first time uses whatever versions are installed.
+Pillow>=10.4
+numpy>=1.26
+opencv-python-headless>=4.9   # noise reduction in tools/photo_edit.py
+pillow-heif>=0.18             # reads iPhone HEIC originals
+jinja2>=3.1                   # templates/
+segno>=1.6                    # QR codes (extras step)
+pytest>=8
+PyYAML>=6.0          # tests + tools/cms_normalize.py read .pages.yml (the build itself does not)

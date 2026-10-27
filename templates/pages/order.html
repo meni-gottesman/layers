@@ -1,0 +1,26 @@
+{#- DEVELOPER DRAFT, never published (PAGE_CONFIG "order": published False):
+    Layers' Square Online store, embedded, kept in case an embedded store is
+    wanted later — today every Order button opens Square in a new tab, as the
+    client asked. Not in content/ because it isn't a page the manager runs.
+    Square handles the cart, pickup time and payment; nothing is processed by
+    this site. ?c=<Square category id> opens the store at that category. The
+    new-tab link is always visible in case a browser blocks the embedded
+    checkout. -#}
+{% extends "base.html" %}
+{% block main %}
+{%- set store = site.ordering.square_url ~ "/" %}
+
+<section class="order" aria-labelledby="order-title">
+  <div class="order__bar">
+    <div>
+      <h1 id="order-title" class="order__title">Order</h1>
+      <p class="order__meta">Pickup at {{ site.business.street }} · {{ hours_line }}</p>
+    </div>
+    <a class="order__out" data-order-out href="{{ store }}" target="_blank" rel="noopener">Open in a new tab<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+  </div>
+  <div class="order__frame">
+    <iframe id="order-frame" src="{{ store }}" title="Layers online ordering, by Square" allow="payment" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+  <p class="order__fine">Ordering and payment are handled securely by Square. Trouble checking out? <a data-order-out href="{{ store }}" target="_blank" rel="noopener">Open the order page in a new tab</a>.</p>
+</section>
+{% endblock %}

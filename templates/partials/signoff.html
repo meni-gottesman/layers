@@ -1,0 +1,7 @@
+{#- Brand sign-off: identical on every page that shows it. The homepage opts
+    out (PAGE_CONFIG signoff: False) so it ends Visit -> footer. -#}
+<section class="signoff" aria-label="{{ site.business.name }}">
+  <img class="signoff__mark" src="/assets/img/face.png" alt="" width="88" height="88" loading="lazy">
+  <p class="signoff__eyebrow">Superfood Bar · {{ site.business.street }}, {{ site.business.city }}</p>
+  <p class="signoff__tagline">{{ site.signoff_tagline }}</p>
+</section>

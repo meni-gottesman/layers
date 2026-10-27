@@ -1,0 +1,41 @@
+{
+  "title": "Behind the counter",
+  "order": 1,
+  "published": true,
+  "cover": "src-img/albums/01-behind-the-counter/06.jpg",
+  "cover_focus": "auto",
+  "photos": [
+    {
+      "image": "src-img/albums/01-behind-the-counter/01.jpg",
+      "alt": "A smiling staff member in a smocked white-and-blue top stands at the register, looking straight into the camera"
+    },
+    {
+      "image": "src-img/albums/01-behind-the-counter/02.jpg",
+      "alt": "Over-the-shoulder top-down shot of a staff member in a washed maroon Layers Superfood Bar embroidered cap"
+    },
+    {
+      "image": "src-img/albums/01-behind-the-counter/03.jpg",
+      "alt": "A staff member with a black top and Levi's jeans, seen in profile from behind, slices bananas at the Layers prep counter"
+    },
+    {
+      "image": "src-img/albums/01-behind-the-counter/04.jpg",
+      "alt": "A smiling Layers staffer in profile at the front counter, handing out an order on a wooden pedestal"
+    },
+    {
+      "image": "src-img/albums/01-behind-the-counter/05.jpg",
+      "alt": "A staff member in a black tee laughs and gestures while serving a customer, whose dark hair fills the right edge"
+    },
+    {
+      "image": "src-img/albums/01-behind-the-counter/06.jpg",
+      "alt": "Four members of the Layers team in embroidered Layers caps behind the counter"
+    },
+    {
+      "image": "src-img/albums/01-behind-the-counter/07.jpg",
+      "alt": "Two Layers team members smiling behind the counter, beside the register and blenders"
+    },
+    {
+      "image": "src-img/albums/01-behind-the-counter/08.jpg",
+      "alt": "A Layers team member at the prep counter behind a wall of bananas"
+    }
+  ]
+}

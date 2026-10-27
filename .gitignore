@@ -1,0 +1,44 @@
+# ---------------------------------------------------------------------------
+# Layers Superfood Bar website — what is NOT version-controlled.
+# The repo holds everything needed to rebuild and edit the site: page sources,
+# content files, the photo originals that are placed on the site, album photos
+# and the tooling. Business papers and the raw media archive stay out.
+# ---------------------------------------------------------------------------
+
+# Business papers (agreement, proposal, client notes) — never in the repo
+contract/
+deliverable/
+Layers-Services-Agreement*
+Layers-Website-Proposal.md
+DELIVERABLE.md
+*.pdf
+
+# Design history and the client's old prototypes (reference only)
+design/
+reference/
+
+# Raw media archive: unplaced photos and the film's source clips.
+# The finished film is committed under public/assets/video/.
+src-img/library/
+src-video/clips/
+src-video/*.mp4
+
+# Instagram feed photos: downloaded by every build from Behold (tools/instagram.py)
+src-img/instagram/
+
+# Build reports (written by every tools/build.py run; CI posts the .md)
+build-report.json
+build-report.md
+
+# Local tooling state
+.pytest_cache/
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+.DS_Store
+*.log
+
+# The GitHub Pages copy tools/ci/prefix.py writes when run in the repo root
+_site/

@@ -1,0 +1,37 @@
+{
+  "eyebrow": "How We Make It",
+  "title": "Nothing Unnecessary",
+  "lede": "At Layers, good food starts with intention.",
+  "lead": "We begin with whole ingredients and think carefully about what each one contributes, from flavor and texture to natural sweetness, fiber, nourishment, and function.",
+  "body": "We use frozen fruit instead of ice, avoid added water, do not rely on refined sugar or syrups, and develop our bowl bases in house so we have greater control over ingredients, flavor, and texture.\n\nEvery recipe is tested and refined through real daily experience, including feedback from our team and customers.",
+  "closing_line": "Real ingredients. Intentional recipes. Nothing unnecessary.",
+  "pillars": [
+    {
+      "name": "No ice",
+      "description": "Frozen fruit brings the cold without diluting the flavor."
+    },
+    {
+      "name": "No water",
+      "description": "Full flavor and satisfying texture, without watering things down."
+    },
+    {
+      "name": "No refined sugar or syrups",
+      "description": "Natural sweetness comes from whole ingredients."
+    },
+    {
+      "name": "House-made bases",
+      "description": "Developed in-house for better control over ingredients, flavor, and texture."
+    },
+    {
+      "name": "Functional ingredients",
+      "description": "Chosen with intention to support the purpose of each recipe."
+    }
+  ],
+  "story_link_label": "Read the full Layers story",
+  "menu_label": "See the menu",
+  "order_label": "Order on Square",
+  "seo": {
+    "title": "How We Make It | Layers Superfood Bar",
+    "description": "How every Layers smoothie and bowl is made: whole ingredients, frozen fruit instead of ice, no added water, no refined sugar or syrups, house-made bases."
+  }
+}

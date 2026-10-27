@@ -1,0 +1,28 @@
+{
+  "enabled": true,
+  "heading": "Layers Superfood Bar",
+  "buttons": [
+    {
+      "label": "Order on Square",
+      "url": "https://layerssuperfoodbar.square.site",
+      "highlight": true
+    },
+    {
+      "label": "See the menu",
+      "url": "/menu",
+      "highlight": false
+    },
+    {
+      "label": "Catering",
+      "url": "/catering",
+      "highlight": false
+    },
+    {
+      "label": "Visit us",
+      "url": "/visit",
+      "highlight": false
+    }
+  ],
+  "show_specials": true,
+  "show_events": true
+}

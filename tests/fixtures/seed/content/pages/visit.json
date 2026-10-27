@@ -1,0 +1,36 @@
+{
+  "eyebrow": "Visit",
+  "title": "Visit Layers",
+  "photos": {
+    "hero": {
+      "image": "src-img/originals/shop-interior-pendants.jpg",
+      "alt": "Inside Layers, empty and quiet: globe pendants over a long counter and pale wood floors",
+      "focus": "auto",
+      "zoom": "auto"
+    }
+  },
+  "directions_label": "Get directions",
+  "order_label": "Order ahead on Square",
+  "pickup_note": "Order ahead on Square and pick up at the front counter.",
+  "getting_here": {
+    "heading": "Getting here",
+    "sections": [
+      {
+        "heading": "BART & bus",
+        "text": "Downtown Berkeley BART is about a 15-minute walk (about ¾ mile).\n\nAC Transit line 6 stops at Telegraph Ave & Haste St, about two minutes away. Lines 51B, 36, 22 and 27 stop on Durant Ave at Telegraph and at Dana, about three minutes away."
+      },
+      {
+        "heading": "Parking",
+        "text": "The city-owned Telegraph Channing Garage (2450 Durant Ave) is around the corner.\n\nMetered street parking nearby takes coins, cards and the ParkMobile app."
+      },
+      {
+        "heading": "Bike",
+        "text": "A Bay Wheels station sits at Haste St & Telegraph Ave, about two minutes away, and there are public bike racks along Telegraph."
+      }
+    ]
+  },
+  "seo": {
+    "title": "Visit | Layers Superfood Bar",
+    "description": "Visit Layers Superfood Bar at 2436 Channing Way, Berkeley, by Telegraph Ave. Hours, directions, BART and AC Transit, parking and bike share."
+  }
+}

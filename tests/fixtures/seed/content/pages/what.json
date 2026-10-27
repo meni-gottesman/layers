@@ -1,0 +1,43 @@
+{
+  "eyebrow": "What We Make",
+  "title": "Everyday nutrition, built with purpose.",
+  "photos": {
+    "hero": {
+      "image": "src-img/originals/studio-three-cups.jpg",
+      "alt": "Three layered Layers cups — berry, blue spirulina with kiwi, and strawberry — offered up on stacked stone against a peach wall",
+      "focus": "auto",
+      "zoom": "auto"
+    }
+  },
+  "items": [
+    {
+      "heading": "Functional smoothies",
+      "text": "Real fruit and clean bases, with boosts for energy, focus, and recovery."
+    },
+    {
+      "heading": "Thick bowls",
+      "text": "Spoonable bases, layered with fruit, crunch, and protein."
+    },
+    {
+      "heading": "Thoughtful boosts",
+      "text": "Lion’s mane, creatine, spirulina, hemp, flax, and more."
+    },
+    {
+      "heading": "Built for real schedules",
+      "text": "Fast, clean, satisfying. Workdays, workouts, study sessions."
+    },
+    {
+      "heading": "Real food first",
+      "text": "Ingredients you can recognize, prepared with intention."
+    }
+  ],
+  "closing": {
+    "statement": "See what’s on today.",
+    "menu_label": "Browse the menu",
+    "order_label": "Order on Square"
+  },
+  "seo": {
+    "title": "What We Make | Layers Superfood Bar",
+    "description": "What Layers makes: functional smoothies, thick bowls on house-made bases, thoughtful boosts, built for real schedules. Real food first, in Berkeley."
+  }
+}

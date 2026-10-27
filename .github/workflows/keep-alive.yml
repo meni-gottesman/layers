@@ -1,0 +1,39 @@
+# GitHub switches off scheduled workflows in a public repository after 60
+# days without activity — the daily build, the menu refresh and the weekly
+# backup would silently stop during a quiet spell. Once a week this
+# re-enables any GitHub switched off for inactivity and, only if main has had
+# no commit for 45 days, pushes an empty heartbeat commit
+# (tools/ci/keepalive.py). Weekly, so the heartbeat always lands before day
+# 60 (45 + 7 = 52 at worst). Not startable from Pages CMS (no payload input).
+name: Keep scheduled updates running
+
+on:
+  schedule:
+    - cron: "41 3 * * 1"           # Mondays, 3:41 in Berkeley
+      timezone: America/Los_Angeles
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  keep-alive:
+    name: Re-enable the scheduled workflows
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write               # PUT …/actions/workflows/<file>/enable
+      contents: write              # the heartbeat commit, only after 45 quiet days
+    steps:
+      - name: Get the site's files
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          sparse-checkout: tools/ci
+          persist-credentials: false
+
+      - name: Re-enable and, if needed, heartbeat
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GIT_PUSH_TOKEN: ${{ github.token }}
+        run: python3 tools/ci/keepalive.py

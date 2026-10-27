@@ -1,0 +1,28 @@
+{
+  "enabled": true,
+  "heading": "Follow along",
+  "mode": "curated",
+  "count": 4,
+  "curated": [
+    {
+      "image": "src-img/albums/04-the-regulars/04.jpg",
+      "post_url": "https://www.instagram.com/p/DeFwOJmj8zc/",
+      "alt": "A woman in white headphones crouches at the Layers door beside a smiling tricolor dog"
+    },
+    {
+      "image": "src-img/albums/03-community/12.jpg",
+      "post_url": "https://www.instagram.com/p/Dd4xpEAktac/",
+      "alt": "Close-up of two hands holding Layers smoothies, from the Layers × Tri Delta St. Jude collaboration"
+    },
+    {
+      "image": "src-img/albums/02-run-clubs/14.jpg",
+      "post_url": "https://www.instagram.com/p/DeKbt0joBZx/",
+      "alt": "She Runs Berkeley runners holding Layers cups inside the shop, under the globe pendants"
+    },
+    {
+      "image": "src-img/albums/02-run-clubs/16.jpg",
+      "post_url": "https://www.instagram.com/p/DeIBhzaIEcx/",
+      "alt": "The INSYNC run club gathered outside Layers on Channing Way after an afternoon run"
+    }
+  ]
+}

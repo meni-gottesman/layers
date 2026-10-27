@@ -1,0 +1,84 @@
+{#- The page chrome: <head>, announcement bar, header + drawer, sign-off band
+    and footer. Every page template extends this and fills {% block main %};
+    the /links page and the staff tools (tool.html) also replace
+    {% block header %} and {% block footer %} with a lighter version, and a page
+    with its own script adds it in {% block scripts %}.
+    Business details come from content/site.json, hours from content/hours.json;
+    technical page settings (header mode, nav item, body class, preloads,
+    JSON-LD) from PAGE_CONFIG in tools/render.py — never from editable content.
+    A page without its own SEO description (the link-in-bio page, the staff
+    tools) uses Business details › SEO › Default description. -#}
+{%- import "partials/icons.html" as icons -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ seo.title }}</title>
+{% set description = seo.description or site.seo.default_description %}
+{% if description %}
+<meta name="description" content="{{ description }}">
+{% endif %}
+{% if cfg.noindex %}
+<meta name="robots" content="noindex">
+{% else %}
+<link rel="canonical" href="{{ canonical }}">
+{# Social cards: a shared link shows the photo, title and description. #}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.business.name }}">
+<meta property="og:title" content="{{ seo.title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ share_image }}">
+<meta name="twitter:card" content="summary_large_image">
+{% endif %}
+<meta name="theme-color" content="#E5E0D8">
+<link rel="icon" href="/assets/img/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="icon" href="/assets/img/face-mark.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+{# Archivo: the closest open-licence match to Happier's editorial grotesk (Scout).
+    One family, two widths: 87.5% for display/labels/navigation, 100% for reading. #}
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87.5..100,400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/styles.css">
+<meta name="layers-hours" content='{{ hours_meta }}'>
+{% for p in preloads %}
+<link rel="preload" as="image" type="image/webp" href="{{ p.href }}" imagesrcset="{{ p.srcset }}" imagesizes="{{ p.sizes }}" media="{{ p.media }}" fetchpriority="high">
+{% endfor %}
+{% if jsonld %}
+<script type="application/ld+json">{{ jsonld }}</script>
+{% endif %}
+</head>
+<body class="{{ cfg.body }}{% if announcement_active %} has-ann{% endif %}">
+<a class="skip-link" href="#main">Skip to content</a>
+{% if announcement_active %}
+{% include "partials/announcement.html" %}
+{% endif %}
+
+{% block header %}
+{% include "partials/header.html" %}
+{% endblock %}
+
+<main id="main">
+{% block main %}{% endblock %}
+</main>
+{% block footer %}
+{% if cfg.signoff %}
+{% include "partials/signoff.html" %}
+{% endif %}
+{% include "partials/footer.html" %}
+{% endblock %}
+
+<script src="/assets/js/vendor/gsap.min.js" defer></script>
+<script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
+<script src="/assets/js/main.js" defer></script>
+{% block scripts %}{% endblock %}
+{% if site.analytics.cloudflare_web_analytics_token.strip() and cfg.analytics %}
+{#- Cloudflare Web Analytics, on the live site only: the same build is the
+    GitHub Pages preview and runs on localhost, and those visits must not be
+    counted. The hostnames come from PRODUCTION_HOSTS in tools/render.py. #}
+<script>(function(){var h={{ analytics_hosts }};if(h.indexOf(location.hostname)<0)return;var s=document.createElement('script');s.defer=true;s.src='https://static.cloudflareinsights.com/beacon.min.js';s.setAttribute('data-cf-beacon',{{ analytics_beacon }});document.body.appendChild(s);})();</script>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,409 @@
+{
+  "eyebrow": "Menu",
+  "title": "The Menu",
+  "status_note": "Prices and availability are confirmed on Square when you order.",
+  "allergen_note": "Allergen questions? Ask our team before you order.",
+  "order_label": "Order on Square",
+  "items": [
+    {
+      "square_id": "WCXFIIWG7UHLHK4YSLDSIWNZ",
+      "square_name": "Berry Much Love U (Classic Acai)",
+      "category": "Bowls",
+      "note": "Classic Açaí",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "VLK7BDLF3CHWWWUKENU3PK4C",
+      "square_name": "Mango Coco",
+      "category": "Bowls",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "SE5PJMNKX4A4G7JWWR55MDLC",
+      "square_name": "Pink Pink Pink",
+      "category": "Bowls",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "77SYUYS4GZELUOU7VIXH7P3H",
+      "square_name": "Recovery Bowl - 40g Protein (Icy Textures)",
+      "category": "Bowls",
+      "photo": "src-img/originals/studio-recovery-bowl.jpg",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "LHK6P6SKF2PQ2EOCHOU7FCF3",
+      "square_name": "Balance Bowl (Yogurt) - 17g Protein",
+      "category": "Bowls",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "FYZITBC7G6D37EE5GCGQQ3ZS",
+      "square_name": "Layers Chia & Oat pudding bowl",
+      "category": "Bowls",
+      "display_name": "Chia & Oat Pudding",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "GU5VYQ27LDDOP7GJ2AG2OCP2",
+      "square_name": "Build Your Bowl",
+      "category": "Bowls",
+      "photo": "src-img/originals/studio-build-your-bowl-hand.jpg",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "3ISNAOFVDY4UBUYP4WDE6MPV",
+      "square_name": "Strawesome (Skin Health & Antioxidant)",
+      "category": "Smoothies",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "LSJQNGQMULXRS23WZB2TYWXE",
+      "square_name": "Blue-Tiful-Day (Hydration & Mineral Support)",
+      "category": "Smoothies",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "UJQTWNXGOKCTJJT3NL6C4FMP",
+      "square_name": "Greenergy (Daily Greens & Inner Balance)",
+      "category": "Smoothies",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "TU7J64UXJX4R4SDRQFVQKTDW",
+      "square_name": "Beny’s Blendy (Focus & Brain Support)",
+      "category": "Smoothies",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "P7ZNOVRDETCUEG7BNAJ6HXS2",
+      "square_name": "Mango Mellow - 19g Protein/7g Fiber",
+      "category": "Smoothies",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "VHUIIAGO6PIUDF74DIBKM5O6",
+      "square_name": "Think Well - 33g Protein/ 10g Fiber",
+      "category": "Smoothies",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "VG77GD5AI2VQ53RSUC6LJHRJ",
+      "square_name": "Her Power - 38g Plant Protein",
+      "category": "Smoothies",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "2KT64T7RQG4ILDI7HYBZZFUK",
+      "square_name": "100% Cacao Organic Vegan Dark Chocolate Bar with Cocoa Nibs",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "NR7HXLVCA46POCLST4M47UYI",
+      "square_name": "10g Protein Organic Peanut Butter Bar",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "JSJOPLV3QD3MGSJ5R5WBJU2A",
+      "square_name": "15g Protein Banana Bread Bars",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "5PNCQGLYLZCUGBIVIIEUAQW7",
+      "square_name": "70% Cacao Organic Vegan Dark Chocolate Bar",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "JU62YMPYMTY6JE6PR2XO73D3",
+      "square_name": "70% Cacao Organic Vegan Dark Chocolate Bar with Coffee",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "CQRBDHC6OWIGJYLNRNDKX23O",
+      "square_name": "Albacore Tuna in Olive Oil",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "C7D5N5YAAUDEFQB3766DBWFU",
+      "square_name": "Almond Espresso Butter- Naked",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "OJUDNTGDLRIXTNQHOGVYQI7R",
+      "square_name": "Almond Java Crunch",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "JRGNURLJHW37VON2KOL5EXAL",
+      "square_name": "Beet Chips - Vegan Veggie Chips",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "IT4UUOROE5S6FNQ2FBDOWHHU",
+      "square_name": "Cantabrian Anchovies in Extra Virgin Olive Oil",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "QQBOAWT3GWYBRCRBV2XU3QKT",
+      "square_name": "Cauliflower Veggie Chips",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "4OCUE3ZO6UICEDXEOLJPQHKB",
+      "square_name": "CauliPuffs Honey BBQ",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "CVZF75ADABFHW223KH7MJCAI",
+      "square_name": "CauliPuffs Vegan Salt & Pepper",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "GXEYNARGGCFARAHVHQITPBER",
+      "square_name": "Classic Dill Pickle Chips",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "BLRFQ42DSZQFF3HHNKGLMAI6",
+      "square_name": "David Protein Bar Carton",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "Q4H75D4TN4JHRSLYTQN3NYG7",
+      "square_name": "Garlic Dill Mini Pickles",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "GUPZWN6YF6WGPWVALLOGHSJO",
+      "square_name": "Hazelnut Praline Dark Chocolate Medjool Dates",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "UC2XIYBE7SRZAWMA6U3XCXJ3",
+      "square_name": "Kalamata Olives Extra Virgin Olive Oil",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "A5NUGOLNWZ32FFB27JQLG7ON",
+      "square_name": "Key Lime Pie Dates- Naked",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "6VNNK7OCN34UAWN242QTHK3R",
+      "square_name": "Lemon Garlic Green Olives",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "ZRW6S6SEQXNQMDFBIDJEKEPP",
+      "square_name": "Mediterranean Herb Olive Medley",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "KY2YK265FHPXFAZW4C5WQBI3",
+      "square_name": "Mix Veggie Chips",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "RNPG2TBOASLFQWN6SYO63VRY",
+      "square_name": "Organic Vegan White Bar",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "5M7EGMLOA3TDIPTOSOTRVJIK",
+      "square_name": "Original Dried Sweet Potato Sticks",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "R2HGBDRR5ESTRO2W7ADXLARL",
+      "square_name": "Pistachio Date Bark",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "654R5F7MTGZ6VYJGINQ324ZT",
+      "square_name": "Protein Chocolate & Peanut Butter Chia Pudding",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "5VFMOQ6X727M2DJ4R2LH3IXX",
+      "square_name": "Protein Chocolate Chia Pudding",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "UIBLNQWPT6BL4FVSI6VTLN7L",
+      "square_name": "Protein Vanilla Chia Pudding",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "TVIWX6AVMCT26GSDF4KLD657",
+      "square_name": "Royal Cinnamon Baklava",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "JOALURJM4X2PCE3VVHKSAZET",
+      "square_name": "Sardines with Hot Pepper",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "3AANKNCMOI4F2PXYZ4LOL262",
+      "square_name": "Sea Salt Avocado Oil Kettle Potato Chips",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "YKIRNDDNDPNQTOSS43ELA4MA",
+      "square_name": "Signature Avocado Oil Kettle Chips, Lil Heat Lil Sweet",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "V4IRYST3245TON4DKS3XK4HA",
+      "square_name": "Spicy Dill Pickle Chips",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "O5Y4LBP5P63HIKICYONBRA3X",
+      "square_name": "Tomato Chips",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    },
+    {
+      "square_id": "X4E37WSVHAWXU4GMQRG2KIT4",
+      "square_name": "Zucchini Chips - Vegan Veggie Chips",
+      "category": "Wellness Market",
+      "focus": "auto",
+      "zoom": "auto",
+      "hidden": false
+    }
+  ],
+  "seo": {
+    "title": "Menu | Layers Superfood Bar",
+    "description": "The Layers menu: açaí and layered bowls, functional smoothies and the Wellness Market shelf, with prices, ingredients and nutrition. Order on Square for pickup at 2436 Channing Way, Berkeley."
+  }
+}

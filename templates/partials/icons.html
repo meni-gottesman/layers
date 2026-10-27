@@ -1,0 +1,21 @@
+{#- Inline SVG icons used across the chrome and pages (decorative: aria-hidden). -#}
+{% macro arrow_ne() -%}
+<svg class="icon-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+{%- endmacro %}
+
+{% macro arrow_right() -%}
+<svg width="14" height="10" viewBox="0 0 24 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="2" y1="8" x2="22" y2="8"/><polyline points="15 1 22 8 15 15"/></svg>
+{%- endmacro %}
+
+{% macro close(size=22, stroke="1.8") -%}
+<svg width="{{ size }}" height="{{ size }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="{{ stroke }}" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+{%- endmacro %}
+
+{% macro chevron() -%}
+<svg class="faq__chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+{%- endmacro %}
+
+{# Screen-reader hint after a link that opens Square in a new tab. #}
+{% macro sq_hint() -%}
+<span class="sr-only"> (opens Square in a new tab)</span>
+{%- endmacro %}

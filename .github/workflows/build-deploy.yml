@@ -1,0 +1,384 @@
+# Publish the website: check the content, build the site, run the tests, and —
+# only if all of that passes — publish the same build to GitHub Pages (the
+# preview, under /layers/) and, once it's set up, Cloudflare Pages (the live
+# site, with the /api Functions). A failed build never touches either site;
+# it opens the "Website update didn't publish" issue with the plain-English
+# build report instead, and the next good build closes it.
+#
+# Runs on: a push to main that changes the site (every Pages CMS save is
+# one), every morning (dates in content: announcements, specials, events,
+# holiday hours, the Instagram feed), "Publish now" in Pages CMS, and from
+# the menu-refresh / restore / undo workflows (their GITHUB_TOKEN commits
+# don't trigger push runs, so they call this one).
+# Logs of a public repository are public: nothing here prints what Pages CMS
+# sends (it includes the manager's email address) — tools/ci/payload.py reads
+# it from the event file.
+# Setup: docs/SETUP.md. Spec: docs/dev/CMS_SPEC.md §6, §8.10, §10.
+name: Publish website
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "content/**"
+      - "src-img/**"
+      - "templates/**"
+      - "tools/**"
+      - "public/**"
+      - "data/**"
+      - "functions/**"
+      - "tests/**"
+      - "requirements.txt"
+      - "requirements.lock"
+      - ".github/workflows/build-deploy.yml"
+  schedule:
+    - cron: "7 6 * * *"            # 6:07 every morning in Berkeley, before the shop opens
+      timezone: America/Los_Angeles
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: Filled in by Pages CMS ("Publish now"). Leave empty when running by hand.
+        type: string
+        required: false
+        default: ""
+  workflow_call:
+
+permissions: {}
+
+jobs:
+  build:
+    name: Check and build the site
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    permissions:
+      contents: read
+    # Pages CMS makes one commit per save: a newer change cancels the build
+    # in progress, so a burst of saves publishes once, with all of them.
+    concurrency:
+      group: layers-site-build
+      cancel-in-progress: true
+    outputs:
+      sha: ${{ steps.built.outputs.sha }}
+      cloudflare: ${{ steps.targets.outputs.cloudflare }}
+      cf_project: ${{ steps.targets.outputs.cf_project }}
+      refused: ${{ steps.request.outputs.refused }}
+    steps:
+      # Before anything is checked out: code from another branch never runs.
+      - name: Only publish from main
+        if: github.ref != 'refs/heads/main'
+        run: |
+          {
+            echo "### This only runs on the main branch"
+            echo
+            echo "The website publishes from **main**. If you switched branches in Pages CMS, switch back to **main** (the branch menu at the top left) and try again. Nothing was published."
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "::error title=Request refused::Publishing only runs on main."
+          exit 1
+
+      # Secrets can't be used in if: conditions, so whether Cloudflare is set
+      # up is worked out here (as true/false, never the values) and passed on
+      # as a job output. Half a setup is an error: it would silently leave the
+      # live site behind.
+      - name: Which sites to publish to
+        id: targets
+        env:
+          HAS_CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+          HAS_CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID != '' }}
+          CF_PROJECT: ${{ vars.CF_PAGES_PROJECT }}
+        run: |
+          if [ "$HAS_CF_TOKEN" = true ] && [ "$HAS_CF_ACCOUNT" = true ] && [ -n "$CF_PROJECT" ]; then
+            if ! [[ "$CF_PROJECT" =~ ^[a-z0-9][a-z0-9-]{0,57}$ ]]; then
+              echo "::error title=Cloudflare setup::The CF_PAGES_PROJECT variable isn't a Cloudflare Pages project name (lowercase letters, digits and dashes). See docs/SETUP.md."
+              exit 1
+            fi
+            echo "cloudflare=true" >> "$GITHUB_OUTPUT"
+            echo "cf_project=$CF_PROJECT" >> "$GITHUB_OUTPUT"
+            echo "Publishing to GitHub Pages and Cloudflare Pages ($CF_PROJECT)."
+          elif [ "$HAS_CF_TOKEN" = true ] || [ "$HAS_CF_ACCOUNT" = true ] || [ -n "$CF_PROJECT" ]; then
+            echo "::error title=Cloudflare setup::Cloudflare needs all three: the CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID secrets and the CF_PAGES_PROJECT variable. See docs/SETUP.md."
+            exit 1
+          else
+            echo "cloudflare=false" >> "$GITHUB_OUTPUT"
+            echo "Cloudflare isn't set up: publishing to GitHub Pages only."
+          fi
+
+      # The newest main rather than the commit that started this run: builds
+      # run one at a time, so each one publishes content at least as new as
+      # the one before it. Full history, file contents on demand (blob:none):
+      # if a seed photo the tests use was deleted from the media library, the
+      # tests fetch it from history (tests/conftest.py). No credentials are
+      # kept in git's config (the repo is public; nothing here pushes).
+      - name: Get the site's files
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+          filter: blob:none
+          persist-credentials: false
+
+      - name: Check the request
+        id: request
+        run: python3 tools/ci/payload.py build-deploy
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements.lock
+
+      # Exact versions (requirements.lock): a library's new release can't stop
+      # publishing overnight; upgrades are deliberate.
+      - name: Install the build tools
+        run: python -m pip install -r requirements.txt -c requirements.lock
+
+      # Photos built from CMS uploads aren't committed back, so without this
+      # every run would re-encode them. The newest saved set is laid over the
+      # checkout; the build re-makes any photo whose fingerprint (source,
+      # crop, retouch, pipeline code) doesn't match, so a stale cache can only
+      # cost time, never show the wrong photo.
+      - name: Restore photos built by earlier runs
+        id: photos
+        uses: actions/cache/restore@v6
+        with:
+          path: |
+            public/assets/img
+            public/assets/albums
+            src-img/media-manifest.json
+            src-img/album-manifest.json
+          key: layers-photos-v1-${{ github.run_id }}
+          restore-keys: layers-photos-v1-
+
+      # The last Instagram feed and its photos (src-img/instagram/, not in
+      # git): the build reuses a feed under 12 hours old instead of asking
+      # Behold again — its free plan counts every request (tools/instagram.py).
+      - name: Restore the last Instagram feed
+        id: instagram
+        uses: actions/cache/restore@v6
+        with:
+          path: src-img/instagram
+          key: layers-instagram-v1-${{ github.run_id }}
+          restore-keys: layers-instagram-v1-
+
+      # The daily scheduled build always fetches the feed; every other build
+      # reuses a recent one.
+      - name: Build the site
+        env:
+          SCHEDULED: ${{ github.event_name == 'schedule' }}
+        run: |
+          if [ "$SCHEDULED" = true ]; then
+            python tools/build.py --refresh-instagram
+          else
+            python tools/build.py
+          fi
+
+      # The site's code against frozen copies of the seed content
+      # (tests/fixtures/seed): the manager's edits never fail a test.
+      - name: Run the tests
+        run: python -m pytest -q
+
+      # For the developer, never a reason not to publish: content files
+      # should be exactly what a Pages CMS save writes (a hand edit that
+      # isn't shows up here; fix with python3 tools/cms_normalize.py).
+      - name: Content files are in the CMS's format (developer check)
+        continue-on-error: true
+        run: python tools/cms_normalize.py --check
+
+      - name: Check the hosting limits
+        run: python tools/ci/limits.py public
+
+      - name: Note what was built
+        id: built
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Save the Instagram feed for the next run
+        if: hashFiles('src-img/instagram/feed.json') != '' && steps.instagram.outputs.cache-matched-key != format('layers-instagram-v1-{0}', hashFiles('src-img/instagram/feed.json'))
+        uses: actions/cache/save@v6
+        with:
+          path: src-img/instagram
+          key: layers-instagram-v1-${{ hashFiles('src-img/instagram/feed.json') }}
+
+      - name: Save the built photos for the next run
+        if: steps.photos.outputs.cache-matched-key != format('layers-photos-v1-{0}', hashFiles('src-img/media-manifest.json', 'src-img/album-manifest.json'))
+        uses: actions/cache/save@v6
+        with:
+          path: |
+            public/assets/img
+            public/assets/albums
+            src-img/media-manifest.json
+            src-img/album-manifest.json
+          key: layers-photos-v1-${{ hashFiles('src-img/media-manifest.json', 'src-img/album-manifest.json') }}
+
+      - name: Hand the built site to the publish jobs
+        uses: actions/upload-artifact@v7
+        with:
+          name: site
+          path: public/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Keep the build report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: build-report
+          path: |
+            build-report.md
+            build-report.json
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Show the build report on this page
+        if: always()
+        run: |
+          if [ -f build-report.md ]; then cat build-report.md >> "$GITHUB_STEP_SUMMARY"; fi
+
+  deploy-pages:
+    name: Publish to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: layers-site-deploy-pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    outputs:
+      published: ${{ steps.deploy.outcome == 'success' }}
+    steps:
+      # Until Settings → Pages → Source is "GitHub Actions" there's nowhere to
+      # publish: say so and skip, instead of failing every build.
+      - name: Is GitHub Pages set to publish from Actions?
+        id: enabled
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! build_type=$(gh api "repos/$GITHUB_REPOSITORY/pages" --jq .build_type 2>/dev/null); then
+            build_type="not switched on"
+          fi
+          if [ "$build_type" = workflow ]; then
+            echo "on=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "on=false" >> "$GITHUB_OUTPUT"
+            echo "::warning title=GitHub Pages not set up::GitHub Pages isn't set to publish from GitHub Actions (its source: $build_type), so the preview wasn't updated. See docs/SETUP.md §1."
+          fi
+
+      - name: Get the publish tools
+        if: steps.enabled.outputs.on == 'true'
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.build.outputs.sha }}
+          sparse-checkout: tools/ci
+          persist-credentials: false
+
+      - name: Get the built site
+        if: steps.enabled.outputs.on == 'true'
+        uses: actions/download-artifact@v8
+        with:
+          name: site
+          path: public
+
+      - name: Set up GitHub Pages
+        id: pages
+        if: steps.enabled.outputs.on == 'true'
+        uses: actions/configure-pages@v6
+
+      # GitHub serves the site under /<repo>/; the site's own URLs start at /.
+      - name: Point every link at the base path
+        if: steps.enabled.outputs.on == 'true'
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: python3 tools/ci/prefix.py public _site --prefix "$BASE_PATH"
+
+      - name: Package the site for GitHub Pages
+        if: steps.enabled.outputs.on == 'true'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site/
+          include-hidden-files: true
+
+      - name: Publish
+        id: deploy
+        if: steps.enabled.outputs.on == 'true'
+        uses: actions/deploy-pages@v5
+
+  deploy-cloudflare:
+    name: Publish to Cloudflare Pages (the live site)
+    needs: build
+    if: needs.build.outputs.cloudflare == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    concurrency:
+      group: layers-site-deploy-cloudflare
+      cancel-in-progress: false
+    steps:
+      # functions/ (the /api/menu and /api/catering Pages Functions) comes from
+      # the built commit; wrangler uploads it when run from the repo root.
+      - name: Get the Pages Functions
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.build.outputs.sha }}
+          sparse-checkout: functions
+          persist-credentials: false
+
+      - name: Get the built site
+        uses: actions/download-artifact@v8
+        with:
+          name: site
+          path: public
+
+      # Pinned to a commit (v4.1.3), not the movable v4 tag: this step is
+      # handed the Cloudflare token.
+      - name: Publish
+        uses: cloudflare/wrangler-action@953926a2e2182532811c01a25e53647d93bf07c0  # v4.1.3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public --project-name=${{ needs.build.outputs.cf_project }} --branch=main --commit-hash=${{ needs.build.outputs.sha }} --commit-dirty=true
+
+  report:
+    name: Report how it went
+    needs: [build, deploy-pages, deploy-cloudflare]
+    if: always() && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      issues: write
+    concurrency:
+      group: layers-site-report
+      cancel-in-progress: false
+    steps:
+      - name: Get the report tools
+        uses: actions/checkout@v7
+        with:
+          sparse-checkout: tools/ci
+          persist-credentials: false
+
+      - name: Get the build report
+        continue-on-error: true      # missing when the build stopped before writing one
+        uses: actions/download-artifact@v8
+        with:
+          name: build-report
+          path: build-report
+
+      - name: Open, update or close the "Website update didn't publish" issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BUILD: ${{ needs.build.result }}
+          PAGES: ${{ needs.deploy-pages.result }}
+          PAGES_PUBLISHED: ${{ needs.deploy-pages.outputs.published }}
+          CLOUDFLARE: ${{ needs.deploy-cloudflare.result }}
+          BUILT_SHA: ${{ needs.build.outputs.sha }}
+          REFUSED: ${{ needs.build.outputs.refused }}
+        run: python3 tools/ci/report.py --report-dir build-report

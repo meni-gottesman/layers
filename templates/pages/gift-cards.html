@@ -1,0 +1,30 @@
+{#- Gift Cards (content/pages/gift-cards.json; unpublished until Square eGift
+    Cards are switched on). Buying happens entirely on Square's hosted page: no
+    denominations, amount field, balance checker or terms are invented here. -#}
+{% extends "base.html" %}
+{% block main %}
+
+<section class="ed-split" aria-labelledby="gift-title">
+  <figure class="ed-tile ed-split__media"><span class="ed-media">{{ pic("gift/hero", sizes="(max-width: 820px) 100vw, 50vw", eager=True) }}</span></figure>
+  <div class="ed-split__text">
+    <p class="eyebrow">{{ page.eyebrow }}</p>
+    <h1 id="gift-title" class="ed-split__title">{{ page.title }}</h1>
+    {{ md(page.text) }}
+    <div class="ed-ctas">
+      <a class="btn btn--sage" href="{{ page.buy_url }}" target="_blank" rel="noopener">{{ page.buy_label }}<span class="sr-only"> (opens in a new tab)</span></a>
+    </div>
+{% if page.fine_print %}
+    <p class="ed-split__fine">{{ page.fine_print }}</p>
+{% endif %}
+  </div>
+</section>
+
+<section class="ed-block ed-block--last" aria-labelledby="gift-how">
+  <h2 id="gift-how" class="ed-section-title">{{ page.how.heading }}</h2>
+  <ol class="steps">
+{% for s in page.how.steps %}
+    <li><h3>{{ s.heading }}</h3><p>{{ s.text|br }}</p></li>
+{% endfor %}
+  </ol>
+</section>
+{% endblock %}

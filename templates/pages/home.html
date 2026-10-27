@@ -1,0 +1,138 @@
+{#- HOME — editorial, Happier Grocery's format with Layers' own photography.
+    PHOTO -> PEOPLE -> INGREDIENTS -> VIDEO -> PRODUCT (+ LIMITED TIME) ->
+    COMMUNITY (+ COMING UP) -> INSTAGRAM -> VISIT
+    Longer brand copy lives on /story. Copy and photos: content/pages/home.json;
+    photo crops: src-img/slot-specs.json; provenance in src-img/PROVENANCE.json. -#}
+{% extends "base.html" %}
+{% import "partials/icons.html" as icons %}
+{% import "partials/specials.html" as specials with context %}
+{% import "partials/events.html" as events with context %}
+{% block main %}
+{%- set square = site.ordering.square_url %}
+
+{# 1 · Landing #}
+<section id="who" class="hero hero--editorial" aria-label="{{ site.business.name }}">
+  <div id="hdr-sentinel" class="hero__sentinel" aria-hidden="true"></div>
+  <div class="hero__media">
+    {{ pic("home/hero", mobile="home/hero-m", mmedia="(max-width: 720px), (orientation: portrait) and (max-width: 1100px)", sizes="100vw", msizes="100vw", id="hero", eager=True) }}
+  </div>
+  <div class="hero__scrim" aria-hidden="true"></div>
+  <div class="hero__inner">
+    <h1 class="hero__word">{{ page.hero.heading }}</h1>
+    <p class="hero__line">{{ page.hero.line }}</p>
+    <a class="btn btn--photo" data-hero-item href="{{ square }}" target="_blank" rel="noopener">
+      {{ page.hero.order_label }}
+      {{ icons.arrow_ne() }}
+    {{ icons.sq_hint() }}</a>
+  </div>
+</section>
+
+{# 2 · Employees + fresh ingredients #}
+<section class="ed ed--fresh ed--hello" aria-labelledby="fresh-title">
+  <div class="ed-row ed-row--3">
+    <figure class="ed-tile"><span class="ed-media">{{ pic("home/fresh-1", sizes="(max-width: 720px) 100vw, 34vw") }}</span></figure>
+    <figure class="ed-tile"><span class="ed-media">{{ pic("home/fresh-2", sizes="(max-width: 720px) 50vw, 34vw") }}</span></figure>
+    <figure class="ed-tile"><span class="ed-media">{{ pic("home/fresh-3", sizes="(max-width: 720px) 50vw, 34vw") }}</span></figure>
+  </div>
+  <h2 id="fresh-title" class="ed-statement" data-reveal>{{ page.fresh.statement }}</h2>
+</section>
+
+{# 3 · Full-width film. Autoplays muted on a loop while on screen, no controls
+         beyond a quiet pause toggle (WCAG 2.2.2). A triptych of Layers' own
+         vertical clips on wide screens; one vertical column on phones. Cut by
+         tools/compose-film.py (src-video/film.json), encoded by build-home-media.py. #}
+<section class="ed ed--film" aria-label="Life at Layers, on film">
+  <div class="film" data-film data-src-narrow="/assets/video/home-film-m.mp4">
+    <picture class="film__poster">
+      <source media="(max-width: 720px)" type="image/webp" srcset="/assets/video/home-film-m-poster-540.webp 540w, /assets/video/home-film-m-poster-720.webp 720w" sizes="100vw">
+      <source media="(max-width: 720px)" type="image/jpeg" srcset="/assets/video/home-film-m-poster-540.jpg 540w, /assets/video/home-film-m-poster-720.jpg 720w" sizes="100vw">
+      <source type="image/webp" srcset="/assets/video/home-film-poster-960.webp 960w, /assets/video/home-film-poster-1440.webp 1440w, /assets/video/home-film-poster-1920.webp 1920w, /assets/video/home-film-poster-2400.webp 2400w" sizes="100vw">
+      <img src="/assets/video/home-film-poster-1440.jpg" srcset="/assets/video/home-film-poster-960.jpg 960w, /assets/video/home-film-poster-1440.jpg 1440w, /assets/video/home-film-poster-1920.jpg 1920w, /assets/video/home-film-poster-2400.jpg 2400w" sizes="100vw" width="1440" height="618" alt="" loading="lazy" decoding="async">
+    </picture>
+    <video class="film__video" muted loop playsinline preload="none" disablepictureinpicture
+           aria-label="{{ page.film.label }}" aria-describedby="film-desc">
+      <source src="/assets/video/home-film.mp4" type="video/mp4">
+    </video>
+    <p id="film-desc" class="sr-only">{{ page.film.description }}</p>
+    <button class="film__toggle" type="button" data-film-toggle aria-label="Pause the film" hidden>
+      <svg class="i-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>
+      <svg class="i-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    </button>
+  </div>
+</section>
+
+{# 4 · Bowls + Smoothies — the detailed menu lives on /menu, synced from Square #}
+<section class="ed ed--products" aria-label="Bowls and smoothies">
+  <div class="ed-row ed-row--2">
+    <a class="ed-tile" href="/menu#cat-bowls">
+      <span class="ed-media">{{ pic("home/bowls", sizes="(max-width: 720px) 100vw, 50vw") }}</span>
+      <span class="ed-label"><span class="ed-label__name">{{ page.products.bowls_label }}</span><span class="ed-label__cta">{{ page.products.menu_label }} {{ icons.arrow_right() }}</span></span>
+    </a>
+    <a class="ed-tile" href="/menu#cat-smoothies">
+      <span class="ed-media">{{ pic("home/smoothies", sizes="(max-width: 720px) 100vw, 50vw") }}</span>
+      <span class="ed-label"><span class="ed-label__name">{{ page.products.smoothies_label }}</span><span class="ed-label__cta">{{ page.products.menu_label }} {{ icons.arrow_right() }}</span></span>
+    </a>
+  </div>
+</section>
+{% if specials_home %}
+
+{# 4b · Limited-time specials (content/specials/*.json, "Show on the homepage") #}
+<section class="ed ed--specials" aria-label="Limited-time specials">
+  {{ specials.band(specials_home, "h2") }}
+</section>
+{% endif %}
+
+{# 5 · Events + community — an editorial photo story. Captions come from the
+         event folders Layers supplied and from Layers' own posts ("One year of
+         Layers", Sept 30 2026); nothing here is invented. #}
+{%- set c = page.community %}
+<section class="ed ed--community" aria-labelledby="community-title">
+  <header class="ed-intro" data-reveal>
+    <h2 id="community-title" class="ed-statement">{{ c.heading }}</h2>
+    <p class="ed-text">{{ c.text|br }}</p>
+  </header>
+
+  <figure class="ed-tile ed-tile--wide">
+    <span class="ed-media">{{ pic("home/community-1", sizes="100vw") }}</span>
+    <figcaption class="ed-label">{{ c.wide.caption }}</figcaption>
+  </figure>
+{# exactly four squares, two rows of two (photo slots in src-img/slot-specs.json) #}
+{%- set square_slots = ["home/community-2", "home/community-3", "home/community-4", "home/community-6"] %}
+{% for pair in [[0, 1], [2, 3]] %}
+
+  <div class="ed-row ed-row--2">
+{% for i in pair %}
+    <figure class="ed-tile">
+      <span class="ed-media">{{ pic(square_slots[i], sizes="(max-width: 720px) 100vw, 50vw") }}</span>
+      <figcaption class="ed-label">{{ c.squares[i].caption }}</figcaption>
+    </figure>
+{% endfor %}
+  </div>
+{% endfor %}
+{% if events_upcoming %}
+
+  {{ events.list(events_upcoming, "h3") }}
+{% endif %}
+
+  <p class="ed-more"><a class="ed-label__cta" href="/day-in-the-life#albums">{{ c.albums_label }} {{ icons.arrow_right() }}</a></p>
+</section>
+
+{# 5b · Instagram (content/instagram.json; posts chosen by tools/instagram.py) #}
+{% include "partials/instagram.html" %}
+
+{# 6 · Visit / final call to action #}
+<section class="ed ed--visit" aria-labelledby="visit-title">
+  <figure class="ed-tile ed-tile--wide">
+    <span class="ed-media">{{ pic("home/visit", sizes="100vw") }}</span>
+  </figure>
+  <div class="ed-visit" data-reveal>
+    <h2 id="visit-title" class="ed-statement">{{ page.visit.heading }}</h2>
+    <a class="ed-visit__addr" href="{{ directions_url }}" target="_blank" rel="noopener">{{ site.business.street }}, {{ site.business.city }}</a>
+    <p class="ed-visit__hours" data-open-now>{{ hours_line }}</p>
+    <div class="ed-ctas">
+      <a class="btn btn--sage" href="{{ directions_url }}" target="_blank" rel="noopener">{{ page.visit.directions_label }}</a>
+      <a class="btn btn--line" href="{{ square }}" target="_blank" rel="noopener">{{ page.visit.order_label }}{{ icons.sq_hint() }}</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

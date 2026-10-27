@@ -1,0 +1,125 @@
+# "Restore a backup" in Pages CMS: bring content/, the photos in src-img/ and
+# data/ back to how they were in a backup release (backup.yml) — never code,
+# templates or src-img/'s developer files (crop specs, photo manifests) —
+# commit "Restore from backup <name>", then publish via build-deploy.yml.
+# The backup name is checked against an allow-list ("latest", a backup name,
+# or a date) and the release must exist; the restored content must pass the
+# build's checks before anything is committed.
+# Security: CMS_SPEC §8.10 (main only; the payload is read by Python from the
+# event file, never printed). No credentials in git's config; only the step
+# that saves gets the push token.
+name: Restore a backup
+
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: Filled in by Pages CMS ("Restore a backup"). Leave empty when running by hand.
+        type: string
+        required: false
+        default: ""
+      backup:
+        description: '"latest", or a backup name such as backup-2026-11-01-0423 (a date picks that day''s newest)'
+        type: string
+        required: false
+        default: latest
+
+permissions: {}
+
+jobs:
+  restore:
+    name: Restore content, photos and menu data
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write              # read the backup release, push the restore commit
+    # Its own queue, so a menu refresh or an undo can never drop a waiting
+    # restore (GitHub keeps only one pending run per group).
+    concurrency:
+      group: layers-restore
+      cancel-in-progress: false
+    outputs:
+      changed: ${{ steps.save.outputs.changed }}
+    steps:
+      - name: Only run on main
+        if: github.ref != 'refs/heads/main'
+        run: |
+          {
+            echo "### This only runs on the main branch"
+            echo
+            echo "The website publishes from **main**. If you switched branches in Pages CMS, switch back to **main** (the branch menu at the top left) and try again. Nothing was changed."
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "::error title=Request refused::This workflow only runs on main."
+          exit 1
+
+      - name: Get the site's files
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          persist-credentials: false
+
+      # INPUT_BACKUP is the plain input of a run started by hand; a Pages CMS
+      # request is read from the event file.
+      - name: Check the request
+        id: request
+        env:
+          INPUT_BACKUP: ${{ inputs.backup }}
+        run: python3 tools/ci/payload.py restore
+
+      - name: Find and download the backup
+        id: fetch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SELECT: ${{ steps.request.outputs.backup }}
+        run: python3 tools/ci/backup.py fetch --select "$SELECT" --dir "$RUNNER_TEMP/restore"
+
+      - name: Put back content/, the photos and data/
+        env:
+          ZIP: ${{ steps.fetch.outputs.zip }}
+        run: python3 tools/ci/backup.py restore --zip "$ZIP"
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements.lock
+
+      - name: Install the build tools
+        run: python -m pip install -r requirements.txt -c requirements.lock
+
+      - name: Check the restored content passes
+        id: check
+        run: python tools/build.py --check
+
+      - name: Save the restore
+        id: save
+        env:
+          NAME: ${{ steps.fetch.outputs.name }}
+          GIT_PUSH_TOKEN: ${{ github.token }}
+        run: python3 tools/ci/backup.py commit --name "$NAME"
+
+      - name: Explain why nothing was restored
+        if: failure() && steps.check.outcome == 'failure'
+        run: |
+          {
+            echo "### That backup wasn't restored"
+            echo
+            echo "Its content doesn't pass today's checks (below), so restoring it would stop the site from updating. Nothing was changed — ask the developer."
+            echo
+            if [ -f build-report.md ]; then cat build-report.md; fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  publish:
+    name: Publish
+    needs: restore
+    if: needs.restore.outputs.changed == 'true'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+      issues: write
+    uses: ./.github/workflows/build-deploy.yml
+    secrets: inherit

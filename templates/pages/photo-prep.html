@@ -1,0 +1,68 @@
+{#- /photo-prep — STAFF TOOL (CMS_SPEC §8.8, §11). The hosted Pages CMS
+    rejects uploads over about 3.3 MB, and phone photos are often bigger. This
+    page shrinks a photo IN THE BROWSER — nothing is uploaded — to a JPEG of at
+    most 2400 px on the long edge and under 3 MB, then offers it as a download
+    to upload in the CMS. Re-encoding also drops the camera's hidden details
+    (location, device), which matters because uploads land in a public repo.
+    The work is done by /assets/js/staff.js (loaded only here and on /brand).
+    Help for photos the browser can't open (HEIC on Chrome) is written below
+    and shown by the script when it's needed. -#}
+{% extends "tool.html" %}
+
+{% block main %}
+<section class="tool" aria-labelledby="pp-title">
+  <header class="tool__head">
+    <p class="eyebrow">Staff tool</p>
+    <h1 id="pp-title" class="tool__title">Prepare a photo</h1>
+    <p class="tool__lede">Makes a photo ready for the website editor: a JPEG no bigger than 2,400 pixels on its long side and under 3 MB, the most the editor accepts. It also removes hidden details stored in the photo, such as where it was taken.</p>
+    <p class="tool__private"><strong>Your photo stays on this device.</strong> Nothing is uploaded anywhere: the photo is resized right here in your browser.</p>
+  </header>
+
+  <div class="pp" data-photo-prep>
+    <div class="pp__drop" data-pp-drop>
+      <input class="pp__input" id="pp-file" type="file" accept="image/*" data-pp-input aria-describedby="pp-types">
+      <label class="pp__label" for="pp-file">
+        <svg class="pp__icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="square" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><circle cx="9" cy="10" r="1.6"/><polyline points="21 16 15.5 11 7 19"/></svg>
+        <span class="pp__choose">Choose a photo</span>
+        <span class="pp__or">or drag one here</span>
+      </label>
+      <p class="pp__types" id="pp-types">JPEG, PNG, WebP, or an iPhone photo (HEIC)</p>
+    </div>
+
+    <p class="pp__status" role="status" aria-live="polite" data-pp-status></p>
+
+    <div class="pp__help" data-pp-help tabindex="-1" hidden>
+      <h2 class="pp__help-title">This browser can’t open that photo</h2>
+      <p>iPhone photos are often saved as HEIC, which Chrome and some other browsers can’t read. Two easy fixes:</p>
+      <ul>
+        <li><strong>Use Safari.</strong> Open this page in Safari on your iPhone, iPad or Mac and choose the photo again. Safari can read iPhone photos.</li>
+        <li><strong>Save a JPEG copy first.</strong> On a Mac, open the photo in Preview, choose File → Export…, set Format to JPEG and click Save. Then choose that copy here.</li>
+      </ul>
+      <p>To have your iPhone take JPEG photos from now on: Settings → Camera → Formats → Most Compatible.</p>
+    </div>
+
+    <div class="pp__result" data-pp-result hidden>
+      <figure class="pp__preview">
+        <img data-pp-preview alt="Preview of the prepared photo">
+      </figure>
+      <div class="pp__facts">
+        <h2 class="pp__result-title">Ready to upload</h2>
+        <dl class="pp__sizes">
+          <div><dt>Your photo</dt><dd data-pp-before></dd></div>
+          <div><dt>Prepared copy</dt><dd data-pp-after></dd></div>
+        </dl>
+        <p class="pp__note" data-pp-note hidden></p>
+        <div class="pp__ctas">
+          <a class="btn btn--sage" href="#" download data-pp-download>Download the photo</a>
+        </div>
+        <p class="pp__next">Then upload the downloaded copy in the website editor. On an iPhone or iPad, downloads go to the Files app, in Downloads.</p>
+      </div>
+    </div>
+    <noscript><p class="pp__status">This tool needs JavaScript. Turn it on in your browser’s settings, or open the page in another browser.</p></noscript>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/assets/js/staff.js" defer></script>
+{% endblock %}

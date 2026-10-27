@@ -1,0 +1,84 @@
+{#- Catering — the client's approved copy (content/pages/catering.json), in the
+    editorial system. The event types must match EVENT_TYPES in
+    functions/api/catering.js, so they live here, not in editable content. -#}
+{% extends "base.html" %}
+{% block main %}
+
+<header class="story-head story-head--inner">
+  <p class="eyebrow">{{ page.eyebrow }}</p>
+  <h1 class="story-head__title story-head__title--long">{{ page.title }}</h1>
+  <div class="ed-ctas">
+    <a class="btn btn--sage" href="#catering">{{ page.inquiry_label }}</a>
+  </div>
+</header>
+
+<figure class="ed-tile ed-tile--wide">
+  <span class="ed-media">{{ pic("catering/hero", sizes="100vw", eager=True) }}</span>
+</figure>
+
+<div class="catering-lede">
+  {{ md(page.intro) }}
+</div>
+
+<div class="ed-block"></div>
+{# The form is this page's single sage field. Destination inbox lives only as
+    the server-side CATERING_TO secret and is never rendered here. #}
+<section id="catering" class="section section--sage" aria-label="Catering inquiry">
+  <div class="wrap catering">
+    <div class="catering__formwrap catering__formwrap--page">
+      <h2 class="h3 catering__formtitle">{{ page.form.heading }}</h2>
+      <form id="catering-form" class="form" action="/api/catering" method="post" novalidate>
+        <div class="field">
+          <label for="cf-name">Name</label>
+          <input id="cf-name" name="name" type="text" autocomplete="name" required maxlength="120">
+        </div>
+        <div class="field">
+          <label for="cf-email">Email</label>
+          <input id="cf-email" name="email" type="email" autocomplete="email" required maxlength="200">
+        </div>
+        <div class="field">
+          <label for="cf-type">Event type</label>
+          <select id="cf-type" name="event_type" required>
+            <option value="" selected disabled>Select event type</option>
+            <option>Team breakfast</option>
+            <option>Wellness event</option>
+            <option>Corporate meeting</option>
+            <option>Private celebration</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field field--half">
+          <label for="cf-date">Event date</label>
+          <input id="cf-date" name="event_date" type="date">
+        </div>
+        <div class="field field--half">
+          <label for="cf-guests">Guest count</label>
+          <input id="cf-guests" name="guest_count" type="number" min="1" max="10000" inputmode="numeric">
+        </div>
+        <div class="field field--full">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="4" maxlength="4000"></textarea>
+        </div>
+
+        {# Honeypot: humans never see this. Server rejects when filled. #}
+        <div class="hp" aria-hidden="true">
+          <label for="cf-company">Company</label>
+          <input id="cf-company" name="company" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        {# Cloudflare Turnstile mounts here once TURNSTILE_SITE_KEY is set.
+             Third-party iframe — not styleable. #}
+        <div class="form__turnstile" data-turnstile-slot aria-hidden="true"></div>
+
+        <div class="form__actions">
+          <button class="btn btn--butter btn--lg" type="submit" data-submit>{{ page.form.submit_label }}</button>
+{% if page.form.reply_note %}
+          <p class="form__note">{{ page.form.reply_note }}</p>
+{% endif %}
+        </div>
+        <p class="form__status" data-form-status role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
