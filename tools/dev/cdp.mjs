@@ -1,6 +1,6 @@
 // Headless-Chrome helpers over the DevTools protocol (Node >= 22, no deps).
 //   node tools/dev/cdp.mjs eval <url> <width> <height> <mobile|-> <file.js>   → prints the expression's value
-//   node tools/dev/cdp.mjs shot <url> <out.png> <width> <height> [mobile] [reduce]  → full-page screenshot
+//   node tools/dev/cdp.mjs shot <url> <out.png> <width> <height> [mobile] [reduce] [viewport]  → full-page (or viewport) screenshot
 // The page is scrolled top→bottom first so lazy images load. "reduce" emulates
 // prefers-reduced-motion so reveal animations don't hide content in shots.
 import { spawn } from 'node:child_process';
@@ -41,11 +41,16 @@ try {
   } else if (cmd === 'shot') {
     const [out, W, H, ...flags] = rest; await open(W, H, flags.includes('mobile'), flags.includes('reduce'));
     await evalJs(`(async()=>{for(let y=0;y<document.body.scrollHeight;y+=innerHeight*0.7){scrollTo(0,y);await new Promise(r=>setTimeout(r,140));}scrollTo(0,0);await new Promise(r=>setTimeout(r,900));})()`);
-    const h = await evalJs('Math.ceil(document.documentElement.scrollHeight)');
-    await send('Emulation.setDeviceMetricsOverride', { width: +W, height: Math.min(h, 16000), deviceScaleFactor: 1, mobile: flags.includes('mobile') });
-    await sleep(700);
-    const shot = await send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true });
-    writeFileSync(out, Buffer.from(shot.data, 'base64')); console.log(out, W + 'x' + h);
+    if (flags.includes('viewport')) {        // just what's on screen, no full-page stretch
+      const shot = await send('Page.captureScreenshot', { format: 'png' });
+      writeFileSync(out, Buffer.from(shot.data, 'base64')); console.log(out, W + 'x' + H);
+    } else {
+      const h = await evalJs('Math.ceil(document.documentElement.scrollHeight)');
+      await send('Emulation.setDeviceMetricsOverride', { width: +W, height: Math.min(h, 16000), deviceScaleFactor: 1, mobile: flags.includes('mobile') });
+      await sleep(700);
+      const shot = await send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true });
+      writeFileSync(out, Buffer.from(shot.data, 'base64')); console.log(out, W + 'x' + h);
+    }
   } else { console.error('usage: cdp.mjs eval|shot ...'); process.exitCode = 2; }
 } catch (e) { console.error('ERR', e.message); process.exitCode = 1; }
 finally { try { ws?.close(); } catch {} chrome.kill('SIGKILL'); setTimeout(() => { try { rmSync(prof, { recursive: true, force: true }); } catch {} }, 400); }
