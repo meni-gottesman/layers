@@ -1741,6 +1741,9 @@ section.menu-group{scroll-margin-top:calc(var(--header-h) + 64px)}
   font:600 13px var(--display);font-stretch:var(--narrow);letter-spacing:.08em;text-transform:uppercase;
   box-shadow:inset 0 0 0 1.5px rgba(252,250,244,.45);
 }
+.edit-bar__status{margin:0 10px 0 0;min-width:220px;font:500 13px/1.3 var(--display);white-space:nowrap;color:rgba(252,250,244,.85)}
+.edit-bar__status a{color:var(--warm-white);font-weight:700;text-underline-offset:3px;white-space:nowrap}
+.edit-bar__status[data-state="problem"]{color:var(--warm-white);font-weight:600}
 .edit-bar__btn--main{background:var(--butter);color:var(--ink);box-shadow:none}
 .edit-bar__btn:hover{background:var(--bop);color:var(--warm-white);box-shadow:none}
 .edit-bar__btn:focus-visible{outline:3px solid var(--warm-white);outline-offset:2px;box-shadow:none}
@@ -1750,8 +1753,13 @@ section.menu-group{scroll-margin-top:calc(var(--header-h) + 64px)}
   box-shadow:0 0 0 2px var(--warm-white),0 10px 30px rgba(38,35,30,.35);
 }
 .edit-toast:empty{display:none}
+@media (max-width:860px){      /* not room for the status beside the buttons: its own line above them */
+  .is-editing body{padding-bottom:104px}
+  .edit-bar{flex-wrap:wrap;justify-content:center}
+  .edit-bar__status{order:-1;flex:1 0 100%;min-width:0;margin:2px 4px 4px;font-size:12px;text-align:center;white-space:normal}
+}
 @media (max-width:600px){
-  .is-editing body{padding-bottom:76px}
+  .is-editing body{padding-bottom:100px}
   .edit-bar{left:12px;right:12px;bottom:12px;transform:none;max-width:none;padding:6px}
   .edit-bar__label,.edit-bar__long{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .edit-bar__btn{flex:1 1 auto;padding:0 8px;font-size:12px;letter-spacing:.05em}
@@ -1795,3 +1803,34 @@ section.menu-group{scroll-margin-top:calc(var(--header-h) + 64px)}
 @media (max-width:600px){
   .edit-go__ctas .btn{width:100%;justify-content:center;text-align:center}
 }
+/* "Is my change live?" — one plain line, a fixed height so nothing jumps when it fills in */
+.edit-status{max-width:820px;min-height:78px;margin-top:clamp(24px,3vw,32px);padding:16px 20px;display:flex;align-items:center;background:var(--ground-hi);box-shadow:inset 0 0 0 1px var(--sand),inset 4px 0 0 var(--stone)}
+.edit-status[data-state="ok"]{box-shadow:inset 0 0 0 1px var(--sand),inset 4px 0 0 var(--bop)}
+.edit-status[data-state="problem"]{background:var(--ink);box-shadow:none}
+.edit-status .edit-status__text{margin:0;font:600 16px/1.45 var(--display);color:var(--ink)}
+.edit-status[data-state="problem"] .edit-status__text{color:var(--warm-white)}
+.edit-status a{color:inherit;font-weight:700;text-underline-offset:3px}
+.edit-status a:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+/* the quick-update tiles: two across on a phone, three or four on a computer */
+.edit-tiles{list-style:none;margin:clamp(24px,3vw,36px) 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.edit-tiles li{display:flex}
+.edit-tile{display:flex;flex-direction:column;gap:8px;width:100%;min-height:112px;padding:16px;background:var(--ground-hi);box-shadow:inset 0 0 0 1px var(--sand);color:var(--ink);text-decoration:none}
+.edit-tile:hover{box-shadow:inset 0 0 0 2px var(--bop)}
+.edit-tile:focus-visible{outline:3px solid var(--bop);outline-offset:2px}
+.edit-tile strong{font:700 15px/1.25 var(--display);font-stretch:var(--narrow);letter-spacing:.06em;text-transform:uppercase;color:var(--bop);overflow-wrap:anywhere}
+.edit-tile span:not(.sr-only){font:400 13.5px/1.45 var(--display);color:var(--stone)}
+.edit-tiles__wide{grid-column:span 2}
+@media (min-width:720px){
+  .edit-tiles{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .edit-tile{min-height:132px;padding:20px}
+  .edit-tile strong{font-size:16px}
+  .edit-tile span:not(.sr-only){font-size:14px}
+}
+@media (min-width:1100px){
+  .edit-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+.edit-tip{max-width:820px;margin-top:clamp(20px,2.4vw,28px);padding:16px 20px;background:var(--ground-hi);box-shadow:inset 0 0 0 1px var(--sand)}
+.edit-tip__title{margin:0;font:700 14px/1.3 var(--display);font-stretch:var(--narrow);letter-spacing:.08em;text-transform:uppercase;color:var(--bop)}
+.edit-tip p:not(.edit-tip__title){margin:6px 0 0;font:400 15px/1.55 var(--display);color:var(--ink)}
+.kit .edit-go{margin-top:0}
+.tool__title--sm{font-size:clamp(36px,5vw,68px)}

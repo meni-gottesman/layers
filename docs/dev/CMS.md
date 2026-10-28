@@ -361,12 +361,40 @@ Tab order though it's fixed at the bottom of the screen). In the footer the
 text keeps room for the pencil (`.is-editing … padding-right`), so the pencil
 never covers the address or the hours. Visitors' pages differ from before
 only by those attributes. `/edit` is the staff start page
-(`templates/pages/edit.html`): the button that turns the Edit buttons on,
-the three steps, how to undo (Actions → Undo my last change, in the
-editor's sidebar: the app's /actions page is closed to email
-collaborators), shortcuts, and **Worth a look** — this build's warnings
-(`render.Site.notes`, set by `tools/build.py` after the content check),
-each with a link to its screen.
+(`templates/pages/edit.html`), a phone-first quick-update launcher: "What
+would you like to change?", a publish-status line, big tiles (one tap each to
+the right editor screen, `render.editor_link`; `media:photos` opens the photo
+library), then the button that turns the Edit buttons on, the three steps, how
+to undo (Actions → Undo my last change, in the editor's sidebar: the app's
+/actions page is closed to email collaborators), and **Worth a look** — this
+build's warnings (`render.Site.notes`, set by `tools/build.py` after the
+content check), each with a link to its screen. It is also a home-screen app:
+`public/edit/manifest.webmanifest` (relative paths, so the GitHub Pages
+`/layers/` prefix keeps working; the colours are the site's `--ground` and
+`--warm-white` tokens, `tests/test_edit_mode.py` checks them).
+
+**The publish status** ("Is my change live?", `publishStatus` in `main.js`)
+asks GitHub's public API, from the browser, for the newest run of a publishing
+workflow (build-deploy, menu-refresh, undo, restore: the last three call the
+first, so their runs are listed under their own names) on the branch, and, only
+when it failed, for the open "Website update didn't publish" issue the Actions
+bot keeps. The repository and branch are `render.REPO` / `BRANCH` (the card's
+`data-repo`; the bar reads them from `data-edit-root`). It runs only on `/edit`
+and, in staff mode, in the bar: visitors never call the API. One request every
+20 s while a publish runs, for 10 minutes; unauthenticated limits are 60 an
+hour per address, and an unchanged answer (304) isn't counted.
+
+**The homepage layout** (`content/pages/home.json` → `layout.sections`, "Page
+layout" right after "Top of the page"): an ordered list of section names
+(`content.HOME_SECTIONS`: fresh, film, products, specials, community,
+instagram, more). `templates/pages/home.html` loops over
+`content.home_layout(page)`: unknown names are ignored, a repeat keeps its
+first place (the validator warns), nothing usable left means the default order,
+and the top photo and Visit stay first and last. The list is wrapped in an
+object because Pages CMS repeats a list's own description under every item;
+the object's description is shown once. It is not `required`: a file without
+it (a restored backup) must stay saveable. The default order renders the same
+bytes as the page before the layout existed.
 
 ## `tools/cms_normalize.py`
 

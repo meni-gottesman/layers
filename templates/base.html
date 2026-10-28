@@ -1,8 +1,10 @@
 {#- The page chrome: <head>, announcement bar, header + drawer, sign-off band
     and footer. Every page template extends this and fills {% block main %};
     the /links page and the staff tools (tool.html) also replace
-    {% block header %} and {% block footer %} with a lighter version, and a page
-    with its own script adds it in {% block scripts %}.
+    {% block header %} and {% block footer %} with a lighter version, a page
+    with its own script adds it in {% block scripts %}, and a page that needs
+    something more in the <head> (/edit's web app manifest) adds it in
+    {% block head_extra %}.
     Business details come from content/site.json, hours from content/hours.json;
     technical page settings (header mode, nav item, body class, preloads,
     JSON-LD) from PAGE_CONFIG in tools/render.py — never from editable content.
@@ -48,6 +50,7 @@
     One family, two widths: 87.5% for display/labels/navigation, 100% for reading. #}
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87.5..100,400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/styles.css">
+{% block head_extra %}{% endblock %}
 <meta name="layers-hours" content='{{ hours_meta }}'>
 {% for p in preloads %}
 <link rel="preload" as="image" type="image/webp" href="{{ p.href }}" imagesrcset="{{ p.srcset }}" imagesizes="{{ p.sizes }}" media="{{ p.media }}" fetchpriority="high">

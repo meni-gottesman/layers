@@ -12,11 +12,15 @@ the website stays exactly as it was, and you get a note that says what to fix.
 
 ## Cheat sheet
 
-**The easiest way to change anything:** open
-**[layerssuperfoodbar.com/edit](https://layerssuperfoodbar.com/edit)** →
-**Show Edit buttons on the website** → find the thing you want to change →
-press the **✎ Edit** button next to it → change it → **Save**. See
-[The Edit buttons](#the-edit-buttons).
+**Start at [layerssuperfoodbar.com/edit](https://layerssuperfoodbar.com/edit).**
+It asks *What would you like to change?* and has a big button for each of the
+usual jobs (an announcement, a special, an event, the hours, a photo, a new
+page). One tap opens the editor on the right screen: change it → **Save**.
+To change the words on a page instead, press **Change words on a page** (or
+**Show Edit buttons on the website**) → press the **✎ Edit** button next to
+the thing you want to change → **Save**. See [The Edit buttons](#the-edit-buttons).
+At the top of /edit, one line tells you whether your change is on the website
+yet: see [Is my change live?](#is-my-change-live).
 
 The things you'll do most often:
 
@@ -30,6 +34,7 @@ The things you'll do most often:
 8. **New prices or menu items:** change them in Square first → **Actions** → **Refresh menu from Square**.
 9. **Add a section to a page** (some text, a photo, a quote, a button): open the page → **More sections** → **Add an item** → under *Choose content block*, press the kind → fill it in → **Save**.
 10. **Make a new page:** Pages → **Your own pages** → **Add an entry** → **Page title**, **Web address**, then what goes on it under **More sections** → **Save**.
+11. **Change the order of the homepage** (or hide a section): Pages → **Home** → **Page layout** → drag the sections → **Save**. See [Change the homepage layout](#change-the-homepage-layout).
 
 **Made a mistake?** **Actions** → **Undo my last change**.
 **Worth a look:** the /edit page lists anything the last update noticed, with a link straight to it.
@@ -39,11 +44,11 @@ The things you'll do most often:
 
 ## Contents
 
-1. [Getting started](#1-getting-started): the Edit buttons, signing in, a tour of the editor, saving, what each button does
+1. [Getting started](#1-getting-started): the quick-update page, the Edit buttons, signing in, a tour of the editor, saving, is my change live, what each button does
 2. [This week](#2-this-week): announcements, specials, events, hours
 3. [Photos](#3-photos): the 3 MB limit, swapping photos, focus and zoom, descriptions, albums
 4. [Menu](#4-menu)
-5. [Pages](#5-pages): words, formatting, adding sections, making a new page, how pages show up in Google
+5. [Pages](#5-pages): words, the homepage layout, formatting, adding sections, making a new page, how pages show up in Google
 6. [Instagram](#6-instagram)
 7. [Link in bio, QR codes and the brand kit](#7-link-in-bio-qr-codes-and-the-brand-kit)
 8. [Business details](#8-business-details)
@@ -57,7 +62,7 @@ Bookmark these.
 
 | What | Address |
 |---|---|
-| **Start here:** the Edit buttons | https://layerssuperfoodbar.com/edit |
+| **Start here:** what would you like to change? | https://layerssuperfoodbar.com/edit |
 | The website editor | https://app.pagescms.org |
 | The website | https://layerssuperfoodbar.com |
 | Prepare a photo (shrinks photos so they can be uploaded) | https://layerssuperfoodbar.com/photo-prep |
@@ -87,8 +92,20 @@ will tell you when the move happens.
 
 ### The Edit buttons
 
-The quickest way to change something is to start from the website itself:
-you see the thing, you press Edit next to it.
+The quickest way to change something is to start at **/edit**. It asks *What
+would you like to change?* and gives you a big button for each usual job:
+**Post an announcement**, **Add a limited-time special**, **Add an event**,
+**Change opening hours or holiday hours**, **Update the menu**, **Change a
+photo**, **Add photos to an album**, **Change words on a page**, **Rearrange
+the homepage**, **Make a new page** and **Something else**. One tap opens the
+editor right where you need it (in a new tab).
+
+**Put it on your phone's home screen** so it's one tap away: on an iPhone,
+tap the Share button, then **Add to Home Screen**; on Android, tap the ⋮
+menu, then **Add to Home screen**.
+
+To change the words on a page, start from the website itself: you see the
+thing, you press Edit next to it.
 
 1. Go to **[layerssuperfoodbar.com/edit](https://layerssuperfoodbar.com/edit)**. Bookmark it.
 2. Press **Show Edit buttons on the website**. The homepage opens.
@@ -106,9 +123,7 @@ Good to know:
 - The menu's prices, names and allergens come from Square. The menu's Edit button opens how items are *shown* on the website. See [Menu](#4-menu).
 - To turn the buttons off, press **Hide edit buttons** in the bar, or go to /edit and press **Hide Edit buttons**.
 
-The /edit page also has shortcuts straight to the things you change most:
-a new page, an announcement, a special, an event, the opening hours and the
-photo albums. Further down, **Worth a look** lists anything the last update
+Further down the /edit page, **Worth a look** lists anything the last update
 noticed that doesn't stop the website updating (a long Google description, a
 page that didn't fit in the main menu, a link to a page you switched off), each
 with an **Open it in the editor** link.
@@ -187,6 +202,18 @@ Good to know:
 - **Several saves in a row?** That's fine. The website does one update with all of them.
 - **Not there after 10 minutes?** Reload once more (on a phone, close the tab and open it again). Still not there? See [When an update doesn't publish](#when-an-update-doesnt-publish).
 - Each save counts as one change for **Undo my last change**. Uploading a photo counts as a change of its own.
+
+### Is my change live?
+
+You don't need to guess or to reload the website over and over. Open
+**/edit**: at the top, one line says where your change is. (When the Edit
+buttons are on, the same line, shorter, is in the bar at the bottom of every
+page.) You don't need to sign in to see it.
+
+- **✓ Your website is up to date — last updated 5 minutes ago.** Your change is on the website. If you can't see it, reload the page (on a phone, close the tab and open it again).
+- **⏳ Publishing your latest change… this usually takes about 2 minutes.** Wait. The line checks again by itself every few seconds, and changes when it's done.
+- **⚠ Your last change didn't go live. See what to fix →.** The website stays as it was. The link opens the note that says what to fix: see [When an update doesn't publish](#when-an-update-doesnt-publish).
+- **Couldn't check right now — try again in a minute.** Nothing is wrong with your website: the check itself couldn't reach its source. Reload /edit in a minute.
 
 ### What each button does
 
@@ -542,6 +569,24 @@ Some things aren't edited on the page itself:
 - On **Catering**, the form's questions are fixed. Inquiries go to the inbox your website developer set up.
 - **FAQ**: press **Add an item** under **Questions** for a new question. Drag questions to change their order. Writing `{hours}` in an answer puts in the current opening hours.
 - **Page not found** is the page people see when a link is broken or out of date.
+
+### Change the homepage layout
+
+Show, hide and reorder the homepage's sections, a bit like moving blocks around
+on a website builder.
+
+1. Go to **Pages** → **Home** (or press **Rearrange the homepage** on /edit). Find **Page layout**, just under **Top of the page**.
+2. The sections are listed top to bottom: *Made fresh (photos + line)*, *Film*, *Bowls and smoothies*, *Limited-time specials*, *Community*, *Instagram*, *More sections*. **Drag** one to move it.
+3. To **hide** a section, remove it with the bin icon. To bring it back, press **Add an item** and choose it.
+4. Press **Save**.
+
+Good to know:
+
+- The big top photo always stays first and **Visit** always stays last. They aren't in the list.
+- A section with nothing to show hides itself anyway: no current specials, no Instagram posts, no **More sections** you've added.
+- Each section is in the list once. If one appears twice, the website uses the first and **Worth a look** on /edit tells you.
+- If you remove every item, the website shows all the sections in the usual order.
+- Hiding a section doesn't delete anything: its words and photos are still there when you add it back.
 
 ### Add a section to a page
 

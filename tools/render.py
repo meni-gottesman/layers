@@ -199,6 +199,7 @@ DELIVERY = [("doordash_url", "DoorDash"), ("ubereats_url", "Uber Eats")]
 #   a collection     /collection/<name>
 #   one entry        /collection/<name>/edit/<path>
 #   a new entry      /collection/<name>/new
+#   a photo library  /media/<name>
 # <name> is the entry's `name` in .pages.yml (a sidebar group doesn't change
 # it); <path> is the entry's repo path ("content/specials/phi-velvet.json"),
 # encoded the way the app encodes it (encodeURIComponent, so "/" is %2F) —
@@ -211,7 +212,9 @@ DELIVERY = [("doordash_url", "DoorDash"), ("ubereats_url", "Uber Eats")]
 # Next.js 16.2.1, the version the app uses, and its proxy: docs/dev/CMS.md).
 # To point every button and the guide's link at another repository or
 # branch, change REPO and BRANCH — nothing else. tests/test_edit_mode.py
-# checks every link against .pages.yml.
+# checks every link against .pages.yml. REPO is also the repository the
+# "Is my change live?" status asks GitHub about (main.js reads it back from
+# the editor's address, /edit's card carries it as data-repo).
 # ---------------------------------------------------------------------------
 REPO, BRANCH = "meni-gottesman/layers", "main"
 EDITOR_URL = f"https://app.pagescms.org/{REPO}/{BRANCH}"
@@ -223,6 +226,8 @@ CMS_FILES = {"site": "site", "hours": "hours", "announcement": "announcement", "
              **{f"pages/{k}": ("not-found" if k == "404" else k) for k in content_mod.PAGES}}
 # The .pages.yml collections: {content folder: name}.
 CMS_COLLECTIONS = {"specials": "specials", "events": "events", "albums": "albums", "custom-pages": "custom-pages"}
+# The .pages.yml media libraries: {key: name}. "media:photos" opens the photo library.
+CMS_MEDIA = {"photos": "photos"}
 
 
 def uri_component(s):
@@ -236,8 +241,11 @@ def editor_link(target):
          "albums", "custom-pages" …        the collection list  …/collection/albums
          "specials/phi-velvet" …           one entry            …/collection/specials/edit/content%2Fspecials%2Fphi-velvet.json
          "new:custom-pages"                a new entry          …/collection/custom-pages/new
+         "media:photos"                    a photo library      …/media/photos
     An unknown key is a KeyError: a typo in a template stops the build
     instead of shipping a button that opens the wrong screen."""
+    if target.startswith("media:"):
+        return f"{EDITOR_URL}/media/{uri_component(CMS_MEDIA[target[6:]])}"
     if target.startswith("new:"):
         return f"{EDITOR_URL}/collection/{uri_component(CMS_COLLECTIONS[target[4:]])}/new"
     if target in CMS_FILES:
@@ -341,7 +349,7 @@ class Site:
                                 link_hint=self.link_hint, event_when=self.event_when,
                                 brand_colours=self.brand_colours, png_size=self.png_size,
                                 edit_url=editor_link, edit_attr=edit_attr, editor_url=EDITOR_URL,
-                                handbook_url=HANDBOOK_URL, link_live=self.link_live,
+                                repo_slug=REPO, repo_branch=BRANCH, handbook_url=HANDBOOK_URL, link_live=self.link_live,
                                 link_ok=lambda u: content_mod.url_ok(str(u)) and self.link_live(u))
         self._instagram = None
         self._live = None
@@ -784,6 +792,7 @@ class Site:
             # this page"), its "More sections", and a page of her own's top photo
             edit_page=editor_link(src) if src else "",
             more_sections=self.sections_view(src, page) if "sections" in page else [],
+            home_layout=content_mod.home_layout(page) if key == "home" else [],
             top_slot=top_slot,
             # /edit's "Worth a look": [{where, field, message, edit (its screen in the editor, or "")}]
             notes=[{**n, "edit": self.note_link(n)} for n in self.notes] if key == "edit" else [],

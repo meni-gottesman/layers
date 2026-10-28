@@ -1,0 +1,14 @@
+{
+  "name": "Layers editor",
+  "short_name": "Edit site",
+  "description": "Quick links for changing the Layers Superfood Bar website.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FCFAF4",
+  "theme_color": "#E5E0D8",
+  "icons": [
+    { "src": "../assets/img/face-mark.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "../assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

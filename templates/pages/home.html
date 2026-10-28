@@ -1,6 +1,11 @@
 {#- HOME — editorial, Happier Grocery's format with Layers' own photography.
     PHOTO -> PEOPLE -> INGREDIENTS -> VIDEO -> PRODUCT (+ LIMITED TIME) ->
-    COMMUNITY (+ COMING UP) -> INSTAGRAM -> VISIT
+    COMMUNITY (+ COMING UP) -> INSTAGRAM -> MORE SECTIONS -> VISIT
+    That is the usual order. Between the top photo (always first) and Visit
+    (always last) the sections are drawn in the order of home_layout
+    (content/pages/home.json "Page layout", tools/content.home_layout): the
+    manager can reorder them or leave some out. Each section is one branch of
+    the loop below and still hides itself when it has nothing to show.
     Longer brand copy lives on /story. Copy and photos: content/pages/home.json;
     photo crops: src-img/slot-specs.json; provenance in src-img/PROVENANCE.json. -#}
 {% extends "base.html" %}
@@ -27,6 +32,8 @@
     {{ icons.sq_hint() }}</a>
   </div>
 </section>
+{% for section_name in home_layout %}
+{% if section_name == "fresh" %}
 
 {# 2 · Employees + fresh ingredients #}
 <section class="ed ed--fresh ed--hello" aria-labelledby="fresh-title"{{ edit_attr(edit_page, "Edit the “Made fresh” photos and words (in the editor: Photos › Made fresh, then Made fresh)") }}>
@@ -37,6 +44,7 @@
   </div>
   <h2 id="fresh-title" class="ed-statement" data-reveal>{{ page.fresh.statement }}</h2>
 </section>
+{% elif section_name == "film" %}
 
 {# 3 · Full-width film. Autoplays muted on a loop while on screen, no controls
          beyond a quiet pause toggle (WCAG 2.2.2). A triptych of Layers' own
@@ -61,6 +69,7 @@
     </button>
   </div>
 </section>
+{% elif section_name == "products" %}
 
 {# 4 · Bowls + Smoothies — the detailed menu lives on /menu, synced from Square #}
 <section class="ed ed--products" aria-label="Bowls and smoothies"{{ edit_attr(edit_page, "Edit the bowls and smoothies photos (in the editor: Photos › Bowls photo and Smoothies photo, then Bowls and smoothies)") }}>
@@ -75,6 +84,7 @@
     </a>
   </div>
 </section>
+{% elif section_name == "specials" %}
 {% if specials_home %}
 
 {# 4b · Limited-time specials (content/specials/*.json, "Show on the homepage") #}
@@ -82,6 +92,7 @@
   {{ specials.band(specials_home, "h2") }}
 </section>
 {% endif %}
+{% elif section_name == "community" %}
 
 {# 5 · Events + community — an editorial photo story. Captions come from the
          event folders Layers supplied and from Layers' own posts ("One year of
@@ -117,13 +128,17 @@
 
   <p class="ed-more"><a class="ed-label__cta" href="/day-in-the-life#albums">{{ c.albums_label }} {{ icons.arrow_right() }}</a></p>
 </section>
+{% elif section_name == "instagram" %}
 
 {# 5b · Instagram (content/instagram.json; posts chosen by tools/instagram.py) #}
 {% include "partials/instagram.html" %}
+{% elif section_name == "more" %}
 {# 5c · More sections the manager added (partials/sections.html; nothing when there are none) #}
 {% if more_sections %}
 {{ sections.render(more_sections) }}
 {% endif %}
+{% endif %}
+{% endfor %}
 
 {# 6 · Visit / final call to action #}
 <section class="ed ed--visit" aria-labelledby="visit-title"{{ edit_attr(edit_page, "Edit the Visit section (in the editor: Photos › Visit photo, then Visit)") }}>

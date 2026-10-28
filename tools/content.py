@@ -380,8 +380,9 @@ class List(Field):
     like a draft's, and never stop the update."""
     kind = "list"
 
-    def __init__(self, label, item, min=0, max=None, item_label=None, help="", hidden_if=None, hidden_note=""):
-        super().__init__(label, False, [], help)
+    def __init__(self, label, item, min=0, max=None, item_label=None, help="", hidden_if=None, hidden_note="",
+                 default=None):
+        super().__init__(label, False, [] if default is None else list(default), help)
         self.item, self.min, self.max = item, min, max
         self.item_label = item_label or (lambda i, val: f"{label} {i + 1}")
         self.hidden_if, self.hidden_note = hidden_if, hidden_note
@@ -791,6 +792,67 @@ def custom_page_links(pages):
             "footer": [p for p in shown if p.get("show_in") in ("menu", "footer")]}
 
 # ---------------------------------------------------------------------------
+# The homepage's layout (content/pages/home.json -> layout.sections): the
+# sections the manager can show, hide and reorder, in today's order. The big
+# top photo is always first and Visit always last (templates/pages/home.html);
+# "specials", "instagram" and "more" still hide themselves when they have
+# nothing to show. {name: the CMS's option label}
+# ---------------------------------------------------------------------------
+HOME_SECTIONS = {
+    "fresh": "Made fresh (photos + line)",
+    "film": "Film",
+    "products": "Bowls and smoothies",
+    "specials": "Limited-time specials",
+    "community": "Community",
+    "instagram": "Instagram",
+    "more": "More sections",
+}
+
+
+class SectionOrder(List):
+    """A list of section names, in the order the page draws them. A mistake
+    here is never a reason to hold up an update — the site just ignores it
+    (home_layout) — so duplicates and unknown names are warnings."""
+
+    def __init__(self, label, names, help=""):
+        super().__init__(label, Choice("Section", tuple(names)), help=help, default=names)
+        self.names = tuple(names)
+
+    def check(self, value, v, path):
+        if not isinstance(value, list):
+            return v.type_error(path, value, "a list")
+        seen, usable = set(), 0
+        for name in value:
+            if name not in HOME_SECTIONS:
+                shown = name if isinstance(name, str) and name.strip() else "(empty)"
+                v.warning(path, f"“{shown}” isn’t one of the homepage’s sections, so the website ignores it. "
+                                "Remove it with the bin icon.")
+            elif name in seen:
+                v.warning(path, f"“{HOME_SECTIONS[name]}” is in the list twice, so the website only uses the "
+                                "first one. Remove the extra one with the bin icon.")
+            else:
+                usable += 1
+            seen.add(name)
+        if value and not usable:
+            v.warning(path, "None of these are homepage sections, so the website shows every section in its "
+                            "usual order.")
+
+
+def home_layout(page):
+    """The homepage sections to draw, in order: the page's layout without
+    duplicates (the first one wins) and without names the site doesn't know.
+    Nothing usable left (a CMS save drops an emptied list, which reads as the
+    default) -> every section in its usual order."""
+    layout = page.get("layout") if isinstance(page, dict) else None
+    names = layout.get("sections") if isinstance(layout, dict) else None
+    out = []
+    for name in names if isinstance(names, list) else []:
+        if isinstance(name, str) and name in HOME_SECTIONS and name not in out:
+            out.append(name)
+    return out or list(HOME_SECTIONS)
+
+
+# ---------------------------------------------------------------------------
 # One schema per page. "photos" keys map 1:1 to the photo slots in
 # src-img/slot-specs.json (home/hero -> photos.hero, home/hero-m ->
 # photos.hero_mobile, home/fresh-1 -> photos.fresh_1 …).
@@ -812,6 +874,9 @@ PAGE_SCHEMAS = {
             "heading": _heading("Big word"),
             "line": _heading("Line under it"),
             "order_label": _cta("Order button text"),
+        }),
+        "layout": Obj("Page layout", {
+            "sections": SectionOrder("Sections, top to bottom", list(HOME_SECTIONS)),
         }),
         "fresh": Obj("Made fresh", {"statement": _heading("Statement")}),
         "film": Obj("Film", {

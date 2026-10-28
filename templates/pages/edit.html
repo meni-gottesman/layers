@@ -1,54 +1,82 @@
 {#- /edit — STAFF TOOL: the start page for changing the website, easy to
-    remember and to bookmark. The button that turns the Edit buttons on comes
-    first, then the three steps (the first one is pressing it). "Show Edit
-    buttons" opens the homepage with ?edit, which turns on staff mode in this
-    browser (public/assets/js/main.js, remembered in localStorage): an
-    "✎ Edit" button then sits on every part of every page, opening that part
-    in the editor. "Hide" is ?edit=off. The editor and guide links come from
-    render.EDITOR_URL / HANDBOOK_URL (REPO and BRANCH there), so they follow
-    the site if it moves. "Worth a look" lists this build's warnings
-    (render.Site.notes), each with a link to its screen in the editor. Plain
-    developer copy, like the other staff tools: noindex, not in the
-    navigation or sitemap, no analytics. -#}
+    remember and to bookmark, and a home-screen shortcut on a phone (its web
+    app manifest, below). It opens with "What would you like to change?": a
+    status line saying whether the latest change is live (main.js, asks
+    GitHub; the repository comes from render.REPO) and big tiles, each one tap
+    to the right screen of the editor (render.editor_link, new tab). Below
+    them, for changing words on the website itself: the button that turns the
+    Edit buttons on, then the three steps (the first one is pressing it).
+    "Show Edit buttons" opens the homepage with ?edit, which turns on staff
+    mode in this browser (public/assets/js/main.js, remembered in
+    localStorage): an "✎ Edit" button then sits on every part of every page,
+    opening that part in the editor. "Hide" is ?edit=off. The editor and guide
+    links come from render.EDITOR_URL / HANDBOOK_URL (REPO and BRANCH there),
+    so they follow the site if it moves. "Worth a look" lists this build's
+    warnings (render.Site.notes), each with a link to its screen in the
+    editor. Plain developer copy, like the other staff tools: noindex, not in
+    the navigation or sitemap, no analytics. -#}
 {% extends "tool.html" %}
+
+{% block head_extra %}
+{#- Add to Home Screen: the manifest's addresses are relative to it, so they
+    follow the page to /layers/ on the GitHub Pages preview (tools/ci/prefix.py
+    prefixes this href like any other). -#}
+<link rel="manifest" href="/edit/manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Edit site">
+{% endblock %}
 
 {% block main %}
 <section class="tool" aria-labelledby="edit-title">
   <header class="tool__head">
     <p class="eyebrow">Staff tool</p>
-    <h1 id="edit-title" class="tool__title">Edit the website</h1>
-    <p class="tool__lede">Change the words and photos on the website yourself. Nothing you do here can break it: every change is checked before it goes live, and if something needs fixing, the website stays as it was.</p>
+    <h1 id="edit-title" class="tool__title tool__title--sm">What would you like to change?</h1>
+    <p class="tool__lede">Pick one: it opens the editor right where you need it. Nothing you do here can break the website. Every change is checked before it goes live, and if something needs fixing, the website stays as it was.</p>
   </header>
 
-  <div class="edit-go">
-    <p class="edit-go__state" role="status" aria-live="polite" data-edit-state></p>
-    <div class="edit-go__ctas">
-      <a class="btn btn--sage btn--lg" href="/?edit">Show Edit buttons on the website</a>
-      <a class="btn btn--line btn--lg" href="{{ editor_url }}" target="_blank" rel="noopener">Open the editor<span class="sr-only"> (opens in a new tab)</span></a>
-      <a class="edit-go__off" href="?edit=off">Hide Edit buttons</a>
-    </div>
+  <div class="edit-status" data-publish-status data-state="checking" data-repo="{{ repo_slug }}" data-branch="{{ repo_branch }}" role="status" aria-live="polite">
+    <p class="edit-status__text"></p>
+    <noscript><p class="edit-status__text">Checking whether your website is up to date needs JavaScript.</p></noscript>
   </div>
 
-  <ol class="edit-steps">
-    <li><span class="edit-steps__n" aria-hidden="true">1</span><p><strong>Press Show Edit buttons on the website</strong>, just above. The homepage opens.</p></li>
-    <li><span class="edit-steps__n" aria-hidden="true">2</span><p><strong>Find the thing you want to change and press the ✎ Edit button</strong> next to it. The editor opens at the right place.</p></li>
-    <li><span class="edit-steps__n" aria-hidden="true">3</span><p><strong>Change it and press Save.</strong> The website updates by itself in 2–4 minutes.</p></li>
-  </ol>
-  <p class="edit-go__undo"><strong>Made a mistake?</strong> In the editor’s menu on the left, under <strong>Actions</strong>, press <strong>Undo my last change</strong>.</p>
-  <p class="edit-go__fine">The Edit buttons are only on this phone or computer, in this browser: visitors never see them. When the editor asks you to sign in (the first time, and again now and then), type your email address and the 6-digit code it sends you — it then opens the screen you asked for. If it opens somewhere else, press the Edit button again.</p>
-  <noscript><p class="edit-go__fine"><strong>The Edit buttons need JavaScript.</strong> Turn it on in your browser’s settings, or use “Open the editor”.</p></noscript>
+  <ul class="edit-tiles" role="list">
+    <li><a class="edit-tile" href="{{ edit_url('announcement') }}" target="_blank" rel="noopener"><strong>Post an announcement</strong><span>The thin bar across the top of every page.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
+    <li><a class="edit-tile" href="{{ edit_url('new:specials') }}" target="_blank" rel="noopener"><strong>Add a limited-time special</strong><span>A drink or bowl that’s only here for a while.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
+    <li><a class="edit-tile" href="{{ edit_url('new:events') }}" target="_blank" rel="noopener"><strong>Add an event</strong><span>A run club, collab or pop-up, under “Coming up”.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
+    <li><a class="edit-tile" href="{{ edit_url('hours') }}" target="_blank" rel="noopener"><strong>Change opening hours or holiday hours</strong><span>Holidays first, then the weekly hours.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
+    <li class="edit-tiles__wide"><a class="edit-tile" href="{{ editor_url }}" target="_blank" rel="noopener"><strong>Update the menu</strong><span>Prices and items come from Square: change them there, then press “Refresh menu from Square” under Actions in the editor.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
+    <li><a class="edit-tile" href="{{ edit_url('media:photos') }}" target="_blank" rel="noopener"><strong>Change a photo</strong><span>Open the photo library, or use the Edit buttons to change a photo right where it sits on the page.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
+    <li><a class="edit-tile" href="{{ edit_url('albums') }}" target="_blank" rel="noopener"><strong>Add photos to an album</strong><span>The albums on “A Day at Layers”.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
+    <li><a class="edit-tile" href="/?edit"><strong>Change words on a page</strong><span>Turns on the Edit buttons and opens the homepage.</span></a></li>
+    <li><a class="edit-tile" href="{{ edit_url('pages/home') }}" target="_blank" rel="noopener"><strong>Rearrange the homepage</strong><span>Show, hide or reorder its sections: look for “Page layout”.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
+    <li><a class="edit-tile" href="{{ edit_url('new:custom-pages') }}" target="_blank" rel="noopener"><strong>Make a new page</strong><span>A whole page of your own, with its own web address.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
+    <li><a class="edit-tile" href="{{ editor_url }}" target="_blank" rel="noopener"><strong>Something else</strong><span>Opens the editor, with everything in the menu on the left.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
+  </ul>
+  <p class="kit__fine">To add something to a page — some text, a photo, a quote, a button — press its Edit button and use <strong>More sections</strong>, near the bottom of the page’s screen in the editor (on Home, scroll down past the photos and the page’s words).</p>
 
-  <section class="kit" aria-labelledby="edit-new">
-    <h2 id="edit-new" class="kit__title">Straight to it</h2>
-    <ul class="edit-links" role="list">
-      <li><a href="{{ edit_url('new:custom-pages') }}" target="_blank" rel="noopener"><strong>Create a new page</strong><span>A whole page of your own, with its own web address.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
-      <li><a href="{{ edit_url('announcement') }}" target="_blank" rel="noopener"><strong>Post an announcement</strong><span>The thin bar across the top of every page.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
-      <li><a href="{{ edit_url('new:specials') }}" target="_blank" rel="noopener"><strong>Add a special</strong><span>A limited-time drink or bowl.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
-      <li><a href="{{ edit_url('new:events') }}" target="_blank" rel="noopener"><strong>Add an event</strong><span>A run club, collab or pop-up, under “Coming up”.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
-      <li><a href="{{ edit_url('hours') }}" target="_blank" rel="noopener"><strong>Change the opening hours</strong><span>Holidays first, then the weekly hours.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
-      <li><a href="{{ edit_url('albums') }}" target="_blank" rel="noopener"><strong>Add photos to an album</strong><span>The albums on “A Day at Layers”.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
-    </ul>
-    <p class="kit__fine">To add something to a page — some text, a photo, a quote, a button — press its Edit button and use <strong>More sections</strong>, near the bottom of the page’s screen in the editor (on Home, scroll down past the photos and the page’s words).</p>
+  <div class="edit-tip">
+    <p class="edit-tip__title">Put this on your phone’s home screen</p>
+    <p><strong>iPhone:</strong> tap the Share button, then <strong>Add to Home Screen</strong>. <strong>Android:</strong> tap the ⋮ menu, then <strong>Add to Home screen</strong>. Next time, one tap opens this page.</p>
+  </div>
+
+  <section class="kit" aria-labelledby="edit-buttons">
+    <h2 id="edit-buttons" class="kit__title">Or change it right on the website</h2>
+    <div class="edit-go">
+      <p class="edit-go__state" role="status" aria-live="polite" data-edit-state></p>
+      <div class="edit-go__ctas">
+        <a class="btn btn--sage btn--lg" href="/?edit">Show Edit buttons on the website</a>
+        <a class="btn btn--line btn--lg" href="{{ editor_url }}" target="_blank" rel="noopener">Open the editor<span class="sr-only"> (opens in a new tab)</span></a>
+        <a class="edit-go__off" href="?edit=off">Hide Edit buttons</a>
+      </div>
+    </div>
+
+    <ol class="edit-steps">
+      <li><span class="edit-steps__n" aria-hidden="true">1</span><p><strong>Press Show Edit buttons on the website</strong>, just above. The homepage opens.</p></li>
+      <li><span class="edit-steps__n" aria-hidden="true">2</span><p><strong>Find the thing you want to change and press the ✎ Edit button</strong> next to it. The editor opens at the right place.</p></li>
+      <li><span class="edit-steps__n" aria-hidden="true">3</span><p><strong>Change it and press Save.</strong> The website updates by itself in 2–4 minutes.</p></li>
+    </ol>
+    <p class="edit-go__undo"><strong>Made a mistake?</strong> In the editor’s menu on the left, under <strong>Actions</strong>, press <strong>Undo my last change</strong>.</p>
+    <p class="edit-go__fine">The Edit buttons are only on this phone or computer, in this browser: visitors never see them. When the editor asks you to sign in (the first time, and again now and then), type your email address and the 6-digit code it sends you — it then opens the screen you asked for. If it opens somewhere else, press the Edit button again.</p>
+    <noscript><p class="edit-go__fine"><strong>The Edit buttons need JavaScript.</strong> Turn it on in your browser’s settings, or use “Open the editor”.</p></noscript>
   </section>
 
   <section class="kit" aria-labelledby="edit-notes">

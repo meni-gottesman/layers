@@ -844,6 +844,25 @@ content:
                 type: string
                 required: true
                 description: "The button opens Layers’ Square store."
+          - name: layout
+            label: Page layout
+            type: object
+            description: "Drag to change the order of the homepage sections. Remove one to hide it; add it again to bring it back. The top photo always stays first and Visit last."
+            fields:
+              - name: sections
+                label: Sections, top to bottom
+                type: select
+                list: true
+                options:
+                  placeholder: "Choose a section"
+                  values:
+                    - {name: fresh, label: "Made fresh (photos + line)"}
+                    - {name: film, label: Film}
+                    - {name: products, label: Bowls and smoothies}
+                    - {name: specials, label: Limited-time specials}
+                    - {name: community, label: Community}
+                    - {name: instagram, label: Instagram}
+                    - {name: more, label: More sections}
           - name: fresh
             label: Made fresh
             type: object

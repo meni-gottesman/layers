@@ -53,6 +53,17 @@
     "line": "Real Food. Functional Fuel.",
     "order_label": "Order on Square"
   },
+  "layout": {
+    "sections": [
+      "fresh",
+      "film",
+      "products",
+      "specials",
+      "community",
+      "instagram",
+      "more"
+    ]
+  },
   "fresh": {
     "statement": "Made fresh at Layers."
   },

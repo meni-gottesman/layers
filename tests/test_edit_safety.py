@@ -273,7 +273,7 @@ def test_edit_lists_what_is_worth_a_look(repo):
     assert "<strong>Your page: Saturday Morning Run Club Berkeley</strong> › Name in the menu" in html
     assert f'href="{render.editor_link("custom-pages/run-club")}" target="_blank" rel="noopener">Open it in the editor' in html
     assert "<strong>Page: Catering</strong> › Google and shared links → Google description" in html   # the seed's own
-    assert html.index("Straight to it") < html.index("Worth a look") < html.index(">Help<")
+    assert html.index("What would you like to change?") < html.index("Worth a look") < html.index(">Help<")
     # only on /edit, and never a note on a draft
     assert "Worth a look" not in s.render("home")
     assert not [n for n in s.notes if n.get("draft")]

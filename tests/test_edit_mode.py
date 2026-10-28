@@ -88,7 +88,8 @@ def cms_entries():
 
 
 EDIT_LINK = re.compile(re.escape(render.EDITOR_URL)
-                       + r"(?:/file/(?P<file>[^/?#]+)|/collection/(?P<coll>[^/?#]+)(?:/edit/(?P<path>[^/?#]+)|(?P<new>/new))?)?")
+                       + r"(?:/file/(?P<file>[^/?#]+)|/media/(?P<media>[^/?#]+)"
+                         r"|/collection/(?P<coll>[^/?#]+)(?:/edit/(?P<path>[^/?#]+)|(?P<new>/new))?)?")
 
 
 def assert_opens_a_real_screen(url, root):
@@ -97,7 +98,9 @@ def assert_opens_a_real_screen(url, root):
     m = EDIT_LINK.fullmatch(url)
     assert m, f"not an editor link: {url}"
     entries = cms_entries()
-    if m["file"]:
+    if m["media"]:
+        assert urllib.parse.unquote(m["media"]) in {x["name"] for x in CONFIG["media"]}, url
+    elif m["file"]:
         name = urllib.parse.unquote(m["file"])
         assert entries[name]["type"] == "file", url
     elif m["coll"]:
@@ -124,9 +127,14 @@ def test_editor_links_follow_the_pages_cms_routes():
     assert render.editor_link("custom-pages/summer-menu") == (
         f"{e}/collection/custom-pages/edit/content%2Fcustom-pages%2Fsummer-menu%2Ejson")
     assert render.editor_link("new:custom-pages") == f"{e}/collection/custom-pages/new"
-    for bad in ("pages/nope", "nope", "nope/x", "new:nope", "specials/"):
+    assert render.editor_link("media:photos") == f"{e}/media/photos"
+    for bad in ("pages/nope", "nope", "nope/x", "new:nope", "specials/", "media:nope"):
         with pytest.raises(KeyError):
             render.editor_link(bad)
+
+
+def test_every_photo_library_is_a_media_source_of_pages_yml():
+    assert set(render.CMS_MEDIA.values()) == {m["name"] for m in CONFIG["media"]}
 
 
 def test_uri_component_is_javascripts_encodeuricomponent():
@@ -208,8 +216,17 @@ def test_staff_mode_waits_for_the_switch():
     staff = js[js.index("function initStaffMode()"):js.index("function boot()")]
     assert staff.index("if (!on) return;") < staff.index("addEditChip") < staff.index("addEditBar")
     assert "fetch(" not in js[js.index("var EDIT_KEY"):js.index("function boot()")]
+    # the publish status (the "Is my change live?" check) is the only thing that asks GitHub, and
+    # only the /edit card or the editing bar — which is made after "if (!on) return;" — starts it
+    assert js.count("window.fetch(") == 1 and js.count("publishStatus(") == 3     # its definition + its two callers
+    assert js.index("function publishStatus(") < js.index("function initStaffMode()")
+    bar = js[js.index("function addEditBar()"):js.index("function initStaffMode()")]
+    assert "publishStatus($('[data-bar-status]', bar), true)" in bar
+    assert "publishStatus(card, false)" in js[js.index("function initPublishStatus()"):js.index("function boot()")]
+    assert "var card = $('[data-publish-status]');" in js     # only /edit has one
     boot = js[js.index("function boot()"):]
     assert boot.index("initOpenNow();") < boot.index("initMotion();") < boot.index("initStaffMode();")
+    assert "initPublishStatus();" in boot
     assert "'layers-edit'" in js and "/^(off|0|false|no|hide)$/i" in js
     css = (ROOT / "public" / "assets" / "css" / "styles.css").read_text()
     assert re.search(r"@media print\{\.edit-chip,\.edit-bar,\.edit-toast,\.viewer__edit\{display:none!important\}", css)
@@ -221,7 +238,7 @@ def test_the_edit_start_page():
     assert '<a class="btn btn--sage btn--lg" href="/?edit">Show Edit buttons on the website</a>' in html
     assert f'href="{render.EDITOR_URL}" target="_blank" rel="noopener">Open the editor' in html
     assert 'href="?edit=off">Hide Edit buttons</a>' in html
-    assert f'href="{render.editor_link("new:custom-pages")}"' in html and "Create a new page" in html
+    assert "What would you like to change?" in html
     assert f'href="{render.HANDBOOK_URL}"' in html
     assert render.HANDBOOK_URL == "https://github.com/meni-gottesman/layers/blob/main/docs/HANDBOOK.md"
     assert 'href="/photo-prep"' in html and "data-edit-state" in html
@@ -235,6 +252,111 @@ def test_the_edit_start_page():
     assert "under <strong>Actions</strong>, press <strong>Undo my last change</strong>" in html
     assert "/actions" not in html
     assert "Nothing right now: everything checked out at the last update." in html     # no notes
+
+
+EDIT_TILES = [      # (what it says, where one tap goes) — in this order, ahead of the Edit buttons' controls
+    ("Post an announcement", render.editor_link("announcement")),
+    ("Add a limited-time special", render.editor_link("new:specials")),
+    ("Add an event", render.editor_link("new:events")),
+    ("Change opening hours or holiday hours", render.editor_link("hours")),
+    ("Update the menu", render.EDITOR_URL),
+    ("Change a photo", render.editor_link("media:photos")),
+    ("Add photos to an album", render.editor_link("albums")),
+    ("Change words on a page", "/?edit"),
+    ("Rearrange the homepage", render.editor_link("pages/home")),
+    ("Make a new page", render.editor_link("new:custom-pages")),
+    ("Something else", render.EDITOR_URL),
+]
+
+
+def test_the_edit_page_is_a_quick_update_launcher():
+    """Big tiles, each one tap to the right screen of the editor (a new tab),
+    ahead of the Edit buttons' controls, the steps and the help links."""
+    html = site().render("edit")
+    tiles = re.findall(r'<a class="edit-tile" href="([^"]*)"([^>]*)><strong>([^<]*)</strong><span>([^<]*)</span>', html)
+    assert [(t[2], t[0]) for t in tiles] == [(name, url) for name, url in EDIT_TILES]
+    for href, rest, name, _ in tiles:
+        if href.startswith("https://"):
+            assert 'target="_blank" rel="noopener"' in rest, name
+            assert_opens_a_real_screen(href, seed_root())
+        else:                                                   # the Edit buttons: this tab, to the homepage
+            assert "target" not in rest and href == "/?edit"
+    assert "Prices and items come from Square" in html and "Refresh menu from Square" in html
+    assert "use the Edit buttons" in html
+    first_below = min(html.index(x) for x in ('<ol class="edit-steps">', "Show Edit buttons on the website</a>",
+                                             'id="edit-notes"', 'id="edit-help"'))
+    assert html.rindex('class="edit-tile"') < first_below
+    help_links = html[html.index('id="edit-help"'):]
+    assert 'href="/photo-prep"' in help_links and 'href="/brand"' in help_links and render.HANDBOOK_URL in help_links
+    assert html.index("What would you like to change?") < html.index("data-publish-status") < html.index("edit-tiles")
+    # the phone's home screen, and the web app manifest that names it
+    assert "iPhone:</strong> tap the Share button, then <strong>Add to Home Screen" in html
+    assert "Android:</strong> tap the ⋮ menu, then <strong>Add to Home screen" in html
+    assert '<link rel="manifest" href="/edit/manifest.webmanifest">' in html
+
+
+def test_the_publish_status_card_names_the_repository():
+    """The card carries the repository and branch (render.REPO, BRANCH: the one
+    place they're written); main.js reads the same two back from the editor's
+    address for the bar, so the bar and the card ask about the same repository."""
+    html = site().render("edit")
+    assert f'data-repo="{render.REPO}" data-branch="{render.BRANCH}"' in html
+    assert render.REPO == "meni-gottesman/layers" and render.EDITOR_URL.startswith(f"https://app.pagescms.org/{render.REPO}/")
+    assert 'role="status" aria-live="polite"' in html.split("data-publish-status", 1)[1][:200]
+    js = (ROOT / "public" / "assets" / "js" / "main.js").read_text()
+    assert "https://api.github.com/repos/" in js and "website update didn't publish" in js
+    assert "STATUS_EVERY_MS = 20000" in js and "STATUS_GIVE_UP_MS = 10 * 60 * 1000" in js
+    for words in ("Your website is up to date — last updated", "Publishing your latest change… this usually takes about 2 minutes",
+                  "Your last change didn’t go live. ", "See what to fix →", "Couldn’t check right now — try again in a minute."):
+        assert words in js, words
+    # only the page's own card or the staff bar starts a check
+    for key, page in site().render_all().items():
+        if page and key != "edit":
+            assert "data-publish-status" not in page, key
+
+
+def test_the_edit_page_is_a_home_screen_app():
+    """A web app manifest for /edit only: names, colours from the site's tokens,
+    and addresses relative to the manifest, so they follow it under /layers/."""
+    css = (ROOT / "public" / "assets" / "css" / "styles.css").read_text()
+
+    def token(name):
+        return re.search(rf"--{name}:(#[0-9A-Fa-f]{{6}})", css).group(1).upper()
+
+    m = json.loads((ROOT / "public" / "edit" / "manifest.webmanifest").read_text())
+    assert (m["name"], m["short_name"]) == ("Layers editor", "Edit site")
+    assert m["theme_color"].upper() == token("ground") and m["background_color"].upper() == token("warm-white")
+    assert m["display"] == "standalone"
+    for url in [m["start_url"], m["scope"]] + [i["src"] for i in m["icons"]]:
+        assert not url.startswith(("/", "http")), url                  # relative: /layers/ keeps working
+    assert m["start_url"] == "./"
+    for icon in m["icons"]:                                            # names a file that exists, at the size it says
+        f = (ROOT / "public" / "edit" / icon["src"]).resolve()
+        assert f.is_file() and f.parent.name == "img", icon
+        assert "x".join(map(str, render.Site.png_size(site(), "/assets/img/" + f.name))) == icon["sizes"]
+    # only /edit links it; it stays out of search and the sitemap
+    for key, page in site().render_all().items():
+        assert ("manifest" in (page or "")) == (key == "edit"), key
+    edit_html = site().render("edit")
+    assert '<meta name="robots" content="noindex">' in edit_html
+    assert "/edit" not in (ROOT / "public" / "sitemap.xml").read_text()
+
+
+def test_the_manifest_link_follows_the_github_pages_prefix(tmp_path):
+    """tools/ci/prefix.py prefixes the manifest's address like any other and
+    finds nothing left over; the manifest itself (relative paths) needs nothing."""
+    from ci import prefix
+    src = tmp_path / "public"
+    (src / "edit").mkdir(parents=True)
+    s = site()
+    (src / "index.html").write_text(s.render("home"), encoding="utf-8")
+    (src / "edit" / "index.html").write_text(s.render("edit"), encoding="utf-8")
+    manifest = (ROOT / "public" / "edit" / "manifest.webmanifest").read_text()
+    (src / "edit" / "manifest.webmanifest").write_text(manifest)
+    assert prefix.prefix_tree(src, tmp_path / "_site", "/layers") == []
+    html = (tmp_path / "_site" / "edit" / "index.html").read_text()
+    assert '<link rel="manifest" href="/layers/edit/manifest.webmanifest">' in html
+    assert (tmp_path / "_site" / "edit" / "manifest.webmanifest").read_text() == manifest
 
 
 # ---------------------------------------------------------------------------
@@ -615,3 +737,128 @@ def test_the_cms_section_kinds_match_the_site():
         if "sections" in names and e["type"] == "file":
             after = names[names.index("sections") + 1:]
             assert after[-1:] == ["seo"] and set(after) <= {"film", "seo"}, e["name"]
+
+
+# ---------------------------------------------------------------------------
+# The homepage layout: show, hide and reorder the sections
+# ---------------------------------------------------------------------------
+HOME_MARKERS = {          # what each homepage section's own markup starts with
+    "hero": '<section id="who" class="hero', "fresh": 'class="ed ed--fresh', "film": 'class="ed ed--film',
+    "products": 'class="ed ed--products', "specials": 'class="ed ed--specials', "community": 'class="ed ed--community',
+    "instagram": 'class="ed ed--instagram', "more": '<div class="more', "visit": 'class="ed ed--visit',
+}
+
+
+def home_order(html):
+    """The sections the homepage draws, top to bottom."""
+    found = sorted((html.index(m), name) for name, m in HOME_MARKERS.items() if m in html)
+    return [name for _, name in found]
+
+
+def home_with(repo, layout=None, **more):
+    """The homepage of a scratch site with this layout (None: the file has no layout at all)."""
+    def change(d):
+        d.pop("layout", None)
+        if layout is not None:
+            d["layout"] = {"sections": layout}
+        d.update(more)
+    edit(repo, "pages/home.json", change)
+    return built(site(repo), *section_slots("pages/home", more.get("sections", []))).render("home")
+
+
+DEFAULT_HOME = ["hero", "fresh", "film", "products", "specials", "community", "instagram", "more", "visit"]
+
+
+def test_the_default_homepage_layout_is_todays_page(repo):
+    """No layout at all, the layout the CMS shows, or a layout with the
+    names in today's order: the same page, section for section, byte for byte."""
+    plain = home_with(repo, None, sections=SECTIONS)
+    assert home_order(plain) == DEFAULT_HOME
+    assert list(C.HOME_SECTIONS) == DEFAULT_HOME[1:-1]
+    assert home_with(repo, list(C.HOME_SECTIONS), sections=SECTIONS) == plain
+    # an emptied list is dropped by a CMS save, which reads as the default: so does a list of nothing usable
+    assert home_with(repo, ["nope", ""], sections=SECTIONS) == plain
+    # the seed (no "layout" in its file) and the live content both start at today's order
+    assert home_order(site().render("home")) == [x for x in DEFAULT_HOME if x != "more"]
+    assert json.loads((ROOT / "content" / "pages" / "home.json").read_text())["layout"]["sections"] == list(C.HOME_SECTIONS)
+
+
+def test_a_reordered_and_shortened_homepage_layout(repo):
+    layout = ["community", "specials", "fresh", "instagram"]
+    html = home_with(repo, layout, sections=SECTIONS)
+    # the top photo is always first and Visit always last, whatever the list says
+    assert home_order(html) == ["hero", "community", "specials", "fresh", "instagram", "visit"]
+    for left_out in ("film", "products", "more"):
+        assert HOME_MARKERS[left_out] not in html
+    # "More sections" can sit anywhere, and moves as one block
+    html = home_with(repo, ["more", "film", "community"], sections=SECTIONS)
+    assert home_order(html) == ["hero", "more", "film", "community", "visit"]
+    # a section left in the list still hides itself when it has nothing: no specials, no Instagram
+    edit(repo, "instagram.json", lambda d: d.update(enabled=False))
+    (repo / "content" / "specials" / "phi-velvet.json").unlink()
+    html = home_with(repo, ["instagram", "specials", "products", "film"])
+    assert home_order(html) == ["hero", "products", "film", "visit"]
+
+
+def test_the_layout_ignores_what_it_doesnt_know_and_keeps_the_first_of_a_repeat(repo):
+    html = home_with(repo, ["film", "bogus", "fresh", "film", "fresh", "products"])
+    assert home_order(html) == ["hero", "film", "fresh", "products", "visit"]
+    assert html.count('class="ed ed--film') == 1 and html.count('class="ed ed--fresh') == 1
+    assert C.home_layout({"layout": {"sections": ["community", "community", 7, None, "film"]}}) == ["community", "film"]
+    assert C.home_layout({"layout": {"sections": "film"}}) == list(C.HOME_SECTIONS)       # not a list: the default
+    assert C.home_layout({}) == list(C.HOME_SECTIONS)
+
+
+def test_layout_problems_are_friendly_warnings_never_errors(repo):
+    def problems(layout):
+        edit(repo, "pages/home.json", lambda d: d.update(layout={"sections": layout}))
+        return [p for p in V.validate(repo, today=TODAY) if p["where"] == "Page: Home" and p["field"].startswith("Page layout")]
+    assert problems(list(C.HOME_SECTIONS)) == []
+    assert problems(["film", "community"]) == []                                    # leaving sections out is the point
+    dup = problems(["film", "community", "film"])
+    assert [p["level"] for p in dup] == ["warning"]
+    assert dup[0]["field"] == "Page layout → Sections, top to bottom"
+    assert "“Film” is in the list twice" in dup[0]["message"] and "first one" in dup[0]["message"]
+    unknown = problems(["film", "carousel"])
+    assert [p["level"] for p in unknown] == ["warning"] and "“carousel” isn’t one of the homepage’s sections" in unknown[0]["message"]
+    nothing = problems(["carousel"])
+    assert len(nothing) == 2 and "every section in its usual order" in nothing[1]["message"]
+    wrong = problems("film")                                                         # a hand edit: not a list at all
+    assert [p["level"] for p in wrong] == ["error"] and "should be a list" in wrong[0]["message"]
+
+
+def test_the_layout_in_the_cms_matches_the_site():
+    entry = cms_entries()["home"]
+    fields = {f["name"]: f for f in entry["fields"]}
+    names = [f["name"] for f in entry["fields"]]
+    assert names.index("layout") == names.index("hero") + 1                      # right after the top-of-page fields
+    layout = fields["layout"]
+    assert layout["label"] == "Page layout" and layout["type"] == "object"
+    assert "Drag to change the order of the homepage sections" in layout["description"]
+    assert "Remove one to hide it; add it again to bring it back" in layout["description"]
+    assert "first" in layout["description"] and "Visit" in layout["description"]
+    sections = layout["fields"][0]
+    assert sections["name"] == "sections" and sections["type"] == "select" and sections["list"] is True
+    assert not sections.get("description"), "a list's help is repeated under every item"
+    assert [(v["name"], v["label"]) for v in sections["options"]["values"]] == list(C.HOME_SECTIONS.items())
+    assert [v["label"] for v in sections["options"]["values"]] == [
+        "Made fresh (photos + line)", "Film", "Bowls and smoothies", "Limited-time specials", "Community",
+        "Instagram", "More sections"]
+
+
+def test_a_cms_save_keeps_the_layout_exactly(repo):
+    """A save drops what isn't declared and writes the fields in the CMS's
+    order: the layout survives, in the order the manager left it, right after
+    the top of the page, and the site is the same before and after."""
+    cms = N.Cms(ROOT)
+    edit(repo, "pages/home.json", lambda d: d.update(layout={"sections": ["community", "film", "fresh"]}))
+    p = repo / "content" / "pages" / "home.json"
+    before = built(site(repo)).render("home")
+    text, problems = N.save(json.loads(p.read_text()), cms.entry_for("content/pages/home.json"), cms)
+    assert not problems, problems
+    saved = json.loads(text)
+    assert saved["layout"] == {"sections": ["community", "film", "fresh"]}
+    assert list(saved)[:3] == ["photos", "hero", "layout"]
+    p.write_text(text)
+    assert built(site(repo)).render("home") == before
+    assert home_order(before) == ["hero", "community", "film", "fresh", "visit"]

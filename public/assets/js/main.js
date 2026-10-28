@@ -953,7 +953,136 @@
   }
 
   /* --------------------------------------------------------------------- */
-  /* 9 · Staff mode: Edit buttons on the website itself. Turned on by ?edit */
+  /* 9 · "Is my change live?" — whether the latest change has been          */
+  /*     published, asked of GitHub (the repository is public, so no        */
+  /*     sign-in): the newest run of a publishing workflow on the branch,   */
+  /*     and — only when it failed — the open "Website update didn't        */
+  /*     publish" issue the Actions bot keeps, for the link to what to fix. */
+  /*     Runs on the /edit page (a card) and, in staff mode only, in the    */
+  /*     editing bar (a short line). Visitors never get here: nothing       */
+  /*     below runs, and nothing is fetched, unless one of those two asks.  */
+  /*     The repository and branch are read back from the editor's address  */
+  /*     (render.py REPO and BRANCH), so they can't drift from the Edit     */
+  /*     buttons'. At most one request every 20 s, for 10 minutes while a   */
+  /*     publish is running; a check that nothing changed (304) is free.    */
+  /* --------------------------------------------------------------------- */
+  var GITHUB_API = 'https://api.github.com/repos/';
+  var PUBLISH_FLOWS = /\/(build-deploy|menu-refresh|undo|restore)\.yml(@.*)?$/;   // the workflows that publish
+  var QUIET_RUN = /^(cancelled|skipped|neutral|stale)$/;     // a run that built nothing says nothing
+  var PUBLISH_ISSUE = "website update didn't publish";
+  var PUBLISH_BOT = 'github-actions[bot]';
+  var STATUS_EVERY_MS = 20000;
+  var STATUS_GIVE_UP_MS = 10 * 60 * 1000;
+
+  function ago(iso) {
+    var t = Date.parse(iso);
+    if (isNaN(t)) return '';
+    var s = Math.max(0, Math.floor((Date.now() - t) / 1000));
+    var m = Math.floor(s / 60), h = Math.floor(s / 3600), d = Math.floor(s / 86400);
+    if (s < 60) return 'just now';
+    if (m < 60) return (m === 1 ? 'a minute' : m + ' minutes') + ' ago';
+    if (h < 24) return (h === 1 ? 'an hour' : h + ' hours') + ' ago';
+    if (d === 1) return 'yesterday';
+    if (d < 14) return d + ' days ago';
+    try { return 'on ' + new Date(t).toLocaleDateString('en-US', { month: 'long', day: 'numeric' }); }
+    catch (e) { return 'a while ago'; }
+  }
+
+  function repoOf(box) {
+    var repo = box.getAttribute('data-repo') || '', branch = box.getAttribute('data-branch') || '';
+    if (!repo) {       // the editing bar: the same names are in the editor's address
+      var m = /^https:\/\/app\.pagescms\.org\/([\w.-]+\/[\w.-]+)\/([\w.-]+)/.exec(document.body.getAttribute('data-edit-root') || '');
+      if (m) { repo = m[1]; branch = m[2]; }
+    }
+    return /^[\w.-]+\/[\w.-]+$/.test(repo) && /^[\w.-]+$/.test(branch) ? { repo: repo, branch: branch } : null;
+  }
+
+  function getJSON(url) {
+    return window.fetch(url, { cache: 'no-cache', headers: { accept: 'application/vnd.github+json' } })
+      .then(function (r) { if (!r.ok) throw new Error('GitHub said ' + r.status); return r.json(); });
+  }
+
+  // The words for each state: the card on /edit, or the short line in the bar.
+  function statusWords(compact, state, when) {
+    if (state === 'ok') return compact ? '✓ Website up to date · ' + when : '✓ Your website is up to date — last updated ' + when;
+    if (state === 'publishing') return compact ? '⏳ Publishing your change…' : '⏳ Publishing your latest change… this usually takes about 2 minutes';
+    if (state === 'slow') return compact ? '⏳ Still publishing…' : '⏳ Still publishing. Reload this page in a few minutes to check again.';
+    if (state === 'problem') return '⚠ Your last change didn’t go live. ';
+    return compact ? 'Can’t check right now' : 'Couldn’t check right now — try again in a minute.';
+  }
+
+  function publishStatus(box, compact) {
+    var where = repoOf(box);
+    var text = $('.edit-status__text', box) || box;
+    var started = Date.now(), checked = 0, timer = null;
+
+    // Says it only when it changed, so a screen reader isn't told the same
+    // thing every 20 seconds.
+    function say(state, when, link) {
+      var words = statusWords(compact, state, when) + (link || '');
+      if (text.getAttribute('data-said') === words) return;
+      text.setAttribute('data-said', words);
+      box.setAttribute('data-state', state);
+      text.textContent = statusWords(compact, state, when);
+      if (state === 'problem' && link) {
+        var a = document.createElement('a');
+        a.href = link;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = compact ? 'See why →' : 'See what to fix →';
+        var hint = document.createElement('span');
+        hint.className = 'sr-only';
+        hint.textContent = ' (opens in a new tab)';
+        a.appendChild(hint);
+        text.appendChild(a);
+      }
+    }
+
+    function again(state) {
+      if (Date.now() - started > STATUS_GIVE_UP_MS) return say('slow');
+      say(state);
+      timer = window.setTimeout(check, STATUS_EVERY_MS);
+    }
+
+    function check() {
+      window.clearTimeout(timer);
+      checked = Date.now();
+      if (!where || !window.fetch) return say('error');
+      getJSON(GITHUB_API + where.repo + '/actions/runs?branch=' + encodeURIComponent(where.branch) + '&per_page=10')
+        .then(function (data) {
+          var run = (data.workflow_runs || []).filter(function (r) {
+            return PUBLISH_FLOWS.test(r.path || '') && !(r.status === 'completed' && QUIET_RUN.test(r.conclusion || ''));
+          })[0];
+          if (!run) return say('error');
+          if (run.status !== 'completed') return again('publishing');
+          if (run.conclusion === 'success') return say('ok', ago(run.updated_at || run.run_started_at));
+          // it didn't go live: the issue the Actions bot opened says what to fix
+          return getJSON(GITHUB_API + where.repo + '/issues?state=open&per_page=10').then(function (issues) {
+            var issue = (issues || []).filter(function (i) {
+              return !i.pull_request && i.user && i.user.login === PUBLISH_BOT &&
+                String(i.title || '').replace(/’/g, "'").trim().toLowerCase() === PUBLISH_ISSUE;
+            })[0];
+            say('problem', '', (issue || run).html_url);
+          });
+        })
+        .catch(function () { say('error'); });
+    }
+
+    check();
+    // back from saving in the editor's tab: look again, so the change just made shows up
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden && Date.now() - checked > 15000) { started = Date.now(); check(); }
+    });
+  }
+
+  // The card on /edit: asked for by the page itself.
+  function initPublishStatus() {
+    var card = $('[data-publish-status]');
+    if (card) publishStatus(card, false);
+  }
+
+  /* --------------------------------------------------------------------- */
+  /* 10 · Staff mode: Edit buttons on the website itself. Turned on by ?edit */
   /*     (the /edit page's "Show Edit buttons on the website") and off by   */
   /*     ?edit=off, remembered in this browser. When on, every region the   */
   /*     build marked with data-edit (tools/render.py edit_attr) gets a     */
@@ -1071,6 +1200,7 @@
     bar.setAttribute('role', 'region');
     bar.setAttribute('aria-label', 'Editing tools');
     bar.innerHTML = '<p class="edit-bar__label"><span aria-hidden="true">✎</span> Editing tools</p>' +
+      '<p class="edit-bar__status" role="status" aria-live="polite" data-bar-status><span class="edit-status__text"></span></p>' +
       (/^https:\/\//.test(page) ? '<a class="edit-bar__btn edit-bar__btn--main" target="_blank" rel="noopener" data-bar-page>' +
         '<span>Edit this page</span><span class="sr-only"> (opens the editor in a new tab)</span></a>' : '') +
       // on a phone the words in .edit-bar__long are left out: "Open editor", "Hide buttons"
@@ -1086,6 +1216,7 @@
     // it shouldn't take a Tab through the whole page and footer first.
     var skip = $('.skip-link');
     body.insertBefore(bar, skip ? skip.nextSibling : body.firstChild);
+    publishStatus($('[data-bar-status]', bar), true);       // staff mode only: addEditBar runs after "if (!on) return;"
   }
 
   function initStaffMode() {
@@ -1121,6 +1252,7 @@
     initMotion();
     initHashLanding();
     initStaffMode();
+    initPublishStatus();
   }
 
   if (document.readyState !== 'loading') boot();
