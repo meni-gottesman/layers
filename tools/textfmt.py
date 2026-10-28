@@ -15,10 +15,14 @@ input is escaped FIRST, and only then are the markers below turned into tags.
                           plain link text.
 
 Links to other sites open in a new tab and carry a screen-reader hint, the
-same pattern every hand-written external link on the site uses.
+same pattern every hand-written external link on the site uses. link_ok, if
+given, can refuse a link that is allowed but goes nowhere today (a page of
+the site that is switched off: render.Site.link_live) — its words then show
+as plain text, like a link that isn't allowed.
 
   block(text)   -> one <p> per paragraph (optionally with a class)
   inline(text)  -> the same markers, no paragraphs (for one-line fields)
+  links(text)   -> the links' addresses, as typed (for the validator)
 """
 import html
 import re
@@ -59,13 +63,15 @@ def _emphasis(s):
     return _UNDER_EM.sub(r"<em>\1</em>", s)
 
 
-def _format(escaped, hint_for):
+def _format(escaped, hint_for, link_ok=None):
     """Markers -> tags on already-escaped text (no paragraph handling)."""
     links = []
 
     def link(m):
         text, url = m.group(1), m.group(2)
         safe = _safe_url(url)
+        if safe is not None and link_ok is not None and not link_ok(html.unescape(safe).strip()):
+            safe = None
         if safe is None:
             out = _emphasis(text)
         elif html.unescape(safe).lower().startswith("https://"):
@@ -88,17 +94,22 @@ def _clean(text):
     return str(text or "").replace("\r\n", "\n").replace("\r", "\n").replace("\x00", "")
 
 
-def inline(text, hint_for=None):
+def inline(text, hint_for=None, link_ok=None):
     """One-line field: markers and line breaks, no paragraphs."""
-    lines = [_format(html.escape(ln, quote=True), hint_for) for ln in _clean(text).strip().split("\n")]
+    lines = [_format(html.escape(ln, quote=True), hint_for, link_ok) for ln in _clean(text).strip().split("\n")]
     return Markup("<br>".join(lines))
 
 
-def block(text, p_class=None, hint_for=None):
+def block(text, p_class=None, hint_for=None, link_ok=None):
     """Long-form field: one <p> per paragraph (blank line), <br> for a line break."""
     cls = f' class="{html.escape(p_class, quote=True)}"' if p_class else ""
     paras = [p.strip() for p in re.split(r"\n[ \t]*\n+", _clean(text).strip()) if p.strip()]
-    return Markup("\n".join(f"<p{cls}>{inline(p, hint_for)}</p>" for p in paras))
+    return Markup("\n".join(f"<p{cls}>{inline(p, hint_for, link_ok)}</p>" for p in paras))
+
+
+def links(text):
+    """The address of every [words](address) link in the text, as typed."""
+    return [m.group(2) for m in _LINK.finditer(_clean(text))]
 
 
 def plain(text):

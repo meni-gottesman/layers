@@ -35,8 +35,16 @@ format, or a value the CMS's checks reject. So running it can never silently
 drop data; fix .pages.yml (or the file) first.
 
 Only the field types this site uses are ported (string, text, boolean,
-number, select, date, image, object, lists of these). A config using anything
-else is refused, rather than normalised wrongly.
+number, select, date, image, object, lists of these, and lists of blocks —
+the "More sections"). A config using anything else is refused, rather than
+normalised wrongly.
+
+Blocks (a `type: block` list): each item is an object whose `blockKey`
+("_block" unless the field names another) holds the name of one of the
+field's `blocks`; the item's other keys are that block's fields. A save
+keeps the key first, then the block's fields in order (deepMap), and the
+form's check (a zod discriminated union) refuses an item whose kind isn't one
+of the blocks. An item of an unknown kind is reported, never dropped.
 """
 import argparse
 import copy
@@ -50,7 +58,7 @@ import urllib.parse
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CONFIG = ".pages.yml"
 
-SUPPORTED = {"string", "text", "boolean", "number", "select", "date", "image", "object"}
+SUPPORTED = {"string", "text", "boolean", "number", "select", "date", "image", "object", "block"}
 # fields/core/image: with no media config passed to the schema (as in the
 # app's form and API), any path must end in one of the "image" category
 # extensions, compared case-sensitively.
@@ -102,6 +110,8 @@ def _resolve(field, components):
         f["type"] = "object"
     if isinstance(f.get("fields"), list):
         f["fields"] = [_resolve(x, components) for x in f["fields"]]
+    if isinstance(f.get("blocks"), list):          # each block resolved too ("Nested blocks")
+        f["blocks"] = [_resolve(b, components) for b in f["blocks"]]
     return f
 
 
@@ -118,6 +128,25 @@ def _check_fields(fields, where):
             raise ConfigError(f"{at}: only dates stored as yyyy-MM-dd are supported.")
         if t == "object":
             _check_fields(f.get("fields") or [], at)
+        if t == "block":
+            if not f.get("list"):
+                raise ConfigError(f"{at}: only lists of blocks are supported by tools/cms_normalize.py.")
+            for b in f.get("blocks") or []:
+                if not b.get("name") or b.get("type", "object") != "object":
+                    raise ConfigError(f"{at}: every block needs a name and fields.")
+                _check_fields(b.get("fields") or [], f"{at} › {b['name']}")
+
+
+def _block_key(f):
+    """The key a block item keeps its kind in (Pages CMS: blockKey, default _block)."""
+    return f.get("blockKey") or "_block"
+
+
+def _block_def(f, item):
+    """The block definition an item of a block list is, or None (not an
+    object, or a kind the field doesn't have)."""
+    name = item.get(_block_key(f)) if isinstance(item, dict) else None
+    return next((b for b in f.get("blocks") or [] if b.get("name") == name), None) if isinstance(name, str) else None
 
 
 class Cms:
@@ -284,8 +313,7 @@ def deep_map(data, fields, apply, path=()):
             if value is UNDEF:
                 out[name] = apply(UNDEF, f, at)
             elif isinstance(value, list):
-                out[name] = [deep_map(x, f.get("fields") or [], apply, at + (i,)) if f.get("type") == "object"
-                             else apply(x, f, at + (i,)) for i, x in enumerate(value)]
+                out[name] = [_map_item(x, f, apply, at + (i,)) for i, x in enumerate(value)]
             else:
                 out[name] = []
         elif f.get("type") == "object":
@@ -293,6 +321,21 @@ def deep_map(data, fields, apply, path=()):
         else:
             out[name] = apply(value, f, at)
     return out
+
+
+def _map_item(x, f, apply, at):
+    """One item of a list field, as deepMap maps it: an object's fields; a
+    block's kind first and then its fields (an item of an unknown kind
+    unchanged); anything else through apply."""
+    if f.get("type") == "object":
+        return deep_map(x, f.get("fields") or [], apply, at)
+    if f.get("type") == "block":
+        b = _block_def(f, x)
+        if b is None:
+            return x
+        key = _block_key(f)
+        return {key: x[key], **deep_map(x, b.get("fields") or [], apply, at)}
+    return apply(x, f, at)
 
 
 def _empty(v):
@@ -340,6 +383,8 @@ def default_value(f, today):
         return init_state(f.get("fields") or [], {}, today)
     if t == "boolean":
         return False
+    if t == "block":
+        return None
     if t == "date":
         return today.isoformat()          # yes: a date field without default "" starts as today
     return ""
@@ -485,6 +530,16 @@ class _Save:
             if f.get("list"):
                 if v is not None and not isinstance(v, list):
                     self.problem("lost", path + [k], "should be a list — a CMS save replaces it with nothing")
+                elif f.get("type") == "block":
+                    for i, item in enumerate(v or []):
+                        b = _block_def(f, item)
+                        if b is not None:
+                            rest = {x: y for x, y in item.items() if x != _block_key(f)}
+                            self.undeclared(rest, b.get("fields") or [], path + [k, i])
+                        elif sanitize([item]):
+                            kinds = ", ".join(str(x.get("name")) for x in f.get("blocks") or [])
+                            self.problem("invalid", path + [k, i], f"isn't one of the kinds of {f.get('label') or k} "
+                                                                   f"({kinds}) — the CMS can't save the file")
                 elif f.get("type") == "object":
                     for i, item in enumerate(v or []):
                         if isinstance(item, dict):
@@ -556,6 +611,16 @@ class _Save:
 
     def check_single(self, v, f, path):
         t, req, opts = f.get("type"), bool(f.get("required")), f.get("options") or {}
+        if t == "block":
+            # z.discriminatedUnion(blockKey, [one object per block]).optional().nullable()
+            if v is None or v is UNDEF:
+                return v
+            b = _block_def(f, v)
+            if b is None:
+                self.problem("invalid", path, "isn't one of the kinds of section the field allows")
+                return v
+            key = _block_key(f)
+            return {key: v[key], **self.check_object(v, b.get("fields") or [], path)}
         if t == "object":
             if req:
                 if v is UNDEF:

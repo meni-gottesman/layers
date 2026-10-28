@@ -4,14 +4,15 @@
     current hours line. Native details/summary: accessible, works with JS off. -#}
 {% extends "base.html" %}
 {% import "partials/icons.html" as icons %}
+{% import "partials/sections.html" as sections with context %}
 {% block main %}
 
-<header class="story-head story-head--inner">
+<header class="story-head story-head--inner"{{ edit_attr(edit_page, "Edit the title") }}>
   <p class="eyebrow">{{ page.eyebrow }}</p>
   <h1 class="story-head__title">{{ page.title }}</h1>
 </header>
 
-<section class="faq" aria-label="Frequently asked questions">
+<section class="faq" aria-label="Frequently asked questions"{{ edit_attr(edit_page, "Edit the questions and answers") }}>
   <div class="wrap wrap--narrow">
 {% for q in page["items"] %}
     <details class="faq__item">
@@ -21,4 +22,7 @@
 {% endfor %}
   </div>
 </section>
+{% if more_sections %}
+{{ sections.render(more_sections) }}
+{% endif %}
 {% endblock %}

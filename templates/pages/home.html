@@ -7,11 +7,12 @@
 {% import "partials/icons.html" as icons %}
 {% import "partials/specials.html" as specials with context %}
 {% import "partials/events.html" as events with context %}
+{% import "partials/sections.html" as sections with context %}
 {% block main %}
 {%- set square = site.ordering.square_url %}
 
 {# 1 · Landing #}
-<section id="who" class="hero hero--editorial" aria-label="{{ site.business.name }}">
+<section id="who" class="hero hero--editorial" aria-label="{{ site.business.name }}"{{ edit_attr(edit_page, "Edit the big photo and the words at the top (in the editor: Photos › Top photo, then Top of the page)") }}>
   <div id="hdr-sentinel" class="hero__sentinel" aria-hidden="true"></div>
   <div class="hero__media">
     {{ pic("home/hero", mobile="home/hero-m", mmedia="(max-width: 720px), (orientation: portrait) and (max-width: 1100px)", sizes="100vw", msizes="100vw", id="hero", eager=True) }}
@@ -28,7 +29,7 @@
 </section>
 
 {# 2 · Employees + fresh ingredients #}
-<section class="ed ed--fresh ed--hello" aria-labelledby="fresh-title">
+<section class="ed ed--fresh ed--hello" aria-labelledby="fresh-title"{{ edit_attr(edit_page, "Edit the “Made fresh” photos and words (in the editor: Photos › Made fresh, then Made fresh)") }}>
   <div class="ed-row ed-row--3">
     <figure class="ed-tile"><span class="ed-media">{{ pic("home/fresh-1", sizes="(max-width: 720px) 100vw, 34vw") }}</span></figure>
     <figure class="ed-tile"><span class="ed-media">{{ pic("home/fresh-2", sizes="(max-width: 720px) 50vw, 34vw") }}</span></figure>
@@ -41,7 +42,7 @@
          beyond a quiet pause toggle (WCAG 2.2.2). A triptych of Layers' own
          vertical clips on wide screens; one vertical column on phones. Cut by
          tools/compose-film.py (src-video/film.json), encoded by build-home-media.py. #}
-<section class="ed ed--film" aria-label="Life at Layers, on film">
+<section class="ed ed--film" aria-label="Life at Layers, on film"{{ edit_attr(edit_page, "Edit the film’s text for screen readers (in the editor: Film, near the bottom — the film itself is changed by your website developer)") }}>
   <div class="film" data-film data-src-narrow="/assets/video/home-film-m.mp4">
     <picture class="film__poster">
       <source media="(max-width: 720px)" type="image/webp" srcset="/assets/video/home-film-m-poster-540.webp 540w, /assets/video/home-film-m-poster-720.webp 720w" sizes="100vw">
@@ -62,7 +63,7 @@
 </section>
 
 {# 4 · Bowls + Smoothies — the detailed menu lives on /menu, synced from Square #}
-<section class="ed ed--products" aria-label="Bowls and smoothies">
+<section class="ed ed--products" aria-label="Bowls and smoothies"{{ edit_attr(edit_page, "Edit the bowls and smoothies photos (in the editor: Photos › Bowls photo and Smoothies photo, then Bowls and smoothies)") }}>
   <div class="ed-row ed-row--2">
     <a class="ed-tile" href="/menu#cat-bowls">
       <span class="ed-media">{{ pic("home/bowls", sizes="(max-width: 720px) 100vw, 50vw") }}</span>
@@ -86,7 +87,7 @@
          event folders Layers supplied and from Layers' own posts ("One year of
          Layers", Sept 30 2026); nothing here is invented. #}
 {%- set c = page.community %}
-<section class="ed ed--community" aria-labelledby="community-title">
+<section class="ed ed--community" aria-labelledby="community-title"{{ edit_attr(edit_page, "Edit the community photos and words (in the editor: Community, after the Photos)") }}>
   <header class="ed-intro" data-reveal>
     <h2 id="community-title" class="ed-statement">{{ c.heading }}</h2>
     <p class="ed-text">{{ c.text|br }}</p>
@@ -119,16 +120,20 @@
 
 {# 5b · Instagram (content/instagram.json; posts chosen by tools/instagram.py) #}
 {% include "partials/instagram.html" %}
+{# 5c · More sections the manager added (partials/sections.html; nothing when there are none) #}
+{% if more_sections %}
+{{ sections.render(more_sections) }}
+{% endif %}
 
 {# 6 · Visit / final call to action #}
-<section class="ed ed--visit" aria-labelledby="visit-title">
+<section class="ed ed--visit" aria-labelledby="visit-title"{{ edit_attr(edit_page, "Edit the Visit section (in the editor: Photos › Visit photo, then Visit)") }}>
   <figure class="ed-tile ed-tile--wide">
     <span class="ed-media">{{ pic("home/visit", sizes="100vw") }}</span>
   </figure>
   <div class="ed-visit" data-reveal>
     <h2 id="visit-title" class="ed-statement">{{ page.visit.heading }}</h2>
     <a class="ed-visit__addr" href="{{ directions_url }}" target="_blank" rel="noopener">{{ site.business.street }}, {{ site.business.city }}</a>
-    <p class="ed-visit__hours" data-open-now>{{ hours_line }}</p>
+    <p class="ed-visit__hours" data-open-now{{ edit_attr(edit_url("hours"), "Edit the opening hours") }}>{{ hours_line }}</p>
     <div class="ed-ctas">
       <a class="btn btn--sage" href="{{ directions_url }}" target="_blank" rel="noopener">{{ page.visit.directions_label }}</a>
       <a class="btn btn--line" href="{{ square }}" target="_blank" rel="noopener">{{ page.visit.order_label }}{{ icons.sq_hint() }}</a>

@@ -1,8 +1,11 @@
 {#- Header (desktop nav) and the mobile drawer. Nav items: HEADER_LINKS and
-    DRAWER_LINKS in tools/render.py; cfg.nav marks the current page. -#}
+    DRAWER_LINKS in tools/render.py, then any pages of the manager's own set
+    to "Main menu and footer" (render.Site.nav_links); with those the header
+    gets header--more, which hands over to the phone menu on narrower
+    screens (styles.css). cfg.nav marks the current page. -#}
 {%- import "partials/icons.html" as icons -%}
 {%- set square = site.ordering.square_url -%}
-<header id="site-header" class="{{ 'header header--static' if cfg.header == 'static' else 'header' }}" data-state="{{ 'solid' if cfg.header == 'static' else 'transparent' }}">
+<header id="site-header" class="{{ 'header header--static' if cfg.header == 'static' else 'header' }}{{ ' ' ~ header_more if header_more }}" data-state="{{ 'solid' if cfg.header == 'static' else 'transparent' }}">
   <div class="header__inner">
     <a class="header__brand" href="/" aria-label="{{ site.business.name }} — home">
       <img class="header__wordmark header__wordmark--cream" src="/assets/img/wordmark-cream.png" alt="{{ site.business.name }}" width="121" height="52">

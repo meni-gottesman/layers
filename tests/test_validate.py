@@ -67,14 +67,14 @@ def test_special_hours_checks(repo):
 
 def test_missing_alt_text(repo):
     edit(repo, "pages/home.json", lambda d: d["photos"]["fresh_1"].update(alt=""))
-    p = find(errors(run(repo)), where="Page: Home", field="Photos → Made fresh — photo 1 → Description (alt text)")
-    assert "needs a short description (alt text)" in p["message"] and "screen readers" in p["message"]
+    p = find(errors(run(repo)), where="Page: Home", field="Photos → Made fresh — photo 1 → Photo description")
+    assert "needs a short description" in p["message"] and "can’t see it" in p["message"]
 
 
 def test_missing_alt_on_a_community_square(repo):
     edit(repo, "pages/home.json", lambda d: d["community"]["squares"][2]["photo"].pop("alt"))
     p = find(errors(run(repo)), field="Community → Square photo 3 (“", message="needs a short description")
-    assert p["field"].endswith("”) → Photo → Description (alt text)")
+    assert p["field"].endswith("”) → Photo → Photo description")
 
 
 def test_long_announcement(repo):
@@ -113,7 +113,7 @@ def test_small_upload_is_rejected_with_sizes(repo):
     edit(repo, "pages/home.json", lambda d: d["photos"]["hero"].update(image="src-img/uploads/tiny.jpg"))
     edit(repo, "pages/what.json", lambda d: d["photos"]["hero"].update(image="src-img/uploads/tiny.jpg"))
     errs = errors(run(repo))
-    full = find(errs, where="Page: Home", field="Hero photo → Photo")["message"]
+    full = find(errs, where="Page: Home", field="Top photo → Photo")["message"]
     assert "700×500 pixels" in full and "at least 1200 pixels" in full
     half = find(errs, where="Page: What We Make")["message"]
     assert "at least 800 pixels" in half
@@ -130,7 +130,7 @@ def test_seo_lengths_are_warnings(repo):
     edit(repo, "pages/how.json", lambda d: d["seo"].update(title="T" * 70))
     probs = run(repo)
     assert errors(probs) == []
-    find(probs, level="warning", where="Page: How We Make It", field="SEO → Page title", message="about 60")
+    find(probs, level="warning", where="Page: How We Make It", field="Google and shared links → Google title", message="about 60")
 
 
 def test_caption_limit(repo):
@@ -175,8 +175,8 @@ def test_dates_in_specials_and_events(repo):
     (repo / "content" / "events" / "run-club.json").write_text(json.dumps(
         {"title": "Run club", "date": "2026-11-08", "start_time": "09:00", "end_time": "08:00"}))
     errs = errors(run(repo))
-    find(errs, where="Special: Phi Velvet", field="Ends", message="before the start date")
-    find(errs, where="Event: Run club", field="Ends", message="not after the start time")
+    find(errs, where="Special: Phi Velvet", field="Last day shown", message="before the start date")
+    find(errs, where="Event: Run club", field="End time", message="not after the start time")
 
 
 def test_ended_special_is_a_warning(repo):
@@ -371,7 +371,7 @@ def test_a_small_square_photo_cant_become_the_homepage_hero(repo):
     """sq-mango-coco.png (364×337) is exempt on the menu card it was made for,
     never in a full-width spot."""
     edit(repo, "pages/home.json", lambda d: d["photos"]["hero"].update(image="src-img/menu/sq-mango-coco.png"))
-    p = find(errors(run(repo)), where="Page: Home", field="Hero photo → Photo")
+    p = find(errors(run(repo)), where="Page: Home", field="Top photo → Photo")
     assert "364×337 pixels" in p["message"] and "1200" in p["message"]
 
 
@@ -405,7 +405,7 @@ def test_two_menu_items_with_the_same_name_are_flagged(repo):
 
 def test_film_needs_a_name(repo):
     edit(repo, "pages/home.json", lambda d: d["film"].update(label=""))
-    find(errors(run(repo)), where="Page: Home", field="Film → Name of the film (for screen readers)")
+    find(errors(run(repo)), where="Page: Home", field="Film → Name of the film")
 
 
 # ---------------------------------------------------------------------------

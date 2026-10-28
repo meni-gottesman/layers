@@ -45,6 +45,11 @@ Entries with a photo each (content.ENTRY_SLOTS) get their slots here too:
                     sharpen only), any other photo gets the gentle retouch;
   specials/<slug>   each published special that is on today;
   events/<slug>     each published upcoming event with a photo.
+And the photos people add under "More sections" (section_slots):
+  blocks/<page>_<n> a section photo on one of the site's pages ("_<k>" for
+                    each photo of a row);
+  custom/<address>_<n> / _top   the sections and the top photo of a page of
+                    the manager's own.
 A slot-specs.json entry under the same name adds hand tuning (tuned.image …).
 
 The build is incremental: each slot's fingerprint (source bytes, spec, edit,
@@ -107,7 +112,7 @@ WIDTHS = {
 }
 # Folders (slot groups) the stale-file sweep looks after.
 GROUPS = {"home", "menu", "story", "catering", "visit", "what", "gift", "loyalty", "site",
-          "instagram", "specials", "events"}
+          "instagram", "specials", "events", "blocks", "custom"}
 JPEG_Q, WEBP_Q = 82, 80
 # Bump when the crop/resize/encode code in this file changes its output, so
 # every slot is rebuilt once. (Code changes in photo_edit.py are picked up by
@@ -231,6 +236,35 @@ def entry_slots(content, specs, today=None, root=ROOT):
     return slots
 
 
+def section_slots(content, specs):
+    """The photos in "More sections" (content.section_photos names them:
+    blocks/<page>_<n>[_<k>]) on every published page that has sections, and
+    on each published page of her own (custom/<address>_<n>[_<k>], plus its
+    top photo custom/<address>_top). Cropped by their focus and zoom with the
+    gentle retouch; a slot-specs.json entry under the same name adds tuning."""
+    def job(slot, photo, aspect, widths):
+        image = content_mod.image_rel(photo.get("image"))
+        if not image:
+            return
+        spec = {"aspect": aspect, "widths": widths, **(specs.get(slot) or {})}
+        focal, zoom, edit = framing(spec, image, photo.get("focus", "auto"), photo.get("zoom", "auto"))
+        slots[slot] = _job(spec, image, focal, zoom, edit)
+
+    slots = {}
+    owners = [(key, content["pages"][key.split("/", 1)[1]] if key.startswith("pages/") else content[key])
+              for key in content_mod.SECTION_FILES]
+    owners += [(f"custom-pages/{p['slug']}", p) for p in content.get("custom-pages", [])]
+    for key, doc in owners:
+        if not content_mod.page_published(doc):
+            continue
+        prefix = content_mod.sections_prefix(key)
+        for p in content_mod.section_photos(prefix, doc.get("sections")):
+            job(p["slot"], p["photo"], p["aspect"], p["widths"])
+        if key.startswith("custom-pages/"):
+            job(f"{prefix}_top", doc["photo"], *content_mod.CUSTOM_TOP_PHOTO[:2])
+    return slots
+
+
 def all_slots(root=ROOT, today=None):
     """Every photo slot of the site at `root` (its content, slot specs and menu data)."""
     root = pathlib.Path(root)
@@ -239,6 +273,7 @@ def all_slots(root=ROOT, today=None):
     slots = page_slots(content, specs)
     slots.update(menu_slots(content, specs, root / "data" / "menu-fallback.json"))
     slots.update(entry_slots(content, specs, today, root))
+    slots.update(section_slots(content, specs))
     return slots
 
 

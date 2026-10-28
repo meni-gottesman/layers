@@ -8,6 +8,10 @@ catering form.
 Everything a visitor reads comes from **`content/`** — JSON files the
 marketing manager edits through **Pages CMS** (`.pages.yml`; how it's set up:
 [docs/dev/CMS.md](docs/dev/CMS.md); her guide: [docs/HANDBOOK.md](docs/HANDBOOK.md)).
+She starts at **/edit**, which turns on **Edit buttons on the website
+itself** (each opens that part of the page in the editor), can add **sections
+of six kinds** to any main page and make **whole pages of her own** — all in
+the site's own design ([Editing](#editing-edit-buttons-sections-and-pages-of-her-own)).
 Pages are rendered from **`templates/`** (Jinja2) by **`tools/build.py`**.
 `public/*.html` is build output: edit content, templates or tools, never the
 output. Every save in the CMS is a commit to `main`; GitHub Actions checks it,
@@ -34,7 +38,9 @@ warns when it's switched off, because the printed QR codes point at it).
 
 **Staff pages** (developer copy in the templates, not CMS content; light
 chrome `templates/tool.html`; noindex, not in the navigation or sitemap, no
-analytics, no announcement bar): **/photo-prep** shrinks a photo in the
+analytics, no announcement bar): **/edit** is the start page for changing the
+website (turns on the Edit buttons, links straight into the editor);
+**/photo-prep** shrinks a photo in the
 browser — nothing is uploaded — to a JPEG of at most 2,400 px and under 3 MB,
 the hosted CMS's upload limit (`public/assets/js/staff.js`); **/brand** is the
 brand kit: logo downloads, the colour tokens (read from `styles.css` at build
@@ -66,11 +72,13 @@ content/                     ← the ONLY thing the manager edits (Pages CMS)
   links.json                   the /links page
   specials/<slug>.json         limited-time drinks/bowls: homepage band, top of /menu, /links
   events/<slug>.json           "Coming up": homepage community section and /links
-templates/                   Jinja2: base.html (chrome), tool.html (staff pages), partials/, pages/<page>.html
+  custom-pages/<address>.json  pages she makes herself, at /<address> ("Your own pages")
+templates/                   Jinja2: base.html (chrome), tool.html (staff pages), partials/ (sections.html =
+                               "More sections"), pages/<page>.html (custom.html = her own pages, edit.html = /edit)
 public/                      deployed as-is (build output + hand-written assets)
   assets/css/styles.css        design system
   assets/js/main.js            header, drawer, film, menu sheet + live merge, open-now, form, motion,
-                               announcement bar, dated specials/events between builds
+                               announcement bar, dated specials/events between builds, staff mode (Edit buttons)
   assets/js/staff.js           /photo-prep and /brand only
   assets/js/vendor/            GSAP + ScrollTrigger, self-hosted
   assets/img/<group>/          every photo, WebP + JPEG at several widths (built)
@@ -181,6 +189,61 @@ break = `<br>`, `**bold**`, `*italic*`, `[text](https://… | /page | #id |
 mailto: | tel:)`. The input is escaped first; there is no way to write HTML.
 External links open in a new tab with a screen-reader hint. `{hours}` in an
 FAQ answer becomes the current hours line.
+
+## Editing: Edit buttons, sections and pages of her own
+
+- **Edit buttons (staff mode).** Every region of every page carries
+  `data-edit="<editor link>" data-edit-label="Edit the opening hours"`
+  (`render.edit_attr`); `<body>` carries `data-edit-root` (the editor) and
+  `data-edit-page` (this page's own screen). With `?edit` in the address
+  (the /edit page's "Show Edit buttons on the website"; remembered in this
+  browser, `?edit=off` to stop), `main.js` adds a small "✎ Edit" link in
+  each region's corner (it opens the editor in a new tab) and a bar: "Edit
+  this page · Open the editor · Hide edit buttons". An album's link is in
+  the album viewer. Without the switch nothing is added and nothing is
+  fetched: visitors' pages differ from before only by the attributes. The
+  repository is written **once, `render.REPO` / `render.BRANCH`**
+  (`EDITOR_URL`, and the guide's link on /edit); `render.editor_link` builds
+  Pages CMS's own routes from it (`/file/<name>`,
+  `/collection/<name>[/edit/<path>|/new]`; an entry's `.json` is written
+  `%2Ejson` so signing in on the way returns her to it), and a test checks
+  every link against `.pages.yml`. /edit also lists the last build's
+  warnings ("Worth a look"), each linked to its screen.
+- **More sections.** Home, Story, How We Make It, What We Make, A Day at
+  Layers, Catering, Visit, FAQ and Menu (and her own pages) have
+  `sections`: a list of six kinds — Text, Photo (wide or standard), Photo
+  and text, Row of photos (2–4), Button, Quote — drawn after the page's own
+  content (Home: after Instagram, before the Visit band; Story, How, What:
+  before the closing words) by
+  `templates/partials/sections.html` from the site's own editorial pieces.
+  Their photos are slots `blocks/<page>_<n>[_<k>]` built like every other
+  photo (21:9, 3:2, 4:5, 1:1). No sections = the page is exactly as before.
+- **Your own pages** (`content/custom-pages/<address>.json`): title,
+  address, intro, top photo, sections, where it's linked (footer, main menu
+  and footer, or nowhere), a shorter "Name in the menu", Google title and
+  description, Published. Rendered at `/<address>` (its file's address,
+  whatever the box says later) with the site chrome
+  (`templates/pages/custom.html`), in the sitemap while published. An
+  address the site uses itself is refused (`content.RESERVED_ADDRESSES`), and
+  one never replaces a site page even unchecked. The main menu takes her
+  pages only while they fit (2 at most, names up to 18 characters, measured
+  widths); the phone menu takes over no sooner than the names need
+  (`render.header_more`).
+- **Links to the site's own pages** in her content are checked: one to a
+  page that doesn't exist stops the update (with "Did you mean …?"); one to
+  a page that's switched off isn't drawn until the page is back.
+
+- **Written for a non-technical editor.** Every CMS screen starts with what
+  is changed most (Published first in a collection, holidays before the
+  weekly hours, the menu items before the menu's headings) and ends with
+  what's rarely needed (a photo's Focus/Zoom, the film's spoken texts,
+  “Google and shared links”); labels are everyday words (“Photo
+  description”, “Google title”, “Order button text”), and a box that can be
+  left empty says so first (“Optional — …”). Analytics is hidden (still declared, so a save
+  keeps it). `tests/test_cms_wording.py` keeps it that way.
+
+How the CMS side works (the `block` field, its traps, how a kind of section
+is added, the form order and wording rules): [docs/dev/CMS.md](docs/dev/CMS.md#sections-and-pages-of-her-own).
 
 ## Hours, address, ordering
 
@@ -340,8 +403,11 @@ it is cut is technical, in `src-img/slot-specs.json`:
   photos go through exactly as before, so their fingerprints don't change.
 - **Per-entry slots.** Instagram posts (`instagram/<n>`, square), specials
   (`specials/<slug>`, 4:5) and events (`events/<slug>`, square thumbnail) get
-  slots from `content.ENTRY_SLOTS`; a `slot-specs.json` entry with the same
-  name adds tuning (the Phi Velvet studio shot keeps the studio recipe).
+  slots from `content.ENTRY_SLOTS`; the photos in "More sections" and on her
+  own pages get `blocks/<page>_<n>[_<k>]`, `custom/<address>_<n>[_<k>]` and
+  `custom/<address>_top` (`content.section_photos`); a `slot-specs.json`
+  entry with the same name adds tuning (the Phi Velvet studio shot keeps the
+  studio recipe).
 
 **To swap a photo:** in the CMS, choose the new photo in that spot (it lands in
 `src-img/uploads/`) and pick a focus; or by hand, put the file under `src-img/`

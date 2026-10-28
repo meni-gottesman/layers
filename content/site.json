@@ -13,9 +13,9 @@
   "social": {
     "instagram_handle": "layerssuperfoodbar"
   },
+  "footer_tagline": "A Berkeley superfood bar. Clean smoothies and bowls, made fresh.",
+  "signoff_tagline": "Always pure, never watered down.",
   "seo": {
     "default_description": "Layers Superfood Bar — real food, functional fuel. Smoothies and bowls made fresh at 2436 Channing Way, Berkeley."
-  },
-  "footer_tagline": "A Berkeley superfood bar. Clean smoothies and bowls, made fresh.",
-  "signoff_tagline": "Always pure, never watered down."
+  }
 }

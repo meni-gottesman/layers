@@ -1,9 +1,6 @@
 {
-  "title": "Behind the counter",
-  "order": 1,
   "published": true,
-  "cover": "src-img/albums/01-behind-the-counter/06.jpg",
-  "cover_focus": "auto",
+  "title": "Behind the counter",
   "photos": [
     {
       "image": "src-img/albums/01-behind-the-counter/01.jpg",
@@ -37,5 +34,8 @@
       "image": "src-img/albums/01-behind-the-counter/08.jpg",
       "alt": "A Layers team member at the prep counter behind a wall of bananas"
     }
-  ]
+  ],
+  "cover": "src-img/albums/01-behind-the-counter/06.jpg",
+  "cover_focus": "auto",
+  "order": 1
 }

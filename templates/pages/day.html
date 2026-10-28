@@ -1,14 +1,18 @@
 {#- A Day at Layers: the photo albums (content/albums/*.json, built by
     tools/build-albums.py); tiles open a full-screen viewer. -#}
 {% extends "base.html" %}
+{% import "partials/sections.html" as sections with context %}
 {% block main %}
 
-<header class="story-head story-head--inner">
+<header class="story-head story-head--inner"{{ edit_attr(edit_page, "Edit the title") }}>
   <p class="eyebrow">{{ page.eyebrow }}</p>
   <h1 class="story-head__title">{{ page.title }}</h1>
 </header>
 
-<section id="albums" class="albums ed-block--last" aria-label="Photo albums">
+<section id="albums" class="albums ed-block--last" aria-label="Photo albums"{{ edit_attr(edit_url("albums"), "Edit the photo albums: add photos, a new album, covers") }}>
   {{ albums_html() }}
 </section>
+{% if more_sections %}
+{{ sections.render(more_sections) }}
+{% endif %}
 {% endblock %}

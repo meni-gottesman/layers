@@ -1,0 +1,25 @@
+{#- A page the manager made herself (content/custom-pages/<address>.json,
+    "Your own pages" in the CMS), at /<address>: the title and short intro
+    in the inner pages' opener, an optional wide photo under them, then her
+    sections (partials/sections.html). The site chrome is the same as every
+    page's; render.Site adds the page to the main menu and/or the footer as
+    its "Show it in" asks (content.custom_page_links). -#}
+{% extends "base.html" %}
+{% import "partials/sections.html" as sections with context %}
+{% block main %}
+
+<header class="story-head story-head--inner"{{ edit_attr(edit_page, "Edit this page’s title and intro") }}>
+  <h1 class="story-head__title story-head__title--long">{{ page.title }}</h1>
+{% if page.intro %}
+  <p class="story-head__lede">{{ page.intro|br }}</p>
+{% endif %}
+</header>
+{% if top_slot %}
+
+<figure class="ed-tile ed-tile--wide"{{ edit_attr(edit_page, "Edit the top photo") }}>
+  <span class="ed-media">{{ pic(top_slot, alt=page.photo.alt, sizes="100vw", eager=True) }}</span>
+</figure>
+{% endif %}
+
+{{ sections.render(more_sections, gap=top_slot != "") }}
+{% endblock %}

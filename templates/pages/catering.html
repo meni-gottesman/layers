@@ -2,9 +2,10 @@
     editorial system. The event types must match EVENT_TYPES in
     functions/api/catering.js, so they live here, not in editable content. -#}
 {% extends "base.html" %}
+{% import "partials/sections.html" as sections with context %}
 {% block main %}
 
-<header class="story-head story-head--inner">
+<header class="story-head story-head--inner"{{ edit_attr(edit_page, "Edit the title and button") }}>
   <p class="eyebrow">{{ page.eyebrow }}</p>
   <h1 class="story-head__title story-head__title--long">{{ page.title }}</h1>
   <div class="ed-ctas">
@@ -12,18 +13,18 @@
   </div>
 </header>
 
-<figure class="ed-tile ed-tile--wide">
+<figure class="ed-tile ed-tile--wide"{{ edit_attr(edit_page, "Edit the photo (in the editor: Photos)") }}>
   <span class="ed-media">{{ pic("catering/hero", sizes="100vw", eager=True) }}</span>
 </figure>
 
-<div class="catering-lede">
+<div class="catering-lede"{{ edit_attr(edit_page, "Edit the introduction") }}>
   {{ md(page.intro) }}
 </div>
 
 <div class="ed-block"></div>
 {# The form is this page's single sage field. Destination inbox lives only as
     the server-side CATERING_TO secret and is never rendered here. #}
-<section id="catering" class="section section--sage" aria-label="Catering inquiry">
+<section id="catering" class="section section--sage" aria-label="Catering inquiry"{{ edit_attr(edit_page, "Edit the form’s heading and button (the questions are fixed)") }}>
   <div class="wrap catering">
     <div class="catering__formwrap catering__formwrap--page">
       <h2 class="h3 catering__formtitle">{{ page.form.heading }}</h2>
@@ -81,4 +82,7 @@
     </div>
   </div>
 </section>
+{% if more_sections %}
+{{ sections.render(more_sections, gap=True) }}
+{% endif %}
 {% endblock %}

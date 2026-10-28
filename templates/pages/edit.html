@@ -1,0 +1,77 @@
+{#- /edit — STAFF TOOL: the start page for changing the website, easy to
+    remember and to bookmark. The button that turns the Edit buttons on comes
+    first, then the three steps (the first one is pressing it). "Show Edit
+    buttons" opens the homepage with ?edit, which turns on staff mode in this
+    browser (public/assets/js/main.js, remembered in localStorage): an
+    "✎ Edit" button then sits on every part of every page, opening that part
+    in the editor. "Hide" is ?edit=off. The editor and guide links come from
+    render.EDITOR_URL / HANDBOOK_URL (REPO and BRANCH there), so they follow
+    the site if it moves. "Worth a look" lists this build's warnings
+    (render.Site.notes), each with a link to its screen in the editor. Plain
+    developer copy, like the other staff tools: noindex, not in the
+    navigation or sitemap, no analytics. -#}
+{% extends "tool.html" %}
+
+{% block main %}
+<section class="tool" aria-labelledby="edit-title">
+  <header class="tool__head">
+    <p class="eyebrow">Staff tool</p>
+    <h1 id="edit-title" class="tool__title">Edit the website</h1>
+    <p class="tool__lede">Change the words and photos on the website yourself. Nothing you do here can break it: every change is checked before it goes live, and if something needs fixing, the website stays as it was.</p>
+  </header>
+
+  <div class="edit-go">
+    <p class="edit-go__state" role="status" aria-live="polite" data-edit-state></p>
+    <div class="edit-go__ctas">
+      <a class="btn btn--sage btn--lg" href="/?edit">Show Edit buttons on the website</a>
+      <a class="btn btn--line btn--lg" href="{{ editor_url }}" target="_blank" rel="noopener">Open the editor<span class="sr-only"> (opens in a new tab)</span></a>
+      <a class="edit-go__off" href="?edit=off">Hide Edit buttons</a>
+    </div>
+  </div>
+
+  <ol class="edit-steps">
+    <li><span class="edit-steps__n" aria-hidden="true">1</span><p><strong>Press Show Edit buttons on the website</strong>, just above. The homepage opens.</p></li>
+    <li><span class="edit-steps__n" aria-hidden="true">2</span><p><strong>Find the thing you want to change and press the ✎ Edit button</strong> next to it. The editor opens at the right place.</p></li>
+    <li><span class="edit-steps__n" aria-hidden="true">3</span><p><strong>Change it and press Save.</strong> The website updates by itself in 2–4 minutes.</p></li>
+  </ol>
+  <p class="edit-go__undo"><strong>Made a mistake?</strong> In the editor’s menu on the left, under <strong>Actions</strong>, press <strong>Undo my last change</strong>.</p>
+  <p class="edit-go__fine">The Edit buttons are only on this phone or computer, in this browser: visitors never see them. When the editor asks you to sign in (the first time, and again now and then), type your email address and the 6-digit code it sends you — it then opens the screen you asked for. If it opens somewhere else, press the Edit button again.</p>
+  <noscript><p class="edit-go__fine"><strong>The Edit buttons need JavaScript.</strong> Turn it on in your browser’s settings, or use “Open the editor”.</p></noscript>
+
+  <section class="kit" aria-labelledby="edit-new">
+    <h2 id="edit-new" class="kit__title">Straight to it</h2>
+    <ul class="edit-links" role="list">
+      <li><a href="{{ edit_url('new:custom-pages') }}" target="_blank" rel="noopener"><strong>Create a new page</strong><span>A whole page of your own, with its own web address.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
+      <li><a href="{{ edit_url('announcement') }}" target="_blank" rel="noopener"><strong>Post an announcement</strong><span>The thin bar across the top of every page.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
+      <li><a href="{{ edit_url('new:specials') }}" target="_blank" rel="noopener"><strong>Add a special</strong><span>A limited-time drink or bowl.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
+      <li><a href="{{ edit_url('new:events') }}" target="_blank" rel="noopener"><strong>Add an event</strong><span>A run club, collab or pop-up, under “Coming up”.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
+      <li><a href="{{ edit_url('hours') }}" target="_blank" rel="noopener"><strong>Change the opening hours</strong><span>Holidays first, then the weekly hours.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
+      <li><a href="{{ edit_url('albums') }}" target="_blank" rel="noopener"><strong>Add photos to an album</strong><span>The albums on “A Day at Layers”.</span><span class="sr-only"> (opens the editor in a new tab)</span></a></li>
+    </ul>
+    <p class="kit__fine">To add something to a page — some text, a photo, a quote, a button — press its Edit button and use <strong>More sections</strong>, near the bottom of the page’s screen in the editor (on Home, scroll down past the photos and the page’s words).</p>
+  </section>
+
+  <section class="kit" aria-labelledby="edit-notes">
+    <h2 id="edit-notes" class="kit__title">Worth a look</h2>
+{% if notes %}
+    <p class="kit__text">The last update found {{ "this" if notes|length == 1 else "these" }}. {{ "It doesn’t" if notes|length == 1 else "None of them" }} stop the website updating, but {{ "it’s" if notes|length == 1 else "they’re" }} worth fixing when you have a moment.</p>
+    <ul class="edit-notes" role="list">
+{% for n in notes %}
+      <li><p class="edit-notes__where"><strong>{{ n.where }}</strong>{% if n.field %} › {{ n.field }}{% endif %}</p><p class="edit-notes__msg">{{ n.message }}</p>{% if n.edit %}<a class="edit-notes__go" href="{{ n.edit }}" target="_blank" rel="noopener">Open it in the editor<span class="sr-only"> (opens in a new tab)</span></a>{% endif %}</li>
+{% endfor %}
+    </ul>
+{% else %}
+    <p class="kit__text">Nothing right now: everything checked out at the last update.</p>
+{% endif %}
+  </section>
+
+  <section class="kit" aria-labelledby="edit-help">
+    <h2 id="edit-help" class="kit__title">Help</h2>
+    <ul class="edit-links" role="list">
+      <li><a href="/photo-prep"><strong>Prepare a photo</strong><span>Photos over 3 MB can’t be uploaded: make them smaller here first.</span></a></li>
+      <li><a href="{{ handbook_url }}" target="_blank" rel="noopener"><strong>The website guide</strong><span>Every task, step by step, and what to do when an update doesn’t publish.</span><span class="sr-only"> (opens in a new tab)</span></a></li>
+      <li><a href="/brand"><strong>Brand kit</strong><span>The logo, colours, typeface and QR codes.</span></a></li>
+    </ul>
+  </section>
+</section>
+{% endblock %}

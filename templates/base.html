@@ -7,7 +7,13 @@
     technical page settings (header mode, nav item, body class, preloads,
     JSON-LD) from PAGE_CONFIG in tools/render.py — never from editable content.
     A page without its own SEO description (the link-in-bio page, the staff
-    tools) uses Business details › SEO › Default description. -#}
+    tools) uses Business details › Google and shared links › Default Google
+    description.
+    Staff mode (main.js, turned on at /edit or with ?edit): <body> carries the
+    editor's address (data-edit-root) and this page's own screen in it
+    (data-edit-page, the "Edit this page" button); the regions marked with
+    data-edit (render.edit_attr) get an "✎ Edit" button. Visitors see none of
+    it: without staff mode the attributes do nothing. -#}
 {%- import "partials/icons.html" as icons -%}
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +56,7 @@
 <script type="application/ld+json">{{ jsonld }}</script>
 {% endif %}
 </head>
-<body class="{{ cfg.body }}{% if announcement_active %} has-ann{% endif %}">
+<body class="{{ cfg.body }}{% if announcement_active %} has-ann{% endif %}" data-edit-root="{{ editor_url }}"{% if edit_page %} data-edit-page="{{ edit_page }}"{% endif %}>
 <a class="skip-link" href="#main">Skip to content</a>
 {% if announcement_active %}
 {% include "partials/announcement.html" %}

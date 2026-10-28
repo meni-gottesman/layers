@@ -288,9 +288,11 @@ both, or visits are counted twice.
 
 - **Through the CMS (works anywhere):** Cloudflare dashboard → Web Analytics →
   Add a site → hostname `layerssuperfoodbar.com`. Copy the token from the
-  snippet it shows (the 32-character value after `"token":`). Paste it in
-  Pages CMS → **Business details** → *Analytics* → *Cloudflare Web Analytics
-  token*. The token is public by design, not a secret.
+  snippet it shows (the 32-character value after `"token":`). Put it in
+  `content/site.json` on GitHub (✎ edit the file), as
+  `"analytics": {"cloudflare_web_analytics_token": "<token>"}` at the end.
+  The box is hidden in Pages CMS so the manager can't change it by accident
+  (a save keeps it). The token is public by design, not a secret.
   - The beacon only loads on `layerssuperfoodbar.com` and
     `www.layerssuperfoodbar.com` (`PRODUCTION_HOSTS` in `tools/render.py`):
     the GitHub Pages preview, the `*.pages.dev` address and localhost don't

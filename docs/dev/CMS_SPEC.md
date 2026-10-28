@@ -487,3 +487,103 @@ in public repos → the weekly keep-alive job (§6).
   camera originals will move to a separate private repo; this repo keeps web
   masters (≤ 4096 px originals, ≤ 3200 px albums). Not part of Phase B — the
   owner's maintainer does it at publish time.
+
+## 12. Phase C — changing anything simply (Oct 27, owner's request)
+
+Owner: "make it as easy for a fully non technical person to make whatever
+changes they want simply." Fewer steps, plain words, nothing that can look
+off-brand. Built (README "Editing"; docs/dev/CMS.md; HANDBOOK "The Edit
+buttons", "Add a section to a page", "Make a new page"):
+
+- **Edit buttons on the website.** `/edit` (staff tool, noindex) turns on
+  staff mode in that browser (`?edit`, off with `?edit=off`); every region of
+  every page then shows an "✎ Edit" link to its screen in Pages CMS, plus a
+  bar (Edit this page · Open the editor · Hide edit buttons). The editor's
+  address is one constant (`render.EDITOR_URL`); links use the app's own
+  routes and are tested against `.pages.yml`. Visitors get only `data-edit*`
+  attributes: proven by a normalised diff of every page against the build of
+  `5265690` (identical once the attributes are removed; the staff tools'
+  switcher gained "Edit the website").
+- **More sections** (`sections`, a Pages CMS `block` list, blockKey `type`) on
+  Home, Story, How, What, Day, Catering, Visit, FAQ and Menu: Text, Photo
+  (wide 21:9 / standard 3:2), Photo and text (4:5), Row of photos (2–4, 1:1),
+  Button, Quote. Rendered after the page's content (Home: after Instagram,
+  before Visit) from the existing editorial classes; photos are normal slots.
+- **Your own pages** (`content/custom-pages/<address>.json`, sidebar Pages ›
+  Your own pages): title, web address (refuses the site's own paths), intro,
+  top photo, sections, Show it in (footer / main menu and footer — 2 at most —
+  / nowhere), Google title and description, Published.
+- Seeded with nothing: today's site looks exactly the same.
+
+## 13. Simplicity pass over the editor (Oct 27)
+
+Same request, applied to every CMS screen (docs/dev/CMS.md "Form order and
+wording"; tests/test_cms_wording.py):
+
+- **Order by use.** Published first in every collection; holidays before the
+  weekly hours (folded to "date name"); the menu items before the menu's
+  headings; the Link in bio buttons and the Instagram posts first, and the
+  switches that take that page or section down last; on pages, More
+  sections, then rarely-needed fields (Home's film texts), then Google last.
+  Inside a photo: Photo, Photo description, Focus, Zoom.
+- **Plain labels** (tools/content.py and .pages.yml together): Photo
+  description; Google and shared links → Google title / Google description;
+  Top photo / Top of the page (was Hero); … button text / … link text for
+  the words on buttons and links; First day shown / Last day shown; Start
+  time / End time; Note instead of a button; Small label above the name /
+  heading; Menu items; Address and contact, Ordering links, Social media;
+  Default Google description, Photo for shared links; Green button; Topics
+  (Visit › Getting here, so it isn't confused with More sections). Help is
+  one short sentence; optional ones start "Optional —".
+- **Hidden:** Business details › Analytics (`hidden: true`, still declared).
+- Content: key order only (`cms_normalize.py` on content/ and the seed; the
+  menu refresh writes new items in the same order). The built site is
+  unchanged apart from one Edit-button label (the menu page's title and
+  notes are after the items in the editor).
+
+## 14. Review fixes: nothing she does on the natural path breaks or hides (Oct 27)
+
+Same request; each point closes a way the manager, doing the obvious thing,
+could still end up with something broken, invisible or confusing
+(docs/dev/CMS.md; tests/test_edit_safety.py):
+
+- **Main menu.** Her pages go in only while they fit: at most 2, names up to
+  18 characters (new optional **Name in the menu**, `menu_title`,
+  `maxlength: 18`), and together within the row's room. The rest are in the
+  footer, with a warning. The phone menu takes over at the site's own
+  1100 px, or at 1140/1180/1220/1260 px when the names need it
+  (`render.header_more`, from measured character widths) — never at every
+  width, and one short name changes nothing.
+- **Links to her pages.** A link to a page that doesn't exist is an error
+  that suggests the page meant; a link to a page that's switched off is a
+  warning and isn't drawn until the page is back (buttons, the
+  announcement, /links, events, formatted text).
+- **Instagram.** A hand-picked post past "Number of posts" (where "Add an
+  item" puts it) is an error that says to drag it up or raise the number.
+- **Web addresses.** The page is always at its file's address. An address
+  another page already had (Pages CMS then saves `<address>-1.json`) or one
+  changed after the first Save is a warning that says where the page is —
+  not an error that holds up every other change.
+- **Empty Text section**: not drawn, a warning.
+- **Signed out:** the Edit buttons' entry links write the extension's dot as
+  `%2E`, so Pages CMS's sign-in returns her to the special, event, album or
+  page she pressed Edit on (checked against Next.js 16.2.1 with the app's
+  proxy). /edit and the handbook also say: sign in, and press Edit again if
+  needed.
+- **/edit**: the button that turns the Edit buttons on comes first and is
+  step 1; how to undo (Actions → Undo my last change); **Worth a look** lists
+  the build's warnings with a link to each screen (so warnings no longer
+  live only in the Actions summary).
+- **Smaller:** times accept a stray space (trimmed); a special without its
+  own label shows "Limited time"; sections on Story, How and What come
+  before the closing words; a page of her own shares its own top photo;
+  where-to-look hints on Home's (and Story/What/Catering's photo) Edit
+  buttons; footer pencils never cover text; the editing bar is early in the
+  Tab order and keeps whole words on phones ("Open editor", "Hide
+  buttons"); the staff tools' menu fits on a phone; photo help gives the
+  whole Prepare-a-photo address and "at least 800 pixels wide" again; the
+  repository is written once (`render.REPO`, `BRANCH`), the guide's link
+  included.
+- The seed site's pages are unchanged (normalised diff against `5265690`,
+  data-edit attributes aside: identical apart from the staff tools' "Edit
+  the website" link and the new /edit).

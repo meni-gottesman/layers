@@ -6,7 +6,7 @@
 {% block main %}
 {%- macro ph(text) %}{% if text.startswith("[") %} placeholder-copy{% endif %}{% endmacro %}
 
-<section class="section section--cream pagehead">
+<section class="section section--cream pagehead"{{ edit_attr(edit_page, "Edit the Loyalty page") }}>
   <div class="wrap comp-b">
     <div class="comp-b__main">
       <p class="eyebrow">{{ page.eyebrow }}</p>
@@ -22,7 +22,7 @@
   </div>
 </section>
 
-<section class="section section--linen" aria-label="How it works">
+<section class="section section--linen" aria-label="How it works"{{ edit_attr(edit_page, "Edit the steps") }}>
   <div class="wrap">
     <p class="eyebrow">{{ page.how_heading }}</p>
     <ol class="steplist manifesto manifesto--tight numbered">

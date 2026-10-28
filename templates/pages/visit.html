@@ -5,16 +5,17 @@
     (DoorDash, Uber Eats) show under the buttons only when they are set. -#}
 {% extends "base.html" %}
 {% import "partials/icons.html" as icons %}
+{% import "partials/sections.html" as sections with context %}
 {% block main %}
 {%- set b = site.business %}
 
-<section class="ed-split" aria-labelledby="visit-title">
+<section class="ed-split" aria-labelledby="visit-title"{{ edit_attr(edit_page, "Edit the Visit page’s photo, title and buttons") }}>
   <figure class="ed-tile ed-split__media"><span class="ed-media">{{ pic("visit/hero", sizes="(max-width: 820px) 100vw, 50vw", eager=True) }}</span></figure>
   <div class="ed-split__text">
     <p class="eyebrow">{{ page.eyebrow }}</p>
     <h1 id="visit-title" class="ed-split__title">{{ page.title }}</h1>
-    <p><a class="visit__addr" href="{{ directions_url }}" target="_blank" rel="noopener">{{ b.street }}<br>{{ b.city }}, {{ b.region }} {{ b.postal_code }}</a>{% if b.cross_streets %}<br><span class="visit__cross">{{ b.cross_streets }}</span>{% endif %}</p>
-    <p class="visit__open" data-open-now data-open-now-only></p>
+    <p{{ edit_attr(edit_url("site"), "Edit the address (Business details)") }}><a class="visit__addr" href="{{ directions_url }}" target="_blank" rel="noopener">{{ b.street }}<br>{{ b.city }}, {{ b.region }} {{ b.postal_code }}</a>{% if b.cross_streets %}<br><span class="visit__cross">{{ b.cross_streets }}</span>{% endif %}</p>
+    <p class="visit__open" data-open-now data-open-now-only{{ edit_attr(edit_url("hours"), "Edit the opening hours") }}></p>
     {{ hours_table() }}
 {% if special_rows %}
     {#- the next 60 days of special/holiday hours (content/hours.json); main.js
@@ -46,7 +47,7 @@
   </div>
 </section>
 
-<section class="ed-block ed-block--last" aria-labelledby="getting-here">
+<section class="ed-block ed-block--last" aria-labelledby="getting-here"{{ edit_attr(edit_page, "Edit “Getting here”") }}>
   <h2 id="getting-here" class="ed-section-title">{{ page.getting_here.heading }}</h2>
   <div class="visit-facts">
 {% for s in page.getting_here.sections %}
@@ -57,4 +58,7 @@
 {% endfor %}
   </div>
 </section>
+{% if more_sections %}
+{{ sections.render(more_sections) }}
+{% endif %}
 {% endblock %}

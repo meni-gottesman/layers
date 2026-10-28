@@ -7,9 +7,10 @@
 {% extends "base.html" %}
 {% import "partials/icons.html" as icons %}
 {% import "partials/specials.html" as specials with context %}
+{% import "partials/sections.html" as sections with context %}
 {% block main %}
 
-<header class="story-head menu-head">
+<header class="story-head menu-head"{{ edit_attr(edit_page, "Edit the menu page’s title and notes (in the editor, after the menu items)") }}>
   <p class="eyebrow">{{ page.eyebrow }}</p>
   <h1 class="story-head__title">{{ page.title }}</h1>
 {% if page.intro %}
@@ -28,6 +29,9 @@
 {% endif %}
 
 {{ menu_html() }}
+{% if more_sections %}
+{{ sections.render(more_sections) }}
+{% endif %}
 
 {# ============ ITEM DETAIL SHEET ============ #}
 <div id="item-sheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-name" hidden>

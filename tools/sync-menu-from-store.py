@@ -226,8 +226,10 @@ def update_content(data, content):
         sq_name = re.sub(r"\s+", " ", p["name"]).strip()
         it = by_id.get(p["id"])
         if it is None:
-            it = {"square_id": p["id"], "square_name": sq_name, "category": disp, "display_name": "", "note": "",
-                  "photo": "", "focus": "auto", "zoom": "auto", "hidden": False}
+            # keys in the order of the item's fields in .pages.yml, so the file
+            # stays in the CMS's own format (tools/cms_normalize.py --check)
+            it = {"square_name": sq_name, "display_name": "", "note": "", "photo": "", "hidden": False,
+                  "focus": "auto", "zoom": "auto", "category": disp, "square_id": p["id"]}
             content.setdefault("items", []).append(it)
             by_id[p["id"]] = it
             added.append(sq_name)

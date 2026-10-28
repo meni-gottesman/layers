@@ -1469,6 +1469,10 @@ section.menu-group{scroll-margin-top:calc(var(--header-h) + 64px)}
 .tool-head__nav a{display:inline-block;padding:8px 0;font:600 13px var(--display);font-stretch:var(--narrow);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:2px solid transparent}
 .tool-head__nav a:hover{color:var(--bop)}
 .tool-head__nav a[aria-current="page"]{color:var(--bop);border-bottom-color:var(--bop)}
+@media (max-width:440px){            /* the three links stay on one line on a phone */
+  .tool-head__nav{gap:6px 14px}
+  .tool-head__nav a{font-size:12px;letter-spacing:.06em}
+}
 .tool-foot{padding:32px var(--gutter);border-top:1px solid var(--sand);text-align:center}
 .tool-foot p{margin:0;font:400 13px/1.5 var(--display);color:var(--stone)}
 
@@ -1610,3 +1614,184 @@ section.menu-group{scroll-margin-top:calc(var(--header-h) + 64px)}
 .pp__note[data-tone="warn"]{padding:14px 18px;background:var(--ground-hi);border-left:3px solid var(--bop)}
 .pp__note strong{font-weight:700}
 @media (hover:none){.pp__or{display:none}}     /* no dragging on a phone */
+
+/* ======================================================================== */
+/* V8 — editing (Oct 27 2026): the "More sections" a page can have, pages   */
+/* of the manager's own, staff mode's Edit buttons and bar, and /edit.      */
+/* Sections reuse the editorial pieces above (chapter type, the wide and    */
+/* contained photo bands, the split, edge-to-edge photo rows, square        */
+/* buttons), so anything added looks like the rest of the site.             */
+/* ======================================================================== */
+
+/* ---- More sections (templates/partials/sections.html) --------------------- */
+.more{padding-bottom:var(--edge)}
+.more--gap{padding-top:var(--edge)}                 /* after a coloured band (Catering's form) or a photo */
+.more--before-close{padding-bottom:0}               /* the closing words' own space above separates them */
+.more-button{margin-top:0}
+.more__item + .more__item{margin-top:var(--edge)}
+.more__item + .more-button{margin-top:clamp(28px,3.5vw,44px)}  /* a button belongs to what's above it */
+/* Text: the Story's chapter type */
+.more-text{max-width:760px;margin-left:auto;margin-right:auto;padding:0 var(--gutter)}
+.more-text .eyebrow{color:var(--bop)}
+.more-text .prose a,.more .ed-split__text p a{color:var(--ink);text-underline-offset:3px}
+/* Photo and text: the split (Visit, Gift Cards), on a page of its own */
+.more .ed-split__title{margin-top:0}
+/* Row of photos: square, edge to edge, like the homepage's photo pairs */
+.more-row--2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.more-row--3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.more-row--4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.more-row .ed-media img{aspect-ratio:1/1;object-fit:cover}
+/* Quote: the statement type, a step smaller, and who said it as a label */
+.more-quote{max-width:1000px;margin:0 auto;padding:0 var(--gutter);text-align:center}
+.more-quote__q{margin:0}
+.more-quote__q p{margin:0;font:600 clamp(26px,3.4vw,48px)/1.06 var(--display);font-stretch:var(--narrow);letter-spacing:-.015em;text-transform:uppercase;color:var(--ink);text-wrap:balance}
+.more-quote__who{padding:20px 0 0;color:var(--bop)}
+@media (max-width:720px){
+  .more-row--2,.more-row--3,.more-row--4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .more-row--3 > .ed-tile:first-of-type{grid-column:1/-1}
+}
+
+/* ---- A main menu with pages of her own in it --------------------------------- */
+/* Her links sit a little closer (20 px). Short names fit as they are, and the
+   phone menu takes over below the site's own 1101 px; longer ones need a
+   wider screen: render.header_more adds .header--more-<width>, the phone menu
+   then takes over at or below that width. The names that get into the main
+   menu always fit by 1261 px (content.custom_page_links), so the desktop
+   menu never disappears on a computer. */
+.header--more .header__nav{gap:20px}
+.header--more .header__nav .btn{flex-shrink:0;white-space:nowrap}   /* the Order button never wraps */
+@media (max-width:1140px){
+  .header--more-1140 .header__nav{display:none}
+  .header--more-1140 .burger{display:block}
+  .header--more-1140 .header__m-order{display:inline-flex;margin-left:auto}
+}
+@media (max-width:1180px){
+  .header--more-1180 .header__nav{display:none}
+  .header--more-1180 .burger{display:block}
+  .header--more-1180 .header__m-order{display:inline-flex;margin-left:auto}
+}
+@media (max-width:1220px){
+  .header--more-1220 .header__nav{display:none}
+  .header--more-1220 .burger{display:block}
+  .header--more-1220 .header__m-order{display:inline-flex;margin-left:auto}
+}
+@media (max-width:1260px){
+  .header--more-1260 .header__nav{display:none}
+  .header--more-1260 .burger{display:block}
+  .header--more-1260 .header__m-order{display:inline-flex;margin-left:auto}
+}
+
+/* ---- Staff mode: Edit buttons on the page (main.js) ------------------------- */
+/* Only ever added with ?edit (the /edit page): visitors get none of this.
+   The buttons sit over a corner of their region (position:absolute), so
+   nothing on the page moves; .edit-host only makes the region their frame. */
+.edit-host{position:relative}
+.edit-chip{
+  position:absolute;top:10px;right:10px;z-index:50;
+  display:inline-flex;align-items:center;gap:7px;min-height:36px;padding:8px 14px;
+  background:var(--ink);color:var(--warm-white);text-decoration:none;
+  font:600 14px/1.25 var(--display);letter-spacing:.01em;text-transform:none;text-align:left;white-space:nowrap;
+  box-shadow:0 0 0 2px var(--warm-white),0 4px 14px rgba(38,35,30,.35);
+}
+.edit-chip::after{content:"";position:absolute;left:0;right:0;top:50%;height:max(100%,44px);transform:translateY(-50%)}
+.edit-chip:hover{background:var(--bop);color:var(--warm-white)}
+.edit-chip:focus-visible{outline:3px solid var(--warm-white);outline-offset:2px;box-shadow:0 0 0 6px var(--ink)}
+.edit-chip__icon{font-size:16px;line-height:1}
+/* what it edits: read to screen readers always, shown on hover and focus */
+.edit-chip__what{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.edit-chip:hover,.edit-chip:focus-visible{white-space:normal;max-width:min(30em,calc(100vw - 32px))}
+.edit-chip:hover .edit-chip__what,.edit-chip:focus-visible .edit-chip__what{position:static;width:auto;height:auto;overflow:visible;clip:auto;white-space:normal;font-weight:500}
+/* Where a corner is tight, the button moves: the homepage hero sits under
+   the header; a section someone added gets its button in the space above it
+   (sections are separated by a wide gap), so it never covers a heading or a
+   quote; in the announcement bar and the footer's narrow columns it's the
+   pencil alone, at the edge (the words show on hover and focus). */
+.hero > .edit-chip{top:calc(var(--header-h) + 14px)}
+.more__item > .edit-chip{top:-48px}
+.ann > .edit-chip{top:50%;left:6px;right:auto;transform:translateY(-50%)}
+.footer .edit-chip{top:-4px;right:0}
+/* …and the footer's text keeps the room the pencil needs, so it never covers
+   the end of the address or the hours (staff mode only: .is-editing) */
+.is-editing .footer__addr[data-edit],.is-editing .footer__hours[data-edit]{padding-right:44px}
+/* same idea on phones for the homepage hours line, and room above the first
+   line where a region starts with text (link-in-bio heading, FAQ list) */
+.is-editing .ed-visit__hours[data-edit]{padding-right:44px}
+@media (max-width:720px){
+  .is-editing .links[data-edit],.is-editing .faq[data-edit]{padding-top:48px}
+}
+.footer__brand > .edit-chip{top:12px;left:156px;right:auto}   /* beside the logo, not in the gap to "Visit" */
+.ann > .edit-chip,.footer .edit-chip{min-height:32px;padding:6px 9px}
+.ann > .edit-chip .edit-chip__word,.footer .edit-chip .edit-chip__word{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.ann > .edit-chip:hover .edit-chip__word,.ann > .edit-chip:focus-visible .edit-chip__word,
+.footer .edit-chip:hover .edit-chip__word,.footer .edit-chip:focus-visible .edit-chip__word{position:static;width:auto;height:auto;overflow:visible;clip:auto}
+
+/* the slim bar at the bottom of the screen */
+.is-editing body{padding-bottom:84px}      /* so the end of the page isn't under the bar */
+.is-editing{scroll-padding-bottom:96px}     /* …and nothing Tab moves to stops behind it */
+.edit-bar{
+  position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:95;
+  display:flex;align-items:center;gap:6px;max-width:calc(100% - 32px);padding:6px 6px 6px 18px;
+  background:var(--ink);color:var(--warm-white);
+  box-shadow:0 0 0 2px var(--warm-white),0 10px 30px rgba(38,35,30,.35);
+}
+.edit-bar__label{margin:0 8px 0 0;font:600 13px var(--display);font-stretch:var(--narrow);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;color:rgba(252,250,244,.8)}
+.edit-bar__btn{
+  appearance:none;display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;
+  border:0;background:transparent;color:var(--warm-white);cursor:pointer;text-decoration:none;white-space:nowrap;
+  font:600 13px var(--display);font-stretch:var(--narrow);letter-spacing:.08em;text-transform:uppercase;
+  box-shadow:inset 0 0 0 1.5px rgba(252,250,244,.45);
+}
+.edit-bar__btn--main{background:var(--butter);color:var(--ink);box-shadow:none}
+.edit-bar__btn:hover{background:var(--bop);color:var(--warm-white);box-shadow:none}
+.edit-bar__btn:focus-visible{outline:3px solid var(--warm-white);outline-offset:2px;box-shadow:none}
+.edit-toast{
+  position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:95;max-width:calc(100% - 32px);margin:0;
+  padding:12px 18px;background:var(--ink);color:var(--warm-white);font:500 15px/1.45 var(--display);
+  box-shadow:0 0 0 2px var(--warm-white),0 10px 30px rgba(38,35,30,.35);
+}
+.edit-toast:empty{display:none}
+@media (max-width:600px){
+  .is-editing body{padding-bottom:76px}
+  .edit-bar{left:12px;right:12px;bottom:12px;transform:none;max-width:none;padding:6px}
+  .edit-bar__label,.edit-bar__long{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .edit-bar__btn{flex:1 1 auto;padding:0 8px;font-size:12px;letter-spacing:.05em}
+}
+/* an album's Edit link, in the viewer's top bar */
+.viewer__edit{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;background:var(--butter);color:var(--ink);font:600 13px var(--display);font-stretch:var(--narrow);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+.viewer__edit[hidden]{display:none}
+.viewer__edit:focus-visible{outline:3px solid var(--warm-white);outline-offset:2px}
+@media print{.edit-chip,.edit-bar,.edit-toast,.viewer__edit{display:none!important}.is-editing body{padding-bottom:0}}
+
+/* ---- /edit: the start page -------------------------------------------------- */
+.edit-steps{list-style:none;margin:clamp(36px,5vw,64px) 0 0;padding:0;max-width:820px}
+.edit-steps li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(16px,2.4vw,28px);align-items:center;padding:clamp(18px,2.4vw,26px) 0;border-top:1px solid var(--sand)}
+.edit-steps li:last-child{border-bottom:1px solid var(--sand)}
+.edit-steps__n{display:flex;align-items:center;justify-content:center;width:clamp(48px,6vw,64px);height:clamp(48px,6vw,64px);background:var(--bop);color:var(--warm-white);font:700 clamp(24px,3vw,32px)/1 var(--display);font-stretch:var(--narrow)}
+.edit-steps p{margin:0;font:400 clamp(19px,2vw,24px)/1.4 var(--display);color:var(--ink)}
+.edit-steps strong{font-weight:700}
+.edit-go{max-width:820px;margin-top:clamp(32px,4vw,48px)}
+.edit-go__state{margin:0 0 16px;font:600 15px/1.5 var(--display);color:var(--bop)}
+.edit-go__state:empty{margin:0}
+.edit-go__ctas{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
+.edit-go__off{display:inline-flex;align-items:center;min-height:44px;padding:0 4px;font:600 13px var(--display);font-stretch:var(--narrow);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);text-underline-offset:4px}
+.edit-go__off:hover{color:var(--bop)}
+.edit-go__fine{font:400 14px/1.6 var(--display);color:var(--stone);margin:18px 0 0;max-width:46em}
+.edit-go__undo{font:400 16px/1.55 var(--display);color:var(--ink);margin:clamp(20px,2.4vw,28px) 0 0;max-width:46em}
+.edit-go__undo strong{font-weight:700}
+/* "Worth a look": this build's warnings, each with its screen in the editor */
+.edit-notes{list-style:none;margin:clamp(20px,2.4vw,28px) 0 0;padding:0;max-width:820px}
+.edit-notes li{padding:18px 0;border-top:1px solid var(--sand)}
+.edit-notes li:last-child{border-bottom:1px solid var(--sand)}
+.edit-notes p{margin:0;font:400 15px/1.55 var(--display);color:var(--ink)}
+.edit-notes__where{color:var(--stone)!important}
+.edit-notes__where strong{color:var(--ink);font-weight:700}
+.edit-notes__msg{margin-top:4px!important}
+.edit-notes__go{display:inline-flex;align-items:center;min-height:44px;margin-top:2px;font:600 13px var(--display);font-stretch:var(--narrow);letter-spacing:.08em;text-transform:uppercase;color:var(--bop);text-underline-offset:4px}
+.edit-links{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.edit-links a{display:flex;flex-direction:column;gap:6px;height:100%;padding:18px 20px;background:var(--ground-hi);box-shadow:inset 0 0 0 1px var(--sand);color:var(--ink);text-decoration:none}
+.edit-links a:hover{box-shadow:inset 0 0 0 2px var(--bop)}
+.edit-links strong{font:700 15px/1.3 var(--display);font-stretch:var(--narrow);letter-spacing:.08em;text-transform:uppercase;color:var(--bop)}
+.edit-links span:not(.sr-only){font:400 14px/1.5 var(--display);color:var(--stone)}
+@media (max-width:600px){
+  .edit-go__ctas .btn{width:100%;justify-content:center;text-align:center}
+}

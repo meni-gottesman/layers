@@ -1,9 +1,6 @@
 {
-  "title": "Community",
-  "order": 3,
   "published": true,
-  "cover": "src-img/albums/03-community/12.jpg",
-  "cover_focus": "auto",
+  "title": "Community",
   "photos": [
     {
       "image": "src-img/albums/03-community/01.jpg",
@@ -69,5 +66,8 @@
       "image": "src-img/albums/03-community/16.jpg",
       "alt": "Three friends, two in Alpha Phi shirts, eating Layers bowls on the bench inside the shop"
     }
-  ]
+  ],
+  "cover": "src-img/albums/03-community/12.jpg",
+  "cover_focus": "auto",
+  "order": 3
 }

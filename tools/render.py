@@ -24,8 +24,24 @@ shop's date, or --today) plus a few helpers:
         for links to other sites (none for pages on this site)
   event_when(event), special_rows   dates and times as the site writes them
   delivery_links                [(name, url)] DoorDash / Uber Eats, only those set
+  edit_url(key), edit_attr(url, label), editor_url, edit_page   the Edit
+        buttons (staff mode, main.js): a content key's screen in Pages CMS
+        (EDITOR_URL, editor_link), the data-edit attributes that mark a
+        region, and this page's own screen
+  more_sections, link_ok        a page's "More sections" (sections_view) for
+        partials/sections.html, and the link check its buttons use
+  link_live(url)                False for a link to one of the site's pages
+        that is switched off: such a link isn't drawn (buttons, the
+        announcement's link, /links, events, links in formatted text)
+  notes                         /edit's "Worth a look": this build's warnings
   brand_colours(), png_size(url), qr_codes   the /brand staff page: colour
         tokens read from styles.css, logo sizes, the print QR codes (tools/qr.py)
+
+The site's pages are PAGE_CONFIG plus the pages the manager makes herself
+(content/custom-pages/<address>.json → "custom/<address>", Site.pages),
+linked from the menus as their "Show it in" asks (nav_links; the main menu
+takes only names that fit, content.custom_page_links, and header_more says
+when the phone menu takes over).
 
 JSON inside <script> (the albums data, schema.org) is written with <, > and &
 escaped (script_json), so no text a manager types can end the script early or
@@ -137,6 +153,11 @@ PAGE_CONFIG = {
     "brand": {"content": None, "out": "brand", "template": "brand", "nav": "brand", "body": "page-tool page-brand",
               "signoff": False, "noindex": True, "analytics": False, "tool": True,
               "seo": {"title": "Brand kit | Layers staff tools", "description": ""}},
+    # /edit: the start page for changing the website — turns the Edit buttons
+    # on (staff mode, main.js) and links straight into the editor.
+    "edit": {"content": None, "out": "edit", "template": "edit", "nav": "edit", "body": "page-tool page-edit",
+             "signoff": False, "noindex": True, "analytics": False, "tool": True,
+             "seo": {"title": "Edit the website | Layers staff tools", "description": ""}},
     # Developer draft: the embedded Square store (see templates/pages/order.html).
     "order": {"content": None, "out": "order", "template": "order", "nav": "order", "body": "page-order",
               "signoff": False, "published": False,
@@ -146,6 +167,10 @@ PAGE_CONFIG = {
 }
 CONFIG_DEFAULTS = {"header": "static", "signoff": True, "jsonld": False, "noindex": False, "preload": [],
                    "analytics": True, "tool": False}
+# A page of the manager's own (content/custom-pages/<address>.json) is added
+# to the site's pages as "custom/<address>" with these settings
+# (Site.pages); its address is its output folder.
+CUSTOM_CONFIG = {"template": "custom", "body": "page-custom"}
 
 # The /brand page's colour swatches: (CSS token, name, where it's used). The hex
 # values are read from the :root tokens in public/assets/css/styles.css at
@@ -164,6 +189,101 @@ BRAND_COLOURS = [
 # Delivery services shown on Visit and /links when their link is set
 # (content/site.json → Ordering): (key, name).
 DELIVERY = [("doordash_url", "DoorDash"), ("ubereats_url", "Uber Eats")]
+
+# ---------------------------------------------------------------------------
+# The website editor (Pages CMS). The "Edit" buttons on the site (staff mode,
+# public/assets/js/main.js), the floating editing bar and the /edit start
+# page all link into it, with the app's own address scheme (the routes in
+# app/(main)/[owner]/[repo]/[branch]/ of Pages CMS v2.1.8):
+#   a single file    /file/<name>
+#   a collection     /collection/<name>
+#   one entry        /collection/<name>/edit/<path>
+#   a new entry      /collection/<name>/new
+# <name> is the entry's `name` in .pages.yml (a sidebar group doesn't change
+# it); <path> is the entry's repo path ("content/specials/phi-velvet.json"),
+# encoded the way the app encodes it (encodeURIComponent, so "/" is %2F) —
+# except the dot before "json", written %2E. The app's proxy treats any
+# address ending in ".<letters>" as a file (proxy.ts isStaticAsset) and then
+# doesn't note where the visitor was going, so after signing in she would
+# land on the Projects page instead of the special she pressed Edit on.
+# With %2E the address has no extension, the app returns her to it after
+# signing in, and the page still gets "phi-velvet.json" (checked with
+# Next.js 16.2.1, the version the app uses, and its proxy: docs/dev/CMS.md).
+# To point every button and the guide's link at another repository or
+# branch, change REPO and BRANCH — nothing else. tests/test_edit_mode.py
+# checks every link against .pages.yml.
+# ---------------------------------------------------------------------------
+REPO, BRANCH = "meni-gottesman/layers", "main"
+EDITOR_URL = f"https://app.pagescms.org/{REPO}/{BRANCH}"
+HANDBOOK_URL = f"https://github.com/{REPO}/blob/{BRANCH}/docs/HANDBOOK.md"     # the manager's guide, on /edit
+
+# The .pages.yml entry for each single content file: {content key: name}.
+CMS_FILES = {"site": "site", "hours": "hours", "announcement": "announcement", "instagram": "instagram",
+             "links": "links", "menu": "menu", "faq": "faq",
+             **{f"pages/{k}": ("not-found" if k == "404" else k) for k in content_mod.PAGES}}
+# The .pages.yml collections: {content folder: name}.
+CMS_COLLECTIONS = {"specials": "specials", "events": "events", "albums": "albums", "custom-pages": "custom-pages"}
+
+
+def uri_component(s):
+    """JavaScript's encodeURIComponent, which Pages CMS uses for each part of its addresses."""
+    return urllib.parse.quote(str(s), safe="-_.!~*'()")
+
+
+def editor_link(target):
+    """The editor's address for a content key:
+         "pages/home", "hours", "menu" …   the file             …/file/home
+         "albums", "custom-pages" …        the collection list  …/collection/albums
+         "specials/phi-velvet" …           one entry            …/collection/specials/edit/content%2Fspecials%2Fphi-velvet.json
+         "new:custom-pages"                a new entry          …/collection/custom-pages/new
+    An unknown key is a KeyError: a typo in a template stops the build
+    instead of shipping a button that opens the wrong screen."""
+    if target.startswith("new:"):
+        return f"{EDITOR_URL}/collection/{uri_component(CMS_COLLECTIONS[target[4:]])}/new"
+    if target in CMS_FILES:
+        return f"{EDITOR_URL}/file/{uri_component(CMS_FILES[target])}"
+    if target in CMS_COLLECTIONS:
+        return f"{EDITOR_URL}/collection/{uri_component(CMS_COLLECTIONS[target])}"
+    coll, _, slug = target.partition("/")
+    if coll not in CMS_COLLECTIONS or not slug:
+        raise KeyError(f"no editor screen for {target!r}")
+    return (f"{EDITOR_URL}/collection/{uri_component(CMS_COLLECTIONS[coll])}/edit/"
+            f"{uri_component(f'content/{coll}/{slug}')}%2Ejson")      # %2E: see above
+
+
+# The screen widths below which the phone menu takes over, when her pages
+# make the main menu longer (styles.css .header--more-<width>). The site's
+# own menu hands over below 1101 px; above 1260 px the row has all the room
+# it will ever have (the column stops growing at 1240 px).
+HEADER_WIDTHS = (1140, 1180, 1220, 1260)
+SCROLLBAR_PX = 17           # a classic scrollbar takes this from the width a media query sees
+
+
+def header_more(names):
+    """The header's classes for her pages' names in the main menu:
+    "header--more" (links 20 px apart) and, when the row needs more room
+    than the site's own 1100 px give it, "header--more-<width>" — the
+    smallest of HEADER_WIDTHS at which it still fits with room to spare
+    (content.NAV_EDGES_PX). content.custom_page_links only lets in names
+    that fit at the widest, so one of them always does: the desktop menu
+    never crowds and never disappears. "Run club" alone changes nothing."""
+    if not names:
+        return ""
+    need = content_mod.nav_needed(names) + content_mod.NAV_EDGES_PX + SCROLLBAR_PX
+    width = next((w for w in (1100, *HEADER_WIDTHS) if need <= w), HEADER_WIDTHS[-1])
+    return "header--more" if width == 1100 else f"header--more header--more-{width}"
+
+
+def edit_attr(url, label):
+    """The attributes that mark a region of a page as editable. main.js shows
+    an "✎ Edit" button there in staff mode (turned on with ?edit) and does
+    nothing at all for visitors, so the page looks and loads the same.
+    label: what the button edits, as a whole phrase ("Edit the opening
+    hours"); the button shows "Edit" and the rest on hover and to screen
+    readers."""
+    if not url:
+        return ""
+    return Markup(f' data-edit="{_esc(url)}" data-edit-label="{_esc(label)}"')
 
 
 class BuildError(Exception):
@@ -219,8 +339,25 @@ class Site:
                                 menu_html=self.menu_html, albums_html=self.albums_html,
                                 hours_table=self.hours_table, link_target=self.link_target,
                                 link_hint=self.link_hint, event_when=self.event_when,
-                                brand_colours=self.brand_colours, png_size=self.png_size)
+                                brand_colours=self.brand_colours, png_size=self.png_size,
+                                edit_url=editor_link, edit_attr=edit_attr, editor_url=EDITOR_URL,
+                                handbook_url=HANDBOOK_URL, link_live=self.link_live,
+                                link_ok=lambda u: content_mod.url_ok(str(u)) and self.link_live(u))
         self._instagram = None
+        self._live = None
+        # "Worth a look" on /edit: the warnings of this build (tools/build.py
+        # sets them after the content check), so the manager sees them on the
+        # page she starts from — not only in the build report.
+        self.notes = []
+        # every page the site makes: PAGE_CONFIG plus the pages of her own
+        self.custom = {p["slug"]: p for p in self.c.get("custom-pages", [])
+                       if p["slug"] not in content_mod.RESERVED_ADDRESSES and content_mod.ADDRESS.fullmatch(p["slug"])}
+        self.pages = {**PAGE_CONFIG, **{f"custom/{slug}": {**CUSTOM_CONFIG, "content": f"custom-pages/{slug}",
+                                                          "out": slug, "nav": f"custom:{slug}",
+                                                          # "Nowhere (just the link)": unlisted — kept out of
+                                                          # Google and the sitemap, as the handbook promises
+                                                          "noindex": self.custom[slug].get("show_in") == "none"}
+                                        for slug in sorted(self.custom)}}
 
     # ------------------------------------------------------------------ text
     def hint_for(self, url):
@@ -229,10 +366,25 @@ class Site:
         return " (opens Square in a new tab)" if url.startswith(self.square.rstrip("/")) else textfmt.DEFAULT_HINT
 
     def md(self, text, p_class=None):
-        return textfmt.block(text, p_class=p_class, hint_for=self.hint_for)
+        return textfmt.block(text, p_class=p_class, hint_for=self.hint_for, link_ok=self.link_live)
 
     def md_inline(self, text):
-        return textfmt.inline(text, hint_for=self.hint_for)
+        return textfmt.inline(text, hint_for=self.hint_for, link_ok=self.link_live)
+
+    def link_live(self, url):
+        """False for a link to one of the site's pages that is switched off
+        (a page of her own, Gift Cards, the link-in-bio page): the templates
+        and the text format don't draw it, so a visitor never meets a button
+        to "page not found". The validator reports it as worth a look, and the
+        link comes back by itself when the page is switched on. A link to a
+        page that doesn't exist at all is a validator error (a typo), so it
+        never gets this far; links to other sites and to files are left alone."""
+        path = content_mod.site_page(url)
+        if path is None:
+            return True
+        if self._live is None:
+            self._live = {self.path_of(k): bool(self.published(k)) for k in self.pages}
+        return self._live.get(path, True)
 
     def link_target(self, url):
         """Links to other sites open in a new tab, like every external link on the site."""
@@ -337,8 +489,9 @@ class Site:
         # Items hidden in content/menu.json: the live Square data must not add them back
         hidden = data.get("hidden") or []
         hidden_attr = f' data-hidden-ids="{_esc(" ".join(hidden))}"' if hidden else ""
+        edit = edit_attr(editor_link("menu"), "Edit the menu items: names, notes, photos and order")
         out = [f'<nav class="chiprail" data-chip-rail aria-label="Menu categories"><div class="wrap chiprail__track" data-chip-track>{chips}</div></nav>',
-               f'<div class="wrap menu-wrap"><div id="menu-root" data-menu-root data-menu-page{hidden_attr}>']
+               f'<div class="wrap menu-wrap"{edit}><div id="menu-root" data-menu-root data-menu-page{hidden_attr}>']
         for c in cats:
             cid = _cat_id(c["name"])
             out.append(f'<section class="menu-group menu-group--{c["style"]}" id="{cid}" data-cat-section aria-labelledby="{cid}-h">')
@@ -395,8 +548,11 @@ class Site:
             ws = a["cover_widths"]
             srcset = lambda ext: ", ".join(f'{a["cover"]}-{w}.{ext} {w}w' for w in ws)  # noqa: E731
             sizes = "(max-width: 720px) 50vw, 33vw"
+            # data-edit: a button can't hold the Edit button, so main.js puts
+            # this album's into the viewer when the album is open (staff mode)
+            edit = edit_attr(editor_link(f"albums/{a['slug']}"), f"Edit the album “{a['title']}”")
             tiles.append(
-                f'<button class="ed-tile album-tile" type="button" data-album="{_esc(a["slug"])}" '
+                f'<button class="ed-tile album-tile" type="button" data-album="{_esc(a["slug"])}"{edit} '
                 f'aria-label="Open album: {_esc(a["title"])}, {a["count"]} photos">'
                 f'<span class="ed-media"><picture><source type="image/webp" srcset="{srcset("webp")}" sizes="{sizes}">'
                 f'<img src="{a["cover"]}-{ws[1]}.jpg" srcset="{srcset("jpg")}" sizes="{sizes}" width="{ws[1]}" height="{round(ws[1] * 1.25)}" '
@@ -428,7 +584,7 @@ class Site:
 
     # ------------------------------------------------------------------ pages
     def page_content(self, key):
-        cfg = PAGE_CONFIG[key]
+        cfg = self.pages[key]
         src = cfg["content"]
         if src is None:
             return {"seo": cfg["seo"], "photos": {}}
@@ -437,15 +593,56 @@ class Site:
             return {**links, "photos": {}, "published": links["enabled"] is True,
                     "seo": {"title": links["heading"].strip() or self.c["site"]["business"]["name"],
                             "description": ""}}
+        if src.startswith("custom-pages/"):
+            # a page of her own: its Google title and description are optional
+            # (empty: "<title> | Layers Superfood Bar", and the site's default)
+            p = self.custom[src.split("/", 1)[1]]
+            return {**p, "photos": {},
+                    "seo": {"title": p["google_title"].strip()
+                            or f"{p['title'].strip()} | {self.c['site']['business']['name']}",
+                            "description": p["google_description"].strip()}}
         return self.c["pages"][src.split("/", 1)[1]] if src.startswith("pages/") else self.c[src]
 
     def published(self, key):
-        cfg = PAGE_CONFIG[key]
+        cfg = self.pages[key]
         return cfg.get("published", True) and content_mod.page_published(self.page_content(key))
 
     def path_of(self, key):
-        out = PAGE_CONFIG[key]["out"]
+        out = self.pages[key]["out"]
         return "/" if out == "index" else f"/{out}"
+
+    def nav_links(self):
+        """(header, drawer, footer) link lists: the site's own, then the
+        published pages of her own that ask to be there (content.
+        custom_page_links: at most MAX_MENU_PAGES in the main menu)."""
+        links = content_mod.custom_page_links(list(self.custom.values()))
+        menu = [(f"custom:{p['slug']}", f"/{p['slug']}", content_mod.menu_name(p)) for p in links["menu"]]
+        footer = [(f"custom:{p['slug']}", f"/{p['slug']}", p["title"].strip()) for p in links["footer"]]
+        return HEADER_LINKS + menu, DRAWER_LINKS + menu, FOOTER_LINKS + footer
+
+    def sections_view(self, key, page):
+        """A page's "More sections", ready for templates/partials/sections.html:
+        [{type, s (its fields), n (its number, from 1), slots (its photos'
+        slots, in order — content.section_photos), edit (the editor link),
+        label (the Edit button's words)}]. A section of a kind the site
+        doesn't know is left out (the validator reports it), and so are a
+        photo without a picture and a Text section with nothing in it (added
+        by mistake: the validator notes it, and it never stops an update)."""
+        sections = page.get("sections") or []
+        node = content_mod.SECTIONS
+        slots = {}
+        for p in content_mod.section_photos(content_mod.sections_prefix(key), sections):
+            if str(p["photo"].get("image") or "").strip():
+                slots.setdefault(p["section"], []).append({"slot": p["slot"], "alt": p["photo"].get("alt", "")})
+        edit = editor_link(key)
+        out = []
+        for i, s in enumerate(sections):
+            b = node.block_of(s)
+            if b is None or (s["type"] == "text" and not content_mod.text_section_has_words(s)):
+                continue
+            out.append({"type": s["type"], "s": s, "n": i + 1, "slots": slots.get(i + 1, []), "edit": edit,
+                        "label": f"Edit section {i + 1} ({b.label.lower()}) under More sections"})
+        return out
 
     def _social_links(self):
         s = self.c["site"]["social"]
@@ -461,7 +658,11 @@ class Site:
     def _hero_image(self):
         return f"{SITE_URL}/assets/img/home/hero-{self._closest('home/hero', 1440)}.jpg"
 
-    def _share_image(self):
+    def _share_image(self, top_slot=""):
+        """The photo a shared link shows: a page of her own's top photo, else
+        Business details › Photo for shared links, else the homepage's."""
+        if top_slot and top_slot in self.manifest:
+            return f"{SITE_URL}/assets/img/{top_slot}-{self._closest(top_slot, 1200)}.jpg"
         if self.c["site"]["seo"]["share_image"].strip() and "site/share" in self.manifest:
             return f"{SITE_URL}/assets/img/site/share-{self._closest('site/share', 1200)}.jpg"
         return self._hero_image()
@@ -547,18 +748,22 @@ class Site:
         }
 
     def context(self, key):
-        cfg = {**CONFIG_DEFAULTS, **PAGE_CONFIG[key]}
+        cfg = {**CONFIG_DEFAULTS, **self.pages[key]}
         page = self.page_content(key)
+        src = cfg["content"] or ""
+        header_links, drawer_links, footer_links = self.nav_links()
         b = self.c["site"]["business"]
         address = f"{b['street']}, {b['city']}, {b['region']} {b['postal_code']}"
         ctx = dict(self.c)
         ctx.update(self.feature_context())
         if cfg["tool"]:            # staff tools: no customer announcement above their own header
             ctx["announcement_active"] = None
+        top_slot = (content_mod.sections_prefix(src) + "_top"
+                    if src.startswith("custom-pages/") and page["photo"]["image"].strip() else "")
         ctx.update(
             page=page, seo=page["seo"], cfg=cfg, today=self.today,
             canonical=f"{SITE_URL}{self.path_of(key)}",
-            share_image=self._share_image(),
+            share_image=self._share_image(top_slot),
             # single-quoted attribute (as main.js has always read it): only & ' < need escaping
             hours_meta=Markup(hours.meta(self.weekly, hours.upcoming_special(self.c["hours"], self.today))
                               .replace("&", "&amp;").replace("'", "&#39;").replace("<", "&lt;")),
@@ -572,7 +777,16 @@ class Site:
             analytics_beacon=Markup(script_json(json.dumps(
                 {"token": self.c["site"]["analytics"]["cloudflare_web_analytics_token"].strip()}))),
             analytics_hosts=Markup(script_json(list(PRODUCTION_HOSTS))),
-            header_links=HEADER_LINKS, drawer_links=DRAWER_LINKS, footer_links=FOOTER_LINKS,
+            header_links=header_links, drawer_links=drawer_links, footer_links=footer_links,
+            # the main menu with pages of her own in it needs the phone menu sooner (styles.css)
+            header_more=header_more([label for _, _, label in header_links[len(HEADER_LINKS):]]),
+            # staff mode (main.js): this page's own screen in the editor ("Edit
+            # this page"), its "More sections", and a page of her own's top photo
+            edit_page=editor_link(src) if src else "",
+            more_sections=self.sections_view(src, page) if "sections" in page else [],
+            top_slot=top_slot,
+            # /edit's "Worth a look": [{where, field, message, edit (its screen in the editor, or "")}]
+            notes=[{**n, "edit": self.note_link(n)} for n in self.notes] if key == "edit" else [],
             social_links=self._social_links(),
             delivery_links=[(name, self.c["site"]["ordering"][k].strip()) for k, name in DELIVERY
                             if self.c["site"]["ordering"][k].strip()],
@@ -582,29 +796,60 @@ class Site:
         )
         return ctx
 
+    def note_link(self, problem):
+        """The editor screen a validation problem is about ("" when it isn't
+        about a content file: a build step, the Instagram feed)."""
+        f = str(problem.get("file") or "")
+        if not (f.startswith("content/") and f.endswith(".json")):
+            return ""
+        try:
+            return editor_link(f[len("content/"):-len(".json")])
+        except KeyError:
+            return ""
+
     def render(self, key):
         try:
-            return self.env.get_template(f"pages/{PAGE_CONFIG[key]['template']}.html").render(self.context(key))
+            return self.env.get_template(f"pages/{self.pages[key]['template']}.html").render(self.context(key))
         except jinja2.UndefinedError as e:
             raise BuildError(f"The {key} page uses something the content doesn't have ({e}). "
                              "This is a template problem, not your content — ask the developer.") from None
 
     def render_all(self):
         """{key: html or None (unpublished)} — everything in memory, nothing written yet."""
-        return {key: (self.render(key) if self.published(key) else None) for key in PAGE_CONFIG}
+        return {key: (self.render(key) if self.published(key) else None) for key in self.pages}
 
 
-def dest_for(out_dir, key):
-    out = PAGE_CONFIG[key]["out"]
+def dest_for(out_dir, key, pages=PAGE_CONFIG):
+    """Where a page is written. pages: the site's pages (Site.pages, which
+    adds the pages of her own to PAGE_CONFIG)."""
+    out = pages[key]["out"]
     return out_dir / f"{out}.html" if out in ("index", "404") else out_dir / out / "index.html"
 
 
+# The body class a page of her own carries: how write_pages recognises a
+# folder it wrote for one, so a deleted page's folder can be removed.
+CUSTOM_MARK = f'<body class="{CUSTOM_CONFIG["body"]}'
+
+
 def write_pages(site, rendered, out_dir):
-    """Write rendered pages, unpublish drafts, then sitemap.xml + robots.txt."""
+    """Write rendered pages, unpublish drafts, then sitemap.xml + robots.txt.
+
+    A page of her own that was deleted in the CMS has no entry any more, so
+    its old folder is found by what's in it: a folder this build doesn't
+    write, whose index.html is a page of her own (CUSTOM_MARK), is removed.
+    Nothing else in out_dir is ever touched."""
     out_dir = pathlib.Path(out_dir)
     written = []
+    outs = {cfg["out"] for cfg in site.pages.values()}
+    for d in sorted(out_dir.iterdir()) if out_dir.is_dir() else []:
+        f = d / "index.html"
+        if d.is_dir() and d.name not in outs and f.is_file() and CUSTOM_MARK in f.read_text(
+                encoding="utf-8", errors="replace"):
+            for x in d.iterdir():
+                x.unlink()
+            d.rmdir()
     for key, html in rendered.items():
-        dest = dest_for(out_dir, key)
+        dest = dest_for(out_dir, key, site.pages)
         if html is None:
             stale = dest.parent if dest.name == "index.html" and dest.parent != out_dir else None
             if stale and stale.is_dir():            # unpublish a page that was turned off
@@ -616,7 +861,7 @@ def write_pages(site, rendered, out_dir):
         dest.write_text(html, encoding="utf-8")
         written.append(dest)
     urls = sorted(SITE_URL + site.path_of(k) for k, html in rendered.items()
-                  if html is not None and not PAGE_CONFIG[k].get("noindex"))
+                  if html is not None and not site.pages[k].get("noindex"))
     (out_dir / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + "".join(f"  <url><loc>{u}</loc></url>\n" for u in urls) + "</urlset>\n")
@@ -634,12 +879,13 @@ def main():
         sys.exit(1)
     try:
         site = Site()
+        site.notes = validate_content.split_problems(problems)[1]      # /edit's "Worth a look"
         rendered = site.render_all()
     except BuildError as e:
         sys.exit(f"error: {e}")
     written, urls = write_pages(site, rendered, ROOT / "public")
     for key, html in rendered.items():
-        state = "unpublished" if html is None else str(dest_for(ROOT / "public", key).relative_to(ROOT))
+        state = "unpublished" if html is None else str(dest_for(ROOT / "public", key, site.pages).relative_to(ROOT))
         print(f"  {key:12s} {state}")
     print(f"\n{len(written)} pages built (+ sitemap.xml with {len(urls)} URLs, robots.txt).")
 

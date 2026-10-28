@@ -110,24 +110,27 @@ def test_only_the_set_service_shows_and_no_duplicate_button(repo):
 
 def test_delivery_link_to_the_wrong_site_is_a_warning(repo):
     edit(repo, "site.json", lambda d: d.setdefault("ordering", {}).update(doordash_url="https://www.ubereats.com/store/x"))
-    p = [p for p in V.validate(repo, today=TODAY) if p["field"] == "Ordering → DoorDash link"]
+    p = [p for p in V.validate(repo, today=TODAY) if p["field"] == "Ordering links → DoorDash link"]
     assert p and p[0]["level"] == "warning" and "doordash.com" in p[0]["message"]
 
 
 # ---------------------------------------------------------------------------
-# Staff tools: /photo-prep and /brand
+# Staff tools: /edit, /photo-prep and /brand
 # ---------------------------------------------------------------------------
+TOOLS = ("edit", "photo-prep", "brand")
+
+
 def test_staff_pages_are_noindex_and_unlinked(tmp_path):
     s = site()
     out = s.render_all()
     _, urls = render.write_pages(s, out, tmp_path / "out")
-    for key, path in (("photo-prep", "/photo-prep"), ("brand", "/brand")):
+    for key, path in (("edit", "/edit"), ("photo-prep", "/photo-prep"), ("brand", "/brand")):
         html = out[key]
         assert '<meta name="robots" content="noindex">' in html and 'rel="canonical"' not in html
         assert (tmp_path / "out" / key / "index.html").exists() and not any(u.endswith(path) for u in urls)
         assert 'id="m-drawer"' not in html and "footer__grid" not in html        # light chrome
         for other, page in out.items():
-            if page and other not in ("photo-prep", "brand"):
+            if page and other not in TOOLS:
                 assert f'href="{path}"' not in page, (other, path)               # not in any navigation
 
 
@@ -137,9 +140,8 @@ def test_staff_pages_load_their_script_and_skip_analytics(repo):
     for key, html in out.items():
         if html is None:
             continue
-        tool = key in ("photo-prep", "brand")
-        assert ('/assets/js/staff.js' in html) == tool, key
-        assert ("cloudflareinsights" in html) != tool, key
+        assert ('/assets/js/staff.js' in html) == (key in ("photo-prep", "brand")), key
+        assert ("cloudflareinsights" in html) != (key in TOOLS), key
     assert (ROOT / "public" / "assets" / "js" / "staff.js").is_file()
 
 

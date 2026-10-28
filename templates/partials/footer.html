@@ -1,10 +1,11 @@
 {#- Footer: business details from content/site.json, hours from content/hours.json.
-    Phone, public email and social links appear only when they are filled in. -#}
+    Phone, public email and social links appear only when they are filled in.
+    "Explore" ends with the pages of her own set to show in the footer. -#}
 {%- import "partials/icons.html" as icons -%}
 {%- set b = site.business -%}
 <footer id="visit-footer" class="footer">
   <div class="wrap footer__grid">
-    <div class="footer__brand">
+    <div class="footer__brand"{{ edit_attr(edit_url("site"), "Edit the footer tagline and the business details") }}>
       <img class="footer__logo" src="/assets/img/wordmark-cream.png" alt="{{ b.name }}" width="140" height="60" loading="lazy">
       <p class="footer__tagline">{{ site.footer_tagline }}</p>
       <a class="btn btn--butter" href="{{ site.ordering.square_url }}" target="_blank" rel="noopener">
@@ -14,8 +15,8 @@
     </div>
     <div class="footer__col">
       <h2 class="footer__head">Visit</h2>
-      <address class="footer__addr">{{ b.street }}<br>{{ b.city }}, {{ b.region }} {{ b.postal_code }}</address>
-      <p class="footer__hours">
+      <address class="footer__addr"{{ edit_attr(edit_url("site"), "Edit the address (Business details)") }}>{{ b.street }}<br>{{ b.city }}, {{ b.region }} {{ b.postal_code }}</address>
+      <p class="footer__hours"{{ edit_attr(edit_url("hours"), "Edit the opening hours") }}>
         {%- for days, span in hours_groups %}{{ days }} · {{ span }}{% if not loop.last %}<br>{% endif %}{% endfor -%}
       </p>
 {% if b.phone or b.public_email %}

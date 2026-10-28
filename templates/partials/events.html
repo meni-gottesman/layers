@@ -15,7 +15,7 @@
   <ul class="events__list" role="list">
 {% for e in items %}
 {%- set when = event_when(e) %}
-    <li class="event" data-until="{{ e.date }}">
+    <li class="event" data-until="{{ e.date }}"{{ edit_attr(edit_url("events/" ~ e.slug), "Edit this event") }}>
 {% if e.image %}
       <span class="event__media ed-media">{{ pic("events/" ~ e.slug, alt=e.image_alt, sizes="96px") }}</span>
 {% elif with_media %}
@@ -33,7 +33,7 @@
 {% if e.description %}
         <div class="event__desc">{{ md(e.description) }}</div>
 {% endif %}
-{% if e.link_url and e.link_label %}
+{% if e.link_url and e.link_label and link_live(e.link_url) %}
         <a class="ed-label__cta event__link" href="{{ e.link_url }}"{{ link_target(e.link_url) }}>{{ e.link_label }} {{ icons.arrow_right() }}{{ link_hint(e.link_url) }}</a>
 {% endif %}
       </div>

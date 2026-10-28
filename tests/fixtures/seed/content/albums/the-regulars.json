@@ -1,9 +1,6 @@
 {
-  "title": "The regulars",
-  "order": 4,
   "published": true,
-  "cover": "src-img/albums/04-the-regulars/01.jpg",
-  "cover_focus": "auto",
+  "title": "The regulars",
   "photos": [
     {
       "image": "src-img/albums/04-the-regulars/01.jpg",
@@ -25,5 +22,8 @@
       "image": "src-img/albums/04-the-regulars/05.jpg",
       "alt": "A brown-and-white dog in a red harness on the Channing Way sidewalk, looking up at its owner"
     }
-  ]
+  ],
+  "cover": "src-img/albums/04-the-regulars/01.jpg",
+  "cover_focus": "auto",
+  "order": 4
 }

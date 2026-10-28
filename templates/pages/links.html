@@ -3,7 +3,9 @@
     Uber Eats when their links are set in content/site.json), then any
     limited-time specials and upcoming events, and where to find the shop.
     Never indexed (PAGE_CONFIG noindex), not in the navigation or sitemap.
-    Links to other sites open in a new tab, like everywhere on the site. -#}
+    Links to other sites open in a new tab, like everywhere on the site. A
+    button to a page of the site that is switched off isn't drawn
+    (link_live); it comes back when the page is switched on. -#}
 {% extends "base.html" %}
 {% import "partials/specials.html" as specials with context %}
 {% import "partials/events.html" as events with context %}
@@ -17,13 +19,13 @@
 {% endblock %}
 
 {% block main %}
-<section class="links" aria-labelledby="links-title">
+<section class="links" aria-labelledby="links-title"{{ edit_attr(edit_page, "Edit the link-in-bio page: heading and buttons") }}>
   <h1 id="links-title" class="links__title">{{ page.heading }}</h1>
 {% if page.intro %}
   <div class="links__intro">{{ md(page.intro) }}</div>
 {% endif %}
   <ul class="links__buttons" role="list">
-{% for b in page.buttons %}
+{% for b in page.buttons if link_live(b.url) %}
     <li><a class="btn {{ 'btn--sage' if b.highlight else 'btn--line' }} btn--block" href="{{ b.url }}"{{ link_target(b.url) }}>{{ b.label }}{{ link_hint(b.url) }}</a></li>
 {% endfor %}
 {#- delivery services with a link set (content/site.json → Ordering), unless a

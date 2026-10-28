@@ -953,6 +953,156 @@
   }
 
   /* --------------------------------------------------------------------- */
+  /* 9 · Staff mode: Edit buttons on the website itself. Turned on by ?edit */
+  /*     (the /edit page's "Show Edit buttons on the website") and off by   */
+  /*     ?edit=off, remembered in this browser. When on, every region the   */
+  /*     build marked with data-edit (tools/render.py edit_attr) gets a     */
+  /*     small "✎ Edit" link to that part of the editor, and a slim bar     */
+  /*     offers "Edit this page", "Open the editor" and "Hide edit          */
+  /*     buttons". When off — every visitor — nothing happens at all: no    */
+  /*     element is added, nothing is fetched, the layout is untouched.     */
+  /*     Runs last, after the open-now lines have their text (it replaces   */
+  /*     their contents) and after the motion has picked its targets.       */
+  /* --------------------------------------------------------------------- */
+  var EDIT_KEY = 'layers-edit';
+
+  function setEditFlag(on) {
+    try {
+      if (on) window.localStorage.setItem(EDIT_KEY, '1');
+      else window.localStorage.removeItem(EDIT_KEY);
+      return true;
+    } catch (e) { return false; }
+  }
+
+  function staffModeWanted() {
+    var q = null, asked = null;
+    try {
+      q = new URLSearchParams(window.location.search);
+      if (q.has('edit')) asked = !/^(off|0|false|no|hide)$/i.test(q.get('edit') || '');
+    } catch (e) {}
+    if (asked === null) {
+      try { return window.localStorage.getItem(EDIT_KEY) === '1'; } catch (e) { return false; }
+    }
+    // Remembered: take ?edit out of the address bar, so a link copied from
+    // here doesn't carry it. (Not remembered — storage blocked — it stays,
+    // and staff mode lasts for this page only.)
+    if (setEditFlag(asked)) {
+      try {
+        q.delete('edit');
+        var rest = q.toString();
+        window.history.replaceState(window.history.state, '',
+          window.location.pathname + (rest ? '?' + rest : '') + window.location.hash);
+      } catch (e) {}
+    }
+    return asked;
+  }
+
+  var EDIT_HOLDERS = /^(A|BUTTON|SUMMARY|LABEL|SELECT|TEXTAREA|INPUT|TABLE|DETAILS)$/;
+
+  function addEditChip(host) {
+    var url = host.getAttribute('data-edit') || '';
+    if (!/^https:\/\//.test(url)) return;
+    // A link can't sit inside a button or a link (the album tiles: their
+    // Edit link is in the album viewer instead); in a list it goes in the
+    // first item.
+    if (EDIT_HOLDERS.test(host.tagName)) return;
+    var box = /^(OL|UL)$/.test(host.tagName) ? host.querySelector('li') : host;
+    if (!box) return;
+    var label = host.getAttribute('data-edit-label') || 'Edit this part of the page';
+    var what = label.replace(/^Edit\s*/i, '');
+    var a = document.createElement('a');
+    a.className = 'edit-chip';
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    // one span for the words: in a flex box, spaces between separate items vanish
+    a.innerHTML = '<span class="edit-chip__icon" aria-hidden="true">✎</span><span class="edit-chip__text">' +
+      '<span class="edit-chip__word">Edit</span><span class="edit-chip__what"></span></span>' +
+      '<span class="sr-only"> (opens the editor in a new tab)</span>';
+    $('.edit-chip__what', a).textContent = what ? ' ' + what : '';
+    // the chip is placed over the region's corner (position:absolute): the
+    // region becomes its frame, which changes nothing about how it's laid out
+    if (window.getComputedStyle(box).position === 'static') box.classList.add('edit-host');
+    box.insertBefore(a, box.firstChild);      // first in the region, so Tab reaches it first
+  }
+
+  function addViewerEdit() {
+    var viewer = $('#album-viewer');
+    var top = viewer && $('.viewer__top', viewer);
+    if (!top) return;
+    var a = document.createElement('a');
+    a.className = 'viewer__edit';
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.hidden = true;
+    a.innerHTML = '<span aria-hidden="true">✎</span> Edit this album<span class="sr-only"> (opens the editor in a new tab)</span>';
+    top.insertBefore(a, $('[data-viewer-close]', top));
+    $$('[data-album][data-edit]').forEach(function (tile) {
+      tile.addEventListener('click', function () {
+        a.href = tile.getAttribute('data-edit');
+        a.hidden = !/^https:\/\//.test(a.href);
+      });
+    });
+  }
+
+  function staffModeOff() {
+    setEditFlag(false);
+    $$('.edit-chip, .edit-bar, .viewer__edit').forEach(function (el) { el.parentNode.removeChild(el); });
+    $$('.edit-host').forEach(function (el) { el.classList.remove('edit-host'); });
+    document.documentElement.classList.remove('is-editing');
+    var note = document.createElement('p');
+    note.className = 'edit-toast';
+    note.setAttribute('role', 'status');
+    document.body.appendChild(note);
+    // filled in a moment later, so screen readers announce it
+    window.setTimeout(function () { note.textContent = 'Edit buttons hidden. To show them again, open the /edit page.'; }, 60);
+    window.setTimeout(function () { if (note.parentNode) note.parentNode.removeChild(note); }, 6000);
+    var main = $('#main');
+    if (main) { main.setAttribute('tabindex', '-1'); main.focus({ preventScroll: true }); }
+  }
+
+  function addEditBar() {
+    var body = document.body;
+    var root = body.getAttribute('data-edit-root') || '';
+    var page = body.getAttribute('data-edit-page') || '';
+    if (!/^https:\/\//.test(root)) return;
+    var bar = document.createElement('div');
+    bar.className = 'edit-bar';
+    bar.setAttribute('role', 'region');
+    bar.setAttribute('aria-label', 'Editing tools');
+    bar.innerHTML = '<p class="edit-bar__label"><span aria-hidden="true">✎</span> Editing tools</p>' +
+      (/^https:\/\//.test(page) ? '<a class="edit-bar__btn edit-bar__btn--main" target="_blank" rel="noopener" data-bar-page>' +
+        '<span>Edit this page</span><span class="sr-only"> (opens the editor in a new tab)</span></a>' : '') +
+      // on a phone the words in .edit-bar__long are left out: "Open editor", "Hide buttons"
+      '<a class="edit-bar__btn" target="_blank" rel="noopener" data-bar-root><span>Open<span class="edit-bar__long"> the</span>' +
+        ' editor</span><span class="sr-only"> (opens in a new tab)</span></a>' +
+      '<button class="edit-bar__btn" type="button" data-bar-hide><span>Hide<span class="edit-bar__long"> edit</span> buttons</span></button>';
+    var p = $('[data-bar-page]', bar);
+    if (p) p.href = page;
+    $('[data-bar-root]', bar).href = root;
+    $('[data-bar-hide]', bar).addEventListener('click', staffModeOff);
+    // Early in the page, right after "Skip to content": the bar is fixed at
+    // the bottom of the screen, but a keyboard reaches it in DOM order, and
+    // it shouldn't take a Tab through the whole page and footer first.
+    var skip = $('.skip-link');
+    body.insertBefore(bar, skip ? skip.nextSibling : body.firstChild);
+  }
+
+  function initStaffMode() {
+    var on = staffModeWanted();
+    var state = $('[data-edit-state]');          // the /edit page says which it is
+    if (state) {
+      state.textContent = on ? 'Edit buttons are on in this browser. Open any page of the website to see them.'
+                             : 'Edit buttons are off in this browser.';
+    }
+    if (!on) return;
+    document.documentElement.classList.add('is-editing');
+    $$('[data-edit]').forEach(addEditChip);
+    addViewerEdit();
+    if (!document.body.classList.contains('page-edit')) addEditBar();
+  }
+
+  /* --------------------------------------------------------------------- */
   function boot() {
     var y = $('[data-year]');
     if (y) y.textContent = String(new Date().getFullYear());
@@ -970,6 +1120,7 @@
     initCateringForm();
     initMotion();
     initHashLanding();
+    initStaffMode();
   }
 
   if (document.readyState !== 'loading') boot();

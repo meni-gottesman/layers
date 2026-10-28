@@ -9,6 +9,7 @@
 #     not declared here is deleted, and empty values ("", [], {}) are dropped.
 #     So every key the site reads must be declared here, with the label it has
 #     in tools/content.py (the validator's messages use the same words).
+#     To keep a key out of sight, use `hidden: true` — never leave it out.
 #   * Field order here is the key order in the saved file. After changing
 #     this file, run `python3 tools/cms_normalize.py` so the files match.
 #   * `required`, `options.maxlength`, list min/max and patterns stop a save
@@ -21,7 +22,22 @@
 #   * Quote anything YAML 1.1 and 1.2 read differently (times like 09:00,
 #     dates, yes/no/on/off): Pages CMS reads YAML 1.2, the tests read 1.1.
 #
-# Descriptions are written for a busy café manager: short, friendly, concrete.
+# Written for someone with no technical background (docs/dev/CMS.md, "Form
+# order and wording"):
+#
+#   * Each form starts with what is changed most. In a collection the
+#     "Published" switch comes first (switching it off is how something is
+#     taken down). "More sections" follows the page's own fields; what is
+#     rarely needed comes last — the film's spoken texts, "Google and shared
+#     links", and switches that take a whole page or section off the site.
+#     Inside a photo spot: Photo, Photo description, then Focus and Zoom.
+#   * Labels are everyday words: "Photo description" (not alt text), "Google
+#     title" (not SEO), "Order button text" for the words on a button.
+#   * Help text is one short sentence, with an example where it helps. A box
+#     that can be left empty says so first ("Optional — …"), unless its help
+#     says when it's needed (a link goes with its link text, a photo's
+#     description with its photo); a required one shows the CMS's "Required"
+#     badge.
 
 media:
   - name: photos
@@ -42,12 +58,14 @@ settings:
 # ---------------------------------------------------------------------------
 components:
   # 24-hour time as a checked string: the CMS's date-time field would store a
-  # date too. Same rule as the validator (tools/content.py Time).
+  # date too. Same rule as the validator (tools/content.py Time). Spaces
+  # around the time are allowed, as for links: a phone keyboard easily adds
+  # one after "17:00", and the build trims it (content.Time.normalise).
   time-24h:
     type: string
     pattern:
-      regex: '^$|^([01][0-9]|2[0-3]):[0-5][0-9]$'
-      message: "Use the 24-hour clock, for example 09:00 or 18:30."
+      regex: '^\s*$|^\s*([01][0-9]|2[0-3]):[0-5][0-9]\s*$'
+      message: "Use the 24-hour clock, for example 09:00 or 18:30 (6:30 pm)."
 
   # A calendar date stored as YYYY-MM-DD. default "" keeps a new date empty
   # (without it the CMS fills in today's date).
@@ -57,9 +75,12 @@ components:
     options:
       format: yyyy-MM-dd
 
+  # Most photo fields give their own description (the spot's shape); each one
+  # ends with the same reminder about the upload limit (CMS_SPEC §8.8), with
+  # the whole address: the CMS shows help as plain text, not as a link.
   photo-file:
     type: image
-    description: "Choose a photo, or upload one (JPEG, PNG or WebP). Photos over about 3 MB can’t be uploaded — make them smaller first on the website’s /photo-prep page."
+    description: "Press Upload, or Select a photo that’s already on the website. Over 3 MB? Shrink it first at layerssuperfoodbar.com/photo-prep."
     options:
       media: photos
       path: src-img/uploads             # where the picker opens and uploads land
@@ -68,7 +89,7 @@ components:
     type: select
     label: Focus
     default: auto
-    description: "Which part of the photo to keep when it’s cropped to fit. Automatic keeps it centred (or the fine-tuned crop, while it’s still the original photo)."
+    description: "Optional — which part to keep when the photo is trimmed to fit. Automatic suits most photos."
     options:
       values:
         - {name: auto, label: Automatic}
@@ -85,18 +106,18 @@ components:
     type: select
     label: Zoom
     default: auto
-    description: "Crop in closer to the focus. Automatic means no zoom (or the fine-tuned crop, while it’s still the original photo)."
+    description: "Optional — crop in closer. Automatic (no zoom) suits most photos."
     options:
       values:
         - {name: auto, label: Automatic}
-        - {name: none, label: None}
+        - {name: none, label: No zoom}
         - {name: a-little, label: A little closer}
         - {name: more, label: Closer}
 
   alt-text:
     type: string
-    label: Description (alt text)
-    description: "A few words on what’s in the photo, for people who use screen readers. For example: “Two friends toasting with Layers smoothies outside the shop”."
+    label: Photo description
+    description: "For people who can’t see the photo (it’s read aloud to them): a few words on what’s in it, for example Two friends toasting with Layers smoothies outside the shop."
     options:
       maxlength: 250
 
@@ -118,7 +139,7 @@ components:
   # Text with the site's small formatting set (tools/textfmt.py).
   formatted-text:
     type: text
-    description: "Leave a blank line between paragraphs. **bold**, *italic* and [link text](https://…) work; links can also be pages on this site, like [the menu](/menu)."
+    description: "Leave a blank line between paragraphs. **bold**, *italic* and links like [the menu](/menu) work."
 
   # A photo spot on a page: the photo, its description and how it's cropped.
   # The -draft versions require nothing, for pages that may be unfinished.
@@ -149,49 +170,193 @@ components:
       - {name: focus, component: photo-focus}
       - {name: zoom, component: photo-zoom}
 
-  # How a page shows up in Google and in shared links.
+  # How a page shows up in Google and in shared links: last on every page.
   seo:
     type: object
-    label: SEO
-    description: "How this page appears in Google and when a link to it is shared."
+    label: Google and shared links
+    description: "How this page looks in Google and when someone shares a link to it. You rarely need to change it."
     fields:
       - name: title
-        label: Page title
+        label: Google title
         type: string
         required: true
-        description: "About 60 characters — longer titles get cut off in search results."
+        description: "The headline in Google and on the browser tab. About 60 characters."
       - name: description
-        label: Description
+        label: Google description
         type: text
         required: true
-        description: "One or two sentences, about 160 characters — longer ones get cut off in search results."
+        description: "One or two sentences under the headline. About 160 characters."
   seo-optional-description:
     type: object
-    label: SEO
-    description: "How this page appears in Google and when a link to it is shared."
+    label: Google and shared links
+    description: "How this page looks in Google and when someone shares a link to it. You rarely need to change it."
     fields:
       - name: title
-        label: Page title
+        label: Google title
         type: string
         required: true
-        description: "About 60 characters — longer titles get cut off in search results."
+        description: "The headline in Google and on the browser tab. About 60 characters."
       - name: description
-        label: Description
+        label: Google description
         type: text
-        description: "Optional. One or two sentences, about 160 characters."
+        description: "Optional — one or two sentences under the headline. About 160 characters."
   seo-draft:
     type: object
-    label: SEO
-    description: "How this page appears in Google and when a link to it is shared."
+    label: Google and shared links
+    description: "How this page looks in Google and when someone shares a link to it. You rarely need to change it."
     fields:
       - name: title
-        label: Page title
+        label: Google title
         type: string
-        description: "About 60 characters — longer titles get cut off in search results."
+        description: "The headline in Google and on the browser tab. About 60 characters."
       - name: description
-        label: Description
+        label: Google description
         type: text
-        description: "One or two sentences, about 160 characters."
+        description: "One or two sentences under the headline. About 160 characters."
+
+  # "More sections": sections the manager adds to a page herself, drawn after
+  # the page's own content in the site's own style (tools/content.py
+  # SECTION_BLOCKS, templates/partials/sections.html). A Pages CMS block
+  # list: "Add an item" asks which kind of section, and the kind is saved as
+  # `type` (blockKey). The six kinds and their fields must match content.py
+  # (tests/test_cms_schema.py checks). Field descriptions repeat under every
+  # section, so they are kept short.
+  more-sections:
+    type: block
+    label: More sections
+    blockKey: type
+    list:
+      collapsible:
+        collapsed: true
+        summary: "Section {index}"
+    blocks:
+      - name: text
+        label: Text
+        fields:
+          - name: heading
+            label: Heading
+            type: string
+            description: "Optional — big letters, like the chapter titles on the story page."
+          - name: text
+            label: Text
+            component: formatted-text
+          - name: eyebrow
+            label: Small label above the heading
+            type: string
+            description: "Optional — a few words in small green letters, for example New this fall."
+      - name: photo
+        label: Photo
+        fields:
+          - name: image
+            label: Photo
+            component: photo-file
+            required: true
+            description: "A landscape photo works best (Wide needs one at least 1,200 pixels wide). Over 3 MB? Shrink it first at layerssuperfoodbar.com/photo-prep."
+          - {name: alt, component: alt-text, required: true}
+          - name: size
+            label: Size
+            type: select
+            default: wide
+            options:
+              values:
+                - {name: wide, label: "Wide (across the whole page)"}
+                - {name: standard, label: "Standard (centred, with space around it)"}
+          - name: caption
+            label: Caption
+            type: string
+            description: "Optional — a short line under the photo, up to 80 characters."
+            options:
+              maxlength: 80
+          - {name: focus, component: photo-focus}
+          - {name: zoom, component: photo-zoom}
+      - name: photo-text
+        label: Photo and text
+        fields:
+          - name: image
+            label: Photo
+            component: photo-file
+            required: true
+            description: "Shown tall beside the text: a portrait photo works best. Over 3 MB? Shrink it first at layerssuperfoodbar.com/photo-prep."
+          - {name: alt, component: alt-text, required: true}
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: text
+            label: Text
+            component: formatted-text
+          - name: button_label
+            label: Button text
+            type: string
+            description: "Optional — the words on a button under the text, for example See the menu."
+          - name: button_link
+            label: Button link
+            component: site-link
+            description: "Where the button goes: a page on this site, like /menu, or a full web address."
+          - name: photo_side
+            label: Photo side
+            type: select
+            default: left
+            options:
+              values:
+                - {name: left, label: Photo on the left}
+                - {name: right, label: Photo on the right}
+          - {name: focus, component: photo-focus}
+          - {name: zoom, component: photo-zoom}
+      - name: photos
+        label: Row of photos
+        fields:
+          - name: photos
+            label: Photos
+            type: object
+            list:
+              min: 2
+              max: 4
+              collapsible:
+                collapsed: false
+                summary: "Photo {index}"
+            fields:
+              - name: image
+                label: Photo
+                component: photo-file
+                required: true
+                description: "Two to four photos side by side, cut square. Over 3 MB? Shrink it first at layerssuperfoodbar.com/photo-prep."
+              - {name: alt, component: alt-text, required: true}
+              - {name: focus, component: photo-focus}
+              - {name: zoom, component: photo-zoom}
+      - name: button
+        label: Button
+        fields:
+          - name: label
+            label: Button text
+            type: string
+            required: true
+            description: "The words on the button, for example Order on Square. Keep it short."
+          - name: link
+            label: Link
+            component: site-link
+            required: true
+            description: "Where it goes: a page on this site, like /menu, or a full web address."
+          - name: style
+            label: Colour
+            type: select
+            default: green
+            options:
+              values:
+                - {name: green, label: Green}
+                - {name: outline, label: "Outline (a green line)"}
+      - name: quote
+        label: Quote
+        fields:
+          - name: quote
+            label: Quote
+            type: text
+            required: true
+            description: "The words, without quotation marks (the site adds them). A sentence or two reads best."
+          - name: name
+            label: Who said it
+            type: string
+            description: "Optional — for example a customer’s first name."
 
 # ---------------------------------------------------------------------------
 # What the manager edits, in sidebar order.
@@ -216,29 +381,29 @@ content:
             label: Show the bar
             type: boolean
             default: false
-            description: "Switch on to show the bar at the top of every page (only between the dates below, if you set them)."
+            description: "Switch on to show the bar at the top of every page (between the dates below, if you set any)."
           - name: message
             label: Message
             type: string
-            description: "Shown in the thin bar at the top of every page. Keep it under 110 characters."
+            description: "Up to 110 characters, for example Open late this Friday."
             options:
               maxlength: 110
+          - name: starts
+            label: First day shown
+            component: calendar-date
+            description: "Optional — empty means straight away."
+          - name: ends
+            label: Last day shown
+            component: calendar-date
+            description: "Optional — empty means until you switch the bar off."
           - name: link_label
-            label: Link label
+            label: Link text
             type: string
-            description: "Optional. The words people tap, after the message — for example “See the menu”. Keep it short."
+            description: "Optional — the words people tap after the message, for example See the menu."
           - name: link_url
             label: Link
             component: site-link
-            description: "Where the link goes: a page on this site (like /menu) or a full web address."
-          - name: starts
-            label: Starts
-            component: calendar-date
-            description: "Optional. The first day the bar shows. Empty = straight away."
-          - name: ends
-            label: Ends
-            component: calendar-date
-            description: "Optional. The last day the bar shows. Empty = until you switch it off."
+            description: "Where the link goes: a page on this site, like /menu, or a full web address."
           - name: tone
             label: Colour
             type: select
@@ -261,35 +426,81 @@ content:
           rename: false                    # the file name is the special's web address and photo name
         view:
           primary: name
-          fields: [name, starts, ends, published]
+          fields: [name, published, starts, ends]
           sort: [name, starts]
           default:
             sort: name
             order: asc
         fields:
+          - name: published
+            label: Published
+            type: boolean
+            default: true
+            description: "Switch off to take it off the website. It stays here, ready for next time."
           - name: name
             label: Name
             type: string
             required: true
-            description: "The drink or bowl’s name, for example Phi Velvet. About 40 characters at most. It becomes the special’s web address, so it needs letters or numbers (not only emoji)."
+            description: "The drink or bowl’s name, for example Phi Velvet."
             pattern:
               regex: '[A-Za-z0-9]'
               message: "Use at least one letter or number (A–Z, 0–9): the name becomes the web address."
-          - name: partner
-            label: Made with (partner)
-            type: string
-            description: "Optional. Shown as “Made with …”, for example Cal Alpha Phi."
-          - name: badge
-            label: Badge
-            type: string
-            description: "The small label above the name, for example Limited time. Keep it very short."
+          - name: image
+            label: Photo
+            component: photo-file
+            description: "Optional — a tall (portrait) photo works best, at least 800 pixels wide. Over 3 MB? Shrink it first at layerssuperfoodbar.com/photo-prep."
+          - name: image_alt
+            component: alt-text
           - name: tagline
             label: Tagline
             type: string
-            description: "Optional. One short line under the name."
+            description: "Optional — one short line under the name, for example Strong. Radiant. Nourished."
           - name: description
             label: Description
             component: formatted-text
+            description: "Optional — a few sentences. **bold**, *italic* and links like [the menu](/menu) work."
+          - name: starts
+            label: First day shown
+            component: calendar-date
+            description: "Optional — empty means straight away."
+          - name: ends
+            label: Last day shown
+            component: calendar-date
+            description: "Optional — it disappears by itself the day after. Empty means until you switch off Published."
+          - name: order_button
+            label: Order button
+            type: select
+            default: none
+            description: "“No button” is right for a special that isn’t on Square."
+            options:
+              values:
+                - {name: none, label: No button (in store only)}
+                - {name: square, label: Order on Square}
+                - {name: link, label: Order (to the order link below)}
+          - name: availability_note
+            label: Note instead of a button
+            type: string
+            default: In store for a limited time.
+            description: "Shown when the order button is “No button”. Keep it short."
+          - name: order_url
+            label: Order link
+            component: web-link
+            description: "Only for “Order (to the order link below)”: the full web address, starting with https://."
+          - name: price
+            label: Price
+            type: string
+            description: "Optional — write it like 9.50. Leave it empty if it isn’t sold on Square."
+            pattern:
+              regex: '^$|^\$?[0-9]{1,3}(\.[0-9]{2})?$'
+              message: "Write the price like 9.50 (or leave it empty)."
+          - name: partner
+            label: Made with (partner)
+            type: string
+            description: "Optional — shown as “Made with …”, for example Cal Alpha Phi."
+          - name: badge
+            label: Small label above the name
+            type: string
+            description: "Optional — a word or two above the name. Empty = Limited time."
           - name: highlights             # `required` on a list would demand at least one item
             label: Highlights
             type: string
@@ -297,48 +508,7 @@ content:
           - name: ingredients
             label: Ingredients
             type: text
-            description: "Optional. A comma-separated list."
-          - name: price
-            label: Price
-            type: string
-            description: "Optional. Write it like 9.50. Leave it empty if it isn’t sold on Square."
-            pattern:
-              regex: '^$|^\$?[0-9]{1,3}(\.[0-9]{2})?$'
-              message: "Write the price like 9.50 (or leave it empty)."
-          - name: image
-            label: Photo
-            component: photo-file
-            description: "Shown tall (4:5) on the homepage and the menu. At least 800 pixels wide. Photos over about 3 MB can’t be uploaded — make them smaller first on the website’s /photo-prep page."
-          - name: image_alt
-            label: Photo description (alt text)
-            component: alt-text
-          - name: starts
-            label: Starts
-            component: calendar-date
-            description: "Optional. The first day it shows on the site. Empty = straight away."
-          - name: ends
-            label: Ends
-            component: calendar-date
-            description: "Optional. The last day it shows. Empty = until you switch off Published."
-          - name: order_button
-            label: Order button
-            type: select
-            default: none
-            description: "“No button” shows the availability note below instead — right for a special that isn’t on Square."
-            options:
-              values:
-                - {name: none, label: No button (in store only)}
-                - {name: square, label: Order on Square}
-                - {name: link, label: Order (to the order link below)}
-          - name: order_url
-            label: Order link
-            component: web-link
-            description: "Only used when the order button is “Order (to the order link below)”."
-          - name: availability_note
-            label: Availability note
-            type: string
-            default: In store for a limited time.
-            description: "Shown in place of a button when the order button is “No button”. Keep it short."
+            description: "Optional — separated by commas, for example Strawberry, Banana, Almond milk."
           - name: show_on_home
             label: Show on the homepage
             type: boolean
@@ -347,11 +517,6 @@ content:
             label: Show on the menu
             type: boolean
             default: true
-          - name: published
-            label: Published
-            type: boolean
-            default: true
-            description: "Switch off to keep this special as a draft that isn’t on the site."
 
       - name: events
         label: Events
@@ -372,11 +537,16 @@ content:
             sort: date
             order: desc
         fields:
+          - name: published
+            label: Published
+            type: boolean
+            default: true
+            description: "Switch off to take it off the website. It stays here as a draft."
           - name: title
             label: Title
             type: string
             required: true
-            description: "For example Saturday run club. About 60 characters at most. It becomes the event’s web address, so it needs letters or numbers (not only emoji)."
+            description: "For example Saturday run club."
             pattern:
               regex: '[A-Za-z0-9]'
               message: "Use at least one letter or number (A–Z, 0–9): the name becomes the web address."
@@ -384,46 +554,41 @@ content:
             label: Date
             component: calendar-date
             required: true
-            description: "Events show under “Coming up” on the homepage and the link-in-bio page until this day has passed."
+            description: "Shown under “Coming up” on the homepage and the link-in-bio page until the day has passed."
           - name: start_time
-            label: Starts
+            label: Start time
             component: time-24h
-            description: "Optional. 24-hour clock, for example 09:00."
+            description: "Optional — 24-hour clock, for example 09:00 (or 18:30 for 6:30 pm)."
           - name: end_time
-            label: Ends
+            label: End time
             component: time-24h
-            description: "Optional. 24-hour clock, for example 10:30."
-          - name: partner
-            label: With (partner)
-            type: string
-            description: "Optional. Shown as “With …”."
+            description: "Optional — for example 10:30."
           - name: location
             label: Location
             type: string
-            description: "Optional. For example Layers, 2436 Channing Way."
+            description: "Optional — for example Layers, 2436 Channing Way."
           - name: description
             label: Description
             component: formatted-text
-          - name: image
-            label: Photo
-            component: photo-file
-            description: "Optional. Shown as a small square. At least 800 pixels wide. Photos over about 3 MB can’t be uploaded — make them smaller first on the website’s /photo-prep page."
-          - name: image_alt
-            label: Photo description (alt text)
-            component: alt-text
+            description: "Optional — a few sentences. **bold**, *italic* and links like [the menu](/menu) work."
+          - name: link_label
+            label: Link text
+            type: string
+            description: "Optional — the words people tap, for example Sign up."
           - name: link_url
             label: Link
             component: site-link
-            description: "Optional. Where to sign up or read more: a full web address or a page on this site."
-          - name: link_label
-            label: Link label
+            description: "Where to sign up or read more: a full web address or a page on this site."
+          - name: partner
+            label: With (partner)
             type: string
-            description: "The words people tap, for example Sign up. Keep it short."
-          - name: published
-            label: Published
-            type: boolean
-            default: true
-            description: "Switch off to keep this event as a draft that isn’t on the site."
+            description: "Optional — shown as “With …”."
+          - name: image
+            label: Photo
+            component: photo-file
+            description: "Optional — shown as a small square, at least 800 pixels wide. Over 3 MB? Shrink it first at layerssuperfoodbar.com/photo-prep."
+          - name: image_alt
+            component: alt-text
 
       - name: hours
         label: Opening hours
@@ -433,10 +598,39 @@ content:
         operations:
           delete: false
         fields:
+          # Holidays come first: they're changed far more often than the weekly hours.
+          - name: special
+            label: Special hours
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{date} {label}"
+            fields:
+              - name: date
+                label: Date
+                component: calendar-date
+                required: true
+                description: "A holiday or other one-off day: these hours replace the weekly hours on this date."
+              - name: label
+                label: Name
+                type: string
+                description: "For example Thanksgiving."
+              - name: closed
+                label: Closed all day
+                type: boolean
+                default: false
+              - name: open
+                label: Opens
+                component: time-24h
+                description: "24-hour clock, for example 10:00 (or 14:30 for 2:30 pm)."
+              - name: close
+                label: Closes
+                component: time-24h
           - name: weekly
             label: Weekly hours
             type: object
-            description: "Used everywhere on the site: the footer, the Visit page, the homepage, the FAQ, Google and the “Open now” label."
+            description: "Used all over the site and in Google. The times use the 24-hour clock: 18:00 is 6 pm."
             fields:
               - name: monday
                 label: Monday
@@ -487,39 +681,14 @@ content:
                   - {name: closed, label: Closed all day, type: boolean, default: false}
                   - {name: open, label: Opens, component: time-24h}
                   - {name: close, label: Closes, component: time-24h}
-          - name: special
-            label: Special hours
-            type: object
-            list:
-              collapsible:
-                collapsed: false
-                summary: "{date} {label}"
-            fields:
-              - name: date
-                label: Date
-                component: calendar-date
-                required: true
-                description: "Holidays and other one-off days. These hours replace the weekly hours on this date; past dates can be deleted."
-              - name: label
-                label: Name
-                type: string
-                description: "For example Thanksgiving."
-              - name: closed
-                label: Closed all day
-                type: boolean
-                default: false
-              - name: open
-                label: Opens
-                component: time-24h
-              - name: close
-                label: Closes
-                component: time-24h
           - name: note
-            label: Note
+            label: Note under the hours
             type: string
-            description: "Optional. A short line under the hours table on the Visit page."
+            description: "Optional — a short line under the hours table on the Visit page."
 
   # ======================= Menu =======================
+  # The items come first: hiding, renaming and re-photographing items is what
+  # this screen is for. The words around the menu follow them.
   - name: menu
     label: Menu
     type: file
@@ -528,6 +697,53 @@ content:
     operations:
       delete: false
     fields:
+      - name: items
+        label: Menu items
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{category} · {square_name}"
+        fields:
+          # Written by the menu refresh from Square (tools/sync-menu-from-store.py
+          # writes new items in this key order); read-only here. The list's
+          # order is the order on the menu, within each category.
+          - name: square_name
+            label: Name on Square
+            type: string
+            readonly: true
+            description: "Comes from Square. Drag an item by its grip to move it on the menu."
+          - name: display_name
+            label: Name on the website
+            type: string
+            description: "Optional — a different name for the website only. Empty = the name on Square. About 40 characters at most."
+          - name: note
+            label: Note under the name
+            type: string
+            description: "Optional — a short line, for example Classic Açaí."
+          - name: photo
+            label: Photo
+            component: photo-file
+            description: "Optional — your own photo instead of Square’s, shown square, at least 800 pixels wide. Over 3 MB? Shrink it first at layerssuperfoodbar.com/photo-prep."
+          - name: hidden
+            label: Hide from the website
+            type: boolean
+            default: false
+            description: "Takes the item off the website’s menu; it stays on Square. Use this instead of deleting the item."
+          - name: focus
+            component: photo-focus
+          - name: zoom
+            component: photo-zoom
+          - name: category
+            label: Category on Square
+            type: string
+            readonly: true
+          - name: square_id
+            label: Square ID
+            type: string
+            required: true
+            readonly: true
+            description: "Filled in by Square. New items arrive by themselves with “Refresh menu from Square”, so “Add an item” doesn’t work here."
       - name: eyebrow
         label: Small label above the title
         type: string
@@ -539,7 +755,7 @@ content:
       - name: intro
         label: Introduction
         component: formatted-text
-        description: "Optional. A few words under the title. Leave a blank line between paragraphs; **bold**, *italic* and [link text](https://…) work."
+        description: "Optional — a few words under the title. **bold**, *italic* and links like [the menu](/menu) work."
       - name: status_note
         label: Prices note
         type: string
@@ -551,55 +767,12 @@ content:
         required: true
         description: "Shown with every item’s details."
       - name: order_label
-        label: Order button
+        label: Order button text
         type: string
         required: true
-        description: "The button that opens Layers’ Square store."
-      - name: items
-        label: Items
-        type: object
-        list:
-          collapsible:
-            collapsed: true
-            summary: "{category} · {square_name}"
-        fields:
-          # Written by the menu refresh from Square; read-only here. The
-          # list's order is the order on the menu, within each category.
-          - name: square_id
-            label: Square ID
-            type: string
-            required: true
-            readonly: true
-            description: "Items come from Square (new ones arrive with “Refresh menu from Square”). Drag items to change their order on the menu. Don’t add or delete items here: to take one off the website, switch on “Hide from the website” below."
-          - name: square_name
-            label: Name on Square
-            type: string
-            readonly: true
-          - name: category
-            label: Category on Square
-            type: string
-            readonly: true
-          - name: display_name
-            label: Name on the website
-            type: string
-            description: "Optional. Empty = the name on Square. About 40 characters at most — long names wrap on the menu cards."
-          - name: note
-            label: Note under the name
-            type: string
-            description: "Optional. A short line under the name, for example Classic Açaí."
-          - name: photo
-            label: Photo
-            component: photo-file
-            description: "Optional. Empty = the photo from Square. Shown square, at least 800 pixels wide. Photos over about 3 MB can’t be uploaded — make them smaller first on the website’s /photo-prep page."
-          - name: focus
-            component: photo-focus
-          - name: zoom
-            component: photo-zoom
-          - name: hidden
-            label: Hide from the website
-            type: boolean
-            default: false
-            description: "Switch on to leave this item off the website’s menu (it stays on Square). Use this rather than deleting the item from the list — a deleted item comes back under Square’s own name."
+        description: "The words on the button that opens Layers’ Square store."
+      - name: sections
+        component: more-sections
       - name: seo
         component: seo
 
@@ -622,25 +795,25 @@ content:
             type: object
             fields:
               - name: hero
-                label: Hero photo
+                label: Top photo
                 component: page-photo
-                description: "The big photo at the top of the homepage on computers. Wide (16:10): use a large landscape photo, at least 1200 pixels wide."
+                description: "The big photo at the top of the homepage on computers: a big landscape photo, at least 1,200 pixels wide."
               - name: hero_mobile
-                label: Hero photo on phones
+                label: Top photo on phones
                 component: page-photo-no-alt
-                description: "Shown instead of the hero photo on phones, where the spot is tall (3:4): a portrait photo works best."
+                description: "Shown instead of the top photo on phones, where the spot is tall: a portrait photo works best. It uses the description above."
               - name: fresh_1
                 label: Made fresh — photo 1
                 component: page-photo
-                description: "The first of the three tall (4:5) photos beside “Made fresh at Layers”."
+                description: "The first of the three tall photos beside “Made fresh at Layers”."
               - name: fresh_2
                 label: Made fresh — photo 2
                 component: page-photo
-                description: "The second tall (4:5) photo."
+                description: "The second tall photo."
               - name: fresh_3
                 label: Made fresh — photo 3
                 component: page-photo
-                description: "The third tall (4:5) photo."
+                description: "The third tall photo."
               - name: bowls
                 label: Bowls photo
                 component: page-photo
@@ -652,25 +825,25 @@ content:
               - name: visit
                 label: Visit photo
                 component: page-photo
-                description: "The wide strip (about 7:3) in the Visit section near the bottom. Use a large landscape photo, at least 1200 pixels wide."
+                description: "The wide strip in the Visit section near the bottom: a big landscape photo, at least 1,200 pixels wide."
           - name: hero
-            label: Hero
+            label: Top of the page
             type: object
             fields:
               - name: heading
                 label: Big word
                 type: string
                 required: true
-                description: "The big word over the hero photo. Keep it to one short word."
+                description: "The big word over the top photo. One short word."
               - name: line
                 label: Line under it
                 type: string
                 required: true
               - name: order_label
-                label: Order button
+                label: Order button text
                 type: string
                 required: true
-                description: "Opens Layers’ Square store."
+                description: "The button opens Layers’ Square store."
           - name: fresh
             label: Made fresh
             type: object
@@ -679,35 +852,18 @@ content:
                 label: Statement
                 type: string
                 required: true
-          - name: film
-            label: Film
-            type: object
-            description: "The film itself is changed by the developer. These two texts are read aloud to people who can’t see it."
-            fields:
-              - name: label
-                label: Name of the film (for screen readers)
-                type: string
-                required: true
-                options:
-                  maxlength: 80
-              - name: description
-                label: Text description of the film
-                type: text
-                required: true
-                description: "What the film shows, in a few sentences. Up to 600 characters."
-                options:
-                  maxlength: 600
+                description: "The sentence beside the three tall photos."
           - name: products
             label: Bowls and smoothies
             type: object
             fields:
-              - {name: bowls_label, label: Bowls tile, type: string, required: true}
-              - {name: smoothies_label, label: Smoothies tile, type: string, required: true}
+              - {name: bowls_label, label: Bowls tile text, type: string, required: true}
+              - {name: smoothies_label, label: Smoothies tile text, type: string, required: true}
               - name: menu_label
-                label: Link label
+                label: Menu link text
                 type: string
                 required: true
-                description: "The link to the menu."
+                description: "The words on the link to the menu."
           - name: community
             label: Community
             type: object
@@ -728,7 +884,7 @@ content:
                   - name: photo
                     label: Photo
                     component: page-photo
-                    description: "A wide strip (about 7:3). Use a large landscape photo, at least 1200 pixels wide."
+                    description: "A wide strip: a big landscape photo, at least 1,200 pixels wide."
                   - name: caption
                     label: Caption
                     type: string
@@ -758,18 +914,39 @@ content:
                     options:
                       maxlength: 80
               - name: albums_label
-                label: Albums link label
+                label: Albums link text
                 type: string
                 required: true
-                description: "The link to the photo albums."
+                description: "The words on the link to the photo albums."
           - name: visit
             label: Visit
             type: object
             description: "The address and hours come from Business details and Opening hours."
             fields:
               - {name: heading, label: Heading, type: string, required: true}
-              - {name: directions_label, label: Directions button, type: string, required: true}
-              - {name: order_label, label: Order button, type: string, required: true}
+              - {name: directions_label, label: Directions button text, type: string, required: true}
+              - {name: order_label, label: Order button text, type: string, required: true}
+          - name: sections
+            component: more-sections
+          - name: film
+            label: Film
+            type: object
+            description: "The film itself is changed by your website developer. These two texts are read aloud to people who can’t see it."
+            fields:
+              - name: label
+                label: Name of the film
+                type: string
+                required: true
+                description: "Up to 80 characters."
+                options:
+                  maxlength: 80
+              - name: description
+                label: What the film shows
+                type: text
+                required: true
+                description: "A few sentences, up to 600 characters."
+                options:
+                  maxlength: 600
           - name: seo
             component: seo
 
@@ -804,11 +981,11 @@ content:
               - name: philosophy
                 label: Wide photo after chapter 2
                 component: page-photo
-                description: "A wide strip (about 7:3). Use a large landscape photo, at least 1200 pixels wide. With fewer than 2 chapters it goes after the last one."
+                description: "A wide strip: a big landscape photo, at least 1,200 pixels wide. With fewer than 2 chapters it goes after the last one."
               - name: journey
                 label: Wide photo after chapter 4
                 component: page-photo
-                description: "A wide strip (about 7:3). Use a large landscape photo, at least 1200 pixels wide. With fewer than 4 chapters it goes after the last one."
+                description: "A wide strip: a big landscape photo, at least 1,200 pixels wide. With fewer than 4 chapters it goes after the last one."
               - name: make_1
                 label: Closing photo, left
                 component: page-photo
@@ -841,7 +1018,7 @@ content:
               - name: closing_line
                 label: Closing line
                 type: string
-                description: "Optional. A short line at the end of the chapter."
+                description: "Optional — a short line at the end of the chapter."
           - name: pillars
             label: Principles
             type: object
@@ -858,8 +1035,10 @@ content:
             type: object
             fields:
               - {name: statement, label: Statement, type: string, required: true}
-              - {name: order_label, label: Order button, type: string, required: true}
-              - {name: menu_label, label: Menu button, type: string, required: true}
+              - {name: order_label, label: Order button text, type: string, required: true}
+              - {name: menu_label, label: Menu button text, type: string, required: true}
+          - name: sections
+            component: more-sections
           - name: seo
             component: seo
 
@@ -876,16 +1055,19 @@ content:
           - name: lede
             label: Line under the title
             type: string
+            description: "Optional — one short line."
           - name: lead
             label: Opening sentence
             type: text
             required: true
+            description: "Shown larger, before the rest of the text."
           - name: body
             label: Text
             component: formatted-text
           - name: closing_line
             label: Closing line
             type: string
+            description: "Optional — a short line at the end of the text."
           - name: pillars
             label: Principles
             type: object
@@ -898,12 +1080,14 @@ content:
               - {name: name, label: Name, type: string, required: true}
               - {name: description, label: Description, type: text, required: true}
           - name: story_link_label
-            label: Story link
+            label: Story link text
             type: string
             required: true
-            description: "The link to the full Layers story."
-          - {name: menu_label, label: Menu button, type: string, required: true}
-          - {name: order_label, label: Order button, type: string, required: true}
+            description: "The words on the link to the full Layers story."
+          - {name: menu_label, label: Menu button text, type: string, required: true}
+          - {name: order_label, label: Order button text, type: string, required: true}
+          - name: sections
+            component: more-sections
           - name: seo
             component: seo
 
@@ -924,7 +1108,7 @@ content:
               - name: hero
                 label: Main photo
                 component: page-photo
-                description: "Landscape (3:2), beside the list."
+                description: "Landscape, beside the list."
           - name: items
             label: What we make
             type: object
@@ -941,8 +1125,10 @@ content:
             type: object
             fields:
               - {name: statement, label: Statement, type: string, required: true}
-              - {name: menu_label, label: Menu button, type: string, required: true}
-              - {name: order_label, label: Order button, type: string, required: true}
+              - {name: menu_label, label: Menu button text, type: string, required: true}
+              - {name: order_label, label: Order button text, type: string, required: true}
+          - name: sections
+            component: more-sections
           - name: seo
             component: seo
 
@@ -963,6 +1149,8 @@ content:
             type: string
             required: true
             description: "The albums on this page are edited under Photo albums."
+          - name: sections
+            component: more-sections
           - name: seo
             component: seo
 
@@ -977,10 +1165,10 @@ content:
           - {name: eyebrow, label: Small label above the title, type: string, required: true}
           - {name: title, label: Title, type: string, required: true}
           - name: inquiry_label
-            label: Inquiry button
+            label: Inquiry button text
             type: string
             required: true
-            description: "The button that jumps down to the inquiry form."
+            description: "The words on the button that jumps down to the inquiry form."
           - name: photos
             label: Photos
             type: object
@@ -988,7 +1176,7 @@ content:
               - name: hero
                 label: Main photo
                 component: page-photo
-                description: "A wide strip (about 7:3). Use a large landscape photo, at least 1200 pixels wide."
+                description: "A wide strip: a big landscape photo, at least 1,200 pixels wide."
           - name: intro
             label: Introduction
             component: formatted-text
@@ -996,14 +1184,16 @@ content:
           - name: form
             label: Inquiry form
             type: object
-            description: "The form’s questions are fixed. Inquiries are emailed to the catering inbox the developer set up."
+            description: "The form’s questions are fixed. Inquiries are emailed to the catering inbox your website developer set up."
             fields:
               - {name: heading, label: Heading, type: string, required: true}
-              - {name: submit_label, label: Send button, type: string, required: true}
+              - {name: submit_label, label: Send button text, type: string, required: true}
               - name: reply_note
                 label: Note beside the button
                 type: string
-                description: "Optional. For example when people can expect a reply."
+                description: "Optional — for example when people can expect a reply."
+          - name: sections
+            component: more-sections
           - name: seo
             component: seo
 
@@ -1031,20 +1221,20 @@ content:
               - name: hero
                 label: Main photo
                 component: page-photo
-                description: "Tall (4:5), beside the address and hours."
-          - {name: directions_label, label: Directions button, type: string, required: true}
-          - {name: order_label, label: Order button, type: string, required: true}
+                description: "Tall, beside the address and hours."
+          - {name: directions_label, label: Directions button text, type: string, required: true}
+          - {name: order_label, label: Order button text, type: string, required: true}
           - name: pickup_note
             label: Pickup note
             type: string
-            description: "Optional. A short line under the buttons."
+            description: "Optional — a short line under the buttons."
           - name: getting_here
             label: Getting here
             type: object
             fields:
               - {name: heading, label: Heading, type: string, required: true}
               - name: sections
-                label: Sections
+                label: Topics
                 type: object
                 list:
                   min: 1
@@ -1054,6 +1244,8 @@ content:
                 fields:
                   - {name: heading, label: Heading, type: string, required: true}
                   - {name: text, label: Text, component: formatted-text, required: true}
+          - name: sections
+            component: more-sections
           - name: seo
             component: seo
 
@@ -1084,10 +1276,14 @@ content:
                 label: Answer
                 component: formatted-text
                 required: true
-                description: "Leave a blank line between paragraphs. **bold**, *italic* and [link text](https://…) work. Write {hours} to insert the current opening hours."
+                description: "Leave a blank line between paragraphs. **bold**, *italic* and links like [the menu](/menu) work. Write {hours} to put in the opening hours."
+          - name: sections
+            component: more-sections
           - name: seo
             component: seo
 
+      # The buttons first (what changes with each campaign); the switch that
+      # takes the whole page down last, out of the way.
       - name: links
         label: Link in bio
         type: file
@@ -1096,19 +1292,6 @@ content:
         operations:
           delete: false
         fields:
-          - name: enabled
-            label: Publish the page
-            type: boolean
-            default: true
-            description: "The /links page for Instagram’s “link in bio”. It isn’t in the site’s menus or in Google."
-          - name: heading
-            label: Heading
-            type: string
-            required: true
-          - name: intro
-            label: Introduction
-            component: formatted-text
-            description: "Optional. A line or two under the heading."
           - name: buttons
             label: Buttons
             type: object
@@ -1119,19 +1302,27 @@ content:
                 summary: "{label}"
             fields:
               - name: label
-                label: Label
+                label: Button text
                 type: string
                 required: true
               - name: url
                 label: Link
                 component: site-link
                 required: true
-                description: "A page on this site (like /menu) or a full web address."
+                description: "A page on this site, like /menu, or a full web address."
               - name: highlight
-                label: Highlight
+                label: Green button
                 type: boolean
                 default: false
-                description: "Show this button in the brand green."
+                description: "Switch on for the most important button, shown in Layers green."
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: intro
+            label: Introduction
+            component: formatted-text
+            description: "Optional — a line or two under the heading."
           - name: show_specials
             label: Show specials
             type: boolean
@@ -1140,6 +1331,11 @@ content:
             label: Show events
             type: boolean
             default: true
+          - name: enabled
+            label: Publish the page
+            type: boolean
+            default: true
+            description: "Leave this on: Instagram’s “link in bio” and the printed QR codes open this page (/links)."
 
       - name: gift-cards
         label: Gift Cards
@@ -1153,7 +1349,7 @@ content:
             label: Published
             type: boolean
             default: false
-            description: "Switch on to put this page on the site. It also needs a link in the site’s menus — ask the developer."
+            description: "Switch on to put this page on the site. It also needs a link in the site’s menus — ask your website developer."
           - {name: eyebrow, label: Small label above the title, type: string}
           - {name: title, label: Title, type: string}
           - name: photos
@@ -1163,14 +1359,15 @@ content:
               - name: hero
                 label: Main photo
                 component: draft-photo
-                description: "Tall (4:5)."
+                description: "A tall (portrait) photo."
           - name: text
             label: Text
             component: formatted-text
-          - {name: buy_label, label: Buy button, type: string}
+          - {name: buy_label, label: Buy button text, type: string}
           - name: buy_url
             label: Buy button link
             component: web-link
+            description: "The full web address of the gift card shop, starting with https://."
           - name: fine_print
             label: Small print
             type: string
@@ -1204,7 +1401,7 @@ content:
             label: Published
             type: boolean
             default: false
-            description: "Switch on to put this page on the site. It also needs a link in the site’s menus — ask the developer."
+            description: "Switch on to put this page on the site. It also needs a link in the site’s menus — ask your website developer."
           - {name: eyebrow, label: Small label above the title, type: string}
           - {name: title, label: Title, type: string}
           - name: photos
@@ -1248,10 +1445,86 @@ content:
           - name: lede
             label: Line under the title
             type: string
-          - {name: menu_label, label: Menu button, type: string, required: true}
-          - {name: home_label, label: Home button, type: string, required: true}
+            description: "Optional — one short line."
+          - {name: menu_label, label: Menu button text, type: string, required: true}
+          - {name: home_label, label: Home button text, type: string, required: true}
           - name: seo
             component: seo-optional-description
+
+      # A new page needs only its title and web address. What the page is
+      # (Published, title, address, where it's linked, its name in the main
+      # menu) comes first, then what's on it, then Google.
+      - name: custom-pages
+        label: Your own pages
+        type: collection
+        path: content/custom-pages
+        format: json
+        subfolders: false
+        filename:
+          template: "{fields.address}.json"   # must end in .json (Pages CMS bug #413)
+          field: false
+        operations:
+          rename: false                         # the file name is the page's web address
+        view:
+          primary: title
+          fields: [title, address, published]
+          sort: [title]
+          default:
+            sort: title
+            order: asc
+        fields:
+          - name: published
+            label: Published
+            type: boolean
+            default: true
+            description: "Switch off to take the page off the website. It stays here as a draft."
+          - name: title
+            label: Page title
+            type: string
+            required: true
+            description: "The big heading at the top, and the page’s name in the menus. Short is best."
+          - name: address
+            label: Web address
+            type: string
+            required: true
+            description: "For example summer-menu, for layerssuperfoodbar.com/summer-menu: lowercase letters, numbers and dashes, and not one your other pages use. Fixed at the first Save."
+            pattern:
+              regex: '^(?!(?:menu|story|how-we-make-it|what-you-get|day-in-the-life|catering|faq|visit|gift-cards|loyalty|links|photo-prep|brand|edit|order|404|index|home|api|assets|cdn-cgi|admin|layers|sitemap|robots|favicon)$)[a-z0-9]+(?:-[a-z0-9]+)*$'
+              message: "Use only lowercase letters, numbers and dashes, with no spaces — for example summer-menu. A few words belong to the site’s own pages (menu, story, visit, catering, faq …): choose another."
+          - name: show_in
+            label: Show it in
+            type: select
+            default: footer
+            description: "Where the website links to this page. The main menu has room for 2 of your pages (the first in A–Z order); any more go in the footer."
+            options:
+              values:
+                - {name: footer, label: Footer only}
+                - {name: menu, label: Main menu and footer}
+                - {name: none, label: "Nowhere (just the link)"}
+          - name: menu_title
+            label: Name in the menu
+            type: string
+            description: "Optional — a shorter name for the main menu, up to 18 characters, for example Run Club. Empty = the page title."
+            options:
+              maxlength: 18
+          - name: intro
+            label: Short intro
+            type: text
+            description: "Optional — a sentence or two under the title."
+          - name: photo
+            label: Top photo
+            component: draft-photo
+            description: "Optional — a wide photo under the title: a big landscape photo, at least 1,200 pixels wide."
+          - name: sections
+            component: more-sections
+          - name: google_title
+            label: Google title
+            type: string
+            description: "Optional — the page’s headline in Google and on the browser tab. Empty = the page title. About 60 characters."
+          - name: google_description
+            label: Google description
+            type: text
+            description: "Optional — one or two sentences under the headline in Google, about 160 characters. Empty = the website’s default."
 
   # ======================= Photo albums =======================
   - name: albums
@@ -1273,34 +1546,19 @@ content:
         sort: order
         order: asc
     fields:
-      - name: title
-        label: Title
-        type: string
-        required: true
-        description: "The albums are on the “A Day at Layers” page. About 40 characters at most. It becomes the album’s web address, so it needs letters or numbers (not only emoji)."
-        pattern:
-          regex: '[A-Za-z0-9]'
-          message: "Use at least one letter or number (A–Z, 0–9): the name becomes the web address."
-      - name: order
-        label: Position
-        type: number
-        default: 99
-        description: "Albums are shown smallest number first."
-        options:
-          min: 0
-          max: 999
       - name: published
         label: Published
         type: boolean
         default: true
-        description: "Switch off to keep this album as a draft that isn’t on the site."
-      - name: cover
-        label: Cover photo
-        component: photo-file
-        description: "The photo on the album’s tile, cropped tall (4:5). Empty = the first photo. Photos over about 3 MB can’t be uploaded — make them smaller first on the website’s /photo-prep page."
-      - name: cover_focus
-        label: Cover focus
-        component: photo-focus
+        description: "Switch off to take the album off the website. It stays here as a draft."
+      - name: title
+        label: Title
+        type: string
+        required: true
+        description: "For example Summer pop-ups. The albums are on the “A Day at Layers” page."
+        pattern:
+          regex: '[A-Za-z0-9]'
+          message: "Use at least one letter or number (A–Z, 0–9): the name becomes the web address."
       - name: photos
         label: Photos
         type: object
@@ -1313,12 +1571,30 @@ content:
             label: Photo
             component: photo-file
             required: true
-            description: "At least 800 pixels wide. Drag photos to change their order. Photos over about 3 MB can’t be uploaded — make them smaller first on the website’s /photo-prep page."
+            description: "At least 800 pixels wide. Drag photos by their grip to change the order. Over 3 MB? Shrink it first at layerssuperfoodbar.com/photo-prep."
           - name: alt
             component: alt-text
             required: true
+      - name: cover
+        label: Cover photo
+        component: photo-file
+        description: "Optional — the photo on the album’s tile, cut tall. Empty = the first photo. Over 3 MB? Shrink it first at layerssuperfoodbar.com/photo-prep."
+      - name: cover_focus
+        label: Cover focus
+        component: photo-focus
+        description: "Optional — which part of the cover photo to keep when it’s trimmed to fit."
+      - name: order
+        label: Position
+        type: number
+        default: 99
+        description: "Optional — albums are shown smallest number first. New albums start at 99 (last); 0 puts one first."
+        options:
+          min: 0
+          max: 999
 
   # ======================= Instagram =======================
+  # The hand-picked posts first (what she adds to); the switch that hides the
+  # whole section last.
   - name: instagram
     label: Instagram
     type: file
@@ -1327,39 +1603,6 @@ content:
     operations:
       delete: false
     fields:
-      - name: enabled
-        label: Show the Instagram section
-        type: boolean
-        default: true
-        description: "A grid of Instagram posts on the homepage, before the Visit section."
-      - name: heading
-        label: Heading
-        type: string
-        required: true
-      - name: mode
-        label: Posts to show
-        type: select
-        default: curated
-        description: "Automatic shows the latest posts from the Behold feed, refreshed once a day. If the feed doesn’t work, the hand-picked posts are shown instead."
-        options:
-          values:
-            - {name: curated, label: Hand-picked posts (below)}
-            - {name: auto, label: Automatic (latest posts)}
-      - name: behold_feed_url
-        label: Behold feed link
-        type: string
-        description: "Only for Automatic. In Behold, open your feed and copy the JSON link that starts with https://feeds.behold.so/."
-        pattern:
-          regex: '^\s*$|^\s*https://feeds\.behold\.so/[A-Za-z0-9_-]+/?\s*$'
-          message: "This should be a Behold feed link, starting with https://feeds.behold.so/"
-      - name: count
-        label: Number of posts
-        type: number
-        default: 4
-        description: "How many posts the grid shows, from 1 to 12."
-        options:
-          min: 1
-          max: 12
       - name: curated
         label: Hand-picked posts
         type: object
@@ -1372,7 +1615,10 @@ content:
             label: Photo
             component: photo-file
             required: true
-            description: "Shown square, at least 800 pixels wide. Photos over about 3 MB can’t be uploaded — make them smaller first on the website’s /photo-prep page."
+            description: "Shown square, at least 800 pixels wide. The grid shows the first posts in this list: drag a new one up. Over 3 MB? Shrink it first at layerssuperfoodbar.com/photo-prep."
+          - name: alt
+            component: alt-text
+            required: true
           - name: post_url
             label: Instagram post link
             type: string
@@ -1381,9 +1627,39 @@ content:
             pattern:
               regex: '^\s*https://(www\.)?instagram\.com/(p|reel|reels|tv)/[A-Za-z0-9_-]+/?(\?\S*)?\s*$'
               message: "This should be a link to an Instagram post, like https://www.instagram.com/p/…/"
-          - name: alt
-            component: alt-text
-            required: true
+      - name: heading
+        label: Heading
+        type: string
+        required: true
+      - name: count
+        label: Number of posts
+        type: number
+        default: 4
+        description: "How many posts the grid shows, from 1 to 12."
+        options:
+          min: 1
+          max: 12
+      - name: mode
+        label: Posts to show
+        type: select
+        default: curated
+        description: "Automatic shows your latest posts once your website developer has set up Behold. If it stops working, the hand-picked posts show instead."
+        options:
+          values:
+            - {name: curated, label: Hand-picked posts (above)}
+            - {name: auto, label: Automatic (latest posts)}
+      - name: behold_feed_url
+        label: Behold feed link
+        type: string
+        description: "Optional — only for Automatic: the link your website developer gives you, starting with https://feeds.behold.so/."
+        pattern:
+          regex: '^\s*$|^\s*https://feeds\.behold\.so/[A-Za-z0-9_-]+/?\s*$'
+          message: "This should be a Behold feed link, starting with https://feeds.behold.so/"
+      - name: enabled
+        label: Show the Instagram section
+        type: boolean
+        default: true
+        description: "The grid of Instagram posts on the homepage, before the Visit section."
 
   # ======================= Business details =======================
   - name: site
@@ -1395,7 +1671,7 @@ content:
       delete: false
     fields:
       - name: business
-        label: Business
+        label: Address and contact
         type: object
         fields:
           - {name: name, label: Name, type: string, required: true}
@@ -1406,23 +1682,23 @@ content:
           - name: cross_streets
             label: Cross streets
             type: string
-            description: "Optional. Shown under the address on the Visit page, for example Between Telegraph Ave and Dana St."
+            description: "Optional — shown under the address on the Visit page, for example Between Telegraph Ave and Dana St."
           - name: phone
             label: Phone
             type: string
-            description: "Optional. Shown in the footer when filled in, for example (510) 555-0123."
+            description: "Optional — shown in the footer, for example (510) 555-0123."
             pattern:
               regex: '^$|^\+?[0-9\s().-]{7,20}$'
               message: "Use digits, for example (510) 555-0123."
           - name: public_email
             label: Public email
             type: string
-            description: "Optional. Shown in the footer when filled in. A public address only — never the catering inbox."
+            description: "Optional — shown in the footer. A public address only, never the catering inbox."
             pattern:
               regex: '^$|^[^@\s]+@[^@\s]+\.[A-Za-z]{2,}$'
               message: "This doesn’t look like an email address."
       - name: ordering
-        label: Ordering
+        label: Ordering links
         type: object
         fields:
           - name: square_url
@@ -1433,15 +1709,15 @@ content:
           - name: doordash_url
             label: DoorDash link
             component: web-link
-            description: "Optional. When filled in, shown on the Visit page and the link-in-bio page."
+            description: "Optional — shown on the Visit page and the link-in-bio page."
           - name: ubereats_url
             label: Uber Eats link
             component: web-link
-            description: "Optional. When filled in, shown on the Visit page and the link-in-bio page."
+            description: "Optional — shown on the Visit page and the link-in-bio page."
       - name: social
-        label: Social
+        label: Social media
         type: object
-        description: "Links are shown in the footer when filled in."
+        description: "Optional — each one shows in the footer once it’s filled in."
         fields:
           - name: instagram_handle
             label: Instagram handle
@@ -1454,36 +1730,39 @@ content:
           - {name: facebook_url, label: Facebook link, component: web-link}
           - {name: yelp_url, label: Yelp link, component: web-link}
           - {name: google_url, label: Google link, component: web-link}
-      - name: seo
-        label: SEO
-        type: object
-        fields:
-          - name: default_description
-            label: Default description
-            type: text
-            required: true
-            description: "For pages that don’t have a description of their own, like the link-in-bio page: shown by Google and in shared links. Every main page has its own (in its SEO section). About 160 characters."
-          - name: share_image
-            label: Share image
-            component: photo-file
-            description: "Optional. Shown when a link to the site is shared, for example in a message. Empty = the homepage photo. A wide photo (1200 × 630) works best."
       - name: footer_tagline
         label: Footer tagline
         type: string
         required: true
+        description: "The line beside the logo in the footer of every page."
       - name: signoff_tagline
         label: Sign-off tagline
         type: string
         required: true
         description: "The line in the big sign-off at the bottom of every page."
+      - name: seo
+        label: Google and shared links
+        type: object
+        fields:
+          - name: default_description
+            label: Default Google description
+            type: text
+            required: true
+            description: "Used by pages without a Google description of their own, like the link-in-bio page. About 160 characters."
+          - name: share_image
+            label: Photo for shared links
+            component: photo-file
+            description: "Optional — shown when the site is shared in a message. Empty = the homepage photo. Wide works best. Over 3 MB? Shrink it first at layerssuperfoodbar.com/photo-prep."
+      # Set up by the developer (docs/SETUP.md §5); hidden so it can't be
+      # changed by accident. Still declared, so a save keeps it.
       - name: analytics
         label: Analytics
         type: object
+        hidden: true
         fields:
           - name: cloudflare_web_analytics_token
             label: Cloudflare Web Analytics token
             type: string
-            description: "Optional. From Cloudflare → Web Analytics → your site: 32 letters and numbers."
             pattern:
               regex: '^$|^[0-9a-fA-F]{32}$'
               message: "A Cloudflare Web Analytics token is 32 letters and numbers (0–9, a–f)."

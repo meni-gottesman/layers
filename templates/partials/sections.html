@@ -1,0 +1,87 @@
+{#- "More sections": the sections the manager adds to a page herself
+    (content: the page's "sections", tools/content.py SECTION_BLOCKS), drawn
+    after the page's own content. Six kinds, each built from the site's own
+    editorial pieces — the story's chapter type, the wide and contained photo
+    bands, the photo-beside-text split, the edge-to-edge photo rows, the
+    square buttons — so nothing added can look off-brand. Every text is
+    escaped; "Text" fields use the safe format (md), and a button is drawn
+    only with a link the validator accepts (link_ok: https:// or a page on
+    this site — never javascript: or the like). Import WITH context:
+      {% import "partials/sections.html" as sections with context %}
+      {{ sections.render(more_sections) }}                    after the page
+      {{ sections.render(more_sections, gap=True) }}          after a coloured band
+      {{ sections.render(more_sections, gap=True, before_close=True) }}
+            before a page's closing words and buttons (.story-close, whose own
+            space above then separates them), so what she adds never reads as
+            an afterthought below the ending
+    more_sections comes from render.Site.sections_view (photo slots, the
+    editor link and the Edit button's words for each section). With no
+    sections nothing at all is written, so the page is exactly as before. -#}
+
+{% macro render(items, gap=False, before_close=False) -%}
+{% if items %}
+<div class="more{{ ' more--gap' if gap }}{{ ' more--before-close' if before_close }}">
+{% for b in items %}
+{%- set s = b.s %}
+{%- set id = "section-" ~ b.n %}
+{% if b.type == "text" %}
+  <section class="more__item more-text"{% if s.heading %} aria-labelledby="{{ id }}"{% endif %}{{ edit_attr(b.edit, b.label) }}>
+{% if s.eyebrow %}
+    <p class="eyebrow">{{ s.eyebrow }}</p>
+{% endif %}
+{% if s.heading %}
+    <h2 id="{{ id }}" class="chapter__title">{{ s.heading }}</h2>
+{% endif %}
+{% if s.text %}
+    <div class="prose">
+      {{ md(s.text) }}
+    </div>
+{% endif %}
+  </section>
+{% elif b.type == "photo" and b.slots %}
+{%- set p = b.slots[0] %}
+  <figure class="more__item ed-tile {{ 'ed-contained' if s.size == 'standard' else 'ed-tile--wide' }}"{{ edit_attr(b.edit, b.label) }}>
+    <span class="ed-media">{{ pic(p.slot, alt=p.alt, sizes="(max-width: 1100px) 100vw, 1100px" if s.size == "standard" else "100vw") }}</span>
+{% if s.caption %}
+    <figcaption class="ed-label">{{ s.caption }}</figcaption>
+{% endif %}
+  </figure>
+{% elif b.type == "photo-text" and b.slots %}
+{%- set p = b.slots[0] %}
+  <section class="more__item ed-split{{ ' ed-split--flip' if s.photo_side == 'right' }}" aria-labelledby="{{ id }}"{{ edit_attr(b.edit, b.label) }}>
+    <figure class="ed-tile ed-split__media"><span class="ed-media">{{ pic(p.slot, alt=p.alt, sizes="(max-width: 820px) 100vw, 50vw") }}</span></figure>
+    <div class="ed-split__text">
+      <h2 id="{{ id }}" class="ed-split__title">{{ s.heading }}</h2>
+{% if s.text %}
+      {{ md(s.text) }}
+{% endif %}
+{% if s.button_label and link_ok(s.button_link) %}
+      <div class="ed-ctas">
+        <a class="btn btn--sage" href="{{ s.button_link }}"{{ link_target(s.button_link) }}>{{ s.button_label }}{{ link_hint(s.button_link) }}</a>
+      </div>
+{% endif %}
+    </div>
+  </section>
+{% elif b.type == "photos" and b.slots %}
+{%- set n = b.slots|length %}
+  <div class="more__item ed-row more-row more-row--{{ n }}"{{ edit_attr(b.edit, b.label) }}>
+{% for p in b.slots %}
+    <figure class="ed-tile"><span class="ed-media">{{ pic(p.slot, alt=p.alt, sizes="(max-width: 720px) " ~ (100 if n == 3 else 50) ~ "vw, " ~ (100 // n) ~ "vw") }}</span></figure>
+{% endfor %}
+  </div>
+{% elif b.type == "button" and s.label and link_ok(s.link) %}
+  <div class="more__item more-button ed-ctas"{{ edit_attr(b.edit, b.label) }}>
+    <a class="btn {{ 'btn--line' if s.style == 'outline' else 'btn--sage' }}" href="{{ s.link }}"{{ link_target(s.link) }}>{{ s.label }}{{ link_hint(s.link) }}</a>
+  </div>
+{% elif b.type == "quote" %}
+  <figure class="more__item more-quote"{{ edit_attr(b.edit, b.label) }}>
+    <blockquote class="more-quote__q"><p>“{{ s.quote.strip().strip('"“”')|br }}”</p></blockquote>
+{% if s.name %}
+    <figcaption class="ed-label more-quote__who">{{ s.name }}</figcaption>
+{% endif %}
+  </figure>
+{% endif %}
+{% endfor %}
+</div>
+{% endif %}
+{%- endmacro %}

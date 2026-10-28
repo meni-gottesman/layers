@@ -1,9 +1,6 @@
 {
-  "title": "Run clubs",
-  "order": 2,
   "published": true,
-  "cover": "src-img/albums/02-run-clubs/10.jpg",
-  "cover_focus": "auto",
+  "title": "Run clubs",
   "photos": [
     {
       "image": "src-img/albums/02-run-clubs/01.jpg",
@@ -73,5 +70,8 @@
       "image": "src-img/albums/02-run-clubs/18.jpg",
       "alt": "Runners crowding the doorway of Layers after an October run"
     }
-  ]
+  ],
+  "cover": "src-img/albums/02-run-clubs/10.jpg",
+  "cover_focus": "auto",
+  "order": 2
 }

@@ -1,10 +1,12 @@
 {#- How We Make It — the client's approved Oct 2026 copy (section 05 of the
-    Layers Story plus the five principles), from content/pages/how.json. -#}
+    Layers Story plus the five principles), from content/pages/how.json.
+    Her "More sections" come before the closing link and buttons. -#}
 {% extends "base.html" %}
 {% import "partials/icons.html" as icons %}
+{% import "partials/sections.html" as sections with context %}
 {% block main %}
 
-<header class="story-head">
+<header class="story-head"{{ edit_attr(edit_page, "Edit the title") }}>
   <p class="eyebrow">{{ page.eyebrow }}</p>
   <h1 class="story-head__title">{{ page.title }}</h1>
 {% if page.lede %}
@@ -13,7 +15,7 @@
 </header>
 
 
-<article class="chapter" aria-label="How we make it">
+<article class="chapter" aria-label="How we make it"{{ edit_attr(edit_page, "Edit the text") }}>
   <div class="prose">
     <p class="prose__lead">{{ page.lead|br }}</p>
     {{ md(page.body) }}
@@ -23,13 +25,17 @@
 {% endif %}
 </article>
 
-<ol class="pillars" aria-label="How every Layers recipe is made">
+<ol class="pillars" aria-label="How every Layers recipe is made"{{ edit_attr(edit_page, "Edit the principles") }}>
 {% for p in page.pillars %}
   <li class="pillar"><h2 class="pillar__name">{{ p.name }}</h2><p class="pillar__desc">{{ p.description|br }}</p></li>
 {% endfor %}
 </ol>
 
-<section class="story-close" aria-label="Read more">
+{% if more_sections %}
+{{ sections.render(more_sections, gap=True, before_close=True) }}
+
+{% endif %}
+<section class="story-close" aria-label="Read more"{{ edit_attr(edit_page, "Edit the closing link and buttons") }}>
   <a class="textlink" href="/story">{{ page.story_link_label }}</a>
   <div class="ed-ctas">
     <a class="btn btn--sage" href="/menu">{{ page.menu_label }}</a>

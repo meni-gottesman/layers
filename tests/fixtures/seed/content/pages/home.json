@@ -56,10 +56,6 @@
   "fresh": {
     "statement": "Made fresh at Layers."
   },
-  "film": {
-    "label": "A short film from life at Layers",
-    "description": "Three side-by-side scenes from life at Layers: a bowl topped with granola at the counter, the banana-lined counter, and rooftop yoga; the team waving hello, the shop packed on a run club day, and a first-birthday bowl with a gold candle; rooftop yoga, dancing at the door, and a line down the street."
-  },
   "products": {
     "bowls_label": "Bowls",
     "smoothies_label": "Smoothies",
@@ -121,6 +117,10 @@
     "heading": "Visit Layers",
     "directions_label": "Get directions",
     "order_label": "Order on Square"
+  },
+  "film": {
+    "label": "A short film from life at Layers",
+    "description": "Three side-by-side scenes from life at Layers: a bowl topped with granola at the counter, the banana-lined counter, and rooftop yoga; the team waving hello, the shop packed on a run club day, and a first-birthday bowl with a gold candle; rooftop yoga, dancing at the door, and a line down the street."
   },
   "seo": {
     "title": "Layers Superfood Bar | Smoothies & Bowls in Berkeley",

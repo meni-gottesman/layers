@@ -35,6 +35,26 @@ the zoom), not just the long edge — a portrait photo in a wide band keeps only
 a thin strip. A new photo must also open completely (a damaged upload is
 caught here, with its name and spot, not later in the photo build).
 
+Sections ("More sections") are named as the CMS shows them: "Page: Home ›
+More sections → Section 2 (Photo and text) → Photo". A page of her own also
+has its web address checked (lowercase letters, numbers and dashes; not one
+the site uses itself). The page always stays at the address its file was
+saved under, so an address changed afterwards, or one another of her pages
+already had (the CMS then saves the new one as "<address>-1"), is a warning
+that says where the page really is — never an error that would hold up
+every other change. A page set to the main menu that doesn't fit there is in
+the footer only, and that's a warning too.
+
+Links to the site's own pages (/menu, /run-club) in buttons, the
+announcement, the link-in-bio page, events and formatted text are checked
+once every file has been read (check_links): one to a page that doesn't
+exist is an error (a typo would publish a button to "page not found"); one
+to a page that is switched off is a warning, and the page doesn't draw it
+until that page is switched on again (render.Site.link_live).
+
+The warnings that aren't about drafts are also listed on /edit ("Worth a
+look"), the page the manager starts from (tools/build.py).
+
 Importable: validate(root) -> [problem, …].
 """
 import contextlib
@@ -66,6 +86,8 @@ SLUG = re.compile(r"[a-z0-9]+(-[a-z0-9]+)*")
 
 
 DRAFT_NOTE = "(This isn’t shown on the site yet, so it won’t stop the update.)"
+# How a collection is named in a message about two of its entries.
+PLURALS = {"custom-pages": "of your pages"}
 PAST_NOTE = "(This isn’t on the site any more, so it won’t stop the update.)"
 
 
@@ -84,6 +106,7 @@ class Context:
         self.existing = existing or {}    # photos placed before the CMS, and where (no size rule there)
         self.too_small = set()            # photos already reported as too small
         self.problems = []
+        self.links = []                   # links to the site's pages, for check_links (content.note_link)
 
     @contextlib.contextmanager
     def leniently(self, note):
@@ -102,15 +125,21 @@ class Context:
         """A photo placed and checked by hand before the CMS, in this very spot."""
         return spot in self.existing.get(rel, ())
 
-    def _add(self, level, path, message):
-        if level == "error" and self.lenient:
+    def make(self, level, path, message, lenient=None, note=None):
+        """A problem in this file. lenient/note: as when the field was read
+        (a link checked at the end keeps the draft state of where it was)."""
+        lenient = self.lenient if lenient is None else lenient
+        if level == "error" and lenient:
             level = "warning"
-            message += " " + self.lenient_note
+            message += " " + (note or self.lenient_note)
         prob = {"level": level, "where": self.where, "field": " → ".join(p for p in path if p),
                 "message": message, "file": self.file}
-        if self.lenient:
+        if lenient:
             prob["draft"] = True          # not on the site: reported apart from the manager's list
-        self.problems.append(prob)
+        return prob
+
+    def _add(self, level, path, message):
+        self.problems.append(self.make(level, path, message))
 
     def error(self, path, message):
         self._add("error", path, message)
@@ -250,6 +279,19 @@ def _str(d, k):
     return v.strip() if isinstance(v, str) else ""
 
 
+def path_of(schema, dotted):
+    """A field's CMS labels, as a message's path: path_of(C.SCHEMAS["site"],
+    "business.phone") -> ["Address and contact", "Phone"]. The checks below
+    take their labels from the schema rather than spelling them out, so a
+    label renamed in tools/content.py (and .pages.yml) is renamed here too."""
+    return C.field_labels(schema, dotted, {})
+
+
+def label_of(schema, key):
+    """The CMS label of one top-level field: label_of(schema, "ends") -> "Last day shown"."""
+    return schema[key].label
+
+
 # ---------------------------------------------------------------------------
 # Checks that look at more than one field
 # ---------------------------------------------------------------------------
@@ -293,7 +335,10 @@ def check_hours(d, v):
                                       "times — they use the 24-hour clock, so 6pm is 18:00.")
 
 
-def check_window(d, v, start_key="starts", end_key="ends", start_label="Starts", end_label="Ends", today=None):
+def check_window(d, v, schema, start_key="starts", end_key="ends", today=None):
+    """A start date and an end date (the announcement's, a special's), named
+    with the schema's labels ("First day shown", "Last day shown")."""
+    end_label = label_of(schema, end_key)
     a, b = _date(d.get(start_key)), _date(d.get(end_key))
     if a and b and b < a:
         v.error([end_label], f"The end date ({d[end_key]}) is before the start date ({d[start_key]}). "
@@ -302,52 +347,58 @@ def check_window(d, v, start_key="starts", end_key="ends", start_label="Starts",
         v.warning([end_label], f"This ended on {d[end_key]}, so it no longer shows on the site.")
 
 
-def check_link_pair(d, v, url_key, label_key, url_label, label_label):
+def check_link_pair(d, v, url_key, label_key, url_label, label_label, at=()):
+    """A link needs its words and the words need a link. at: the labels of
+    the group the pair sits in (a section), put before the field's label."""
     if _str(d, url_key) and not _str(d, label_key):
-        v.error([label_label], f"Add a label for the link — the words people tap (the link is set in "
-                               f"“{url_label}”).")
+        v.error([*at, label_label], f"Add a label for the link — the words people tap (the link is set in "
+                                    f"“{url_label}”).")
     if _str(d, label_key) and not _str(d, url_key):
-        v.error([url_label], f"“{d[label_key]}” needs a link. Add one, or clear the label.")
+        v.error([*at, url_label], f"“{d[label_key]}” needs a link. Add one, or clear the label.")
 
 
 def check_site(d, v):
+    site = C.SCHEMAS["site"]
     b = d.get("business") if isinstance(d.get("business"), dict) else {}
     email = _str(b, "public_email")
     if email and not re.fullmatch(r"[^@\s]+@[^@\s]+\.[A-Za-z]{2,}", email):
-        v.error(["Business", "Public email"], f"“{email}” doesn’t look like an email address.")
+        v.error(path_of(site, "business.public_email"), f"“{email}” doesn’t look like an email address.")
     phone = _str(b, "phone")
     if phone and not re.fullmatch(r"\+?[\d\s().-]{7,20}", phone):
-        v.error(["Business", "Phone"], f"“{phone}” doesn’t look like a phone number. Use digits, for example "
-                                       "(510) 555-0123.")
+        v.error(path_of(site, "business.phone"), f"“{phone}” doesn’t look like a phone number. Use digits, for "
+                                                "example (510) 555-0123.")
     social = d.get("social") if isinstance(d.get("social"), dict) else {}
     handle = _str(social, "instagram_handle")
     if handle and not re.fullmatch(r"@?[A-Za-z0-9._]{1,30}", handle):
-        v.error(["Social", "Instagram handle"], f"“{handle}” isn’t an Instagram handle. Write just the name, "
-                                                "for example layerssuperfoodbar — no @ or web address.")
+        v.error(path_of(site, "social.instagram_handle"), f"“{handle}” isn’t an Instagram handle. Write just the "
+                                                         "name, for example layerssuperfoodbar — no @ or web "
+                                                         "address.")
     # delivery links show on Visit and /links under the service's name, so a
     # link to somewhere else would be labelled wrongly
     ordering = d.get("ordering") if isinstance(d.get("ordering"), dict) else {}
-    for key, label, host in (("doordash_url", "DoorDash link", "doordash.com"),
-                             ("ubereats_url", "Uber Eats link", "ubereats.com")):
+    for key, name, host in (("doordash_url", "DoorDash", "doordash.com"),
+                            ("ubereats_url", "Uber Eats", "ubereats.com")):
         u = _str(ordering, key)
         h = (urllib.parse.urlsplit(u).hostname or "") if u.startswith("https://") else ""
         if h and not (h == host or h.endswith("." + host)):
-            v.warning(["Ordering", label], f"“{u}” doesn’t look like a {label.rsplit(' ', 1)[0]} link "
-                                           f"({host}). It shows on the site as “{label.rsplit(' ', 1)[0]}”, so "
-                                           "check it’s the right link.")
+            v.warning(path_of(site, f"ordering.{key}"), f"“{u}” doesn’t look like a {name} link ({host}). It "
+                                                       f"shows on the site as “{name}”, so check it’s the right "
+                                                       "link.")
     an = d.get("analytics") if isinstance(d.get("analytics"), dict) else {}
     token = _str(an, "cloudflare_web_analytics_token")
     if token and not re.fullmatch(r"[0-9a-fA-F]{32}", token):
-        v.error(["Analytics", "Cloudflare Web Analytics token"],
+        v.error(path_of(site, "analytics.cloudflare_web_analytics_token"),
                 "This doesn’t look like a Cloudflare Web Analytics token, which is 32 letters and numbers "
                 "(0–9, a–f). Copy it again from Cloudflare → Web Analytics → your site.")
 
 
 def check_announcement(d, v, today):
+    ann = C.SCHEMAS["announcement"]
     if d.get("enabled") is True and not _str(d, "message"):
-        v.error(["Message"], "The bar is switched on but has no message. Write one, or switch the bar off.")
-    check_link_pair(d, v, "link_url", "link_label", "Link", "Link label")
-    check_window(d, v, today=today)
+        v.error([label_of(ann, "message")], "The bar is switched on but has no message. Write one, or switch the "
+                                         "bar off.")
+    check_link_pair(d, v, "link_url", "link_label", label_of(ann, "link_url"), label_of(ann, "link_label"))
+    check_window(d, v, ann, today=today)
 
 
 def check_instagram(d, v):
@@ -375,8 +426,20 @@ def check_instagram(d, v):
     # automatic mode a feed with fewer than 3 posts already falls back to the
     # hand-picked ones, so this is about the number and the hand-picked list.)
     count = d.get("count") if isinstance(d.get("count"), int) and not isinstance(d.get("count"), bool) else 4
-    usable = [p for p in curated if _str(p, "image") and _str(p, "post_url")]
+    usable = [i for i, p in enumerate(curated) if _str(p, "image") and _str(p, "post_url")]
     shows = min(count, len(usable)) if d.get("mode") != "auto" or not feed else count
+    # "Add an item" puts a new post at the END of the list, and the grid shows
+    # the first `count` (tools/instagram.py curated_posts): without this, a post
+    # added the natural way would never appear, and nothing would say why. An
+    # error, so the update waits and the note says exactly what to do. (With
+    # automatic posts the hand-picked ones are only the backup: no error.)
+    count_label = label_of(C.SCHEMAS["instagram"], "count")
+    if d.get("enabled") is True and (d.get("mode") != "auto" or not feed):
+        more = (f", or set “{count_label}” to {min(len(usable), 12)}" if count < 12 else "")
+        for i in usable[count:]:
+            v.error([f"Post {i + 1}"], f"This post isn’t on the website: the grid shows the first {count} posts in "
+                                       f"this list (“{count_label}”). Drag this post up, above one you’d like to "
+                                       f"replace (or remove an old one){more}.")
     if d.get("enabled") is True and 0 < shows < 3:
         v.warning(["Number of posts"] if count < 3 else ["Hand-picked posts"],
                   f"Only {shows} post{'s' if shows != 1 else ''} will show. The grid looks best with at least 3 "
@@ -437,7 +500,7 @@ def check_menu(d, v, root):
             # built outside the f-string: a backslash inside an f-string
             # expression is a SyntaxError before Python 3.12
             shown = ", ".join(re.sub(r"\s+", " ", n) for n in missing[:3])
-            v.warning(["Items"], f"{len(missing)} Square item(s) aren’t in this list "
+            v.warning(path_of(C.SCHEMAS["menu"], "items"), f"{len(missing)} Square item(s) aren’t in this list "
                                  f"({shown}{'…' if len(missing) > 3 else ''}), so the menu shows them with "
                                  "Square’s own name and photo. If you removed one to take it off the menu, use "
                                  "“Undo my last change” and switch on “Hide from the website” instead; otherwise "
@@ -459,12 +522,13 @@ def _previous_square_photos(root):
 
 
 def check_special(d, v, today):
-    check_window(d, v, today=today)
+    schema = C.COLLECTIONS["specials"][1]
+    check_window(d, v, schema, today=today)
     if _str(d, "image"):
-        v.check_fit(["Photo"], d["image"], C.ENTRY_SLOTS["specials"][1], spot="specials")
+        v.check_fit([label_of(schema, "image")], d["image"], C.ENTRY_SLOTS["specials"][1], spot="specials")
     if _str(d, "image") and not _str(d, "image_alt"):
-        v.error(["Photo description (alt text)"], "Describe the photo in a few words for people using screen "
-                                                  "readers — for example, what’s in the cup.")
+        v.error([label_of(schema, "image_alt")], "Describe the photo in a few words for people who can’t see it — "
+                                              "for example, what’s in the cup.")
     price = _str(d, "price")
     if price and not re.fullmatch(r"\$?\d{1,3}(\.\d{2})?", price):
         v.error(["Price"], f"“{price}” isn’t a price. Write it like 9.50 (or leave it empty).")
@@ -484,16 +548,16 @@ def check_special(d, v, today):
 
 
 def check_event(d, v):
+    schema = C.COLLECTIONS["events"][1]
     o, c = _mins(d.get("start_time")), _mins(d.get("end_time"))
     if o is not None and c is not None and c <= o:
-        v.error(["Ends"], f"The end time ({d['end_time']}) is not after the start time ({d['start_time']}). "
-                          "Times use the 24-hour clock, so 6pm is 18:00.")
+        v.error([label_of(schema, "end_time")], f"The end time ({d['end_time']}) is not after the start time "
+                                             f"({d['start_time']}). Times use the 24-hour clock, so 6pm is 18:00.")
     if _str(d, "end_time") and not _str(d, "start_time"):
-        v.error(["Starts"], "Add a start time too (or clear the end time).")
+        v.error([label_of(schema, "start_time")], "Add a start time too (or clear the end time).")
     if _str(d, "image") and not _str(d, "image_alt"):
-        v.error(["Photo description (alt text)"], "Describe the photo in a few words for people using screen "
-                                                  "readers.")
-    check_link_pair(d, v, "link_url", "link_label", "Link", "Link label")
+        v.error([label_of(schema, "image_alt")], "Describe the photo in a few words for people who can’t see it.")
+    check_link_pair(d, v, "link_url", "link_label", label_of(schema, "link_url"), label_of(schema, "link_label"))
 
 
 def check_album(d, v):
@@ -525,6 +589,184 @@ def check_page_photos(key, data, schema, v, specs):
                         full_width=spec.get("widths") == "full", spot=spec["content"])
 
 
+def check_sections(key, data, schema, v):
+    """A page's "More sections" (and the sections of a page of her own): a
+    text section with nothing in it, a button's words without its link (or
+    the other way round), and every photo against the shape of its spot —
+    the names are the CMS's, "More sections → Section 2 (Photo and text) →
+    Photo". The fields themselves (required, lengths, links, photo files)
+    are checked by the schema (content.Blocks)."""
+    node, sections = schema.get("sections"), data.get("sections")
+    if not isinstance(node, C.Blocks) or not isinstance(sections, list):
+        return
+    for i, s in enumerate(sections):
+        if node.block_of(s) is None:
+            continue                        # already reported by the schema check
+        here = [node.label, node.item_label(i, s)]
+        if s["type"] == "text" and not C.text_section_has_words(s):
+            # picked by mistake after "Add an item" (it has no required box, so
+            # the CMS saves it): not drawn, and never a reason to hold up an update
+            v.warning(here, "This text section is empty, so it isn’t on the website. Write a heading or some "
+                            "text — or remove the section with the bin icon.")
+        elif s["type"] == "photo-text":
+            check_link_pair(s, v, "button_link", "button_label", "Button link", "Button text", at=here)
+    for p in C.section_photos(C.sections_prefix(key), sections):
+        image = p["photo"].get("image")
+        if not (isinstance(image, str) and image.strip()):
+            continue
+        zoom = p["photo"].get("zoom", "auto")
+        labels = C.field_labels(schema, ".".join(map(str, p["at"])) + ".image", data)
+        v.check_fit(labels, image, p["aspect"], zoom if isinstance(zoom, str) else "auto",
+                    full_width=p["full_width"], spot=C.photo_spot(key, p["at"]))
+
+
+def _page_name(d):
+    t = d.get("title") if isinstance(d, dict) else ""
+    return f"“{t.strip()}”" if isinstance(t, str) and t.strip() else "another page"
+
+
+def check_custom_page(d, v, stem, others=None):
+    """A page of her own: its web address, the top photo, and a page with
+    nothing on it yet. others: {file name (stem): data} of all her pages.
+
+    The page is at its FILE's address (stem): the CMS names the file from
+    "Web address" when the page is first saved and can't rename it. So a
+    "Web address" that no longer matches doesn't move the page — it's a
+    warning that says where the page is (an error would hold up every other
+    change until she found the note). Two ways it happens:
+      * the address was already another page's (even a switched-off one):
+        the CMS quietly saves the new page as "<address>-1";
+      * the box was changed after the first Save."""
+    schema = C.COLLECTIONS["custom-pages"][1]
+    address = label_of(schema, "address")
+    raw = d.get("address") if isinstance(d.get("address"), str) else ""
+    addr = raw.strip()
+    others = others or {}
+    if stem in C.RESERVED_ADDRESSES:              # the CMS refuses these: only a file made by hand
+        v.error([address], f"/{stem} is already used by the website itself, so this page can’t have it. Make a "
+                           f"new page with another web address — for example our-{stem} or {stem}-2 — then "
+                           "delete this one.")
+    elif addr and not C.ADDRESS.fullmatch(raw):   # as typed: a space is refused in the CMS too
+        better = re.sub(r"[^a-z0-9]+", "-", addr.lower()).strip("-") or "summer-menu"
+        v.error([address], f"“{addr}” can’t be used in a web address. Use only lowercase letters, numbers "
+                           f"and dashes, with no spaces — for example {better}.")
+    elif addr and addr != stem:
+        if addr in others and re.fullmatch(re.escape(addr) + r"-\d+", stem):
+            state = "" if others[addr].get("published", True) is not False else ", switched off"
+            v.warning([address], f"Another of your pages ({_page_name(others[addr])}{state}) already has the web "
+                                 f"address /{addr}, so the editor saved this one at /{stem} — that’s where it is on "
+                                 f"the website. To keep it there, change “{address}” to {stem}. (Two pages can’t "
+                                 f"share an address: for this page at /{addr}, delete the other page, then make "
+                                 "this one again.)")
+        else:
+            v.warning([address], f"A page stays at the web address it had when it was first saved, so this page is "
+                                 f"still at /{stem} — changing “{address}” doesn’t move it. Change it back to "
+                                 f"{stem}. (For a new address, make a new page with it, then delete this one.)")
+    photo = d.get("photo") if isinstance(d.get("photo"), dict) else {}
+    image = _str(photo, "image")
+    if image and not _str(photo, "alt"):
+        v.error(path_of(schema, "photo.alt"), C.ALT_MISSING)
+    if image:
+        zoom = photo.get("zoom", "auto")
+        v.check_fit(path_of(schema, "photo.image"), photo["image"], C.CUSTOM_TOP_PHOTO[0],
+                    zoom if isinstance(zoom, str) else "auto", full_width=True, spot="custom-pages")
+    sections = d.get("sections")
+    if not image and not _str(d, "intro") and not (isinstance(sections, list) and sections):
+        v.warning([], "This page has only its title so far. Add a short intro, a top photo or some sections "
+                      "(under “More sections”).")
+
+
+def check_custom_menus(problems, pages):
+    """A page set to "Main menu and footer" that doesn't fit in the main menu
+    is in the footer only (content.custom_page_links), and the manager is
+    told why and what to do. pages: {content key: normalised data} of her pages."""
+    schema = C.COLLECTIONS["custom-pages"][1]
+    show_in, name_box = label_of(schema, "show_in"), label_of(schema, "menu_title")
+    loaded = [{**d, "slug": k.split("/", 1)[1]} for k, d in pages.items()]
+    links = C.custom_page_links(loaded)
+    names = " and ".join(f"“{C.menu_name(p)}”" for p in links["menu"])
+
+    def warn(p, field, message):
+        problems.append({"level": "warning", "where": f"Your page: {p['title'].strip()}", "field": field,
+                         "message": message, "file": f"content/custom-pages/{p['slug']}.json"})
+    for p, why in links["overflow"]:
+        if why == "full":
+            warn(p, show_in, f"The main menu has room for {C.MAX_MENU_PAGES} of your pages and already has "
+                             f"{names} (the first 2 by page title, A–Z), so this page is in the footer only. To put it in "
+                             f"the main menu, set one of those to “{C.SHOW_IN_LABELS['footer']}”.")
+        elif why == "long":
+            n = len(C.menu_name(p))
+            warn(p, name_box, f"This page’s title is {n} characters, and names in the main menu can have up to "
+                              f"{C.MENU_NAME_MAX}, so the page is in the footer only for now. Write a shorter "
+                              f"“{name_box}” (for example Run Club) to put it in the main menu.")
+        else:
+            warn(p, name_box, f"Together with {names}, this page’s name doesn’t fit in the main menu, so the page is "
+                              f"in the footer only for now. A shorter “{name_box}” for either page makes room.")
+
+
+# The pages without a content file, as a message names them.
+TOOL_NAMES = {"photo-prep": "Prepare a photo", "brand": "Brand kit", "edit": "Edit the website", "order": "Order"}
+
+
+def site_pages(by_key):
+    """{path: (switched on, its name in a message)} for every page the website
+    makes: the site's own (render.PAGE_CONFIG, its drafts and switches) and
+    the pages of her own. by_key: {content key: normalised data}."""
+    import render
+    out = {}
+    for key, cfg in render.PAGE_CONFIG.items():
+        if cfg["out"] == "404":
+            continue
+        src = cfg.get("content")
+        data = by_key.get(src) if src else None
+        on = cfg.get("published", True) is not False and (data is None or C.page_published(data))
+        if src == "links":
+            on = on and isinstance(data, dict) and data.get("enabled") is not False
+        label = (C.PAGES.get(src.split("/", 1)[1]) if src and src.startswith("pages/")
+                 else C.WHERE.get(src) if src else TOOL_NAMES.get(key, key.capitalize()))
+        out["/" if cfg["out"] == "index" else f"/{cfg['out']}"] = (
+            on, f"{'' if label.startswith('The ') else 'the '}{label} page")
+    for key, d in by_key.items():
+        if key.startswith("custom-pages/"):
+            stem = key.split("/", 1)[1]
+            if C.ADDRESS.fullmatch(stem) and stem not in C.RESERVED_ADDRESSES:
+                out[f"/{stem}"] = (d.get("published") is True, f"your page {_page_name(d)}")
+    return out
+
+
+def check_links(problems, found, by_key):
+    """Every link to one of the site's own pages (content.note_link: buttons,
+    the announcement, /links, events, [words](/a-page) in formatted text).
+    found: [(Context, link)]. A page that doesn't exist: an error, with the
+    likely fix — a button to "page not found" mustn't go live. A page that's
+    switched off: a warning; the link isn't drawn until it's switched on."""
+    import difflib
+    try:
+        pages = site_pages(by_key)
+    except ImportError:                 # the page list lives in render.py (needs jinja2)
+        return
+    for v, link in found:
+        path, url = C.site_page(link["url"]), link["url"]
+        if path in pages:
+            on, name = pages[path]
+            if not on:
+                problems.append(v.make("warning", link["path"], f"This links to {path} — {name}, which is switched "
+                                       "off — so the link isn’t shown on the website for now. It comes back by "
+                                       "itself when that page is switched on; or link to another page.",
+                                       link["lenient"], link["note"]))
+            continue
+        if path.lower() in pages:
+            hint = f" Web addresses use lowercase letters: write {path.lower()}."
+        elif path.startswith("/layers/") and path[len("/layers"):] in pages:
+            hint = f" Leave out /layers (that’s only the preview’s address): write {path[len('/layers'):]}."
+        else:
+            close = difflib.get_close_matches(path, [p for p in pages if p != "/"], n=1, cutoff=0.75)
+            hint = (f" Did you mean {close[0]}?" if close else
+                    " Check the spelling — for example /menu, /visit, or the web address of one of your own pages.")
+        problems.append(v.make("error", link["path"], f"{url} isn’t a page on the website, so this link would lead "
+                               f"to “page not found”.{hint}", link["lenient"], link["note"]))
+
+
 def check_navigation(problems, data_by_key, root):
     """A page switched on that no menu links to can only be found by its address."""
     try:
@@ -552,8 +794,17 @@ def validate(root=ROOT, today=None):
     root = pathlib.Path(root)
     today = today or hours.shop_today()
     problems = []
-    slugs, by_key = {}, {}
+    slugs, by_key, links = {}, {}, []
     existing = C.existing_photos(root)
+    # her pages, read up front: one page's address check needs the others
+    # (the CMS saves a page whose address is taken as "<address>-1")
+    custom = {}
+    for key, path, schema, _ in C.files(root):
+        if key.startswith("custom-pages/"):
+            with contextlib.suppress(C.ContentError):
+                d = C.read_json(path)
+                if isinstance(d, dict):
+                    custom[path.stem] = C.normalise(schema, d)
     try:
         specs = json.loads((root / "src-img" / "slot-specs.json").read_text())
     except (OSError, ValueError):
@@ -577,7 +828,7 @@ def validate(root=ROOT, today=None):
         by_key[key] = data
         coll = key.split("/", 1)[0] if "/" in key and not key.startswith("pages/") else None
         shown, note = True, DRAFT_NOTE
-        if key.startswith("pages/") or coll in ("specials", "events", "albums"):
+        if key.startswith("pages/") or coll in ("specials", "events", "albums", "custom-pages"):
             shown = data.get("published", True) is not False
         elif key in ("announcement", "instagram"):
             shown = data.get("enabled") is True
@@ -599,6 +850,7 @@ def validate(root=ROOT, today=None):
             f.check(data[k], v, [f.label] if getattr(f, "in_path", True) else [])
         v.at = []
         check_page_photos(key, data, schema, v, specs)
+        check_sections(key, data, schema, v)
         if key == "site":
             check_site(data, v)
         elif key == "hours":
@@ -615,9 +867,11 @@ def validate(root=ROOT, today=None):
             check_event(data, v)
         elif coll == "albums":
             check_album(data, v)
+        elif coll == "custom-pages":
+            check_custom_page(data, v, path.stem, custom)
         if coll:
             stem = path.stem
-            name_label = schema["name" if "name" in schema else "title"].label
+            name_label = schema[C.WEB_NAME_FIELDS[coll]].label
             if not SLUG.fullmatch(stem):
                 # The CMS makes the file name from the name and can't rename an
                 # entry, so the fix in the CMS is a new entry with a usable name.
@@ -627,11 +881,15 @@ def validate(root=ROOT, today=None):
                                       "numbers — the web address is made from the name.")
             k2 = (coll, stem.lower())
             if k2 in slugs:
-                v.error([name_label], f"Two {coll} share the web address “{stem}” ({slugs[k2]} and {path.name}). "
-                                      "Delete one of them and create it again with a different name.")
+                v.error([name_label], f"Two {PLURALS.get(coll, coll)} share the web address “{stem}” ({slugs[k2]} "
+                                      f"and {path.name}). Delete one of them and create it again with a different "
+                                      "name.")
             slugs[k2] = path.name
         problems += v.problems
+        links += [(v, link) for link in v.links]
+    check_links(problems, links, by_key)
     check_navigation(problems, by_key, root)
+    check_custom_menus(problems, {k: d for k, d in by_key.items() if k.startswith("custom-pages/")})
     links = by_key.get("links")
     if isinstance(links, dict) and links.get("enabled") is False:
         # Not a draft note: the page is printed on things and linked from Instagram.

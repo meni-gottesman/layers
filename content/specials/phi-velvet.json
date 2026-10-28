@@ -1,19 +1,19 @@
 {
+  "published": true,
   "name": "Phi Velvet",
+  "image": "src-img/originals/special-phi-velvet-cup.jpg",
+  "image_alt": "The Phi Velvet: a strawberry-raspberry smoothie swirled with Greek yogurt and topped with cacao nibs, in a Layers cup",
+  "tagline": "Strong. Radiant. Nourished.",
+  "order_button": "none",
+  "availability_note": "In store for a limited time.",
   "partner": "Cal Alpha Phi",
   "badge": "Limited time",
-  "tagline": "Strong. Radiant. Nourished.",
   "highlights": [
     "Beauty-Boosting Antioxidants",
     "21g Plant Protein",
     "Empowered Wellness"
   ],
   "ingredients": "Strawberry, Raspberry, Banana, Cacao nibs, Cacao powder, Plant-based protein, Almond milk, Lactose-free Greek yogurt",
-  "image": "src-img/originals/special-phi-velvet-cup.jpg",
-  "image_alt": "The Phi Velvet: a strawberry-raspberry smoothie swirled with Greek yogurt and topped with cacao nibs, in a Layers cup",
-  "order_button": "none",
-  "availability_note": "In store for a limited time.",
   "show_on_home": true,
-  "show_on_menu": true,
-  "published": true
+  "show_on_menu": true
 }

@@ -1,18 +1,20 @@
-{#- What We Make — approved copy, verbatim (content/pages/what.json). -#}
+{#- What We Make — approved copy, verbatim (content/pages/what.json). Her
+    "More sections" come before the closing words and buttons. -#}
 {% extends "base.html" %}
 {% import "partials/icons.html" as icons %}
+{% import "partials/sections.html" as sections with context %}
 {% block main %}
 
-<header class="story-head story-head--inner">
+<header class="story-head story-head--inner"{{ edit_attr(edit_page, "Edit the title") }}>
   <p class="eyebrow">{{ page.eyebrow }}</p>
   <h1 class="story-head__title story-head__title--long">{{ page.title }}</h1>
 </header>
 
-<figure class="ed-tile ed-contained">
+<figure class="ed-tile ed-contained"{{ edit_attr(edit_page, "Edit the photo (in the editor: Photos)") }}>
   <span class="ed-media">{{ pic("what/hero", sizes="(max-width: 1100px) 100vw, 1100px", eager=True) }}</span>
 </figure>
 
-<section class="ed-block" aria-label="What we make">
+<section class="ed-block" aria-label="What we make"{{ edit_attr(edit_page, "Edit the list of what we make") }}>
   <ol class="steps">
 {% for it in page["items"] %}
     <li><h2 class="steps__h">{{ it.heading }}</h2><p>{{ it.text|br }}</p></li>
@@ -20,7 +22,11 @@
   </ol>
 </section>
 
-<section class="story-close" aria-label="See the menu">
+{% if more_sections %}
+{{ sections.render(more_sections, gap=True, before_close=True) }}
+
+{% endif %}
+<section class="story-close" aria-label="See the menu"{{ edit_attr(edit_page, "Edit the closing words and buttons") }}>
   <h2 class="ed-statement">{{ page.closing.statement }}</h2>
   <div class="ed-ctas">
     <a class="btn btn--sage" href="/menu">{{ page.closing.menu_label }}</a>

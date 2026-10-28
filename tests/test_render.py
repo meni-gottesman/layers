@@ -19,7 +19,7 @@ def test_every_published_page_renders():
     out = site().render_all()
     published = [k for k, v in out.items() if v is not None]
     assert set(published) == {"home", "menu", "story", "how", "what", "day", "catering", "faq", "visit", "404",
-                              "links", "photo-prep", "brand"}
+                              "links", "photo-prep", "brand", "edit"}
     for k in published:
         assert out[k].startswith("<!DOCTYPE html>") and out[k].rstrip().endswith("</html>"), k
 

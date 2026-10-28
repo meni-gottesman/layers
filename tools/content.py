@@ -11,6 +11,12 @@ Each file has a schema below. One schema does three jobs:
                   so templates never meet a missing key;
   * documentation — the field labels here are the labels to use in .pages.yml.
 
+Labels are everyday words for someone with no technical background ("Photo
+description", not "alt text"; "Google title", not "SEO title"; "Order button
+text" for the words on a button, so it can't be mistaken for the button's
+on/off choice). A label renamed here must be renamed in .pages.yml too
+(tests/test_cms_schema.py checks), and in the handbook.
+
 Unknown keys are ignored (the CMS may add its own metadata). Pages CMS removes
 empty values ("", null, [], {}) when it saves a file, so the build ALWAYS reads
 content through normalise(): a missing key is the same as its default. Image
@@ -21,6 +27,11 @@ Every key the site reads from these files must also be declared in .pages.yml
 (a CMS save deletes undeclared keys). Technical values — tuned crops, cover
 focal points, layout flags — therefore live in src-img/slot-specs.json and in
 PAGE_CONFIG (tools/render.py), never here.
+
+"More sections" (SECTIONS, a Blocks list of the six SECTION_BLOCKS kinds) is
+on the pages in SECTION_FILES and on the pages of her own (COLLECTIONS
+"custom-pages"); section_photos names their photos for the photo build, the
+validator and the pages alike.
 """
 import contextlib
 import copy
@@ -176,11 +187,25 @@ class Text(Field):
             short = text if len(text) <= 60 else text[:57].rstrip() + "…"
             v.error(path, f"This still has placeholder text (“{short}”). Replace it with the real wording "
                           "before it goes on the site.")
+        if self.markdown:                 # [words](/a-page) links, checked with the others at the end
+            for url in textfmt.links(text):
+                note_link(v, path, url)
         n = len(_visible(text) if self.markdown else text)
         if self.max and n > self.max:
             v.error(path, f"This is {n} characters long; the limit is {self.max}. Please shorten it.")
         elif self.warn_max and n > self.warn_max:
             v.warning(path, f"This is {n} characters long. {self.warn_why or f'Try to keep it under {self.warn_max}.'}")
+
+
+def note_link(v, path, url):
+    """Remember a link to one of the site's own pages (/menu, /run-club) for
+    the validator's check that the page exists and is switched on
+    (validate_content.check_links). That check needs every content file read
+    first — the page linked to may be any of them — so the link is kept with
+    where it is and whether it's on a draft, and checked at the end."""
+    links = getattr(v, "links", None)
+    if links is not None and site_page(url) is not None:
+        links.append({"path": list(path), "url": url.strip(), "lenient": v.lenient, "note": v.lenient_note})
 
 
 class Url(Field):
@@ -206,7 +231,9 @@ class Url(Field):
                 v.error(path, f"“{self.label}” needs a link — a web address starting with https:// "
                               "or a page on this site such as /menu.")
             return
-        if not url_ok(u, self.allow):
+        if url_ok(u, self.allow):
+            note_link(v, path, u)
+        else:
             if u.lower().startswith("http://"):
                 v.error(path, f"“{u}” starts with http://. Use the secure https:// version of the link.")
             elif "site" in self.allow:
@@ -276,6 +303,11 @@ class Time(Field):
 
     def __init__(self, label, required=False, help=""):
         super().__init__(label, required, "", help)
+
+    def normalise(self, value):
+        # As for links: a phone keyboard easily adds a space after "17:00",
+        # which the CMS's time pattern allows, so the build uses it without.
+        return value.strip() if isinstance(value, str) else value
 
     def check(self, value, v, path):
         if not isinstance(value, str):
@@ -414,13 +446,69 @@ def menu_item_label(i, x):
     return f"Item {i + 1}"
 
 
-ALT_MISSING = ("This photo needs a short description (alt text) — a few words on what’s in it, for people "
-               "who use screen readers. For example: “Two friends toasting with Layers smoothies outside the shop”.")
+class Blocks(Field):
+    """A page's "More sections": a list of sections, each of one of a few
+    kinds — a Pages CMS `block` list (.pages.yml component `more-sections`).
+    An item is a group of fields whose `key` ("type", the CMS's blockKey)
+    names its kind: {"type": "photo", "image": …, "alt": …}. Each kind is an
+    Obj in `blocks` ({name: Obj(label, fields)}), checked and given its
+    defaults like any other group. An item of a kind the site doesn't know
+    (only a hand edit can make one) is an error, and the build skips it.
+
+    Unlike List, an item's name is ADDED to the path, not put in place of the
+    list's label: "More sections → Section 2 (Photo and text) → Photo". The CMS
+    shows the list's label above the items and each item's kind on a badge,
+    so the manager sees all three words on the screen."""
+    kind = "list of sections"
+
+    def __init__(self, label, blocks, key="type", noun="Section", help=""):
+        super().__init__(label, False, [], help)
+        self.blocks, self.key, self.noun = blocks, key, noun
+
+    def block_of(self, x):
+        """The kind (an Obj) of one item, or None when it isn't one the site knows."""
+        name = x.get(self.key) if isinstance(x, dict) else None
+        return self.blocks.get(name) if isinstance(name, str) else None
+
+    def item_label(self, i, x):
+        b = self.block_of(x)
+        return f"{self.noun} {i + 1} ({b.label})" if b else f"{self.noun} {i + 1}"
+
+    def normalise(self, value):
+        if not isinstance(value, list):
+            return value
+        out = []
+        for x in value:
+            b = self.block_of(x)
+            out.append({self.key: x[self.key], **{k: v for k, v in b.normalise(x).items() if k != self.key}}
+                       if b else x)
+        return out
+
+    def check(self, value, v, path):
+        if not isinstance(value, list):
+            return v.type_error(path, value, "a list")
+        for i, x in enumerate(value):
+            sub = path + [self.item_label(i, x)]
+            with _at(v, i):
+                b = self.block_of(x)
+                if b is None:
+                    name = x.get(self.key) if isinstance(x, dict) else None
+                    v.error(sub, (f"This section is of a kind the website doesn’t know (“{name}”)." if name else
+                                  "This section has no kind (text, photo …).")
+                            + " Remove it with the bin icon and add it again with “Add an item”.")
+                    continue
+                b.check(x, v, sub)
 
 
-def Alt(label="Description (alt text)"):
+ALT_MISSING = ("This photo needs a short description: a few words on what’s in it, for people who can’t see "
+               "it (screen readers read it aloud). For example: “Two friends toasting with Layers smoothies "
+               "outside the shop”.")
+ALT_LABEL = "Photo description"     # a photo's alt text, in the CMS's words
+
+
+def Alt(label=ALT_LABEL):
     return Text(label, required=True, max=250, empty_msg=ALT_MISSING,
-                help="What's in the photo, for people using screen readers.")
+                help="What's in the photo, for people who can't see it.")
 
 
 def Photo(label, alt=True, full_width=False):
@@ -433,11 +521,14 @@ def Photo(label, alt=True, full_width=False):
     return Obj(label, fields)
 
 
+SEO_LABEL = "Google and shared links"     # every page's SEO group, in the CMS's words
+
+
 def _seo(desc_required=True):
-    return Obj("SEO", {
-        "title": Text("Page title", required=True, warn_max=60,
+    return Obj(SEO_LABEL, {
+        "title": Text("Google title", required=True, warn_max=60,
                       warn_why="Search results show about 60 characters, so the end may be cut off."),
-        "description": Text("Description", required=desc_required, warn_max=160,
+        "description": Text("Google description", required=desc_required, warn_max=160,
                             warn_why="Search results show about 160 characters, so the end may be cut off."),
     })
 
@@ -460,6 +551,245 @@ PILLARS = List("Principles", Obj("Principle", {
     "name": _heading("Name"), "description": Text("Description", required=True, multiline=True)}),
     min=1, item_label=summary_label("Principle", "name"))
 
+
+# ---------------------------------------------------------------------------
+# "More sections": sections the manager adds to a page herself, after the
+# page's own content (templates/partials/sections.html). Six kinds only,
+# each drawn in the site's own editorial style, so nothing added can look
+# off-brand. The kind is stored under "type" (the CMS's blockKey).
+# ---------------------------------------------------------------------------
+def _section_photo():
+    """A photo in a section, as fields of the section itself (the CMS shows
+    one box per section rather than a box inside a box)."""
+    return {"image": Image("Photo", required=True), "alt": Alt(),
+            "focus": Choice("Focus", FOCUS, help="Which part of the photo to keep when it's cropped."),
+            "zoom": Choice("Zoom", ZOOMS)}
+
+
+SECTION_BLOCKS = {
+    "text": Obj("Text", {
+        "eyebrow": Text("Small label above the heading", warn_max=40,
+                        warn_why="It’s a small label: keep it to a few words."),
+        "heading": _heading("Heading", required=False),
+        "text": Text("Text", markdown=True),
+    }),
+    "photo": Obj("Photo", {
+        **_section_photo(),
+        "caption": Text("Caption", max=80),
+        "size": Choice("Size", ("wide", "standard")),
+    }),
+    "photo-text": Obj("Photo and text", {
+        **_section_photo(),
+        "heading": _heading("Heading"),
+        "text": Text("Text", markdown=True),
+        "button_label": Text("Button text", warn_max=40, warn_why="Long button labels wrap onto two lines."),
+        "button_link": Url("Button link"),
+        "photo_side": Choice("Photo side", ("left", "right")),
+    }),
+    "photos": Obj("Row of photos", {
+        "photos": List("Photos", Obj("Photo", _section_photo()), min=2, max=4,
+                       item_label=lambda i, x: f"Photo {i + 1}"),
+    }),
+    "button": Obj("Button", {
+        "label": _cta("Button text"),
+        "link": Url("Link", required=True),
+        "style": Choice("Colour", ("green", "outline")),
+    }),
+    "quote": Obj("Quote", {
+        "quote": Text("Quote", required=True, multiline=True, warn_max=280,
+                      warn_why="The quote is set in big letters, so a long one is hard to read. "
+                               "Try to keep it under 280 characters."),
+        "name": Text("Who said it", warn_max=60),
+    }),
+}
+SECTIONS = Blocks("More sections", SECTION_BLOCKS)
+
+
+def text_section_has_words(section):
+    """A Text section with something in it. One with nothing (picked by
+    mistake after "Add an item": the CMS saves it, as it has no required
+    box) isn't drawn, and the validator only notes it."""
+    return any(str(section.get(k) or "").strip() for k in ("eyebrow", "heading", "text"))
+
+# The content files whose page has "More sections" (each page's own copy and
+# photos come first; the sections are drawn after them).
+SECTION_FILES = ("pages/home", "pages/story", "pages/how", "pages/what", "pages/day", "pages/catering",
+                 "pages/visit", "faq", "menu")
+
+# How the photos in sections are cut: (crop aspect w:h, the output width set
+# in tools/build-home-media.py, a full-width spot — 1200 px needed, not 800).
+SECTION_PHOTOS = {
+    "photo:wide": ("21:9", "full", True),
+    "photo:standard": ("3:2", "half", False),
+    "photo-text": ("4:5", "tall", False),
+    "photos": ("1", "half", False),
+}
+CUSTOM_TOP_PHOTO = ("21:9", "full", True)       # the optional photo under a page's title
+
+
+def sections_prefix(key):
+    """The photo-slot prefix of a content file's sections: "pages/home" ->
+    "blocks/home", "menu" -> "blocks/menu", "custom-pages/summer-menu" ->
+    "custom/summer-menu". Slots are "<prefix>_<section>[_<photo>]", counted
+    from 1 ("blocks/home_2", "blocks/home_3_1"); "_" can't occur in a page
+    key or a web address, so two pages' slots never collide."""
+    if key.startswith("custom-pages/"):
+        return "custom/" + key.split("/", 1)[1]
+    return "blocks/" + key.split("/")[-1]
+
+
+def section_photos(prefix, sections):
+    """Every photo in a list of sections, in order: {slot, photo ({image,
+    alt, focus, zoom}), at (where it is in the file: ["sections", 1] or
+    ["sections", 2, "photos", 0]), section (its number, from 1), aspect,
+    widths, full_width}. The build, the validator and the pages all name the
+    photos through this, so they always agree."""
+    out = []
+    for i, s in enumerate(sections if isinstance(sections, list) else []):
+        kind = s.get("type") if isinstance(s, dict) else None
+        if kind == "photo":
+            spec = SECTION_PHOTOS["photo:standard" if s.get("size") == "standard" else "photo:wide"]
+            items = [(f"{prefix}_{i + 1}", s, ["sections", i])]
+        elif kind == "photo-text":
+            spec = SECTION_PHOTOS["photo-text"]
+            items = [(f"{prefix}_{i + 1}", s, ["sections", i])]
+        elif kind == "photos":
+            spec = SECTION_PHOTOS["photos"]
+            items = [(f"{prefix}_{i + 1}_{k + 1}", p, ["sections", i, "photos", k])
+                     for k, p in enumerate(s.get("photos") if isinstance(s.get("photos"), list) else [])
+                     if isinstance(p, dict)]
+        else:
+            continue
+        for slot, photo, at in items:
+            out.append({"slot": slot, "photo": photo, "at": at, "section": i + 1, "aspect": spec[0],
+                        "widths": spec[1], "full_width": spec[2]})
+    return out
+
+
+# ---------------------------------------------------------------------------
+# "Your own pages" (content/custom-pages/<address>.json): whole pages the
+# manager makes herself, at layerssuperfoodbar.com/<address>.
+# ---------------------------------------------------------------------------
+# Web addresses those pages can't have: every page and staff tool the site
+# makes itself (render.PAGE_CONFIG "out" — tests/test_edit_mode.py checks the
+# two agree), plus paths the hosting uses (Cloudflare's /cdn-cgi, the /api
+# functions, /assets) and a few that would only confuse. .pages.yml's address
+# pattern lists the same words (address_pattern(); a test checks that too).
+SITE_PATHS = ("menu", "story", "how-we-make-it", "what-you-get", "day-in-the-life", "catering", "faq", "visit",
+              "gift-cards", "loyalty", "links", "photo-prep", "brand", "edit", "order", "404")
+RESERVED_ADDRESSES = SITE_PATHS + ("index", "home", "api", "assets", "cdn-cgi", "admin", "layers", "sitemap",
+                                   "robots", "favicon")
+ADDRESS = re.compile(r"[a-z0-9]+(-[a-z0-9]+)*")
+
+
+def site_page(url):
+    """The page of this site a link goes to, as a path ("/menu", "/run-club",
+    "/" for the homepage), or None when the link isn't to one of the site's
+    pages: another website, an email or phone link, a #part of the same page,
+    a file (/assets/qr/menu.png, /sitemap.xml). "/menu/", "/menu#bowls" and
+    "/menu?x" all go to "/menu". The validator checks that the page exists
+    and is switched on; the pages don't draw a link to one that's switched off."""
+    u = str(url or "").strip()
+    if not u.startswith("/") or u.startswith(("//", "/\\")):
+        return None
+    path = re.split(r"[?#]", u, maxsplit=1)[0]
+    if path.startswith(("/assets/", "/api/")) or "." in path.rsplit("/", 1)[-1]:
+        return None
+    return path.rstrip("/") or "/"
+
+
+# ---------------------------------------------------------------------------
+# Her pages in the main menu. The desktop menu is one row in the site's
+# column (--wrap, 1240 px): the wordmark, the site's five links, hers, then
+# the Order button. A page goes in it only while its name fits there — at
+# most MAX_MENU_PAGES pages, names of at most MENU_NAME_MAX characters, and
+# together no wider than the row's room — so the menu can never crowd, wrap
+# or disappear; any other page set to "Main menu and footer" is in the
+# footer only, and the validator says why. render.header_more then picks the
+# screen width below which the phone menu takes over (styles.css
+# .header--more-<width>): the site's own 1100 px, or later when her names
+# need the room.
+#
+# Widths are estimated from the characters, as the menu shows them
+# (uppercase Archivo, semi-condensed, 13 px, .08em letter spacing):
+# NAV_CHAR_PX was measured in Chrome (Oct 2026); a character that isn't
+# listed counts as wider than any letter. +3% covers kerning and rounding
+# (real names came out within 1.5%). If the menu's type changes, measure
+# again (docs/dev/CMS.md, "Pages of her own").
+# ---------------------------------------------------------------------------
+MAX_MENU_PAGES = 2          # pages of her own the main menu has room for (the rest go in the footer)
+MENU_NAME_MAX = 18          # characters of a name in the main menu ("Name in the menu" allows no more)
+NAV_CHAR_PX = {
+    **dict(zip("ABCDEFGHIJKLM", (9.02, 9.12, 9.46, 9.53, 8.79, 8.01, 10.17, 9.54, 4.33, 7.65, 8.99, 7.46, 11.09))),
+    **dict(zip("NOPQRSTUVWXYZ", (9.55, 10.13, 8.78, 10.13, 9.39, 8.72, 8.21, 9.45, 8.68, 12.04, 8.98, 8.89, 8.47))),
+    **dict(zip("0123456789", (7.74, 7.29, 7.74, 7.75, 7.60, 7.79, 7.74, 7.34, 7.71, 7.74))),
+    " ": 3.0, "&": 9.28, "'": 3.77, "’": 4.09, "-": 4.97, ".": 4.39, ",": 4.39, "!": 4.55, "?": 7.87,
+    ":": 4.72, "/": 4.73, "(": 5.53, ")": 5.53, "+": 8.57, "#": 8.04, "@": 12.62, "–": 6.73, "—": 12.42,
+    "É": 8.79, "È": 8.79, "À": 9.02, "Á": 9.02, "Ü": 9.45, "Ñ": 9.55, "Ç": 9.46,
+}
+NAV_UNKNOWN_PX = 16.0       # emoji and anything else not measured: wider than any letter
+NAV_BASE_PX = 615.7         # the site's five links and the Order button, 20 px apart (.header--more)
+NAV_GAP_PX = 20             # before each of her links
+NAV_EDGES_PX = 257          # the row's padding (2 × 40), the wordmark (121), its gap (24), 32 px to spare
+NAV_ROOM_PX = 1240 - NAV_EDGES_PX     # the widest the links can be, on any screen
+
+
+def nav_width(name):
+    """About how wide a name is in the main menu, in pixels."""
+    return round(1.03 * sum(NAV_CHAR_PX.get(c, NAV_UNKNOWN_PX) for c in str(name).strip().upper()), 1)
+
+
+def nav_needed(names):
+    """How wide the main menu's links are with her pages' names in it, in pixels."""
+    return round(NAV_BASE_PX + sum(nav_width(n) + NAV_GAP_PX for n in names), 1)
+
+
+def menu_name(page):
+    """A page of her own's name in the main menu: its "Name in the menu", or its title."""
+    return str(page.get("menu_title") or "").strip() or str(page.get("title") or "").strip()
+
+
+def address_pattern():
+    """The CMS's check on a web address (.pages.yml): lowercase letters,
+    numbers and dashes, and none of the reserved words. A JavaScript regex
+    (Pages CMS runs it in the browser); the lookahead is the same in Python."""
+    return "^(?!(?:" + "|".join(RESERVED_ADDRESSES) + ")$)[a-z0-9]+(?:-[a-z0-9]+)*$"
+
+
+SHOW_IN_LABELS = {          # the CMS's option labels (.pages.yml), used in messages
+    "footer": "Footer only",
+    "menu": "Main menu and footer",
+    "none": "Nowhere (just the link)",
+}
+
+
+def custom_page_links(pages):
+    """Where the published pages of her own are linked: {"menu": [...],
+    "footer": [...], "overflow": [(page, why), ...]}. Pages are taken in A–Z
+    order of their titles (as the CMS lists them). A page set to "Main menu
+    and footer" is in the main menu while it fits there (see above), else in
+    the footer only — "overflow", with why: "full" (MAX_MENU_PAGES are
+    there already), "long" (its name is over MENU_NAME_MAX characters) or
+    "wide" (with the pages already there, the row would be too wide). The
+    validator says so. pages: loaded entries (load_all)."""
+    shown = sorted((p for p in pages if p.get("published") is True and str(p.get("title") or "").strip()),
+                   key=lambda p: (str(p["title"]).strip().casefold(), p.get("slug", "")))
+    menu, overflow = [], []
+    for p in shown:
+        if p.get("show_in") != "menu":
+            continue
+        name = menu_name(p)
+        if len(menu) >= MAX_MENU_PAGES:
+            overflow.append((p, "full"))
+        elif len(name) > MENU_NAME_MAX:
+            overflow.append((p, "long"))
+        elif nav_needed([menu_name(q) for q in menu] + [name]) > NAV_ROOM_PX:
+            overflow.append((p, "wide"))
+        else:
+            menu.append(p)
+    return {"menu": menu, "overflow": overflow,
+            "footer": [p for p in shown if p.get("show_in") in ("menu", "footer")]}
+
 # ---------------------------------------------------------------------------
 # One schema per page. "photos" keys map 1:1 to the photo slots in
 # src-img/slot-specs.json (home/hero -> photos.hero, home/hero-m ->
@@ -469,8 +799,8 @@ PAGE_SCHEMAS = {
     "home": {
         "seo": _seo(),
         "photos": Obj("Photos", {
-            "hero": Photo("Hero photo", full_width=True),
-            "hero_mobile": Photo("Hero photo on phones", alt=False),
+            "hero": Photo("Top photo", full_width=True),
+            "hero_mobile": Photo("Top photo on phones", alt=False),
             "fresh_1": Photo("Made fresh — photo 1"),
             "fresh_2": Photo("Made fresh — photo 2"),
             "fresh_3": Photo("Made fresh — photo 3"),
@@ -478,21 +808,21 @@ PAGE_SCHEMAS = {
             "smoothies": Photo("Smoothies photo"),
             "visit": Photo("Visit photo", full_width=True),
         }),
-        "hero": Obj("Hero", {
+        "hero": Obj("Top of the page", {
             "heading": _heading("Big word"),
             "line": _heading("Line under it"),
-            "order_label": _cta("Order button"),
+            "order_label": _cta("Order button text"),
         }),
         "fresh": Obj("Made fresh", {"statement": _heading("Statement")}),
         "film": Obj("Film", {
-            "label": Text("Name of the film (for screen readers)", required=True, max=80),
-            "description": Text("Text description of the film", required=True, max=600,
+            "label": Text("Name of the film", required=True, max=80),
+            "description": Text("What the film shows", required=True, max=600,
                                 help="Read aloud by screen readers in place of the film."),
         }),
         "products": Obj("Bowls and smoothies", {
-            "bowls_label": _heading("Bowls tile"),
-            "smoothies_label": _heading("Smoothies tile"),
-            "menu_label": _cta("Link label"),
+            "bowls_label": _heading("Bowls tile text"),
+            "smoothies_label": _heading("Smoothies tile text"),
+            "menu_label": _cta("Menu link text"),
         }),
         "community": Obj("Community", {
             "heading": _heading(),
@@ -505,13 +835,14 @@ PAGE_SCHEMAS = {
                 "photo": Photo("Photo"),
                 "caption": Text("Caption", required=True, max=80),
             }), min=4, max=4, item_label=summary_label("Square photo", "caption")),
-            "albums_label": _cta("Albums link label"),
+            "albums_label": _cta("Albums link text"),
         }),
         "visit": Obj("Visit", {
             "heading": _heading(),
-            "directions_label": _cta("Directions button"),
-            "order_label": _cta("Order button"),
+            "directions_label": _cta("Directions button text"),
+            "order_label": _cta("Order button text"),
         }),
+        "sections": SECTIONS,
     },
     "story": {
         "seo": _seo(),
@@ -534,9 +865,10 @@ PAGE_SCHEMAS = {
         "pillars": PILLARS,
         "closing": Obj("Closing", {
             "statement": _heading("Statement"),
-            "order_label": _cta("Order button"),
-            "menu_label": _cta("Menu button"),
+            "order_label": _cta("Order button text"),
+            "menu_label": _cta("Menu button text"),
         }),
+        "sections": SECTIONS,
     },
     "how": {
         "seo": _seo(),
@@ -548,9 +880,10 @@ PAGE_SCHEMAS = {
         "closing_line": Text("Closing line"),
         "photos": Obj("Photos", {}),
         "pillars": PILLARS,
-        "story_link_label": _cta("Story link"),
-        "menu_label": _cta("Menu button"),
-        "order_label": _cta("Order button"),
+        "story_link_label": _cta("Story link text"),
+        "menu_label": _cta("Menu button text"),
+        "order_label": _cta("Order button text"),
+        "sections": SECTIONS,
     },
     "what": {
         "seo": _seo(),
@@ -560,43 +893,47 @@ PAGE_SCHEMAS = {
         "items": _steps("What we make", "Item"),
         "closing": Obj("Closing", {
             "statement": _heading("Statement"),
-            "menu_label": _cta("Menu button"),
-            "order_label": _cta("Order button"),
+            "menu_label": _cta("Menu button text"),
+            "order_label": _cta("Order button text"),
         }),
+        "sections": SECTIONS,
     },
     "day": {
         "seo": _seo(),
         "eyebrow": _heading("Small label above the title"),
         "title": _heading("Title"),
         "photos": Obj("Photos", {}),
+        "sections": SECTIONS,
     },
     "catering": {
         "seo": _seo(),
         "eyebrow": _heading("Small label above the title"),
         "title": _heading("Title"),
-        "inquiry_label": _cta("Inquiry button"),
+        "inquiry_label": _cta("Inquiry button text"),
         "photos": Obj("Photos", {"hero": Photo("Main photo", full_width=True)}),
         "intro": Text("Introduction", required=True, markdown=True),
         "form": Obj("Inquiry form", {
             "heading": _heading(),
-            "submit_label": _cta("Send button"),
+            "submit_label": _cta("Send button text"),
             "reply_note": Text("Note beside the button"),
         }),
+        "sections": SECTIONS,
     },
     "visit": {
         "seo": _seo(),
         "eyebrow": _heading("Small label above the title"),
         "title": _heading("Title"),
         "photos": Obj("Photos", {"hero": Photo("Main photo")}),
-        "directions_label": _cta("Directions button"),
-        "order_label": _cta("Order button"),
+        "directions_label": _cta("Directions button text"),
+        "order_label": _cta("Order button text"),
         "pickup_note": Text("Pickup note"),
         "getting_here": Obj("Getting here", {
             "heading": _heading(),
-            "sections": List("Sections", Obj("Section", {
+            "sections": List("Topics", Obj("Topic", {
                 "heading": _heading(), "text": Text("Text", required=True, markdown=True)}),
-                min=1, item_label=summary_label("Section", "heading")),
+                min=1, item_label=summary_label("Topic", "heading")),
         }),
+        "sections": SECTIONS,
     },
     "gift-cards": {
         "published": Bool("Published", default=False),
@@ -605,7 +942,7 @@ PAGE_SCHEMAS = {
         "title": _heading("Title"),
         "photos": Obj("Photos", {"hero": Photo("Main photo")}),
         "text": Text("Text", required=True, markdown=True),
-        "buy_label": _cta("Buy button"),
+        "buy_label": _cta("Buy button text"),
         "buy_url": Url("Buy button link", required=True, allow=("https",)),
         "fine_print": Text("Small print"),
         "how": Obj("How it works", {"heading": _heading(), "steps": _steps("Steps", "Step")}),
@@ -626,8 +963,8 @@ PAGE_SCHEMAS = {
         "eyebrow": _heading("Small label above the title"),
         "title": _heading("Title"),
         "lede": Text("Line under the title"),
-        "menu_label": _cta("Menu button"),
-        "home_label": _cta("Home button"),
+        "menu_label": _cta("Menu button text"),
+        "home_label": _cta("Home button text"),
         "photos": Obj("Photos", {}),
     },
 }
@@ -636,7 +973,7 @@ _DAY = lambda name: Obj(name, {"closed": Bool("Closed all day"), "open": Time("O
 
 SCHEMAS = {
     "site": {
-        "business": Obj("Business", {
+        "business": Obj("Address and contact", {
             "name": Text("Name", required=True),
             "street": Text("Street address", required=True),
             "city": Text("City", required=True),
@@ -647,22 +984,22 @@ SCHEMAS = {
             "public_email": Text("Public email",
                                  help="Shown in the footer. Never the catering inbox."),
         }),
-        "ordering": Obj("Ordering", {
+        "ordering": Obj("Ordering links", {
             "square_url": Url("Square store link", required=True, allow=("https",)),
             "doordash_url": Url("DoorDash link", allow=("https",)),
             "ubereats_url": Url("Uber Eats link", allow=("https",)),
         }),
-        "social": Obj("Social", {
+        "social": Obj("Social media", {
             "instagram_handle": Text("Instagram handle"),
             "tiktok_url": Url("TikTok link", allow=("https",)),
             "facebook_url": Url("Facebook link", allow=("https",)),
             "yelp_url": Url("Yelp link", allow=("https",)),
             "google_url": Url("Google link", allow=("https",)),
         }),
-        "seo": Obj("SEO", {
-            "default_description": Text("Default description", required=True, warn_max=160,
+        "seo": Obj(SEO_LABEL, {
+            "default_description": Text("Default Google description", required=True, warn_max=160,
                                         warn_why="Search results show about 160 characters."),
-            "share_image": Image("Share image", help="Shown when a link to the site is shared. "
+            "share_image": Image("Photo for shared links", help="Shown when a link to the site is shared. "
                                                      "Empty = the homepage photo."),
         }),
         "footer_tagline": Text("Footer tagline", required=True),
@@ -680,15 +1017,15 @@ SCHEMAS = {
             "open": Time("Opens"),
             "close": Time("Closes"),
         }), item_label=summary_label("Special hours", "date", "label")),
-        "note": Text("Note"),
+        "note": Text("Note under the hours"),
     },
     "announcement": {
         "enabled": Bool("Show the bar"),
         "message": Text("Message", max=110),
-        "link_label": Text("Link label", warn_max=30),
+        "link_label": Text("Link text", warn_max=30),
         "link_url": Url("Link"),
-        "starts": Date("Starts"),
-        "ends": Date("Ends"),
+        "starts": Date("First day shown"),
+        "ends": Date("Last day shown"),
         "tone": Choice("Colour", ("green", "butter")),
     },
     "instagram": {
@@ -708,9 +1045,9 @@ SCHEMAS = {
         "heading": _heading(),
         "intro": Text("Introduction", markdown=True),
         "buttons": List("Buttons", Obj("Button", {
-            "label": _cta("Label"),
+            "label": _cta("Button text"),
             "url": Url("Link", required=True),
-            "highlight": Bool("Highlight"),
+            "highlight": Bool("Green button"),
         }), min=1, item_label=summary_label("Button", "label")),
         "show_specials": Bool("Show specials", default=True),
         "show_events": Bool("Show events", default=True),
@@ -722,8 +1059,8 @@ SCHEMAS = {
         "intro": Text("Introduction", markdown=True),
         "status_note": Text("Prices note", required=True),
         "allergen_note": Text("Allergen note", required=True),
-        "order_label": _cta("Order button"),
-        "items": List("Items", Obj("Item", {
+        "order_label": _cta("Order button text"),
+        "items": List("Menu items", Obj("Item", {
             "square_id": Text("Square ID", required=True),
             "square_name": Text("Name on Square"),
             "category": Text("Category on Square"),
@@ -737,6 +1074,7 @@ SCHEMAS = {
         }), item_label=menu_item_label,
             hidden_if=lambda x: isinstance(x, dict) and x.get("hidden") is True,
             hidden_note="(This item is hidden from the website, so it won’t stop the update.)"),
+        "sections": SECTIONS,
     },
     "faq": {
         "seo": _seo(),
@@ -746,6 +1084,7 @@ SCHEMAS = {
             "question": Text("Question", required=True, warn_max=120),
             "answer": Text("Answer", required=True, markdown=True),
         }), min=1, item_label=summary_label("Question", "question")),
+        "sections": SECTIONS,
     },
 }
 
@@ -761,7 +1100,8 @@ COLLECTIONS = {
     "specials": ("Special", {
         "name": Text("Name", required=True, warn_max=40, web_name=True),
         "partner": Text("Made with (partner)"),
-        "badge": Text("Badge", warn_max=24),
+        # empty: the card's own "Limited time" (templates/partials/specials.html)
+        "badge": Text("Small label above the name", warn_max=24),
         "tagline": Text("Tagline", warn_max=80),
         "description": Text("Description", markdown=True),
         "highlights": List("Highlights", Text("Highlight", required=True, warn_max=40),
@@ -769,9 +1109,9 @@ COLLECTIONS = {
         "ingredients": Text("Ingredients", multiline=True),
         "price": Text("Price"),
         "image": Image("Photo"),
-        "image_alt": Text("Photo description (alt text)", max=250),
-        "starts": Date("Starts"),
-        "ends": Date("Ends"),
+        "image_alt": Text(ALT_LABEL, max=250),
+        "starts": Date("First day shown"),
+        "ends": Date("Last day shown"),
         # none: no button, the availability note instead (not on Square, e.g.
         # Phi Velvet); square: "Order on Square" to the store; link: "Order"
         # to the order link below. ORDER_BUTTON_LABELS = the CMS's option labels.
@@ -779,7 +1119,7 @@ COLLECTIONS = {
                                help="; ".join(ORDER_BUTTON_LABELS.values())),
         "order_url": Url("Order link", allow=("https",),
                          help=f"Only used when the order button is “{ORDER_BUTTON_LABELS['link']}”."),
-        "availability_note": Text("Availability note", default="In store for a limited time.", warn_max=60,
+        "availability_note": Text("Note instead of a button", default="In store for a limited time.", warn_max=60,
                                   help=f"Shown instead of a button when the order button is "
                                        f"“{ORDER_BUTTON_LABELS['none']}”."),
         "show_on_home": Bool("Show on the homepage", default=True),
@@ -789,15 +1129,15 @@ COLLECTIONS = {
     "events": ("Event", {
         "title": Text("Title", required=True, warn_max=60, web_name=True),
         "date": Date("Date", required=True),
-        "start_time": Time("Starts"),
-        "end_time": Time("Ends"),
+        "start_time": Time("Start time"),
+        "end_time": Time("End time"),
         "partner": Text("With (partner)"),
         "location": Text("Location"),
         "description": Text("Description", markdown=True),
         "image": Image("Photo"),
-        "image_alt": Text("Photo description (alt text)", max=250),
+        "image_alt": Text(ALT_LABEL, max=250),
         "link_url": Url("Link"),
-        "link_label": Text("Link label", warn_max=30),
+        "link_label": Text("Link text", warn_max=30),
         "published": Bool("Published", default=True),
     }),
     "albums": ("Album", {
@@ -811,7 +1151,36 @@ COLLECTIONS = {
             "alt": Alt(),
         }), item_label=lambda i, x: f"Photo {i + 1}"),
     }),
+    # A whole page of her own, at /<address> (the file is named after the
+    # address when the page is made; the CMS can't rename it afterwards).
+    "custom-pages": ("Your page", {
+        "title": _heading("Page title"),
+        "address": Text("Web address", required=True,
+                        help="The end of the page's link: lowercase letters, numbers and dashes."),
+        "intro": Text("Short intro", multiline=True, warn_max=300,
+                      warn_why="It sits under the title in large type: a sentence or two reads best."),
+        "photo": Obj("Top photo", {
+            "image": Image("Photo", full_width=True),
+            "alt": Text(ALT_LABEL, max=250),
+            "focus": Choice("Focus", FOCUS, help="Which part of the photo to keep when it's cropped."),
+            "zoom": Choice("Zoom", ZOOMS),
+        }),
+        "sections": SECTIONS,
+        "show_in": Choice("Show it in", tuple(SHOW_IN_LABELS), help="; ".join(SHOW_IN_LABELS.values())),
+        # the CMS stops more than MENU_NAME_MAX characters (options.maxlength)
+        "menu_title": Text("Name in the menu", max=MENU_NAME_MAX,
+                           help="A shorter name for the main menu. Empty = the page title."),
+        "google_title": Text("Google title", warn_max=60,
+                             warn_why="Search results show about 60 characters, so the end may be cut off."),
+        "google_description": Text("Google description", warn_max=160,
+                                   warn_why="Search results show about 160 characters, so the end may be cut off."),
+        "published": Bool("Published", default=True),
+    }),
 }
+
+# The field a collection entry's file name — its web address — is made from
+# (.pages.yml filename templates), named in messages about the file name.
+WEB_NAME_FIELDS = {"specials": "name", "events": "title", "albums": "title", "custom-pages": "address"}
 
 
 # ---------------------------------------------------------------------------
@@ -1004,6 +1373,12 @@ def field_labels(schema, dotted, data):
     label, as in List.check."""
     node, out, value = Obj("", schema), [], data
     for part in dotted.split("."):
+        if isinstance(node, Blocks):          # a section: its label is added ("Section 2 (Photo)")
+            i = int(part)
+            value = value[i] if isinstance(value, list) and i < len(value) else {}
+            out.append(node.item_label(i, value))
+            node = node.block_of(value) or Obj("", {})
+            continue
         if isinstance(node, List):
             i = int(part)
             value = value[i] if isinstance(value, list) and i < len(value) else {}

@@ -1,6 +1,4 @@
 {
-  "enabled": true,
-  "heading": "Layers Superfood Bar",
   "buttons": [
     {
       "label": "Order on Square",
@@ -23,6 +21,8 @@
       "highlight": false
     }
   ],
+  "heading": "Layers Superfood Bar",
   "show_specials": true,
-  "show_events": true
+  "show_events": true,
+  "enabled": true
 }

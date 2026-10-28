@@ -55,12 +55,14 @@ ACTIONS = {"Publish now": "build-deploy.yml", "Refresh menu from Square": "menu-
 # "where" names (tools/content.py WHERE / PAGES), so an error message and the
 # CMS screen use the same words; a collection is the plural of its entries'
 # "Special: …", "Event: …", "Album: …".
-COLLECTION_LABELS = {"specials": "Specials", "events": "Events", "albums": "Photo albums"}
+COLLECTION_LABELS = {"specials": "Specials", "events": "Events", "albums": "Photo albums",
+                     "custom-pages": "Your own pages"}
 SIDEBAR = [
     ("This week", [C.WHERE["announcement"], "Specials", "Events", C.WHERE["hours"]]),
     (C.WHERE["menu"], None),
     ("Pages", [C.PAGES[k] for k in ("home", "story", "how", "what", "day", "catering", "visit")]
-     + [C.WHERE["faq"], C.WHERE["links"]] + [C.PAGES[k] for k in ("gift-cards", "loyalty", "404")]),
+     + [C.WHERE["faq"], C.WHERE["links"]] + [C.PAGES[k] for k in ("gift-cards", "loyalty", "404")]
+     + ["Your own pages"]),
     ("Photo albums", None),
     (C.WHERE["instagram"], None),
     (C.WHERE["site"], None),
@@ -71,7 +73,7 @@ SIDEBAR = [
 DRAFT_FILES = {"content/pages/gift-cards.json", "content/pages/loyalty.json"}
 
 # The patterns the CMS uses, each checked below against the validator itself.
-TIME = r"^$|^([01][0-9]|2[0-3]):[0-5][0-9]$"
+TIME = r"^\s*$|^\s*([01][0-9]|2[0-3]):[0-5][0-9]\s*$"      # spaces around it are trimmed (content.Time)
 # Links allow spaces around them (a paste often brings one; the build trims them).
 WEB = r"^\s*$|^\s*https://[^\s/$.?#]\S*\s*$"
 SITE = r"^\s*$|^\s*(https://[^\s/$.?#]\S*|#\S*|/(?![/\\])\S*)\s*$"
@@ -106,7 +108,19 @@ def pairs(schema, fields, path, mismatches):
             continue
         node, f = schema[k], by_name[k]
         yield path + (k,), node, f
-        if isinstance(node, C.Obj):
+        if isinstance(node, C.Blocks):        # each kind of section, field by field
+            cms_blocks = {b["name"]: b for b in f.get("blocks") or []}
+            for name, block in node.blocks.items():
+                if name not in cms_blocks:
+                    mismatches.append(f"{at}.{k}: the section kind “{name}” is in tools/content.py but not in "
+                                      ".pages.yml")
+                    continue
+                yield from pairs(block.fields, cms_blocks[name].get("fields") or [], path + (k, name), mismatches)
+            for name in cms_blocks:
+                if name not in node.blocks:
+                    mismatches.append(f"{at}.{k}: the section kind “{name}” is in .pages.yml but not in "
+                                      "tools/content.py — the build would never draw it")
+        elif isinstance(node, C.Obj):
             yield from pairs(node.fields, f.get("fields") or [], path + (k,), mismatches)
         elif isinstance(node, C.List) and isinstance(node.item, C.Obj):
             yield from pairs(node.item.fields, f.get("fields") or [], path + (k, "[]"), mismatches)
@@ -149,6 +163,8 @@ def cms_fields(fields):
     for f in fields:
         yield f
         yield from cms_fields(f.get("fields") or [])
+        for b in f.get("blocks") or []:
+            yield from cms_fields(b.get("fields") or [])
 
 
 # ---------------------------------------------------------------------------
@@ -157,9 +173,9 @@ def cms_fields(fields):
 def test_config_is_usable_by_the_normaliser():
     """Field types, collection file names, date formats: everything
     tools/cms_normalize.py (and so the save simulation) understands."""
-    assert len(CMS.entries) == 20
+    assert len(CMS.entries) == 21
     assert {e["path"] for e in CMS.entries if e["type"] == "collection"} == {
-        "content/specials", "content/events", "content/albums"}
+        "content/specials", "content/events", "content/albums", "content/custom-pages"}
 
 
 def test_every_content_file_is_managed_and_every_key_declared():
@@ -203,6 +219,11 @@ def test_sidebar_order_and_names():
 def _types_agree(item):
     _, path, node, f, _ = item
     t, opts = f.get("type"), f.get("options") or {}
+    if isinstance(node, C.Blocks):
+        # a list of blocks, stored under the same key, with the same kinds and labels in the same order
+        assert t == "block" and f.get("list") and f.get("blockKey") == node.key
+        assert [(b["name"], b["label"]) for b in f["blocks"]] == [(k, b.label) for k, b in node.blocks.items()]
+        return
     if isinstance(node, C.List):
         assert f.get("list"), "a list in tools/content.py must be a list in the CMS"
         node = node.item
@@ -252,6 +273,10 @@ def _limits_agree(item):
     _, path, node, f, draft = item
     opts, lst = f.get("options") or {}, f.get("list")
     assert "minlength" not in opts
+    if isinstance(node, C.Blocks):
+        assert isinstance(lst, dict) and "collapsible" in lst and not f.get("required")
+        assert lst.get("min") is None and lst.get("max") is None, "any number of sections, none needed"
+        return
     if isinstance(node, C.List):
         if isinstance(node.item, C.Obj):
             assert isinstance(lst, dict) and "collapsible" in lst, "the object form of list needs collapsible"
@@ -280,7 +305,7 @@ def _defaults_agree(item):
     """A missing key means its default to the build; the CMS shows (and then
     saves) its own default for it. They must be the same value."""
     _, path, node, f, _ = item
-    if isinstance(node, (C.Obj, C.List, C.Date)):
+    if isinstance(node, (C.Obj, C.List, C.Date, C.Blocks)):
         return
     want = node.default()
     if "default" in f:
@@ -325,6 +350,15 @@ def _web_name_error(value):
     return any(p["level"] == "error" for p in v.problems)
 
 
+def _address_error(value):
+    """A page of her own's web address: the validator's own checks (the
+    pattern and the reserved words; the file name is the address)."""
+    v = V.Context(ROOT, "Your page", "content/custom-pages/x.json")
+    C.COLLECTIONS["custom-pages"][1]["address"].check(value, v, ["Web address"])
+    V.check_custom_page({"address": value}, v, value.strip())
+    return any(p["level"] == "error" and p["field"] == "Web address" for p in v.problems)
+
+
 def _time_error(value):
     v = V.Context(ROOT, "Opening hours", "content/hours.json")
     C.Time("Opens").check(value, v, ["Opens"])
@@ -358,6 +392,11 @@ SPECIAL_PATTERNS = {
          "https://feeds.behold.so/a/b", "http://feeds.behold.so/abc", " https://feeds.behold.so/AbC123 "]),
     # a special's / event's / album's name becomes its web address: letters or numbers needed
     r"[A-Za-z0-9]": (_web_name_error, ["Phi Velvet", "🎃🎃", "Açaí 2", "抹茶", "★", "", "x", "9", "🍓 Strawberry"]),
+    # a page of her own's web address: a-z, 0-9 and dashes, and none of the site's own paths
+    C.address_pattern(): (_address_error,
+                          ["summer-menu", "menu", "Menu", "summer menu", "summer--menu", "-summer", "summer-", "a",
+                           "2027", "404", "edit", "menu-2", "our-menu", "cdn-cgi", "café", "", "summer_menu",
+                           "layers", "home", "story-of-us", "photo-prep", "links-2", " summer", "visit"]),
 }
 
 URL_SAMPLES = ["https://layerssuperfoodbar.square.site", "https://x.co/a?b=c#d", "http://x.com", "https://",
@@ -368,7 +407,8 @@ URL_SAMPLES = ["https://layerssuperfoodbar.square.site", "https://x.co/a?b=c#d",
 
 @pytest.mark.parametrize("regex,check,samples", [(TIME, _time_error,
                                                    ["09:00", "9:00", "23:59", "24:00", "00:00", "18:30", "12:60",
-                                                    "1200", "ab:cd", "07:5", "19:05", "", "-1:00"])]
+                                                    "1200", "ab:cd", "07:5", "19:05", "", "-1:00", "17:00 ",
+                                                    " 09:00", "17:00\n", "  ", "17: 00", "1 7:00"])]
                          + [(r, c, s) for r, (c, s) in SPECIAL_PATTERNS.items()])
 def test_patterns_agree_with_the_validator(regex, check, samples):
     for s in samples:
@@ -609,3 +649,36 @@ def test_a_date_field_without_an_empty_default_would_start_as_today():
     assert N.default_value(f, TODAY) == "2026-10-27"
     assert N.default_value({**f, "default": ""}, TODAY) == ""
     assert hours.parse_date(N.default_value(f, TODAY)) == TODAY
+
+
+def test_every_photo_field_points_to_photo_prep():
+    """Uploads over ~3.3 MB fail in the hosted editor, so every photo field's
+    help must say where to shrink a photo — including fields added later."""
+    import yaml
+    cfg = yaml.safe_load((ROOT / ".pages.yml").read_text())
+    comps = cfg.get("components") or {}
+    missing, seen = [], 0
+
+    def walk(fields, where):
+        nonlocal seen
+        for f in fields or []:
+            spec = {**(comps.get(f["component"], {}) if f.get("component") else {}), **f}
+            if spec.get("type") == "image":
+                seen += 1
+                if "photo-prep" not in (spec.get("description") or ""):
+                    missing.append(f"{where} › {f.get('name')}")
+            walk(spec.get("fields"), f"{where} › {f.get('name')}")
+            for b in spec.get("blocks") or []:
+                walk(b.get("fields"), f"{where} › {f.get('name')} › {b.get('name')}")
+
+    def entries(items, where=""):
+        for e in items or []:
+            walk(e.get("fields"), f"{where}{e.get('name')}")
+            entries(e.get("items"), f"{where}{e.get('name')} › ")
+    entries(cfg.get("content"))
+    for name, c in comps.items():
+        walk(c.get("fields"), f"component {name}")
+        for b in c.get("blocks") or []:
+            walk(b.get("fields"), f"component {name} › {b.get('name')}")
+    assert seen >= 10, f"only {seen} photo fields found — did the walker break?"
+    assert not missing, "photo fields without the /photo-prep hint: " + ", ".join(missing)

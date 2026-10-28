@@ -35,16 +35,17 @@ change the label, description or `required`:
 
 | Component | What it is |
 |---|---|
-| `time-24h` | `HH:MM` as a pattern-checked string (not a datetime field, which would store a date too) |
+| `time-24h` | `HH:MM` as a pattern-checked string (not a datetime field, which would store a date too); spaces around it are allowed, as for links, and trimmed by the build (`content.Time.normalise`) |
 | `calendar-date` | a date stored as `yyyy-MM-dd`, `default: ""` (see the traps) |
-| `photo-file` | an image field: media `photos`, picker and uploads in `src-img/uploads`, a note on the 3 MB upload limit |
+| `photo-file` | an image field: media `photos`, picker and uploads in `src-img/uploads`, a note on the 3 MB upload limit (every photo's help ends “Over 3 MB? Shrink it first at layerssuperfoodbar.com/photo-prep.” — the whole address, as the CMS shows help as plain text; spots under 1,200 px say “at least 800 pixels wide”) |
 | `photo-focus`, `photo-zoom` | the crop keywords from `tools/content.py` (`FOCUS`, `ZOOMS`), default `auto` |
-| `alt-text` | “Description (alt text)”, 250 characters |
+| `alt-text` | “Photo description” (a photo's alt text), 250 characters |
 | `web-link`, `site-link` | links: `https://…` only, or also a page on this site (`/menu`, `#faq`) — the validator's `url_ok` rules |
 | `formatted-text` | a multi-line box with the `tools/textfmt.py` cheat sheet |
 | `page-photo`, `page-photo-no-alt` | a photo spot: photo + alt + focus + zoom, photo and alt required |
 | `draft-photo`, `draft-photo-no-alt` | the same with nothing required, for pages that may be unfinished |
-| `seo`, `seo-optional-description`, `seo-draft` | the SEO group with its three levels of `required` |
+| `seo`, `seo-optional-description`, `seo-draft` | the SEO group, “Google and shared links” (“Google title”, “Google description”), with its three levels of `required` |
+| `more-sections` | "More sections": a `block` list (blockKey `type`) of the six section kinds — see [Sections and pages of her own](#sections-and-pages-of-her-own) |
 
 **`content`** — the sidebar, in this order. Labels are the validator's
 “where” names (`WHERE` / `PAGES` in `tools/content.py`), so an error in the
@@ -59,13 +60,14 @@ screen:
 | › Opening hours | `hours` | `content/hours.json` |
 | **Menu** | `menu` | `content/menu.json` |
 | **Pages** › Home … Page not found | `home`, `story`, `how`, `what`, `day`, `catering`, `visit`, `faq`, `links`, `gift-cards`, `loyalty`, `not-found` | `content/pages/*.json`, `content/faq.json`, `content/links.json` |
+| › Your own pages | `custom-pages` (collection) | `content/custom-pages/*.json` |
 | **Photo albums** | `albums` (collection) | `content/albums/*.json` |
 | **Instagram** | `instagram` | `content/instagram.json` |
 | **Business details** | `site` | `content/site.json` |
 
-Within a file the fields follow the page from top to bottom, photos first and
-**SEO last** (the manager rarely needs it). Field order is also the key order
-in the saved file.
+Within a file, what is changed most comes first — see [Form order and
+wording](#form-order-and-wording). Field order is also the key order in the
+saved file.
 
 **`actions`** — the sidebar buttons. Each dispatches a workflow on `main`
 with a `payload` input (CMS_SPEC §8.10: the workflows check the request
@@ -81,6 +83,59 @@ themselves, through `tools/ci/payload.py`):
 
 Action fields can't have a description, so the guidance (where backup names
 come from) is in the confirm dialog's `message`.
+
+## Form order and wording
+
+The manager is a café marketing manager with no technical background, and
+the owner asked for an editor in which she can change anything simply. So
+every screen is written and ordered for her; `tests/test_cms_wording.py`
+checks the rules below.
+
+**Order: most-used first, rarely-needed last.**
+
+| Screen | Order |
+|---|---|
+| Specials, Events, Photo albums, Your own pages | **Published** first (switching it off is how something comes down; a new entry starts on), then the name and what's filled in most — a special: name, photo, photo description, tagline, description, dates, order button; an event: title, date, times, location; an album: title, photos, then cover and Position; a page: title, web address, “Show it in” and “Name in the menu”, then intro, top photo, sections, and Google last |
+| Announcement bar | the switch, the message, the dates, the link, the colour |
+| Opening hours | **Special hours** (holidays) first, folded to “date name”; then the weekly hours; the note |
+| Menu | **Menu items** first (hide, rename, photo — the item's own boxes, then Focus/Zoom, then the read-only Square boxes, `square_id` last), then the words around the menu, sections, Google |
+| Pages | the page from top to bottom (photos together in “Photos”), then **More sections**, then what's rarely needed (Home: the film's spoken texts), then **Google and shared links** |
+| Link in bio, Instagram | the buttons / the hand-picked posts first (a post's photo help says the grid shows the first ones, and a post past “Number of posts” is a validator error, since “Add an item” puts it last); the switch that takes the page or section down last |
+| Business details | address and contact, ordering links, social media, taglines, then Google; Analytics hidden |
+
+Inside a photo spot: Photo, Photo description, then Focus and Zoom (an
+album's Cover focus straight after its Cover photo).
+
+**Words.** Labels are everyday words, the same in `tools/content.py` (the
+validator's messages) and in the handbook: “Photo description” (not alt
+text), “Google and shared links” / “Google title” / “Google description”
+(not SEO), “Top photo” (not hero), “Small label above the title” (not
+eyebrow), “Web address” (not slug), “First day shown” / “Last day shown” for
+a special's or the announcement's dates and “Start time” / “End time” for an
+event's, and “… button text” / “… link text” for the words on a button or
+link — so a text box is never labelled like the specials' “Order button”
+choice. Help text is one short sentence (≤ 170 characters), with an example
+where it helps. A box that can be left empty says so first, **“Optional —
+…”**, unless its help says when it's needed (a link goes with its link text,
+a photo's description with its photo); a required one shows the CMS's own
+“Required” badge. Retired labels are listed in the test, so the handbook
+can't send her looking for one.
+
+**Hide, never drop.** A key the manager never needs stays declared with
+`hidden: true` (Business details › Analytics): a save still writes it, and
+its checks still run. (So if a hand edit ever left a malformed token, she
+couldn't save Business details until the developer fixed the file — the
+build report names it too. Only hide fields the developer sets.) Never
+delete a declaration to hide a field: the next save would delete the data.
+
+**When you change a label**, change it in `tools/content.py` too (the
+validator's checks take their labels from the schema — `path_of`/`label_of`
+in `tools/validate_content.py` — so they follow), and in
+`docs/HANDBOOK.md`. **When you reorder fields**, run `python3
+tools/cms_normalize.py` on the live content and on the seed in
+`tests/fixtures/seed` (it only moves keys), and keep the menu refresh's
+new-item order (`tools/sync-menu-from-store.py`) the same as the item's
+fields.
 
 ## The rules the config follows
 
@@ -123,10 +178,14 @@ come from) is in the confirm dialog's `message`.
   summary and the item_label together.
 - **The menu list is Square's.** Items can be reordered, renamed, hidden —
   not added (the read-only `square_id` can't be filled) or deleted (it comes
-  back under Square's name). The field descriptions say so; the validator's
-  warning points at Undo + "Hide from the website".
+  back under Square's name). The field descriptions say so (`square_id`'s,
+  where the CMS shows its “required” error after an “Add an item”); the
+  validator's warning points at Undo + "Hide from the website". The refresh
+  writes a new item's keys in the item's field order, so the file stays in
+  the CMS's format.
 - **Descriptions** are for a busy café manager: short, concrete, what it does
-  on the site and any limit. Never on a list field (see the traps).
+  on the site and any limit (see [Form order and wording](#form-order-and-wording)).
+  Never on a list field (see the traps).
 
 ## Adding a field safely
 
@@ -160,10 +219,154 @@ come from) is in the confirm dialog's `message`.
 | `Obj` | `type: object` + `fields` |
 | `List(Obj)` | `type: object` + `list: {min?, max?, collapsible: {collapsed, summary}}` + `fields` |
 | `List(Text)` | the item's type + `list: true` (+ `required: true` if the list needs ≥ 1 item) |
+| `Blocks` (`SECTIONS`) | `component: more-sections` |
 
 **Renaming or removing a field** works the same way in reverse. The
 normaliser refuses to run while a content file still holds a key that isn't
 declared, so remove (or move) the data first.
+
+## Sections and pages of her own
+
+**More sections** (`sections` on Home, Story, How, What, Day, Catering, Visit,
+FAQ and Menu, and on every page of her own) is a Pages CMS `block` list,
+declared once as the component `more-sections`. "Add an item" shows a
+button per kind; the chosen kind is saved under `type` (`blockKey`), first,
+then that kind's fields in order:
+
+```json
+"sections": [
+  {"type": "text", "heading": "A year on Channing Way", "text": "…"},
+  {"type": "photo", "image": "src-img/uploads/x.jpg", "alt": "…", "focus": "auto", "zoom": "auto", "size": "wide"}
+]
+```
+
+The six kinds (`text`, `photo`, `photo-text`, `photos`, `button`, `quote`)
+are `content.SECTION_BLOCKS`, drawn by `templates/partials/sections.html` from
+the site's own editorial pieces. Their photos are photo slots named by
+`content.section_photos` — `blocks/<page>_<n>` (`_<k>` for each photo of a
+row), `custom/<address>_<n>` and `custom/<address>_top` — cut at 21:9 (wide),
+3:2 (standard), 4:5 (photo and text) or 1:1 (row), with the usual size and
+description checks. Validation names them as the CMS shows them: "Page: Home ›
+More sections → Section 2 (Photo and text) → Photo" (the list's summary is
+`Section {index}`, and the kind is the badge on each item). They are drawn
+after the page's own content — on Home before the Visit band, and on Story,
+How and What before the closing words and buttons (`.story-close`;
+`sections.render(…, before_close=True)`), so nothing she adds reads as an
+afterthought below the ending. A Text section with nothing in it (picked by
+mistake: it has no required box, so the CMS saves it) isn't drawn, and the
+validator only notes it (`content.text_section_has_words`).
+
+**To add a kind of section:** add it to `SECTION_BLOCKS` (and to
+`SECTION_PHOTOS` if it has photos), to the component's `blocks` in
+`.pages.yml` with the same name, label and fields, and to `sections.html`;
+`tests/test_cms_schema.py` checks both sides declare the same kinds and
+fields.
+
+**Your own pages** (`custom-pages`) are whole pages at `/<address>`. The
+file name is `{fields.address}.json`, made once when the page is first saved
+(`rename: false`), and **the page is always at its file's address**. Two
+ways the "Web address" box can stop matching it, both warnings (an error
+would hold up every other change) that say where the page really is:
+
+- the box was changed after the first Save;
+- the address was already another page's — even a switched-off one. Pages
+  CMS doesn't refuse a new file whose name exists: its files API (v2.1.8,
+  `app/api/[owner]/[repo]/[branch]/files/[path]/route.ts`) saves it as
+  `<name>-1.json` unless the client sends `onConflict: "error"`, and the
+  entry form never does. The validator recognises `<address>-<n>.json`
+  next to `<address>.json` and says which page has the address (the help
+  under "Web address" asks for one her other pages don't use).
+
+The address pattern refuses every path the site uses itself
+(`content.RESERVED_ADDRESSES`: every `PAGE_CONFIG` output, plus hosting
+paths such as `api`, `assets` and `cdn-cgi`; the pattern is
+`content.address_pattern()`, and a test keeps the two equal). `render.Site`
+adds each page to the site as `custom/<address>` (template `custom.html`;
+a top photo is also its picture when the page is shared, `og:image`).
+"Show it in" puts it in the footer, in the main menu as well, or nowhere.
+A published page is in the sitemap; a deleted one's folder is removed by
+`write_pages`, which recognises the folders it made by their `page-custom`
+body class.
+
+**The main menu never crowds or disappears.** Her pages go in it in A–Z
+order of their titles while they fit (`content.custom_page_links`): at most
+`MAX_MENU_PAGES` = 2, a name of at most `MENU_NAME_MAX` = 18 characters
+("Name in the menu", `menu_title`, `options.maxlength: 18`; empty = the
+title), and together no wider than the row's room at the site's widest
+column (`NAV_ROOM_PX`). Any other page set to the main menu is in the footer
+only, with a warning saying why ("full", "long" or "wide"). Widths are
+estimated from the characters (`NAV_CHAR_PX`, measured in Chrome in the
+menu's type — uppercase Archivo semi-condensed, 13 px, .08em — Oct 2026, +3%;
+tests pin real names within 5%). `render.header_more` then picks where the
+phone menu takes over: the site's own 1100 px when the names fit there (one
+short name changes nothing), else the smallest of `HEADER_WIDTHS` (1140,
+1180, 1220, 1260 → `.header--more-<width>` in styles.css) that leaves 32 px
+to spare beside the wordmark with a 17 px scrollbar. Checked in Chrome at
+every cut-over: one line, inside the screen, ≥ 49 px to spare at the first
+width the menu shows. **If the menu's type, its links or the Order button
+change, measure again** (`NAV_CHAR_PX`, `NAV_BASE_PX` = the site's five links
++ the Order button, 20 px apart).
+
+**Links to the site's own pages** in her content (link fields that allow a
+site path — section buttons, the announcement, /links buttons, events — and
+`[words](/a-page)` in formatted text) are collected while each file is
+checked (`content.note_link`) and checked once every file is read
+(`validate_content.check_links`): a page that doesn't exist is an error
+(with a suggestion: lowercase, without the preview's `/layers`, or the
+closest page — "Did you mean /run-club?"); a page that exists but is
+switched off (hers, Gift Cards, Loyalty, /links) is a warning, and the
+pages don't draw that link until it's switched on (`render.Site.link_live`,
+used by `link_ok`, the templates and the text format). The build's own
+check of developer links (`build.check_output`) is unchanged.
+
+## The Edit buttons (staff mode)
+
+`render.REPO` and `render.BRANCH` are the only place the repository is
+written: `EDITOR_URL` (`https://app.pagescms.org/meni-gottesman/layers/main`)
+and `HANDBOOK_URL` (the guide, linked from /edit) are made from them.
+`render.editor_link(key)` turns a content key into the app's own routes
+(Pages CMS v2.1.8, `app/(main)/[owner]/[repo]/[branch]/`): `/file/<name>`,
+`/collection/<name>`, `/collection/<name>/edit/<path>`,
+`/collection/<name>/new`. `<name>` is the entry's `name` here (groups don't
+change it; `CMS_FILES` and `CMS_COLLECTIONS` map content keys to names) and
+`<path>` is the repo path, encoded like the app's `encodeURIComponent` —
+except the extension's dot, written `%2E`
+(`content%2Fspecials%2Fphi-velvet%2Ejson`). The app's proxy (`src/proxy.ts`)
+treats any address ending in `.<letters>` as a static file and then skips
+the `x-return-to` header its sign-in redirect uses, so a signed-out manager
+pressing Edit on a special landed on the Projects page instead. Checked with
+a minimal Next.js 16.2.1 app (the version the app uses) running that proxy,
+the repo layout's sign-in redirect and the entry page: the `.json` link
+redirects to plain `/sign-in`; the `%2Ejson` link to
+`/sign-in?redirect=…`, `/auth/redirect` returns to it, and the page's
+`path` param arrives as `content%2Fspecials%2Fphi-velvet.json` (decoded to
+`content/specials/phi-velvet.json`), signed in or not. (If a proxy in front
+of the hosted app ever decoded `%2E`, the link would behave as before.)
+`tests/test_edit_mode.py` checks that every link on every page resolves to
+an entry of this file and an existing content file, and
+`tests/test_edit_safety.py` that none ends in an extension. **If an entry
+is renamed here, update `CMS_FILES` / `CMS_COLLECTIONS`.**
+
+Templates mark editable regions with `edit_attr(url, label)` (`data-edit`,
+`data-edit-label`); `<body>` carries `data-edit-root` and `data-edit-page`.
+An Edit link opens a screen, not a box on it (the app can't link deeper),
+so a chip's label says where to look when the box isn't near the top (the
+menu page's title and notes come after the menu items; on Home, Story, What
+and Catering, "(in the editor: Photos › Top photo, then Top of the page)"
+and the like).
+`main.js` turns staff mode on with `?edit` (remembered in localStorage as
+`layers-edit`) and off with `?edit=off`; only then does it add the "✎ Edit"
+links and the bar (inserted right after the skip link, so it's early in the
+Tab order though it's fixed at the bottom of the screen). In the footer the
+text keeps room for the pencil (`.is-editing … padding-right`), so the pencil
+never covers the address or the hours. Visitors' pages differ from before
+only by those attributes. `/edit` is the staff start page
+(`templates/pages/edit.html`): the button that turns the Edit buttons on,
+the three steps, how to undo (Actions → Undo my last change, in the
+editor's sidebar: the app's /actions page is closed to email
+collaborators), shortcuts, and **Worth a look** — this build's warnings
+(`render.Site.notes`, set by `tools/build.py` after the content check),
+each with a link to its screen.
 
 ## `tools/cms_normalize.py`
 
@@ -190,8 +393,14 @@ It was verified on Oct 27 2026 against Pages CMS v2.1.8's own code
 (`lib/schema.ts`, `lib/config.ts`, `lib/serialization.ts`, `fields/core/*`,
 run under Node with the React components stubbed): byte-identical output for
 every content file, and agreement on ~15,000 fuzzed variants (missing keys,
-nulls, wrong types, odd dates and paths, undeclared keys). Only the field
-types this site uses are ported; it refuses a config that uses others. **If
+nulls, wrong types, odd dates and paths, undeclared keys). Block lists (the
+"More sections") were added on Oct 27 2026 and checked the same way: every
+content file — with a section of every kind and two pages of her own — saved
+byte-identically by the app's code and by the normaliser, and 13 replayed
+edits (adding each kind, a section without its photo, a row of one photo, an
+unknown kind, an item added without choosing its kind, a new page with a
+reserved or badly written address) saved or refused identically. Only the
+field types this site uses are ported; it refuses a config that uses others. **If
 Pages CMS is upgraded**, re-check the traps below against the new source
 (`sanitizeObject`, `initializeState`, the date/image/select field modules and
 the files API route) before trusting the normaliser.
@@ -238,9 +447,26 @@ the files API route) before trusting the normaliser.
 - A JSON collection needs a `filename` ending in `.json`; the default ends in
   `.md` and every entry vanishes (#413). `{fields.x}` values are slugified.
 
+**Blocks** (`type: block`, the "More sections")
+- A block definition may only have `name`, `label`, `description`,
+  `component`, `default` and `fields` (the config validator is strict): no
+  `type`, `required` or `list` on a block itself.
+- An item is `{<blockKey>: <kind>, …fields}`; a save writes the key first,
+  then the kind's fields in order, and drops undeclared keys inside it.
+- "Add an item" adds an empty item (null) until a kind is chosen; a save
+  drops it. An item of a kind the field doesn't have can't be saved
+  ("Invalid discriminator value").
+- The list's `collapsible.summary` is interpolated with the item's fields
+  (missing ones become empty), so it is just `Section {index}`; the kind's
+  label is shown as a badge.
+- Each block field's description repeats under every section: keep them short.
+
 **Media**
 - Uploads over ~3.3 MB fail (413, the host's request limit): the descriptions
-  point to `/photo-prep`, which shrinks a photo in the browser.
+  point to the site's Prepare a photo page (`layerssuperfoodbar.com/photo-prep`,
+  written out in full: help is plain text, never a link), which shrinks a
+  photo in the browser. Until the domain moves, the handbook's “Your links”
+  note covers the github.io address; after the move nothing changes.
 - The image picker opens in the field's `options.path` (`src-img/uploads`) and
   uploads land there. A collaborator can delete or rename anything in
   `src-img/` from the media screen; undo/restore cover `src-img/`.

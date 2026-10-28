@@ -6,7 +6,7 @@
 {%- import "partials/icons.html" as icons -%}
 {% if instagram_on and (instagram_posts or instagram_url) %}
 {%- set n = instagram_posts|length %}
-<section class="ed ed--instagram" aria-labelledby="instagram-title">
+<section class="ed ed--instagram" aria-labelledby="instagram-title"{{ edit_attr(edit_url("instagram"), "Edit the Instagram section") }}>
   <header class="ed-intro ig__head" data-reveal>
     <h2 id="instagram-title" class="ed-statement">{{ instagram.heading }}</h2>
 {% if instagram_url %}

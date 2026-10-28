@@ -30,7 +30,9 @@ Order matters, and every step must pass before the next one runs:
                page links them and the page check needs them to exist.
   7. pages     every page is rendered in memory (tools/render.py) and checked:
                each /assets/ file it references must exist. Only then are the
-               pages, sitemap.xml and robots.txt written.
+               pages, sitemap.xml and robots.txt written. /edit lists the
+               warnings found so far ("Worth a look"), so the manager sees
+               them where she starts editing.
   8. cleanup   photo files nothing uses any more (old widths, removed slots,
                unpublished albums) are deleted — only now, after the pages
                were written, so a build that fails at "pages" leaves the
@@ -97,7 +99,10 @@ class _Refs(html.parser.HTMLParser):
                 self.links.add(v.split("#")[0].split("?")[0] or "/")
 
 
-def check_output(rendered, published_paths):
+def check_output(rendered, published_paths, pages=None):
+    """pages: the site's pages (render.Site.pages: PAGE_CONFIG plus the pages
+    of her own), for their names in messages."""
+    pages = pages or render.PAGE_CONFIG
     problems = []
     for key, page_html in rendered.items():
         if page_html is None:
@@ -106,13 +111,13 @@ def check_output(rendered, published_paths):
         refs.feed(page_html)
         for url in sorted(refs.assets):
             if not (PUBLIC / url.lstrip("/")).is_file():
-                problems.append(problem(f"The {render.PAGE_CONFIG[key]['out']} page refers to {url}, which "
+                problems.append(problem(f"The {pages[key]['out']} page refers to {url}, which "
                                         "wasn't built. This is a build problem, not your content — ask the "
                                         "developer.", field=key))
         for link in sorted(refs.links):
             if link in published_paths or (PUBLIC / link.lstrip("/")).is_file():
                 continue
-            problems.append(problem(f"A link on the {render.PAGE_CONFIG[key]['out']} page goes to {link}, which "
+            problems.append(problem(f"A link on the {pages[key]['out']} page goes to {link}, which "
                                     "isn't a page on the site. Check the link.", field=key, level="warning"))
     return problems
 
@@ -213,9 +218,12 @@ def main(argv=None):
     # 7 · pages: render all in memory, check, then write -------------------------
     def pages():
         site = render.Site(root=ROOT, today=today)
+        # /edit lists what's worth a look (the content check's warnings and
+        # the Instagram feed's notes so far), where the manager starts editing
+        site.notes = validate_content.split_problems(problems)[1]
         rendered = site.render_all()
         published = {site.path_of(k) for k, v in rendered.items() if v is not None}
-        found = check_output(rendered, published)
+        found = check_output(rendered, published, site.pages)
         problems.extend(found)
         if any(p["level"] == "error" for p in found):
             raise StepFailed([])
