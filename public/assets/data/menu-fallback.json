@@ -358,7 +358,7 @@
     {
      "id": "P7ZNOVRDETCUEG7BNAJ6HXS2",
      "kind": "Smoothie",
-     "name": "Mango Mellow",
+     "name": "A Little Spooky",
      "note": "19g Protein · 7g Fiber",
      "price": "14.50",
      "calories": 350,
@@ -371,7 +371,7 @@
      ],
      "ingredients": [
       "Banana",
-      "Organic passion fruit",
+      "Organic Pineapple",
       "Organic Mango",
       "Organic Coconut Milk",
       "Organic Medjool Dates",
@@ -380,9 +380,10 @@
       "Organic Sea Salt",
       "Organic Flaxseed",
       "Organic Collagen",
-      "Organic Blue Greek Yogurt (Lactose free)"
+      "Organic Greek Yogurt (Lactose free)",
+      "Organic Charcoal Powder"
      ],
-     "slot": "menu/mango-mellow",
+     "slot": "menu/a-little-spooky",
      "image_source": "src-img/menu/sq-mango-mellow.jpeg"
     },
     {
@@ -513,7 +514,7 @@
      "kind": "Market",
      "name": "Almond Espresso Butter- Naked",
      "note": "",
-     "price": "6.50",
+     "price": "6.95",
      "calories": null,
      "category_id": "RK2ABIUBNFDVNEKG3SWPCZJW"
     },
@@ -603,7 +604,7 @@
      "kind": "Market",
      "name": "Hazelnut Praline Dark Chocolate Medjool Dates",
      "note": "",
-     "price": "6.50",
+     "price": "6.95",
      "calories": null,
      "category_id": "RK2ABIUBNFDVNEKG3SWPCZJW"
     },
@@ -621,7 +622,7 @@
      "kind": "Market",
      "name": "Key Lime Pie Dates- Naked",
      "note": "",
-     "price": "6.50",
+     "price": "6.95",
      "calories": null,
      "category_id": "RK2ABIUBNFDVNEKG3SWPCZJW"
     },
