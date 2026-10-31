@@ -371,7 +371,7 @@
      ],
      "ingredients": [
       "Banana",
-      "Organic Pineapple",
+      "Organic Passion Fruits",
       "Organic Mango",
       "Organic Coconut Milk",
       "Organic Medjool Dates",
@@ -458,7 +458,7 @@
     {
      "id": "2KT64T7RQG4ILDI7HYBZZFUK",
      "kind": "Market",
-     "name": "100% Cacao Organic Vegan Dark Chocolate Bar with Cocoa Nibs",
+     "name": "100% Cacao Organic Vegan Dark Chocolate",
      "note": "",
      "price": "5.50",
      "calories": null,
@@ -485,7 +485,7 @@
     {
      "id": "5PNCQGLYLZCUGBIVIIEUAQW7",
      "kind": "Market",
-     "name": "70% Cacao Organic Vegan Dark Chocolate Bar",
+     "name": "Organic Vegan Dark Chocolate Bar",
      "note": "",
      "price": "5.50",
      "calories": null,
@@ -494,7 +494,7 @@
     {
      "id": "JU62YMPYMTY6JE6PR2XO73D3",
      "kind": "Market",
-     "name": "70% Cacao Organic Vegan Dark Chocolate Bar with Coffee",
+     "name": "Dark Chocolate Bar with Coffee",
      "note": "",
      "price": "5.50",
      "calories": null,
