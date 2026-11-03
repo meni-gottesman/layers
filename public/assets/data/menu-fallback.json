@@ -358,7 +358,7 @@
     {
      "id": "P7ZNOVRDETCUEG7BNAJ6HXS2",
      "kind": "Smoothie",
-     "name": "A Little Spooky",
+     "name": "Mango Mellow",
      "note": "19g Protein · 7g Fiber",
      "price": "14.50",
      "calories": 350,
@@ -383,29 +383,31 @@
       "Organic Greek Yogurt (Lactose free)",
       "Organic Charcoal Powder"
      ],
-     "slot": "menu/a-little-spooky",
+     "slot": "menu/mango-mellow",
      "image_source": "src-img/menu/sq-mango-mellow.jpeg"
     },
     {
      "id": "VHUIIAGO6PIUDF74DIBKM5O6",
      "kind": "Smoothie",
      "name": "Think Well",
-     "note": "33g Protein · 10g Fiber",
-     "price": "14.20",
+     "note": "39g Protein · 10g Fiber",
+     "price": "15.04",
      "calories": 500,
      "category_id": "5W3OSXQNGMS6S7VWCABEDN5Y",
      "highlights": [
       "Focus",
       "Energy",
       "Recover",
-      "No added sugar — naturally sweetened with whole fruit"
+      "No added sugar — naturally sweetened with whole fruit",
+      "Protein: 39.4g"
      ],
      "ingredients": [
       "Organic Coconut Milk",
       "Layers Freeze-Dried Banana",
       "Organic Greek Yogurt (Lactose Free)",
       "Organic Chocolate Pea Protein",
-      "Organic Almond Butter (or Peanut Butter upon request)",
+      "Organic Peanut Butter",
+      "Naked Peanut Butter Powder",
       "Organic Medjool Dates",
       "Organic Flaxseed",
       "Organic Lion's Mane",
@@ -413,7 +415,6 @@
       "Organic Sea Salt"
      ],
      "macros": {
-      "protein": 33,
       "fiber": 10,
       "sugar": 30
      },
