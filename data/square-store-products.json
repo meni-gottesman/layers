@@ -325,7 +325,7 @@
    "per_order_max": 0,
    "allow_order_item_quantities": false,
    "badges": {
-    "out_of_stock": false,
+    "out_of_stock": true,
     "low_stock": false,
     "on_sale": false
    },
@@ -342,14 +342,14 @@
    "avg_rating": null,
    "avg_rating_all": null,
    "inventory": {
-    "total": 31,
-    "all_variations_sold_out": false,
-    "marked_sold_out_at_all_existing_locations": false,
-    "marked_sold_out_skus_count": 0,
-    "all_inventory_total": 31,
-    "lowest": 31,
+    "total": 0,
+    "all_variations_sold_out": true,
+    "marked_sold_out_at_all_existing_locations": true,
+    "marked_sold_out_skus_count": 1,
+    "all_inventory_total": 0,
+    "lowest": 0,
     "enabled": false,
-    "some_variations_sold_out": false,
+    "some_variations_sold_out": true,
     "has_location_not_tracking": false
    },
    "price": {
@@ -394,9 +394,9 @@
    "combo_type_details": {
     "slots": []
    },
-   "updated_date": "2026-10-11T22:09:21+00:00",
+   "updated_date": "2026-11-10T17:10:27+00:00",
    "created_date": "2026-07-16T04:10:54+00:00",
-   "indexed_date": "2026-10-20T11:59:10+00:00",
+   "indexed_date": "2026-11-10T20:22:56+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -1140,447 +1140,6 @@
    }
   },
   {
-   "id": "5M7EGMLOA3TDIPTOSOTRVJIK",
-   "owner_id": "152630010",
-   "merchant_id": "MLEWKHPC5TX03",
-   "site_id": "672900839876723331",
-   "channel_id": "CH_waa6CDakWe1ykYufMjFYkFHwrFP2Ym2TWHsfYRlQuYC",
-   "site_product_id": "5M7EGMLOA3TDIPTOSOTRVJIK",
-   "square_id": "5M7EGMLOA3TDIPTOSOTRVJIK",
-   "visibility": "visible",
-   "visibility_tl": "Visible",
-   "name": "Original Dried Sweet Potato Sticks",
-   "short_description": "<p><strong>Naturally sweet. Nothing else.</strong></p><p>Made with just one ingredient sweet potatoes. Slow oven-dried for a naturally chewy texture with <strong><em><u>no added sugar, oil, or preservatives.</u></em></strong></p><p><br></p><p><strong>Single Ingredient \u2022 Vegan \u2022 Gluten-Free \u2022 Non-GMO</strong></p>",
-   "popularity_score": 0.05,
-   "cross_sell_product_ids": [],
-   "variation_type": "3",
-   "product_type": "physical",
-   "product_type_details": [],
-   "taxable": null,
-   "required_feature_to_sell": null,
-   "min_prep_time": null,
-   "min_prep_time_duration_iso8601": null,
-   "advanced_notice_duration": null,
-   "measurement_unit_abbreviation": null,
-   "measurement_unit_precision": null,
-   "has_multiple_measurement_units": false,
-   "is_alcoholic": false,
-   "per_order_max": 0,
-   "allow_order_item_quantities": false,
-   "badges": {
-    "out_of_stock": true,
-    "low_stock": false,
-    "on_sale": false
-   },
-   "only_subscribable": false,
-   "fulfillable": true,
-   "site_link": "product/original-dried-sweet-potato-sticks/5M7EGMLOA3TDIPTOSOTRVJIK",
-   "absolute_site_link": "https://layerssuperfoodbar.square.site/product/original-dried-sweet-potato-sticks/5M7EGMLOA3TDIPTOSOTRVJIK",
-   "permalink": null,
-   "seo_product_image_id": "TAJZG7J5KQQLUNHQAIFVQAOM",
-   "seo_page_description": null,
-   "seo_page_title": null,
-   "og_title": null,
-   "og_description": null,
-   "avg_rating": null,
-   "avg_rating_all": null,
-   "inventory": {
-    "total": 0,
-    "all_variations_sold_out": true,
-    "marked_sold_out_at_all_existing_locations": true,
-    "marked_sold_out_skus_count": 1,
-    "all_inventory_total": 0,
-    "lowest": 0,
-    "enabled": false,
-    "some_variations_sold_out": true,
-    "has_location_not_tracking": false
-   },
-   "price": {
-    "regular_high_with_subscriptions": 3.5,
-    "regular_low_formatted_with_modifiers": "$3.50",
-    "high_with_modifiers": 3.5,
-    "low_formatted_with_subscriptions": "$3.50",
-    "regular_high_formatted": "$3.50",
-    "high_with_subscriptions": 3.5,
-    "high_formatted_with_subscriptions": "$3.50",
-    "low_formatted": "$3.50",
-    "low_with_subscriptions_subunits": 350,
-    "regular_high_formatted_with_subscriptions": "$3.50",
-    "high_with_subscriptions_subunits": 350,
-    "low_with_modifiers_subunits": 350,
-    "high": 3.5,
-    "low_with_modifiers": 3.5,
-    "regular_low_with_subscriptions_subunits": 350,
-    "regular_low_formatted": "$3.50",
-    "low": 3.5,
-    "regular_high_with_subscriptions_subunits": 350,
-    "low_subunits": 350,
-    "regular_high_with_modifiers": 3.5,
-    "regular_low_with_subscriptions": 3.5,
-    "regular_high_with_modifiers_subunits": 350,
-    "low_formatted_with_modifiers": "$3.50",
-    "regular_low_with_modifiers_subunits": 350,
-    "low_with_subscriptions": 3.5,
-    "high_with_modifiers_subunits": 350,
-    "high_formatted": "$3.50",
-    "regular_low": 3.5,
-    "high_formatted_with_modifiers": "$3.50",
-    "regular_low_subunits": 350,
-    "regular_high_subunits": 350,
-    "regular_low_with_modifiers": 3.5,
-    "high_subunits": 350,
-    "regular_high": 3.5,
-    "regular_high_formatted_with_modifiers": "$3.50",
-    "regular_low_formatted_with_subscriptions": "$3.50"
-   },
-   "on_sale": false,
-   "combo_type_details": {
-    "slots": []
-   },
-   "updated_date": "2026-10-11T22:09:21+00:00",
-   "created_date": "2026-07-16T04:07:42+00:00",
-   "indexed_date": "2026-11-02T18:14:28+00:00",
-   "preordering": {
-    "pickup": null,
-    "delivery": false,
-    "shipping": false,
-    "dine_in": false,
-    "manual": false,
-    "download": false
-   },
-   "fulfillment_availability": {
-    "pickup": [],
-    "delivery": [],
-    "shipping": [],
-    "dine_in": [],
-    "manual": []
-   },
-   "thumbnail": {
-    "data": {
-     "owner_id": "152630010",
-     "format": "png",
-     "created_at": "2026-07-16T04:07:43.215Z",
-     "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png",
-     "absolute_urls": {
-      "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=320",
-      "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=640",
-      "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=80",
-      "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=2560",
-      "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=160",
-      "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=1280"
-     },
-     "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png",
-     "urls": {
-      "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=320",
-      "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=640",
-      "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=80",
-      "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=2560",
-      "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=160",
-      "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=1280"
-     },
-     "site_product_image_id": "TAJZG7J5KQQLUNHQAIFVQAOM",
-     "updated_at": "2026-07-16T04:07:43.171Z",
-     "site_id": "672900839876723331",
-     "width": 2560,
-     "id": "TAJZG7J5KQQLUNHQAIFVQAOM",
-     "height": 2560
-    }
-   },
-   "placeholder_image": {
-    "data": {
-     "placeholder": true,
-     "url": "/images/commerce/store-app/app/universal_product_placeholder.png",
-     "absolute_url": "cdn3.editmysite.com/images/commerce/store-app/app/universal_product_placeholder.png"
-    }
-   },
-   "categoryIds": [
-    "RK2ABIUBNFDVNEKG3SWPCZJW",
-    "YEKW3EBSW44LZB4TE3UYYKNS"
-   ],
-   "images": {
-    "data": [
-     {
-      "owner_id": "152630010",
-      "format": "png",
-      "created_at": "2026-07-16T04:07:43.215Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TAJZG7J5KQQLUNHQAIFVQAOM.png?width=1280"
-      },
-      "site_product_image_id": "TAJZG7J5KQQLUNHQAIFVQAOM",
-      "updated_at": "2026-07-16T04:07:43.171Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "TAJZG7J5KQQLUNHQAIFVQAOM",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "png",
-      "created_at": "2026-07-16T04:07:44.169Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/C2USYILCHSTRMV5VJ6OUYTNU.png",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/C2USYILCHSTRMV5VJ6OUYTNU.png?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/C2USYILCHSTRMV5VJ6OUYTNU.png?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/C2USYILCHSTRMV5VJ6OUYTNU.png?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/C2USYILCHSTRMV5VJ6OUYTNU.png?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/C2USYILCHSTRMV5VJ6OUYTNU.png?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/C2USYILCHSTRMV5VJ6OUYTNU.png?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/C2USYILCHSTRMV5VJ6OUYTNU.png",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/C2USYILCHSTRMV5VJ6OUYTNU.png?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/C2USYILCHSTRMV5VJ6OUYTNU.png?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/C2USYILCHSTRMV5VJ6OUYTNU.png?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/C2USYILCHSTRMV5VJ6OUYTNU.png?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/C2USYILCHSTRMV5VJ6OUYTNU.png?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/C2USYILCHSTRMV5VJ6OUYTNU.png?width=1280"
-      },
-      "site_product_image_id": "C2USYILCHSTRMV5VJ6OUYTNU",
-      "updated_at": "2026-07-16T04:07:44.126Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "C2USYILCHSTRMV5VJ6OUYTNU",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "png",
-      "created_at": "2026-07-16T04:07:44.777Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WD6FOJAXCOIKWET6NZZYEEZB.png",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WD6FOJAXCOIKWET6NZZYEEZB.png?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WD6FOJAXCOIKWET6NZZYEEZB.png?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WD6FOJAXCOIKWET6NZZYEEZB.png?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WD6FOJAXCOIKWET6NZZYEEZB.png?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WD6FOJAXCOIKWET6NZZYEEZB.png?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WD6FOJAXCOIKWET6NZZYEEZB.png?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WD6FOJAXCOIKWET6NZZYEEZB.png",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WD6FOJAXCOIKWET6NZZYEEZB.png?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WD6FOJAXCOIKWET6NZZYEEZB.png?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WD6FOJAXCOIKWET6NZZYEEZB.png?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WD6FOJAXCOIKWET6NZZYEEZB.png?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WD6FOJAXCOIKWET6NZZYEEZB.png?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WD6FOJAXCOIKWET6NZZYEEZB.png?width=1280"
-      },
-      "site_product_image_id": "WD6FOJAXCOIKWET6NZZYEEZB",
-      "updated_at": "2026-07-16T04:07:44.742Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "WD6FOJAXCOIKWET6NZZYEEZB",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "png",
-      "created_at": "2026-07-16T04:07:45.402Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q6LNJG4KXEF7CM2XXJHYVPWH.png",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q6LNJG4KXEF7CM2XXJHYVPWH.png?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q6LNJG4KXEF7CM2XXJHYVPWH.png?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q6LNJG4KXEF7CM2XXJHYVPWH.png?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q6LNJG4KXEF7CM2XXJHYVPWH.png?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q6LNJG4KXEF7CM2XXJHYVPWH.png?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q6LNJG4KXEF7CM2XXJHYVPWH.png?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q6LNJG4KXEF7CM2XXJHYVPWH.png",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q6LNJG4KXEF7CM2XXJHYVPWH.png?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q6LNJG4KXEF7CM2XXJHYVPWH.png?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q6LNJG4KXEF7CM2XXJHYVPWH.png?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q6LNJG4KXEF7CM2XXJHYVPWH.png?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q6LNJG4KXEF7CM2XXJHYVPWH.png?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q6LNJG4KXEF7CM2XXJHYVPWH.png?width=1280"
-      },
-      "site_product_image_id": "Q6LNJG4KXEF7CM2XXJHYVPWH",
-      "updated_at": "2026-07-16T04:07:45.358Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "Q6LNJG4KXEF7CM2XXJHYVPWH",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-07-16T04:07:45.993Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/INCOGJHDIWHY36BUH6TWRHSP.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/INCOGJHDIWHY36BUH6TWRHSP.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/INCOGJHDIWHY36BUH6TWRHSP.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/INCOGJHDIWHY36BUH6TWRHSP.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/INCOGJHDIWHY36BUH6TWRHSP.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/INCOGJHDIWHY36BUH6TWRHSP.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/INCOGJHDIWHY36BUH6TWRHSP.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/INCOGJHDIWHY36BUH6TWRHSP.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/INCOGJHDIWHY36BUH6TWRHSP.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/INCOGJHDIWHY36BUH6TWRHSP.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/INCOGJHDIWHY36BUH6TWRHSP.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/INCOGJHDIWHY36BUH6TWRHSP.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/INCOGJHDIWHY36BUH6TWRHSP.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/INCOGJHDIWHY36BUH6TWRHSP.jpeg?width=1280"
-      },
-      "site_product_image_id": "INCOGJHDIWHY36BUH6TWRHSP",
-      "updated_at": "2026-07-16T04:07:45.948Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "INCOGJHDIWHY36BUH6TWRHSP",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-07-16T04:07:46.696Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GDJ7Q465FUJZX2JUMGYDVDSL.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GDJ7Q465FUJZX2JUMGYDVDSL.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GDJ7Q465FUJZX2JUMGYDVDSL.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GDJ7Q465FUJZX2JUMGYDVDSL.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GDJ7Q465FUJZX2JUMGYDVDSL.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GDJ7Q465FUJZX2JUMGYDVDSL.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GDJ7Q465FUJZX2JUMGYDVDSL.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GDJ7Q465FUJZX2JUMGYDVDSL.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GDJ7Q465FUJZX2JUMGYDVDSL.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GDJ7Q465FUJZX2JUMGYDVDSL.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GDJ7Q465FUJZX2JUMGYDVDSL.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GDJ7Q465FUJZX2JUMGYDVDSL.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GDJ7Q465FUJZX2JUMGYDVDSL.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GDJ7Q465FUJZX2JUMGYDVDSL.jpeg?width=1280"
-      },
-      "site_product_image_id": "GDJ7Q465FUJZX2JUMGYDVDSL",
-      "updated_at": "2026-07-16T04:07:46.649Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "GDJ7Q465FUJZX2JUMGYDVDSL",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-07-16T04:07:47.318Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GSCNFAKPJTLBGXDWLH7GUVJA.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GSCNFAKPJTLBGXDWLH7GUVJA.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GSCNFAKPJTLBGXDWLH7GUVJA.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GSCNFAKPJTLBGXDWLH7GUVJA.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GSCNFAKPJTLBGXDWLH7GUVJA.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GSCNFAKPJTLBGXDWLH7GUVJA.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GSCNFAKPJTLBGXDWLH7GUVJA.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GSCNFAKPJTLBGXDWLH7GUVJA.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GSCNFAKPJTLBGXDWLH7GUVJA.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GSCNFAKPJTLBGXDWLH7GUVJA.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GSCNFAKPJTLBGXDWLH7GUVJA.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GSCNFAKPJTLBGXDWLH7GUVJA.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GSCNFAKPJTLBGXDWLH7GUVJA.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/GSCNFAKPJTLBGXDWLH7GUVJA.jpeg?width=1280"
-      },
-      "site_product_image_id": "GSCNFAKPJTLBGXDWLH7GUVJA",
-      "updated_at": "2026-07-16T04:07:47.275Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "GSCNFAKPJTLBGXDWLH7GUVJA",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-07-16T04:07:48.004Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/2TRMI3JPO5MIT3OGCEZMMT6S.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/2TRMI3JPO5MIT3OGCEZMMT6S.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/2TRMI3JPO5MIT3OGCEZMMT6S.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/2TRMI3JPO5MIT3OGCEZMMT6S.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/2TRMI3JPO5MIT3OGCEZMMT6S.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/2TRMI3JPO5MIT3OGCEZMMT6S.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/2TRMI3JPO5MIT3OGCEZMMT6S.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/2TRMI3JPO5MIT3OGCEZMMT6S.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/2TRMI3JPO5MIT3OGCEZMMT6S.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/2TRMI3JPO5MIT3OGCEZMMT6S.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/2TRMI3JPO5MIT3OGCEZMMT6S.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/2TRMI3JPO5MIT3OGCEZMMT6S.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/2TRMI3JPO5MIT3OGCEZMMT6S.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/2TRMI3JPO5MIT3OGCEZMMT6S.jpeg?width=1280"
-      },
-      "site_product_image_id": "2TRMI3JPO5MIT3OGCEZMMT6S",
-      "updated_at": "2026-07-16T04:07:47.958Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "2TRMI3JPO5MIT3OGCEZMMT6S",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-07-16T04:07:48.67Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/EWRO64TDUCPTJRXTILMR2Y3Z.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/EWRO64TDUCPTJRXTILMR2Y3Z.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/EWRO64TDUCPTJRXTILMR2Y3Z.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/EWRO64TDUCPTJRXTILMR2Y3Z.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/EWRO64TDUCPTJRXTILMR2Y3Z.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/EWRO64TDUCPTJRXTILMR2Y3Z.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/EWRO64TDUCPTJRXTILMR2Y3Z.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/EWRO64TDUCPTJRXTILMR2Y3Z.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/EWRO64TDUCPTJRXTILMR2Y3Z.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/EWRO64TDUCPTJRXTILMR2Y3Z.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/EWRO64TDUCPTJRXTILMR2Y3Z.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/EWRO64TDUCPTJRXTILMR2Y3Z.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/EWRO64TDUCPTJRXTILMR2Y3Z.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/EWRO64TDUCPTJRXTILMR2Y3Z.jpeg?width=1280"
-      },
-      "site_product_image_id": "EWRO64TDUCPTJRXTILMR2Y3Z",
-      "updated_at": "2026-07-16T04:07:48.622Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "EWRO64TDUCPTJRXTILMR2Y3Z",
-      "height": 2560
-     }
-    ]
-   },
-   "categories": {
-    "data": [
-     {
-      "site_category_id": "RK2ABIUBNFDVNEKG3SWPCZJW",
-      "name": "Layers Wellness Market",
-      "seo_page_description": "",
-      "seo_page_title": "",
-      "og_title": null,
-      "og_description": null,
-      "site_link": "shop/layers-wellness-market/RK2ABIUBNFDVNEKG3SWPCZJW",
-      "permalink": "",
-      "ancestor_site_category_ids": [
-       "V37RL3MLBAUNXD3UE6G55KA3"
-      ]
-     }
-    ]
-   }
-  },
-  {
    "id": "5PNCQGLYLZCUGBIVIIEUAQW7",
    "owner_id": "152630010",
    "merchant_id": "MLEWKHPC5TX03",
@@ -1609,8 +1168,8 @@
    "per_order_max": 0,
    "allow_order_item_quantities": false,
    "badges": {
-    "out_of_stock": false,
-    "low_stock": true,
+    "out_of_stock": true,
+    "low_stock": false,
     "on_sale": false
    },
    "only_subscribable": false,
@@ -1626,14 +1185,14 @@
    "avg_rating": null,
    "avg_rating_all": null,
    "inventory": {
-    "total": 1,
-    "all_variations_sold_out": false,
-    "marked_sold_out_at_all_existing_locations": false,
-    "marked_sold_out_skus_count": 0,
-    "all_inventory_total": 1,
-    "lowest": 1,
+    "total": 0,
+    "all_variations_sold_out": true,
+    "marked_sold_out_at_all_existing_locations": true,
+    "marked_sold_out_skus_count": 1,
+    "all_inventory_total": 0,
+    "lowest": 0,
     "enabled": false,
-    "some_variations_sold_out": false,
+    "some_variations_sold_out": true,
     "has_location_not_tracking": false
    },
    "price": {
@@ -1678,9 +1237,9 @@
    "combo_type_details": {
     "slots": []
    },
-   "updated_date": "2026-10-31T03:52:56+00:00",
+   "updated_date": "2026-11-10T17:06:07+00:00",
    "created_date": "2026-07-16T04:10:21+00:00",
-   "indexed_date": "2026-10-31T03:53:03+00:00",
+   "indexed_date": "2026-11-10T17:06:37+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -2717,15 +2276,15 @@
    "avg_rating": null,
    "avg_rating_all": null,
    "inventory": {
-    "total": 0,
+    "total": 5,
     "all_variations_sold_out": false,
     "marked_sold_out_at_all_existing_locations": false,
     "marked_sold_out_skus_count": 0,
-    "all_inventory_total": 0,
-    "lowest": null,
+    "all_inventory_total": 5,
+    "lowest": 5,
     "enabled": false,
     "some_variations_sold_out": false,
-    "has_location_not_tracking": true
+    "has_location_not_tracking": false
    },
    "price": {
     "regular_high_with_subscriptions": 2.25,
@@ -2769,9 +2328,9 @@
    "combo_type_details": {
     "slots": []
    },
-   "updated_date": "2026-10-11T22:09:21+00:00",
+   "updated_date": "2026-11-10T17:09:25+00:00",
    "created_date": "2026-07-25T19:50:10+00:00",
-   "indexed_date": "2026-10-20T11:59:13+00:00",
+   "indexed_date": "2026-11-10T17:09:47+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -3214,12 +2773,12 @@
    "avg_rating": null,
    "avg_rating_all": null,
    "inventory": {
-    "total": 8,
+    "total": 5,
     "all_variations_sold_out": false,
     "marked_sold_out_at_all_existing_locations": false,
     "marked_sold_out_skus_count": 0,
-    "all_inventory_total": 8,
-    "lowest": 8,
+    "all_inventory_total": 5,
+    "lowest": 5,
     "enabled": false,
     "some_variations_sold_out": false,
     "has_location_not_tracking": false
@@ -3266,9 +2825,9 @@
    "combo_type_details": {
     "slots": []
    },
-   "updated_date": "2026-10-30T05:19:42+00:00",
+   "updated_date": "2026-11-10T17:07:26+00:00",
    "created_date": "2026-08-26T04:42:12+00:00",
-   "indexed_date": "2026-10-30T05:25:45+00:00",
+   "indexed_date": "2026-11-10T17:07:42+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -3474,9 +3033,9 @@
    "square_id": "BLRFQ42DSZQFF3HHNKGLMAI6",
    "visibility": "visible",
    "visibility_tl": "Visible",
-   "name": "David Protein Bar Carton",
+   "name": "David Protein Bar ",
    "short_description": "<p>Fudge Brownie Protein Bar 28g Protein 150 Calories</p>",
-   "popularity_score": 0.25,
+   "popularity_score": 0.05,
    "cross_sell_product_ids": [],
    "variation_type": "3",
    "product_type": "physical",
@@ -3499,8 +3058,8 @@
    },
    "only_subscribable": false,
    "fulfillable": true,
-   "site_link": "product/david-protein-bar-carton/BLRFQ42DSZQFF3HHNKGLMAI6",
-   "absolute_site_link": "https://layerssuperfoodbar.square.site/product/david-protein-bar-carton/BLRFQ42DSZQFF3HHNKGLMAI6",
+   "site_link": "product/david-protein-bar-/BLRFQ42DSZQFF3HHNKGLMAI6",
+   "absolute_site_link": "https://layerssuperfoodbar.square.site/product/david-protein-bar-/BLRFQ42DSZQFF3HHNKGLMAI6",
    "permalink": null,
    "seo_product_image_id": "TN6V3LBXEGSYYON3ZM5KR35N",
    "seo_page_description": null,
@@ -3510,12 +3069,12 @@
    "avg_rating": null,
    "avg_rating_all": null,
    "inventory": {
-    "total": 32,
+    "total": 16,
     "all_variations_sold_out": false,
     "marked_sold_out_at_all_existing_locations": false,
     "marked_sold_out_skus_count": 0,
-    "all_inventory_total": 32,
-    "lowest": 32,
+    "all_inventory_total": 16,
+    "lowest": 16,
     "enabled": false,
     "some_variations_sold_out": false,
     "has_location_not_tracking": false
@@ -3562,9 +3121,9 @@
    "combo_type_details": {
     "slots": []
    },
-   "updated_date": "2026-10-11T22:09:21+00:00",
+   "updated_date": "2026-11-10T06:41:05+00:00",
    "created_date": "2026-08-26T04:42:13+00:00",
-   "indexed_date": "2026-10-20T11:59:13+00:00",
+   "indexed_date": "2026-11-10T06:41:19+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -3712,7 +3271,7 @@
    "square_id": "C7D5N5YAAUDEFQB3766DBWFU",
    "visibility": "visible",
    "visibility_tl": "Visible",
-   "name": "Almond Espresso Butter- Naked",
+   "name": "Almond Espresso Butter",
    "short_description": "<p><strong>Almond Espresso Butter Dates </strong></p><p>Organic Medjool dates stuffed with rich almond espresso butter.Naturally sweet + nutty with a bold coffee kick </p><p>\u2022 No refined sugar \u2022 Made with real espresso.</p>",
    "popularity_score": null,
    "cross_sell_product_ids": [],
@@ -3737,8 +3296,8 @@
    },
    "only_subscribable": false,
    "fulfillable": true,
-   "site_link": "product/almond-espresso-butter-naked/C7D5N5YAAUDEFQB3766DBWFU",
-   "absolute_site_link": "https://layerssuperfoodbar.square.site/product/almond-espresso-butter-naked/C7D5N5YAAUDEFQB3766DBWFU",
+   "site_link": "product/almond-espresso-butter/C7D5N5YAAUDEFQB3766DBWFU",
+   "absolute_site_link": "https://layerssuperfoodbar.square.site/product/almond-espresso-butter/C7D5N5YAAUDEFQB3766DBWFU",
    "permalink": null,
    "seo_product_image_id": "CRHLWIHPACLQNXSGEGM3BNQY",
    "seo_page_description": null,
@@ -3748,12 +3307,12 @@
    "avg_rating": null,
    "avg_rating_all": null,
    "inventory": {
-    "total": 8,
+    "total": 5,
     "all_variations_sold_out": false,
     "marked_sold_out_at_all_existing_locations": false,
     "marked_sold_out_skus_count": 0,
-    "all_inventory_total": 8,
-    "lowest": 8,
+    "all_inventory_total": 5,
+    "lowest": 5,
     "enabled": false,
     "some_variations_sold_out": false,
     "has_location_not_tracking": false
@@ -3800,9 +3359,9 @@
    "combo_type_details": {
     "slots": []
    },
-   "updated_date": "2026-10-30T05:19:14+00:00",
+   "updated_date": "2026-11-10T17:07:56+00:00",
    "created_date": "2026-08-26T04:42:11+00:00",
-   "indexed_date": "2026-10-30T05:25:18+00:00",
+   "indexed_date": "2026-11-10T17:08:07+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -3976,244 +3535,6 @@
       "site_id": "672900839876723331",
       "width": 2560,
       "id": "FXNT34Y4BRJ3DAGS3VWBBURP",
-      "height": 2560
-     }
-    ]
-   },
-   "categories": {
-    "data": [
-     {
-      "site_category_id": "RK2ABIUBNFDVNEKG3SWPCZJW",
-      "name": "Layers Wellness Market",
-      "seo_page_description": "",
-      "seo_page_title": "",
-      "og_title": null,
-      "og_description": null,
-      "site_link": "shop/layers-wellness-market/RK2ABIUBNFDVNEKG3SWPCZJW",
-      "permalink": "",
-      "ancestor_site_category_ids": [
-       "V37RL3MLBAUNXD3UE6G55KA3"
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "id": "CQRBDHC6OWIGJYLNRNDKX23O",
-   "owner_id": "152630010",
-   "merchant_id": "MLEWKHPC5TX03",
-   "site_id": "672900839876723331",
-   "channel_id": "CH_waa6CDakWe1ykYufMjFYkFHwrFP2Ym2TWHsfYRlQuYC",
-   "site_product_id": "CQRBDHC6OWIGJYLNRNDKX23O",
-   "square_id": "CQRBDHC6OWIGJYLNRNDKX23O",
-   "visibility": "visible",
-   "visibility_tl": "Visible",
-   "name": "Albacore Tuna in Olive Oil",
-   "short_description": "<p><br></p><p><strong>A pantry essential.</strong></p><p>Tender wild-caught Albacore tuna in premium olive oil with a rich, buttery finish.</p><p><strong>High Protein \u2022 Wild-Caught \u2022 Premium Olive Oil</strong></p>",
-   "popularity_score": 0.05,
-   "cross_sell_product_ids": [],
-   "variation_type": "3",
-   "product_type": "physical",
-   "product_type_details": [],
-   "taxable": null,
-   "required_feature_to_sell": null,
-   "min_prep_time": null,
-   "min_prep_time_duration_iso8601": null,
-   "advanced_notice_duration": null,
-   "measurement_unit_abbreviation": null,
-   "measurement_unit_precision": null,
-   "has_multiple_measurement_units": false,
-   "is_alcoholic": false,
-   "per_order_max": 0,
-   "allow_order_item_quantities": false,
-   "badges": {
-    "out_of_stock": true,
-    "low_stock": false,
-    "on_sale": false
-   },
-   "only_subscribable": false,
-   "fulfillable": true,
-   "site_link": "product/albacore-tuna-in-olive-oil/CQRBDHC6OWIGJYLNRNDKX23O",
-   "absolute_site_link": "https://layerssuperfoodbar.square.site/product/albacore-tuna-in-olive-oil/CQRBDHC6OWIGJYLNRNDKX23O",
-   "permalink": null,
-   "seo_product_image_id": "5P5NEUYZAMAK4S7JSLPEOEBB",
-   "seo_page_description": null,
-   "seo_page_title": null,
-   "og_title": null,
-   "og_description": null,
-   "avg_rating": null,
-   "avg_rating_all": null,
-   "inventory": {
-    "total": 0,
-    "all_variations_sold_out": true,
-    "marked_sold_out_at_all_existing_locations": true,
-    "marked_sold_out_skus_count": 1,
-    "all_inventory_total": 0,
-    "lowest": 0,
-    "enabled": false,
-    "some_variations_sold_out": true,
-    "has_location_not_tracking": false
-   },
-   "price": {
-    "regular_high_with_subscriptions": 9.95,
-    "regular_low_formatted_with_modifiers": "$9.95",
-    "high_with_modifiers": 9.95,
-    "low_formatted_with_subscriptions": "$9.95",
-    "regular_high_formatted": "$9.95",
-    "high_with_subscriptions": 9.95,
-    "high_formatted_with_subscriptions": "$9.95",
-    "low_formatted": "$9.95",
-    "low_with_subscriptions_subunits": 995,
-    "regular_high_formatted_with_subscriptions": "$9.95",
-    "high_with_subscriptions_subunits": 995,
-    "low_with_modifiers_subunits": 995,
-    "high": 9.95,
-    "low_with_modifiers": 9.95,
-    "regular_low_with_subscriptions_subunits": 995,
-    "regular_low_formatted": "$9.95",
-    "low": 9.95,
-    "regular_high_with_subscriptions_subunits": 995,
-    "low_subunits": 995,
-    "regular_high_with_modifiers": 9.95,
-    "regular_low_with_subscriptions": 9.95,
-    "regular_high_with_modifiers_subunits": 995,
-    "low_formatted_with_modifiers": "$9.95",
-    "regular_low_with_modifiers_subunits": 995,
-    "low_with_subscriptions": 9.95,
-    "high_with_modifiers_subunits": 995,
-    "high_formatted": "$9.95",
-    "regular_low": 9.95,
-    "high_formatted_with_modifiers": "$9.95",
-    "regular_low_subunits": 995,
-    "regular_high_subunits": 995,
-    "regular_low_with_modifiers": 9.95,
-    "high_subunits": 995,
-    "regular_high": 9.95,
-    "regular_high_formatted_with_modifiers": "$9.95",
-    "regular_low_formatted_with_subscriptions": "$9.95"
-   },
-   "on_sale": false,
-   "combo_type_details": {
-    "slots": []
-   },
-   "updated_date": "2026-10-11T22:09:21+00:00",
-   "created_date": "2026-07-16T04:08:34+00:00",
-   "indexed_date": "2026-10-20T11:59:12+00:00",
-   "preordering": {
-    "pickup": null,
-    "delivery": false,
-    "shipping": false,
-    "dine_in": false,
-    "manual": false,
-    "download": false
-   },
-   "fulfillment_availability": {
-    "pickup": [],
-    "delivery": [],
-    "shipping": [],
-    "dine_in": [],
-    "manual": []
-   },
-   "thumbnail": {
-    "data": {
-     "owner_id": "152630010",
-     "format": "jpeg",
-     "created_at": "2026-07-16T04:08:36.081Z",
-     "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg",
-     "absolute_urls": {
-      "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=320",
-      "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=640",
-      "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=80",
-      "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=2560",
-      "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=160",
-      "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=1280"
-     },
-     "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg",
-     "urls": {
-      "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=320",
-      "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=640",
-      "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=80",
-      "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=2560",
-      "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=160",
-      "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=1280"
-     },
-     "site_product_image_id": "5P5NEUYZAMAK4S7JSLPEOEBB",
-     "updated_at": "2026-07-16T05:11:16.319Z",
-     "site_id": "672900839876723331",
-     "width": 2560,
-     "id": "5P5NEUYZAMAK4S7JSLPEOEBB",
-     "height": 2560
-    }
-   },
-   "placeholder_image": {
-    "data": {
-     "placeholder": true,
-     "url": "/images/commerce/store-app/app/universal_product_placeholder.png",
-     "absolute_url": "cdn3.editmysite.com/images/commerce/store-app/app/universal_product_placeholder.png"
-    }
-   },
-   "categoryIds": [
-    "RK2ABIUBNFDVNEKG3SWPCZJW",
-    "YEKW3EBSW44LZB4TE3UYYKNS"
-   ],
-   "images": {
-    "data": [
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-07-16T04:08:36.081Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/5P5NEUYZAMAK4S7JSLPEOEBB.jpeg?width=1280"
-      },
-      "site_product_image_id": "5P5NEUYZAMAK4S7JSLPEOEBB",
-      "updated_at": "2026-07-16T05:11:16.319Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "5P5NEUYZAMAK4S7JSLPEOEBB",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-07-16T04:08:36.976Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4Z32NICWRCV772XC2N3HIFBU.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4Z32NICWRCV772XC2N3HIFBU.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4Z32NICWRCV772XC2N3HIFBU.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4Z32NICWRCV772XC2N3HIFBU.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4Z32NICWRCV772XC2N3HIFBU.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4Z32NICWRCV772XC2N3HIFBU.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4Z32NICWRCV772XC2N3HIFBU.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4Z32NICWRCV772XC2N3HIFBU.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4Z32NICWRCV772XC2N3HIFBU.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4Z32NICWRCV772XC2N3HIFBU.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4Z32NICWRCV772XC2N3HIFBU.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4Z32NICWRCV772XC2N3HIFBU.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4Z32NICWRCV772XC2N3HIFBU.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4Z32NICWRCV772XC2N3HIFBU.jpeg?width=1280"
-      },
-      "site_product_image_id": "4Z32NICWRCV772XC2N3HIFBU",
-      "updated_at": "2026-07-16T04:08:36.928Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "4Z32NICWRCV772XC2N3HIFBU",
       "height": 2560
      }
     ]
@@ -4830,7 +4151,7 @@
    "visibility_tl": "Visible",
    "name": "Build Your Bowl",
    "short_description": "<p><strong>NO ADDED SUGAR - Naturally Sweetened with Whole Fruit</strong></p><p><strong><u>Layers Crumble: Contains all tree nuts and dairy. Cross-contact with other nuts is possible.</u></strong></p>",
-   "popularity_score": 0.65,
+   "popularity_score": 0.2,
    "cross_sell_product_ids": [],
    "variation_type": "3",
    "product_type": "food",
@@ -4936,7 +4257,7 @@
    },
    "updated_date": "2026-10-17T04:14:12+00:00",
    "created_date": "2025-09-12T20:49:38+00:00",
-   "indexed_date": "2026-11-02T21:01:38+00:00",
+   "indexed_date": "2026-11-10T06:35:57+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -5417,15 +4738,15 @@
    "avg_rating": null,
    "avg_rating_all": null,
    "inventory": {
-    "total": 0,
+    "total": 8,
     "all_variations_sold_out": false,
     "marked_sold_out_at_all_existing_locations": false,
     "marked_sold_out_skus_count": 0,
-    "all_inventory_total": 0,
-    "lowest": null,
+    "all_inventory_total": 8,
+    "lowest": 8,
     "enabled": false,
     "some_variations_sold_out": false,
-    "has_location_not_tracking": true
+    "has_location_not_tracking": false
    },
    "price": {
     "regular_high_with_subscriptions": 3.95,
@@ -5469,9 +4790,9 @@
    "combo_type_details": {
     "slots": []
    },
-   "updated_date": "2026-10-11T22:09:21+00:00",
+   "updated_date": "2026-11-10T17:09:49+00:00",
    "created_date": "2026-07-25T19:50:11+00:00",
-   "indexed_date": "2026-10-20T11:59:10+00:00",
+   "indexed_date": "2026-11-10T17:10:05+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -5755,7 +5076,7 @@
    "allow_order_item_quantities": false,
    "badges": {
     "out_of_stock": false,
-    "low_stock": false,
+    "low_stock": true,
     "on_sale": false
    },
    "only_subscribable": false,
@@ -5771,12 +5092,12 @@
    "avg_rating": null,
    "avg_rating_all": null,
    "inventory": {
-    "total": 5,
+    "total": 2,
     "all_variations_sold_out": false,
     "marked_sold_out_at_all_existing_locations": false,
     "marked_sold_out_skus_count": 0,
-    "all_inventory_total": 5,
-    "lowest": 5,
+    "all_inventory_total": 2,
+    "lowest": 2,
     "enabled": false,
     "some_variations_sold_out": false,
     "has_location_not_tracking": false
@@ -5825,7 +5146,7 @@
    },
    "updated_date": "2026-10-11T22:09:21+00:00",
    "created_date": "2026-07-16T04:08:34+00:00",
-   "indexed_date": "2026-10-20T11:59:13+00:00",
+   "indexed_date": "2026-11-09T23:15:53+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -5999,244 +5320,6 @@
       "site_id": "672900839876723331",
       "width": 2560,
       "id": "BLFKSWCCDFUI7SDCUVDCC2WN",
-      "height": 2560
-     }
-    ]
-   },
-   "categories": {
-    "data": [
-     {
-      "site_category_id": "RK2ABIUBNFDVNEKG3SWPCZJW",
-      "name": "Layers Wellness Market",
-      "seo_page_description": "",
-      "seo_page_title": "",
-      "og_title": null,
-      "og_description": null,
-      "site_link": "shop/layers-wellness-market/RK2ABIUBNFDVNEKG3SWPCZJW",
-      "permalink": "",
-      "ancestor_site_category_ids": [
-       "V37RL3MLBAUNXD3UE6G55KA3"
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "id": "JOALURJM4X2PCE3VVHKSAZET",
-   "owner_id": "152630010",
-   "merchant_id": "MLEWKHPC5TX03",
-   "site_id": "672900839876723331",
-   "channel_id": "CH_waa6CDakWe1ykYufMjFYkFHwrFP2Ym2TWHsfYRlQuYC",
-   "site_product_id": "JOALURJM4X2PCE3VVHKSAZET",
-   "square_id": "JOALURJM4X2PCE3VVHKSAZET",
-   "visibility": "visible",
-   "visibility_tl": "Visible",
-   "name": "Sardines with Hot Pepper",
-   "short_description": "<p><br></p><p><strong>A little heat. A lot of flavor.</strong></p><p>Wild-caught sardines in Spanish extra virgin olive oil with a touch of hot pepper.</p><p><br></p><p><strong>High Protein \u2022 Wild-Caught \u2022 Rich in Omega-3</strong></p>",
-   "popularity_score": 0.05,
-   "cross_sell_product_ids": [],
-   "variation_type": "3",
-   "product_type": "physical",
-   "product_type_details": [],
-   "taxable": null,
-   "required_feature_to_sell": null,
-   "min_prep_time": null,
-   "min_prep_time_duration_iso8601": null,
-   "advanced_notice_duration": null,
-   "measurement_unit_abbreviation": null,
-   "measurement_unit_precision": null,
-   "has_multiple_measurement_units": false,
-   "is_alcoholic": false,
-   "per_order_max": 0,
-   "allow_order_item_quantities": false,
-   "badges": {
-    "out_of_stock": true,
-    "low_stock": false,
-    "on_sale": false
-   },
-   "only_subscribable": false,
-   "fulfillable": true,
-   "site_link": "product/sardines-with-hot-pepper/JOALURJM4X2PCE3VVHKSAZET",
-   "absolute_site_link": "https://layerssuperfoodbar.square.site/product/sardines-with-hot-pepper/JOALURJM4X2PCE3VVHKSAZET",
-   "permalink": null,
-   "seo_product_image_id": "SS43CBWOYMNNP5AIDGRN2YOE",
-   "seo_page_description": null,
-   "seo_page_title": null,
-   "og_title": null,
-   "og_description": null,
-   "avg_rating": null,
-   "avg_rating_all": null,
-   "inventory": {
-    "total": 0,
-    "all_variations_sold_out": true,
-    "marked_sold_out_at_all_existing_locations": true,
-    "marked_sold_out_skus_count": 1,
-    "all_inventory_total": 0,
-    "lowest": 0,
-    "enabled": false,
-    "some_variations_sold_out": true,
-    "has_location_not_tracking": false
-   },
-   "price": {
-    "regular_high_with_subscriptions": 9.95,
-    "regular_low_formatted_with_modifiers": "$9.95",
-    "high_with_modifiers": 9.95,
-    "low_formatted_with_subscriptions": "$9.95",
-    "regular_high_formatted": "$9.95",
-    "high_with_subscriptions": 9.95,
-    "high_formatted_with_subscriptions": "$9.95",
-    "low_formatted": "$9.95",
-    "low_with_subscriptions_subunits": 995,
-    "regular_high_formatted_with_subscriptions": "$9.95",
-    "high_with_subscriptions_subunits": 995,
-    "low_with_modifiers_subunits": 995,
-    "high": 9.95,
-    "low_with_modifiers": 9.95,
-    "regular_low_with_subscriptions_subunits": 995,
-    "regular_low_formatted": "$9.95",
-    "low": 9.95,
-    "regular_high_with_subscriptions_subunits": 995,
-    "low_subunits": 995,
-    "regular_high_with_modifiers": 9.95,
-    "regular_low_with_subscriptions": 9.95,
-    "regular_high_with_modifiers_subunits": 995,
-    "low_formatted_with_modifiers": "$9.95",
-    "regular_low_with_modifiers_subunits": 995,
-    "low_with_subscriptions": 9.95,
-    "high_with_modifiers_subunits": 995,
-    "high_formatted": "$9.95",
-    "regular_low": 9.95,
-    "high_formatted_with_modifiers": "$9.95",
-    "regular_low_subunits": 995,
-    "regular_high_subunits": 995,
-    "regular_low_with_modifiers": 9.95,
-    "high_subunits": 995,
-    "regular_high": 9.95,
-    "regular_high_formatted_with_modifiers": "$9.95",
-    "regular_low_formatted_with_subscriptions": "$9.95"
-   },
-   "on_sale": false,
-   "combo_type_details": {
-    "slots": []
-   },
-   "updated_date": "2026-10-11T22:09:21+00:00",
-   "created_date": "2026-07-16T04:08:33+00:00",
-   "indexed_date": "2026-10-20T11:59:11+00:00",
-   "preordering": {
-    "pickup": null,
-    "delivery": false,
-    "shipping": false,
-    "dine_in": false,
-    "manual": false,
-    "download": false
-   },
-   "fulfillment_availability": {
-    "pickup": [],
-    "delivery": [],
-    "shipping": [],
-    "dine_in": [],
-    "manual": []
-   },
-   "thumbnail": {
-    "data": {
-     "owner_id": "152630010",
-     "format": "jpeg",
-     "created_at": "2026-07-16T04:08:37.963Z",
-     "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg",
-     "absolute_urls": {
-      "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=320",
-      "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=640",
-      "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=80",
-      "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=2560",
-      "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=160",
-      "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=1280"
-     },
-     "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg",
-     "urls": {
-      "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=320",
-      "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=640",
-      "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=80",
-      "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=2560",
-      "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=160",
-      "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=1280"
-     },
-     "site_product_image_id": "SS43CBWOYMNNP5AIDGRN2YOE",
-     "updated_at": "2026-07-16T04:08:37.92Z",
-     "site_id": "672900839876723331",
-     "width": 2560,
-     "id": "SS43CBWOYMNNP5AIDGRN2YOE",
-     "height": 2560
-    }
-   },
-   "placeholder_image": {
-    "data": {
-     "placeholder": true,
-     "url": "/images/commerce/store-app/app/universal_product_placeholder.png",
-     "absolute_url": "cdn3.editmysite.com/images/commerce/store-app/app/universal_product_placeholder.png"
-    }
-   },
-   "categoryIds": [
-    "RK2ABIUBNFDVNEKG3SWPCZJW",
-    "YEKW3EBSW44LZB4TE3UYYKNS"
-   ],
-   "images": {
-    "data": [
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-07-16T04:08:37.963Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/SS43CBWOYMNNP5AIDGRN2YOE.jpeg?width=1280"
-      },
-      "site_product_image_id": "SS43CBWOYMNNP5AIDGRN2YOE",
-      "updated_at": "2026-07-16T04:08:37.92Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "SS43CBWOYMNNP5AIDGRN2YOE",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "png",
-      "created_at": "2026-07-16T04:08:40.478Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZAFULQJ6HYGXAP2ELRR3632B.png",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZAFULQJ6HYGXAP2ELRR3632B.png?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZAFULQJ6HYGXAP2ELRR3632B.png?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZAFULQJ6HYGXAP2ELRR3632B.png?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZAFULQJ6HYGXAP2ELRR3632B.png?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZAFULQJ6HYGXAP2ELRR3632B.png?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZAFULQJ6HYGXAP2ELRR3632B.png?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZAFULQJ6HYGXAP2ELRR3632B.png",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZAFULQJ6HYGXAP2ELRR3632B.png?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZAFULQJ6HYGXAP2ELRR3632B.png?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZAFULQJ6HYGXAP2ELRR3632B.png?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZAFULQJ6HYGXAP2ELRR3632B.png?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZAFULQJ6HYGXAP2ELRR3632B.png?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZAFULQJ6HYGXAP2ELRR3632B.png?width=1280"
-      },
-      "site_product_image_id": "ZAFULQJ6HYGXAP2ELRR3632B",
-      "updated_at": "2026-07-16T04:08:40.432Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "ZAFULQJ6HYGXAP2ELRR3632B",
       "height": 2560
      }
     ]
@@ -6712,7 +5795,7 @@
    "visibility_tl": "Visible",
    "name": "15g Protein Banana Bread Bars",
    "short_description": "<p>Smooth, subtly sweet, and packed with 15g of protein. Made for clean energy on the go, with just 5g of sugar and a melt-free texture that travels well.</p>",
-   "popularity_score": 0.15,
+   "popularity_score": 0.05,
    "cross_sell_product_ids": [],
    "variation_type": "3",
    "product_type": "physical",
@@ -6746,12 +5829,12 @@
    "avg_rating": null,
    "avg_rating_all": null,
    "inventory": {
-    "total": 39,
+    "total": 26,
     "all_variations_sold_out": false,
     "marked_sold_out_at_all_existing_locations": false,
     "marked_sold_out_skus_count": 0,
-    "all_inventory_total": 39,
-    "lowest": 39,
+    "all_inventory_total": 26,
+    "lowest": 26,
     "enabled": false,
     "some_variations_sold_out": false,
     "has_location_not_tracking": false
@@ -6798,9 +5881,9 @@
    "combo_type_details": {
     "slots": []
    },
-   "updated_date": "2026-10-11T22:09:21+00:00",
+   "updated_date": "2026-11-10T17:11:40+00:00",
    "created_date": "2026-07-22T02:59:58+00:00",
-   "indexed_date": "2026-10-20T11:59:11+00:00",
+   "indexed_date": "2026-11-10T17:11:52+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -7013,12 +6096,12 @@
    "avg_rating": null,
    "avg_rating_all": null,
    "inventory": {
-    "total": 2,
+    "total": 3,
     "all_variations_sold_out": false,
     "marked_sold_out_at_all_existing_locations": false,
     "marked_sold_out_skus_count": 0,
-    "all_inventory_total": 2,
-    "lowest": 2,
+    "all_inventory_total": 3,
+    "lowest": 3,
     "enabled": false,
     "some_variations_sold_out": false,
     "has_location_not_tracking": false
@@ -7065,9 +6148,9 @@
    "combo_type_details": {
     "slots": []
    },
-   "updated_date": "2026-10-31T03:53:23+00:00",
+   "updated_date": "2026-11-10T17:08:14+00:00",
    "created_date": "2026-07-16T04:10:20+00:00",
-   "indexed_date": "2026-10-31T03:53:25+00:00",
+   "indexed_date": "2026-11-10T17:08:35+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -7334,7 +6417,7 @@
    },
    "updated_date": "2026-05-24T06:34:24+00:00",
    "created_date": "2026-01-25T22:33:33+00:00",
-   "indexed_date": "2026-10-20T11:59:10+00:00",
+   "indexed_date": "2026-11-09T22:35:26+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -8361,12 +7444,12 @@
    "avg_rating": null,
    "avg_rating_all": null,
    "inventory": {
-    "total": 35,
+    "total": 18,
     "all_variations_sold_out": false,
     "marked_sold_out_at_all_existing_locations": false,
     "marked_sold_out_skus_count": 0,
-    "all_inventory_total": 35,
-    "lowest": 35,
+    "all_inventory_total": 18,
+    "lowest": 18,
     "enabled": false,
     "some_variations_sold_out": false,
     "has_location_not_tracking": false
@@ -8413,9 +7496,9 @@
    "combo_type_details": {
     "slots": []
    },
-   "updated_date": "2026-10-11T22:09:21+00:00",
+   "updated_date": "2026-11-10T17:12:29+00:00",
    "created_date": "2026-07-22T02:59:57+00:00",
-   "indexed_date": "2026-10-20T11:59:13+00:00",
+   "indexed_date": "2026-11-10T17:12:33+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -8612,534 +7695,6 @@
    }
   },
   {
-   "id": "O5Y4LBP5P63HIKICYONBRA3X",
-   "owner_id": "152630010",
-   "merchant_id": "MLEWKHPC5TX03",
-   "site_id": "672900839876723331",
-   "channel_id": "CH_waa6CDakWe1ykYufMjFYkFHwrFP2Ym2TWHsfYRlQuYC",
-   "site_product_id": "O5Y4LBP5P63HIKICYONBRA3X",
-   "square_id": "O5Y4LBP5P63HIKICYONBRA3X",
-   "visibility": "visible",
-   "visibility_tl": "Visible",
-   "name": "Tomato Chips",
-   "short_description": "<p>Hand-sliced, sun-ripened tomatoes flash crisped in avocado oil and finished with sea salt</p>",
-   "popularity_score": null,
-   "cross_sell_product_ids": [],
-   "variation_type": "3",
-   "product_type": "physical",
-   "product_type_details": [],
-   "taxable": null,
-   "required_feature_to_sell": null,
-   "min_prep_time": null,
-   "min_prep_time_duration_iso8601": null,
-   "advanced_notice_duration": null,
-   "measurement_unit_abbreviation": null,
-   "measurement_unit_precision": null,
-   "has_multiple_measurement_units": false,
-   "is_alcoholic": false,
-   "per_order_max": 0,
-   "allow_order_item_quantities": false,
-   "badges": {
-    "out_of_stock": false,
-    "low_stock": false,
-    "on_sale": false
-   },
-   "only_subscribable": false,
-   "fulfillable": true,
-   "site_link": "product/tomato-chips/O5Y4LBP5P63HIKICYONBRA3X",
-   "absolute_site_link": "https://layerssuperfoodbar.square.site/product/tomato-chips/O5Y4LBP5P63HIKICYONBRA3X",
-   "permalink": null,
-   "seo_product_image_id": "3IHYJOTRR23LFO74O7O3DHYW",
-   "seo_page_description": null,
-   "seo_page_title": null,
-   "og_title": null,
-   "og_description": null,
-   "avg_rating": null,
-   "avg_rating_all": null,
-   "inventory": {
-    "total": 0,
-    "all_variations_sold_out": false,
-    "marked_sold_out_at_all_existing_locations": false,
-    "marked_sold_out_skus_count": 0,
-    "all_inventory_total": 0,
-    "lowest": null,
-    "enabled": false,
-    "some_variations_sold_out": false,
-    "has_location_not_tracking": true
-   },
-   "price": {
-    "regular_high_with_subscriptions": 7.95,
-    "regular_low_formatted_with_modifiers": "$7.95",
-    "high_with_modifiers": 7.95,
-    "low_formatted_with_subscriptions": "$7.95",
-    "regular_high_formatted": "$7.95",
-    "high_with_subscriptions": 7.95,
-    "high_formatted_with_subscriptions": "$7.95",
-    "low_formatted": "$7.95",
-    "low_with_subscriptions_subunits": 795,
-    "regular_high_formatted_with_subscriptions": "$7.95",
-    "high_with_subscriptions_subunits": 795,
-    "low_with_modifiers_subunits": 795,
-    "high": 7.95,
-    "low_with_modifiers": 7.95,
-    "regular_low_with_subscriptions_subunits": 795,
-    "regular_low_formatted": "$7.95",
-    "low": 7.95,
-    "regular_high_with_subscriptions_subunits": 795,
-    "low_subunits": 795,
-    "regular_high_with_modifiers": 7.95,
-    "regular_low_with_subscriptions": 7.95,
-    "regular_high_with_modifiers_subunits": 795,
-    "low_formatted_with_modifiers": "$7.95",
-    "regular_low_with_modifiers_subunits": 795,
-    "low_with_subscriptions": 7.95,
-    "high_with_modifiers_subunits": 795,
-    "high_formatted": "$7.95",
-    "regular_low": 7.95,
-    "high_formatted_with_modifiers": "$7.95",
-    "regular_low_subunits": 795,
-    "regular_high_subunits": 795,
-    "regular_low_with_modifiers": 7.95,
-    "high_subunits": 795,
-    "regular_high": 7.95,
-    "regular_high_formatted_with_modifiers": "$7.95",
-    "regular_low_formatted_with_subscriptions": "$7.95"
-   },
-   "on_sale": false,
-   "combo_type_details": {
-    "slots": []
-   },
-   "updated_date": "2026-10-11T22:09:21+00:00",
-   "created_date": "2026-08-26T04:42:16+00:00",
-   "indexed_date": "2026-10-20T11:59:15+00:00",
-   "preordering": {
-    "pickup": null,
-    "delivery": false,
-    "shipping": false,
-    "dine_in": false,
-    "manual": false,
-    "download": false
-   },
-   "fulfillment_availability": {
-    "pickup": [],
-    "delivery": [],
-    "shipping": [],
-    "dine_in": [],
-    "manual": []
-   },
-   "thumbnail": {
-    "data": {
-     "owner_id": "152630010",
-     "format": "jpeg",
-     "created_at": "2026-08-26T04:42:17.323Z",
-     "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg",
-     "absolute_urls": {
-      "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=320",
-      "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=640",
-      "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=80",
-      "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=2560",
-      "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=160",
-      "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=1280"
-     },
-     "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg",
-     "urls": {
-      "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=320",
-      "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=640",
-      "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=80",
-      "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=2560",
-      "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=160",
-      "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=1280"
-     },
-     "site_product_image_id": "3IHYJOTRR23LFO74O7O3DHYW",
-     "updated_at": "2026-08-26T04:42:17.276Z",
-     "site_id": "672900839876723331",
-     "width": 2560,
-     "id": "3IHYJOTRR23LFO74O7O3DHYW",
-     "height": 2560
-    }
-   },
-   "placeholder_image": {
-    "data": {
-     "placeholder": true,
-     "url": "/images/commerce/store-app/app/universal_product_placeholder.png",
-     "absolute_url": "cdn3.editmysite.com/images/commerce/store-app/app/universal_product_placeholder.png"
-    }
-   },
-   "categoryIds": [
-    "RK2ABIUBNFDVNEKG3SWPCZJW",
-    "YEKW3EBSW44LZB4TE3UYYKNS"
-   ],
-   "images": {
-    "data": [
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-08-26T04:42:17.323Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/3IHYJOTRR23LFO74O7O3DHYW.jpeg?width=1280"
-      },
-      "site_product_image_id": "3IHYJOTRR23LFO74O7O3DHYW",
-      "updated_at": "2026-08-26T04:42:17.276Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "3IHYJOTRR23LFO74O7O3DHYW",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-08-26T04:42:19.395Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7GA3ZP6MQTDC5VRB7OSHON2D.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7GA3ZP6MQTDC5VRB7OSHON2D.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7GA3ZP6MQTDC5VRB7OSHON2D.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7GA3ZP6MQTDC5VRB7OSHON2D.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7GA3ZP6MQTDC5VRB7OSHON2D.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7GA3ZP6MQTDC5VRB7OSHON2D.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7GA3ZP6MQTDC5VRB7OSHON2D.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7GA3ZP6MQTDC5VRB7OSHON2D.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7GA3ZP6MQTDC5VRB7OSHON2D.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7GA3ZP6MQTDC5VRB7OSHON2D.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7GA3ZP6MQTDC5VRB7OSHON2D.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7GA3ZP6MQTDC5VRB7OSHON2D.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7GA3ZP6MQTDC5VRB7OSHON2D.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7GA3ZP6MQTDC5VRB7OSHON2D.jpeg?width=1280"
-      },
-      "site_product_image_id": "7GA3ZP6MQTDC5VRB7OSHON2D",
-      "updated_at": "2026-08-26T04:42:19.349Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "7GA3ZP6MQTDC5VRB7OSHON2D",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-08-26T04:42:19.969Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/27KZKT7K4Q5B2Z7MLZPMD4BO.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/27KZKT7K4Q5B2Z7MLZPMD4BO.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/27KZKT7K4Q5B2Z7MLZPMD4BO.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/27KZKT7K4Q5B2Z7MLZPMD4BO.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/27KZKT7K4Q5B2Z7MLZPMD4BO.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/27KZKT7K4Q5B2Z7MLZPMD4BO.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/27KZKT7K4Q5B2Z7MLZPMD4BO.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/27KZKT7K4Q5B2Z7MLZPMD4BO.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/27KZKT7K4Q5B2Z7MLZPMD4BO.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/27KZKT7K4Q5B2Z7MLZPMD4BO.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/27KZKT7K4Q5B2Z7MLZPMD4BO.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/27KZKT7K4Q5B2Z7MLZPMD4BO.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/27KZKT7K4Q5B2Z7MLZPMD4BO.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/27KZKT7K4Q5B2Z7MLZPMD4BO.jpeg?width=1280"
-      },
-      "site_product_image_id": "27KZKT7K4Q5B2Z7MLZPMD4BO",
-      "updated_at": "2026-08-26T04:42:19.933Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "27KZKT7K4Q5B2Z7MLZPMD4BO",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-08-26T04:42:20.316Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/VCXSV7TSJVNRIVJPS3B44SNN.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/VCXSV7TSJVNRIVJPS3B44SNN.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/VCXSV7TSJVNRIVJPS3B44SNN.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/VCXSV7TSJVNRIVJPS3B44SNN.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/VCXSV7TSJVNRIVJPS3B44SNN.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/VCXSV7TSJVNRIVJPS3B44SNN.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/VCXSV7TSJVNRIVJPS3B44SNN.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/VCXSV7TSJVNRIVJPS3B44SNN.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/VCXSV7TSJVNRIVJPS3B44SNN.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/VCXSV7TSJVNRIVJPS3B44SNN.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/VCXSV7TSJVNRIVJPS3B44SNN.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/VCXSV7TSJVNRIVJPS3B44SNN.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/VCXSV7TSJVNRIVJPS3B44SNN.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/VCXSV7TSJVNRIVJPS3B44SNN.jpeg?width=1280"
-      },
-      "site_product_image_id": "VCXSV7TSJVNRIVJPS3B44SNN",
-      "updated_at": "2026-08-26T04:42:20.275Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "VCXSV7TSJVNRIVJPS3B44SNN",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-08-26T04:42:20.815Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/FCY6X5MARDWKQZTGEQ76SOVT.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/FCY6X5MARDWKQZTGEQ76SOVT.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/FCY6X5MARDWKQZTGEQ76SOVT.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/FCY6X5MARDWKQZTGEQ76SOVT.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/FCY6X5MARDWKQZTGEQ76SOVT.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/FCY6X5MARDWKQZTGEQ76SOVT.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/FCY6X5MARDWKQZTGEQ76SOVT.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/FCY6X5MARDWKQZTGEQ76SOVT.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/FCY6X5MARDWKQZTGEQ76SOVT.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/FCY6X5MARDWKQZTGEQ76SOVT.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/FCY6X5MARDWKQZTGEQ76SOVT.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/FCY6X5MARDWKQZTGEQ76SOVT.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/FCY6X5MARDWKQZTGEQ76SOVT.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/FCY6X5MARDWKQZTGEQ76SOVT.jpeg?width=1280"
-      },
-      "site_product_image_id": "FCY6X5MARDWKQZTGEQ76SOVT",
-      "updated_at": "2026-08-26T04:42:20.776Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "FCY6X5MARDWKQZTGEQ76SOVT",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-08-26T04:42:21.29Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/J5PHARTSVOFH4Y5BKJWBI6MH.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/J5PHARTSVOFH4Y5BKJWBI6MH.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/J5PHARTSVOFH4Y5BKJWBI6MH.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/J5PHARTSVOFH4Y5BKJWBI6MH.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/J5PHARTSVOFH4Y5BKJWBI6MH.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/J5PHARTSVOFH4Y5BKJWBI6MH.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/J5PHARTSVOFH4Y5BKJWBI6MH.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/J5PHARTSVOFH4Y5BKJWBI6MH.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/J5PHARTSVOFH4Y5BKJWBI6MH.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/J5PHARTSVOFH4Y5BKJWBI6MH.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/J5PHARTSVOFH4Y5BKJWBI6MH.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/J5PHARTSVOFH4Y5BKJWBI6MH.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/J5PHARTSVOFH4Y5BKJWBI6MH.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/J5PHARTSVOFH4Y5BKJWBI6MH.jpeg?width=1280"
-      },
-      "site_product_image_id": "J5PHARTSVOFH4Y5BKJWBI6MH",
-      "updated_at": "2026-08-26T04:42:21.244Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "J5PHARTSVOFH4Y5BKJWBI6MH",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-08-26T04:42:21.963Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/W4R7FJQJDCUIEDPCGNUZWG6X.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/W4R7FJQJDCUIEDPCGNUZWG6X.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/W4R7FJQJDCUIEDPCGNUZWG6X.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/W4R7FJQJDCUIEDPCGNUZWG6X.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/W4R7FJQJDCUIEDPCGNUZWG6X.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/W4R7FJQJDCUIEDPCGNUZWG6X.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/W4R7FJQJDCUIEDPCGNUZWG6X.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/W4R7FJQJDCUIEDPCGNUZWG6X.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/W4R7FJQJDCUIEDPCGNUZWG6X.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/W4R7FJQJDCUIEDPCGNUZWG6X.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/W4R7FJQJDCUIEDPCGNUZWG6X.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/W4R7FJQJDCUIEDPCGNUZWG6X.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/W4R7FJQJDCUIEDPCGNUZWG6X.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/W4R7FJQJDCUIEDPCGNUZWG6X.jpeg?width=1280"
-      },
-      "site_product_image_id": "W4R7FJQJDCUIEDPCGNUZWG6X",
-      "updated_at": "2026-08-26T04:42:21.881Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "W4R7FJQJDCUIEDPCGNUZWG6X",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-08-26T04:42:22.268Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/THDOITSJ2IZFWN3WDHHLMB7A.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/THDOITSJ2IZFWN3WDHHLMB7A.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/THDOITSJ2IZFWN3WDHHLMB7A.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/THDOITSJ2IZFWN3WDHHLMB7A.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/THDOITSJ2IZFWN3WDHHLMB7A.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/THDOITSJ2IZFWN3WDHHLMB7A.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/THDOITSJ2IZFWN3WDHHLMB7A.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/THDOITSJ2IZFWN3WDHHLMB7A.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/THDOITSJ2IZFWN3WDHHLMB7A.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/THDOITSJ2IZFWN3WDHHLMB7A.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/THDOITSJ2IZFWN3WDHHLMB7A.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/THDOITSJ2IZFWN3WDHHLMB7A.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/THDOITSJ2IZFWN3WDHHLMB7A.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/THDOITSJ2IZFWN3WDHHLMB7A.jpeg?width=1280"
-      },
-      "site_product_image_id": "THDOITSJ2IZFWN3WDHHLMB7A",
-      "updated_at": "2026-08-26T04:42:22.234Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "THDOITSJ2IZFWN3WDHHLMB7A",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-08-26T04:42:24.186Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7FWUDROY223HJKB2HBCCY6FC.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7FWUDROY223HJKB2HBCCY6FC.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7FWUDROY223HJKB2HBCCY6FC.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7FWUDROY223HJKB2HBCCY6FC.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7FWUDROY223HJKB2HBCCY6FC.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7FWUDROY223HJKB2HBCCY6FC.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7FWUDROY223HJKB2HBCCY6FC.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7FWUDROY223HJKB2HBCCY6FC.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7FWUDROY223HJKB2HBCCY6FC.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7FWUDROY223HJKB2HBCCY6FC.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7FWUDROY223HJKB2HBCCY6FC.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7FWUDROY223HJKB2HBCCY6FC.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7FWUDROY223HJKB2HBCCY6FC.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/7FWUDROY223HJKB2HBCCY6FC.jpeg?width=1280"
-      },
-      "site_product_image_id": "7FWUDROY223HJKB2HBCCY6FC",
-      "updated_at": "2026-08-26T04:42:24.135Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "7FWUDROY223HJKB2HBCCY6FC",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-08-26T04:42:24.786Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UAKJNXDJXJZVAAVBSHMJJMF5.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UAKJNXDJXJZVAAVBSHMJJMF5.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UAKJNXDJXJZVAAVBSHMJJMF5.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UAKJNXDJXJZVAAVBSHMJJMF5.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UAKJNXDJXJZVAAVBSHMJJMF5.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UAKJNXDJXJZVAAVBSHMJJMF5.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UAKJNXDJXJZVAAVBSHMJJMF5.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UAKJNXDJXJZVAAVBSHMJJMF5.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UAKJNXDJXJZVAAVBSHMJJMF5.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UAKJNXDJXJZVAAVBSHMJJMF5.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UAKJNXDJXJZVAAVBSHMJJMF5.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UAKJNXDJXJZVAAVBSHMJJMF5.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UAKJNXDJXJZVAAVBSHMJJMF5.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UAKJNXDJXJZVAAVBSHMJJMF5.jpeg?width=1280"
-      },
-      "site_product_image_id": "UAKJNXDJXJZVAAVBSHMJJMF5",
-      "updated_at": "2026-08-26T04:42:24.75Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "UAKJNXDJXJZVAAVBSHMJJMF5",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-08-26T04:42:25.28Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/KLH7WX6ODNMK7G7E3T67IXQV.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/KLH7WX6ODNMK7G7E3T67IXQV.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/KLH7WX6ODNMK7G7E3T67IXQV.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/KLH7WX6ODNMK7G7E3T67IXQV.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/KLH7WX6ODNMK7G7E3T67IXQV.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/KLH7WX6ODNMK7G7E3T67IXQV.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/KLH7WX6ODNMK7G7E3T67IXQV.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/KLH7WX6ODNMK7G7E3T67IXQV.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/KLH7WX6ODNMK7G7E3T67IXQV.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/KLH7WX6ODNMK7G7E3T67IXQV.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/KLH7WX6ODNMK7G7E3T67IXQV.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/KLH7WX6ODNMK7G7E3T67IXQV.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/KLH7WX6ODNMK7G7E3T67IXQV.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/KLH7WX6ODNMK7G7E3T67IXQV.jpeg?width=1280"
-      },
-      "site_product_image_id": "KLH7WX6ODNMK7G7E3T67IXQV",
-      "updated_at": "2026-08-26T04:42:25.232Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "KLH7WX6ODNMK7G7E3T67IXQV",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "png",
-      "created_at": "2026-08-26T04:42:28.435Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WLVUQQ45MDYUEBWNQ222UKUH.png",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WLVUQQ45MDYUEBWNQ222UKUH.png?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WLVUQQ45MDYUEBWNQ222UKUH.png?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WLVUQQ45MDYUEBWNQ222UKUH.png?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WLVUQQ45MDYUEBWNQ222UKUH.png?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WLVUQQ45MDYUEBWNQ222UKUH.png?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WLVUQQ45MDYUEBWNQ222UKUH.png?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WLVUQQ45MDYUEBWNQ222UKUH.png",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WLVUQQ45MDYUEBWNQ222UKUH.png?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WLVUQQ45MDYUEBWNQ222UKUH.png?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WLVUQQ45MDYUEBWNQ222UKUH.png?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WLVUQQ45MDYUEBWNQ222UKUH.png?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WLVUQQ45MDYUEBWNQ222UKUH.png?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WLVUQQ45MDYUEBWNQ222UKUH.png?width=1280"
-      },
-      "site_product_image_id": "WLVUQQ45MDYUEBWNQ222UKUH",
-      "updated_at": "2026-08-26T04:42:28.389Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "WLVUQQ45MDYUEBWNQ222UKUH",
-      "height": 2560
-     }
-    ]
-   },
-   "categories": {
-    "data": [
-     {
-      "site_category_id": "RK2ABIUBNFDVNEKG3SWPCZJW",
-      "name": "Layers Wellness Market",
-      "seo_page_description": "",
-      "seo_page_title": "",
-      "og_title": null,
-      "og_description": null,
-      "site_link": "shop/layers-wellness-market/RK2ABIUBNFDVNEKG3SWPCZJW",
-      "permalink": "",
-      "ancestor_site_category_ids": [
-       "V37RL3MLBAUNXD3UE6G55KA3"
-      ]
-     }
-    ]
-   }
-  },
-  {
    "id": "OJUDNTGDLRIXTNQHOGVYQI7R",
    "owner_id": "152630010",
    "merchant_id": "MLEWKHPC5TX03",
@@ -9168,7 +7723,7 @@
    "per_order_max": 0,
    "allow_order_item_quantities": false,
    "badges": {
-    "out_of_stock": true,
+    "out_of_stock": false,
     "low_stock": false,
     "on_sale": false
    },
@@ -9185,14 +7740,14 @@
    "avg_rating": null,
    "avg_rating_all": null,
    "inventory": {
-    "total": 0,
-    "all_variations_sold_out": true,
-    "marked_sold_out_at_all_existing_locations": true,
-    "marked_sold_out_skus_count": 1,
-    "all_inventory_total": 0,
-    "lowest": 0,
+    "total": 5,
+    "all_variations_sold_out": false,
+    "marked_sold_out_at_all_existing_locations": false,
+    "marked_sold_out_skus_count": 0,
+    "all_inventory_total": 5,
+    "lowest": 5,
     "enabled": false,
-    "some_variations_sold_out": true,
+    "some_variations_sold_out": false,
     "has_location_not_tracking": false
    },
    "price": {
@@ -9237,9 +7792,9 @@
    "combo_type_details": {
     "slots": []
    },
-   "updated_date": "2026-10-30T05:21:08+00:00",
+   "updated_date": "2026-11-10T06:43:25+00:00",
    "created_date": "2026-07-16T04:14:11+00:00",
-   "indexed_date": "2026-10-30T05:21:20+00:00",
+   "indexed_date": "2026-11-10T17:07:12+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -9652,360 +8207,6 @@
    }
   },
   {
-   "id": "Q4H75D4TN4JHRSLYTQN3NYG7",
-   "owner_id": "152630010",
-   "merchant_id": "MLEWKHPC5TX03",
-   "site_id": "672900839876723331",
-   "channel_id": "CH_waa6CDakWe1ykYufMjFYkFHwrFP2Ym2TWHsfYRlQuYC",
-   "site_product_id": "Q4H75D4TN4JHRSLYTQN3NYG7",
-   "square_id": "Q4H75D4TN4JHRSLYTQN3NYG7",
-   "visibility": "visible",
-   "visibility_tl": "Visible",
-   "name": "Garlic Dill Mini Pickles",
-   "short_description": "<p>Crunchy mini pickles with bold garlic + dill flavor.</p><p><strong><u>10 calories per pack \u2022 No artificial preservatives \u2022 Ready to snack.</u></strong></p>",
-   "popularity_score": null,
-   "cross_sell_product_ids": [],
-   "variation_type": "3",
-   "product_type": "physical",
-   "product_type_details": [],
-   "taxable": null,
-   "required_feature_to_sell": null,
-   "min_prep_time": null,
-   "min_prep_time_duration_iso8601": null,
-   "advanced_notice_duration": null,
-   "measurement_unit_abbreviation": null,
-   "measurement_unit_precision": null,
-   "has_multiple_measurement_units": false,
-   "is_alcoholic": false,
-   "per_order_max": 0,
-   "allow_order_item_quantities": false,
-   "badges": {
-    "out_of_stock": true,
-    "low_stock": false,
-    "on_sale": false
-   },
-   "only_subscribable": false,
-   "fulfillable": true,
-   "site_link": "product/garlic-dill-mini-pickles/Q4H75D4TN4JHRSLYTQN3NYG7",
-   "absolute_site_link": "https://layerssuperfoodbar.square.site/product/garlic-dill-mini-pickles/Q4H75D4TN4JHRSLYTQN3NYG7",
-   "permalink": null,
-   "seo_product_image_id": "S76Y4H5NGV325VSO57WQ5MMB",
-   "seo_page_description": null,
-   "seo_page_title": null,
-   "og_title": null,
-   "og_description": null,
-   "avg_rating": null,
-   "avg_rating_all": null,
-   "inventory": {
-    "total": 0,
-    "all_variations_sold_out": true,
-    "marked_sold_out_at_all_existing_locations": true,
-    "marked_sold_out_skus_count": 1,
-    "all_inventory_total": 0,
-    "lowest": 0,
-    "enabled": false,
-    "some_variations_sold_out": true,
-    "has_location_not_tracking": false
-   },
-   "price": {
-    "regular_high_with_subscriptions": 3.95,
-    "regular_low_formatted_with_modifiers": "$3.95",
-    "high_with_modifiers": 3.95,
-    "low_formatted_with_subscriptions": "$3.95",
-    "regular_high_formatted": "$3.95",
-    "high_with_subscriptions": 3.95,
-    "high_formatted_with_subscriptions": "$3.95",
-    "low_formatted": "$3.95",
-    "low_with_subscriptions_subunits": 395,
-    "regular_high_formatted_with_subscriptions": "$3.95",
-    "high_with_subscriptions_subunits": 395,
-    "low_with_modifiers_subunits": 395,
-    "high": 3.95,
-    "low_with_modifiers": 3.95,
-    "regular_low_with_subscriptions_subunits": 395,
-    "regular_low_formatted": "$3.95",
-    "low": 3.95,
-    "regular_high_with_subscriptions_subunits": 395,
-    "low_subunits": 395,
-    "regular_high_with_modifiers": 3.95,
-    "regular_low_with_subscriptions": 3.95,
-    "regular_high_with_modifiers_subunits": 395,
-    "low_formatted_with_modifiers": "$3.95",
-    "regular_low_with_modifiers_subunits": 395,
-    "low_with_subscriptions": 3.95,
-    "high_with_modifiers_subunits": 395,
-    "high_formatted": "$3.95",
-    "regular_low": 3.95,
-    "high_formatted_with_modifiers": "$3.95",
-    "regular_low_subunits": 395,
-    "regular_high_subunits": 395,
-    "regular_low_with_modifiers": 3.95,
-    "high_subunits": 395,
-    "regular_high": 3.95,
-    "regular_high_formatted_with_modifiers": "$3.95",
-    "regular_low_formatted_with_subscriptions": "$3.95"
-   },
-   "on_sale": false,
-   "combo_type_details": {
-    "slots": []
-   },
-   "updated_date": "2026-10-11T22:09:21+00:00",
-   "created_date": "2026-07-25T19:50:10+00:00",
-   "indexed_date": "2026-10-20T11:59:10+00:00",
-   "preordering": {
-    "pickup": null,
-    "delivery": false,
-    "shipping": false,
-    "dine_in": false,
-    "manual": false,
-    "download": false
-   },
-   "fulfillment_availability": {
-    "pickup": [],
-    "delivery": [],
-    "shipping": [],
-    "dine_in": [],
-    "manual": []
-   },
-   "thumbnail": {
-    "data": {
-     "owner_id": "152630010",
-     "format": "jpeg",
-     "created_at": "2026-07-25T19:50:11.708Z",
-     "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg",
-     "absolute_urls": {
-      "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=320",
-      "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=640",
-      "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=80",
-      "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=2560",
-      "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=160",
-      "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=1280"
-     },
-     "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg",
-     "urls": {
-      "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=320",
-      "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=640",
-      "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=80",
-      "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=2560",
-      "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=160",
-      "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=1280"
-     },
-     "site_product_image_id": "S76Y4H5NGV325VSO57WQ5MMB",
-     "updated_at": "2026-07-25T19:50:11.665Z",
-     "site_id": "672900839876723331",
-     "width": 2560,
-     "id": "S76Y4H5NGV325VSO57WQ5MMB",
-     "height": 2560
-    }
-   },
-   "placeholder_image": {
-    "data": {
-     "placeholder": true,
-     "url": "/images/commerce/store-app/app/universal_product_placeholder.png",
-     "absolute_url": "cdn3.editmysite.com/images/commerce/store-app/app/universal_product_placeholder.png"
-    }
-   },
-   "categoryIds": [
-    "RK2ABIUBNFDVNEKG3SWPCZJW",
-    "YEKW3EBSW44LZB4TE3UYYKNS"
-   ],
-   "images": {
-    "data": [
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-07-25T19:50:11.708Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/S76Y4H5NGV325VSO57WQ5MMB.jpeg?width=1280"
-      },
-      "site_product_image_id": "S76Y4H5NGV325VSO57WQ5MMB",
-      "updated_at": "2026-07-25T19:50:11.665Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "S76Y4H5NGV325VSO57WQ5MMB",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-07-25T19:50:13.97Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WW7D4LC5A7FZGGG7NTNDC2AI.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WW7D4LC5A7FZGGG7NTNDC2AI.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WW7D4LC5A7FZGGG7NTNDC2AI.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WW7D4LC5A7FZGGG7NTNDC2AI.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WW7D4LC5A7FZGGG7NTNDC2AI.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WW7D4LC5A7FZGGG7NTNDC2AI.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WW7D4LC5A7FZGGG7NTNDC2AI.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WW7D4LC5A7FZGGG7NTNDC2AI.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WW7D4LC5A7FZGGG7NTNDC2AI.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WW7D4LC5A7FZGGG7NTNDC2AI.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WW7D4LC5A7FZGGG7NTNDC2AI.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WW7D4LC5A7FZGGG7NTNDC2AI.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WW7D4LC5A7FZGGG7NTNDC2AI.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/WW7D4LC5A7FZGGG7NTNDC2AI.jpeg?width=1280"
-      },
-      "site_product_image_id": "WW7D4LC5A7FZGGG7NTNDC2AI",
-      "updated_at": "2026-07-25T19:50:13.929Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "WW7D4LC5A7FZGGG7NTNDC2AI",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-07-25T19:50:14.753Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UYBKGXC4GKDNRDZON437XRGQ.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UYBKGXC4GKDNRDZON437XRGQ.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UYBKGXC4GKDNRDZON437XRGQ.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UYBKGXC4GKDNRDZON437XRGQ.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UYBKGXC4GKDNRDZON437XRGQ.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UYBKGXC4GKDNRDZON437XRGQ.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UYBKGXC4GKDNRDZON437XRGQ.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UYBKGXC4GKDNRDZON437XRGQ.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UYBKGXC4GKDNRDZON437XRGQ.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UYBKGXC4GKDNRDZON437XRGQ.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UYBKGXC4GKDNRDZON437XRGQ.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UYBKGXC4GKDNRDZON437XRGQ.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UYBKGXC4GKDNRDZON437XRGQ.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/UYBKGXC4GKDNRDZON437XRGQ.jpeg?width=1280"
-      },
-      "site_product_image_id": "UYBKGXC4GKDNRDZON437XRGQ",
-      "updated_at": "2026-07-25T19:50:14.703Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "UYBKGXC4GKDNRDZON437XRGQ",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-07-25T19:50:15.228Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/XZNQBC4JBGT7FMHKEFOCDNMR.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/XZNQBC4JBGT7FMHKEFOCDNMR.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/XZNQBC4JBGT7FMHKEFOCDNMR.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/XZNQBC4JBGT7FMHKEFOCDNMR.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/XZNQBC4JBGT7FMHKEFOCDNMR.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/XZNQBC4JBGT7FMHKEFOCDNMR.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/XZNQBC4JBGT7FMHKEFOCDNMR.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/XZNQBC4JBGT7FMHKEFOCDNMR.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/XZNQBC4JBGT7FMHKEFOCDNMR.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/XZNQBC4JBGT7FMHKEFOCDNMR.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/XZNQBC4JBGT7FMHKEFOCDNMR.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/XZNQBC4JBGT7FMHKEFOCDNMR.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/XZNQBC4JBGT7FMHKEFOCDNMR.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/XZNQBC4JBGT7FMHKEFOCDNMR.jpeg?width=1280"
-      },
-      "site_product_image_id": "XZNQBC4JBGT7FMHKEFOCDNMR",
-      "updated_at": "2026-07-25T19:50:15.192Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "XZNQBC4JBGT7FMHKEFOCDNMR",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "png",
-      "created_at": "2026-07-25T19:50:16.823Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DW6RAQWAKI5FR7WHVX44Q6NT.png",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DW6RAQWAKI5FR7WHVX44Q6NT.png?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DW6RAQWAKI5FR7WHVX44Q6NT.png?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DW6RAQWAKI5FR7WHVX44Q6NT.png?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DW6RAQWAKI5FR7WHVX44Q6NT.png?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DW6RAQWAKI5FR7WHVX44Q6NT.png?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DW6RAQWAKI5FR7WHVX44Q6NT.png?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DW6RAQWAKI5FR7WHVX44Q6NT.png",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DW6RAQWAKI5FR7WHVX44Q6NT.png?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DW6RAQWAKI5FR7WHVX44Q6NT.png?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DW6RAQWAKI5FR7WHVX44Q6NT.png?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DW6RAQWAKI5FR7WHVX44Q6NT.png?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DW6RAQWAKI5FR7WHVX44Q6NT.png?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DW6RAQWAKI5FR7WHVX44Q6NT.png?width=1280"
-      },
-      "site_product_image_id": "DW6RAQWAKI5FR7WHVX44Q6NT",
-      "updated_at": "2026-07-25T19:50:16.776Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "DW6RAQWAKI5FR7WHVX44Q6NT",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "png",
-      "created_at": "2026-07-25T19:50:18.409Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/CEPT7W67RYUOCR2FKZXAW2C7.png",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/CEPT7W67RYUOCR2FKZXAW2C7.png?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/CEPT7W67RYUOCR2FKZXAW2C7.png?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/CEPT7W67RYUOCR2FKZXAW2C7.png?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/CEPT7W67RYUOCR2FKZXAW2C7.png?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/CEPT7W67RYUOCR2FKZXAW2C7.png?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/CEPT7W67RYUOCR2FKZXAW2C7.png?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/CEPT7W67RYUOCR2FKZXAW2C7.png",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/CEPT7W67RYUOCR2FKZXAW2C7.png?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/CEPT7W67RYUOCR2FKZXAW2C7.png?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/CEPT7W67RYUOCR2FKZXAW2C7.png?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/CEPT7W67RYUOCR2FKZXAW2C7.png?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/CEPT7W67RYUOCR2FKZXAW2C7.png?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/CEPT7W67RYUOCR2FKZXAW2C7.png?width=1280"
-      },
-      "site_product_image_id": "CEPT7W67RYUOCR2FKZXAW2C7",
-      "updated_at": "2026-07-25T19:50:18.369Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "CEPT7W67RYUOCR2FKZXAW2C7",
-      "height": 2560
-     }
-    ]
-   },
-   "categories": {
-    "data": [
-     {
-      "site_category_id": "RK2ABIUBNFDVNEKG3SWPCZJW",
-      "name": "Layers Wellness Market",
-      "seo_page_description": "",
-      "seo_page_title": "",
-      "og_title": null,
-      "og_description": null,
-      "site_link": "shop/layers-wellness-market/RK2ABIUBNFDVNEKG3SWPCZJW",
-      "permalink": "",
-      "ancestor_site_category_ids": [
-       "V37RL3MLBAUNXD3UE6G55KA3"
-      ]
-     }
-    ]
-   }
-  },
-  {
    "id": "QF3U5ROAWPVTN2L6JIKOH5UA",
    "owner_id": "152630010",
    "merchant_id": "MLEWKHPC5TX03",
@@ -10035,7 +8236,7 @@
    "allow_order_item_quantities": false,
    "badges": {
     "out_of_stock": false,
-    "low_stock": false,
+    "low_stock": true,
     "on_sale": false
    },
    "only_subscribable": false,
@@ -10051,12 +8252,12 @@
    "avg_rating": null,
    "avg_rating_all": null,
    "inventory": {
-    "total": 12,
+    "total": 4,
     "all_variations_sold_out": false,
     "marked_sold_out_at_all_existing_locations": false,
     "marked_sold_out_skus_count": 0,
-    "all_inventory_total": 12,
-    "lowest": 12,
+    "all_inventory_total": 4,
+    "lowest": 4,
     "enabled": false,
     "some_variations_sold_out": false,
     "has_location_not_tracking": false
@@ -10103,9 +8304,9 @@
    "combo_type_details": {
     "slots": []
    },
-   "updated_date": "2026-10-30T05:24:46+00:00",
+   "updated_date": "2026-11-10T06:37:46+00:00",
    "created_date": "2026-10-17T20:25:25+00:00",
-   "indexed_date": "2026-10-30T05:25:41+00:00",
+   "indexed_date": "2026-11-10T17:06:24+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -11310,7 +9511,7 @@
    "per_order_max": 0,
    "allow_order_item_quantities": false,
    "badges": {
-    "out_of_stock": true,
+    "out_of_stock": false,
     "low_stock": false,
     "on_sale": false
    },
@@ -11328,14 +9529,14 @@
    "avg_rating_all": null,
    "inventory": {
     "total": 0,
-    "all_variations_sold_out": true,
-    "marked_sold_out_at_all_existing_locations": true,
-    "marked_sold_out_skus_count": 1,
+    "all_variations_sold_out": false,
+    "marked_sold_out_at_all_existing_locations": false,
+    "marked_sold_out_skus_count": 0,
     "all_inventory_total": 0,
-    "lowest": 0,
+    "lowest": null,
     "enabled": false,
-    "some_variations_sold_out": true,
-    "has_location_not_tracking": false
+    "some_variations_sold_out": false,
+    "has_location_not_tracking": true
    },
    "price": {
     "regular_high_with_subscriptions": 9.5,
@@ -11381,7 +9582,7 @@
    },
    "updated_date": "2026-10-21T18:35:16+00:00",
    "created_date": "2026-01-16T23:55:05+00:00",
-   "indexed_date": "2026-11-02T21:01:47+00:00",
+   "indexed_date": "2026-11-10T06:36:01+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -12068,7 +10269,7 @@
    "allow_order_item_quantities": false,
    "badges": {
     "out_of_stock": false,
-    "low_stock": false,
+    "low_stock": true,
     "on_sale": false
    },
    "only_subscribable": false,
@@ -12084,15 +10285,15 @@
    "avg_rating": null,
    "avg_rating_all": null,
    "inventory": {
-    "total": 0,
+    "total": 4,
     "all_variations_sold_out": false,
     "marked_sold_out_at_all_existing_locations": false,
     "marked_sold_out_skus_count": 0,
-    "all_inventory_total": 0,
-    "lowest": null,
+    "all_inventory_total": 4,
+    "lowest": 4,
     "enabled": false,
     "some_variations_sold_out": false,
-    "has_location_not_tracking": true
+    "has_location_not_tracking": false
    },
    "price": {
     "regular_high_with_subscriptions": 3.95,
@@ -12136,9 +10337,9 @@
    "combo_type_details": {
     "slots": []
    },
-   "updated_date": "2026-10-11T22:09:21+00:00",
+   "updated_date": "2026-11-10T17:10:12+00:00",
    "created_date": "2026-07-25T19:50:12+00:00",
-   "indexed_date": "2026-10-20T11:59:10+00:00",
+   "indexed_date": "2026-11-10T17:10:39+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -13022,331 +11223,6 @@
       "og_title": "",
       "og_description": "",
       "site_link": "shop/layers-smoothies/5W3OSXQNGMS6S7VWCABEDN5Y",
-      "permalink": "",
-      "ancestor_site_category_ids": [
-       "V37RL3MLBAUNXD3UE6G55KA3"
-      ]
-     }
-    ]
-   }
-  },
-  {
-   "id": "V4IRYST3245TON4DKS3XK4HA",
-   "owner_id": "152630010",
-   "merchant_id": "MLEWKHPC5TX03",
-   "site_id": "672900839876723331",
-   "channel_id": "CH_waa6CDakWe1ykYufMjFYkFHwrFP2Ym2TWHsfYRlQuYC",
-   "site_product_id": "V4IRYST3245TON4DKS3XK4HA",
-   "square_id": "V4IRYST3245TON4DKS3XK4HA",
-   "visibility": "visible",
-   "visibility_tl": "Visible",
-   "name": "Spicy Dill Pickle Chips",
-   "short_description": "<p>Crunchy, tangy dill pickle chips with a spicy kick.Made with fresh cucumbers and<strong> <u>no artificial preservatives.</u></strong></p><p><br></p>",
-   "popularity_score": null,
-   "cross_sell_product_ids": [],
-   "variation_type": "3",
-   "product_type": "physical",
-   "product_type_details": [],
-   "taxable": null,
-   "required_feature_to_sell": null,
-   "min_prep_time": null,
-   "min_prep_time_duration_iso8601": null,
-   "advanced_notice_duration": null,
-   "measurement_unit_abbreviation": null,
-   "measurement_unit_precision": null,
-   "has_multiple_measurement_units": false,
-   "is_alcoholic": false,
-   "per_order_max": 0,
-   "allow_order_item_quantities": false,
-   "badges": {
-    "out_of_stock": true,
-    "low_stock": false,
-    "on_sale": false
-   },
-   "only_subscribable": false,
-   "fulfillable": true,
-   "site_link": "product/spicy-dill-pickle-chips/V4IRYST3245TON4DKS3XK4HA",
-   "absolute_site_link": "https://layerssuperfoodbar.square.site/product/spicy-dill-pickle-chips/V4IRYST3245TON4DKS3XK4HA",
-   "permalink": null,
-   "seo_product_image_id": "TA5SGE2NOSXM44HAPTNBY5A4",
-   "seo_page_description": null,
-   "seo_page_title": null,
-   "og_title": null,
-   "og_description": null,
-   "avg_rating": null,
-   "avg_rating_all": null,
-   "inventory": {
-    "total": 0,
-    "all_variations_sold_out": true,
-    "marked_sold_out_at_all_existing_locations": true,
-    "marked_sold_out_skus_count": 1,
-    "all_inventory_total": 0,
-    "lowest": 0,
-    "enabled": false,
-    "some_variations_sold_out": true,
-    "has_location_not_tracking": false
-   },
-   "price": {
-    "regular_high_with_subscriptions": 3.95,
-    "regular_low_formatted_with_modifiers": "$3.95",
-    "high_with_modifiers": 3.95,
-    "low_formatted_with_subscriptions": "$3.95",
-    "regular_high_formatted": "$3.95",
-    "high_with_subscriptions": 3.95,
-    "high_formatted_with_subscriptions": "$3.95",
-    "low_formatted": "$3.95",
-    "low_with_subscriptions_subunits": 395,
-    "regular_high_formatted_with_subscriptions": "$3.95",
-    "high_with_subscriptions_subunits": 395,
-    "low_with_modifiers_subunits": 395,
-    "high": 3.95,
-    "low_with_modifiers": 3.95,
-    "regular_low_with_subscriptions_subunits": 395,
-    "regular_low_formatted": "$3.95",
-    "low": 3.95,
-    "regular_high_with_subscriptions_subunits": 395,
-    "low_subunits": 395,
-    "regular_high_with_modifiers": 3.95,
-    "regular_low_with_subscriptions": 3.95,
-    "regular_high_with_modifiers_subunits": 395,
-    "low_formatted_with_modifiers": "$3.95",
-    "regular_low_with_modifiers_subunits": 395,
-    "low_with_subscriptions": 3.95,
-    "high_with_modifiers_subunits": 395,
-    "high_formatted": "$3.95",
-    "regular_low": 3.95,
-    "high_formatted_with_modifiers": "$3.95",
-    "regular_low_subunits": 395,
-    "regular_high_subunits": 395,
-    "regular_low_with_modifiers": 3.95,
-    "high_subunits": 395,
-    "regular_high": 3.95,
-    "regular_high_formatted_with_modifiers": "$3.95",
-    "regular_low_formatted_with_subscriptions": "$3.95"
-   },
-   "on_sale": false,
-   "combo_type_details": {
-    "slots": []
-   },
-   "updated_date": "2026-10-11T22:09:21+00:00",
-   "created_date": "2026-07-25T19:50:12+00:00",
-   "indexed_date": "2026-10-20T11:59:10+00:00",
-   "preordering": {
-    "pickup": null,
-    "delivery": false,
-    "shipping": false,
-    "dine_in": false,
-    "manual": false,
-    "download": false
-   },
-   "fulfillment_availability": {
-    "pickup": [],
-    "delivery": [],
-    "shipping": [],
-    "dine_in": [],
-    "manual": []
-   },
-   "thumbnail": {
-    "data": {
-     "owner_id": "152630010",
-     "format": "jpeg",
-     "created_at": "2026-07-25T19:50:12.907Z",
-     "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg",
-     "absolute_urls": {
-      "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=320",
-      "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=640",
-      "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=80",
-      "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=2560",
-      "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=160",
-      "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=1280"
-     },
-     "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg",
-     "urls": {
-      "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=320",
-      "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=640",
-      "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=80",
-      "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=2560",
-      "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=160",
-      "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=1280"
-     },
-     "site_product_image_id": "TA5SGE2NOSXM44HAPTNBY5A4",
-     "updated_at": "2026-07-25T19:50:12.862Z",
-     "site_id": "672900839876723331",
-     "width": 2560,
-     "id": "TA5SGE2NOSXM44HAPTNBY5A4",
-     "height": 2560
-    }
-   },
-   "placeholder_image": {
-    "data": {
-     "placeholder": true,
-     "url": "/images/commerce/store-app/app/universal_product_placeholder.png",
-     "absolute_url": "cdn3.editmysite.com/images/commerce/store-app/app/universal_product_placeholder.png"
-    }
-   },
-   "categoryIds": [
-    "RK2ABIUBNFDVNEKG3SWPCZJW",
-    "YEKW3EBSW44LZB4TE3UYYKNS"
-   ],
-   "images": {
-    "data": [
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-07-25T19:50:12.907Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/TA5SGE2NOSXM44HAPTNBY5A4.jpeg?width=1280"
-      },
-      "site_product_image_id": "TA5SGE2NOSXM44HAPTNBY5A4",
-      "updated_at": "2026-07-25T19:50:12.862Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "TA5SGE2NOSXM44HAPTNBY5A4",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "png",
-      "created_at": "2026-07-25T19:50:15.755Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZZKZMCE5OZKNTNGCG6CXRKHY.png",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZZKZMCE5OZKNTNGCG6CXRKHY.png?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZZKZMCE5OZKNTNGCG6CXRKHY.png?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZZKZMCE5OZKNTNGCG6CXRKHY.png?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZZKZMCE5OZKNTNGCG6CXRKHY.png?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZZKZMCE5OZKNTNGCG6CXRKHY.png?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZZKZMCE5OZKNTNGCG6CXRKHY.png?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZZKZMCE5OZKNTNGCG6CXRKHY.png",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZZKZMCE5OZKNTNGCG6CXRKHY.png?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZZKZMCE5OZKNTNGCG6CXRKHY.png?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZZKZMCE5OZKNTNGCG6CXRKHY.png?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZZKZMCE5OZKNTNGCG6CXRKHY.png?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZZKZMCE5OZKNTNGCG6CXRKHY.png?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/ZZKZMCE5OZKNTNGCG6CXRKHY.png?width=1280"
-      },
-      "site_product_image_id": "ZZKZMCE5OZKNTNGCG6CXRKHY",
-      "updated_at": "2026-07-25T19:50:15.72Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "ZZKZMCE5OZKNTNGCG6CXRKHY",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-07-25T19:50:16.348Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/OYGDBIO7VYDIX7NKWNO4RHS3.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/OYGDBIO7VYDIX7NKWNO4RHS3.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/OYGDBIO7VYDIX7NKWNO4RHS3.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/OYGDBIO7VYDIX7NKWNO4RHS3.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/OYGDBIO7VYDIX7NKWNO4RHS3.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/OYGDBIO7VYDIX7NKWNO4RHS3.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/OYGDBIO7VYDIX7NKWNO4RHS3.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/OYGDBIO7VYDIX7NKWNO4RHS3.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/OYGDBIO7VYDIX7NKWNO4RHS3.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/OYGDBIO7VYDIX7NKWNO4RHS3.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/OYGDBIO7VYDIX7NKWNO4RHS3.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/OYGDBIO7VYDIX7NKWNO4RHS3.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/OYGDBIO7VYDIX7NKWNO4RHS3.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/OYGDBIO7VYDIX7NKWNO4RHS3.jpeg?width=1280"
-      },
-      "site_product_image_id": "OYGDBIO7VYDIX7NKWNO4RHS3",
-      "updated_at": "2026-07-25T19:50:16.307Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "OYGDBIO7VYDIX7NKWNO4RHS3",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-07-25T19:50:17.207Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4V6BMHS3XEFXHR2YXXTUZHGQ.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4V6BMHS3XEFXHR2YXXTUZHGQ.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4V6BMHS3XEFXHR2YXXTUZHGQ.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4V6BMHS3XEFXHR2YXXTUZHGQ.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4V6BMHS3XEFXHR2YXXTUZHGQ.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4V6BMHS3XEFXHR2YXXTUZHGQ.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4V6BMHS3XEFXHR2YXXTUZHGQ.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4V6BMHS3XEFXHR2YXXTUZHGQ.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4V6BMHS3XEFXHR2YXXTUZHGQ.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4V6BMHS3XEFXHR2YXXTUZHGQ.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4V6BMHS3XEFXHR2YXXTUZHGQ.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4V6BMHS3XEFXHR2YXXTUZHGQ.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4V6BMHS3XEFXHR2YXXTUZHGQ.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/4V6BMHS3XEFXHR2YXXTUZHGQ.jpeg?width=1280"
-      },
-      "site_product_image_id": "4V6BMHS3XEFXHR2YXXTUZHGQ",
-      "updated_at": "2026-07-25T19:50:17.169Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "4V6BMHS3XEFXHR2YXXTUZHGQ",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-07-25T19:50:17.746Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/6VWFNP544RPKBRQR5FEJXZPE.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/6VWFNP544RPKBRQR5FEJXZPE.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/6VWFNP544RPKBRQR5FEJXZPE.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/6VWFNP544RPKBRQR5FEJXZPE.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/6VWFNP544RPKBRQR5FEJXZPE.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/6VWFNP544RPKBRQR5FEJXZPE.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/6VWFNP544RPKBRQR5FEJXZPE.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/6VWFNP544RPKBRQR5FEJXZPE.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/6VWFNP544RPKBRQR5FEJXZPE.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/6VWFNP544RPKBRQR5FEJXZPE.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/6VWFNP544RPKBRQR5FEJXZPE.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/6VWFNP544RPKBRQR5FEJXZPE.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/6VWFNP544RPKBRQR5FEJXZPE.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/6VWFNP544RPKBRQR5FEJXZPE.jpeg?width=1280"
-      },
-      "site_product_image_id": "6VWFNP544RPKBRQR5FEJXZPE",
-      "updated_at": "2026-07-25T19:50:17.704Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "6VWFNP544RPKBRQR5FEJXZPE",
-      "height": 2560
-     }
-    ]
-   },
-   "categories": {
-    "data": [
-     {
-      "site_category_id": "RK2ABIUBNFDVNEKG3SWPCZJW",
-      "name": "Layers Wellness Market",
-      "seo_page_description": "",
-      "seo_page_title": "",
-      "og_title": null,
-      "og_description": null,
-      "site_link": "shop/layers-wellness-market/RK2ABIUBNFDVNEKG3SWPCZJW",
       "permalink": "",
       "ancestor_site_category_ids": [
        "V37RL3MLBAUNXD3UE6G55KA3"
@@ -14254,6 +12130,459 @@
    }
   },
   {
+   "id": "WWHVIRUMRFXOR3LHJ5EKMLAJ",
+   "owner_id": "152630010",
+   "merchant_id": "MLEWKHPC5TX03",
+   "site_id": "672900839876723331",
+   "channel_id": "CH_waa6CDakWe1ykYufMjFYkFHwrFP2Ym2TWHsfYRlQuYC",
+   "site_product_id": "WWHVIRUMRFXOR3LHJ5EKMLAJ",
+   "square_id": "WWHVIRUMRFXOR3LHJ5EKMLAJ",
+   "visibility": "visible",
+   "visibility_tl": "Visible",
+   "name": "Onion Chips | 6 Bags | Non-GMO Vegan Veggie Chips",
+   "short_description": "Retails at $7.99 | 2.5 servings per bag \n\nFor veggie lovers and anyone who&#39;s ever loved an onion ring. Sells especially well in specialty grocery, wine and cheese shops, and hotel retail.\n\nThe adult version of a \u201cfun onion\u201d. Hand-sliced onion petals flash crisped in avocado oil and finished with sea salt \u2014 just four ingredients, nothing else. The crisping process cuts the onions\u2019 sharpness so what comes through is pure mellow sweetness. The perfect late night snack, cheese board pairing, or salad topper. Low-temperature cooking maintains natural nutrients, color, and real onion flavor. \n\nThe taste: Warm, mellow, and buttery sweet like the best part of an onion ring. Light, airy crunch with a caramelized sweetness that lingers. Deeply satisfying. \n\nAbout 3 fresh onions go into every bag.\n\nNon-GMO Certified, Vegan, Halal, Kosher, and free from all nine major allergens. Low sodium, high fiber, no preservatives, no added sugar, no fillers. ",
+   "popularity_score": null,
+   "cross_sell_product_ids": [],
+   "variation_type": "3",
+   "product_type": "physical",
+   "product_type_details": [],
+   "taxable": null,
+   "required_feature_to_sell": null,
+   "min_prep_time": null,
+   "min_prep_time_duration_iso8601": null,
+   "advanced_notice_duration": null,
+   "measurement_unit_abbreviation": null,
+   "measurement_unit_precision": null,
+   "has_multiple_measurement_units": false,
+   "is_alcoholic": false,
+   "per_order_max": 0,
+   "allow_order_item_quantities": false,
+   "badges": {
+    "out_of_stock": true,
+    "low_stock": false,
+    "on_sale": false
+   },
+   "only_subscribable": false,
+   "fulfillable": true,
+   "site_link": "product/onion-chips-6-bags-non-gmo-vegan-veggie-chips/WWHVIRUMRFXOR3LHJ5EKMLAJ",
+   "absolute_site_link": "https://layerssuperfoodbar.square.site/product/onion-chips-6-bags-non-gmo-vegan-veggie-chips/WWHVIRUMRFXOR3LHJ5EKMLAJ",
+   "permalink": null,
+   "seo_product_image_id": "NLFHHYWWUULQMYL4VM7YMBFI",
+   "seo_page_description": null,
+   "seo_page_title": null,
+   "og_title": null,
+   "og_description": null,
+   "avg_rating": null,
+   "avg_rating_all": null,
+   "inventory": {
+    "total": 0,
+    "all_variations_sold_out": true,
+    "marked_sold_out_at_all_existing_locations": true,
+    "marked_sold_out_skus_count": 1,
+    "all_inventory_total": 0,
+    "lowest": 0,
+    "enabled": false,
+    "some_variations_sold_out": true,
+    "has_location_not_tracking": false
+   },
+   "price": {
+    "regular_high_with_subscriptions": 48,
+    "regular_low_formatted_with_modifiers": "$48.00",
+    "high_with_modifiers": 48,
+    "low_formatted_with_subscriptions": "$48.00",
+    "regular_high_formatted": "$48.00",
+    "high_with_subscriptions": 48,
+    "high_formatted_with_subscriptions": "$48.00",
+    "low_formatted": "$48.00",
+    "low_with_subscriptions_subunits": 4800,
+    "regular_high_formatted_with_subscriptions": "$48.00",
+    "high_with_subscriptions_subunits": 4800,
+    "low_with_modifiers_subunits": 4800,
+    "high": 48,
+    "low_with_modifiers": 48,
+    "regular_low_with_subscriptions_subunits": 4800,
+    "regular_low_formatted": "$48.00",
+    "low": 48,
+    "regular_high_with_subscriptions_subunits": 4800,
+    "low_subunits": 4800,
+    "regular_high_with_modifiers": 48,
+    "regular_low_with_subscriptions": 48,
+    "regular_high_with_modifiers_subunits": 4800,
+    "low_formatted_with_modifiers": "$48.00",
+    "regular_low_with_modifiers_subunits": 4800,
+    "low_with_subscriptions": 48,
+    "high_with_modifiers_subunits": 4800,
+    "high_formatted": "$48.00",
+    "regular_low": 48,
+    "high_formatted_with_modifiers": "$48.00",
+    "regular_low_subunits": 4800,
+    "regular_high_subunits": 4800,
+    "regular_low_with_modifiers": 48,
+    "high_subunits": 4800,
+    "regular_high": 48,
+    "regular_high_formatted_with_modifiers": "$48.00",
+    "regular_low_formatted_with_subscriptions": "$48.00"
+   },
+   "on_sale": false,
+   "combo_type_details": {
+    "slots": []
+   },
+   "updated_date": "2026-11-10T06:30:42+00:00",
+   "created_date": "2026-11-10T06:30:36+00:00",
+   "indexed_date": "2026-11-10T06:30:49+00:00",
+   "preordering": {
+    "pickup": null,
+    "delivery": false,
+    "shipping": false,
+    "dine_in": false,
+    "manual": false,
+    "download": false
+   },
+   "fulfillment_availability": {
+    "pickup": [],
+    "delivery": [],
+    "shipping": [],
+    "dine_in": [],
+    "manual": []
+   },
+   "thumbnail": {
+    "data": {
+     "owner_id": "152630010",
+     "format": "jpeg",
+     "created_at": "2026-11-10T06:30:37.564Z",
+     "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg",
+     "absolute_urls": {
+      "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=320",
+      "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=640",
+      "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=80",
+      "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=2560",
+      "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=160",
+      "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=1280"
+     },
+     "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg",
+     "urls": {
+      "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=320",
+      "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=640",
+      "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=80",
+      "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=2560",
+      "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=160",
+      "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=1280"
+     },
+     "site_product_image_id": "NLFHHYWWUULQMYL4VM7YMBFI",
+     "updated_at": "2026-11-10T06:30:37.523Z",
+     "site_id": "672900839876723331",
+     "width": 2560,
+     "id": "NLFHHYWWUULQMYL4VM7YMBFI",
+     "height": 2560
+    }
+   },
+   "placeholder_image": {
+    "data": {
+     "placeholder": true,
+     "url": "/images/commerce/store-app/app/universal_product_placeholder.png",
+     "absolute_url": "cdn3.editmysite.com/images/commerce/store-app/app/universal_product_placeholder.png"
+    }
+   },
+   "categoryIds": [],
+   "images": {
+    "data": [
+     {
+      "owner_id": "152630010",
+      "format": "jpeg",
+      "created_at": "2026-11-10T06:30:37.564Z",
+      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg",
+      "absolute_urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=1280"
+      },
+      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg",
+      "urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NLFHHYWWUULQMYL4VM7YMBFI.jpeg?width=1280"
+      },
+      "site_product_image_id": "NLFHHYWWUULQMYL4VM7YMBFI",
+      "updated_at": "2026-11-10T06:30:37.523Z",
+      "site_id": "672900839876723331",
+      "width": 2560,
+      "id": "NLFHHYWWUULQMYL4VM7YMBFI",
+      "height": 2560
+     },
+     {
+      "owner_id": "152630010",
+      "format": "jpeg",
+      "created_at": "2026-11-10T06:30:38.076Z",
+      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/PM2OFWPYNIV73XOSUJDLZK3I.jpeg",
+      "absolute_urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/PM2OFWPYNIV73XOSUJDLZK3I.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/PM2OFWPYNIV73XOSUJDLZK3I.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/PM2OFWPYNIV73XOSUJDLZK3I.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/PM2OFWPYNIV73XOSUJDLZK3I.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/PM2OFWPYNIV73XOSUJDLZK3I.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/PM2OFWPYNIV73XOSUJDLZK3I.jpeg?width=1280"
+      },
+      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/PM2OFWPYNIV73XOSUJDLZK3I.jpeg",
+      "urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/PM2OFWPYNIV73XOSUJDLZK3I.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/PM2OFWPYNIV73XOSUJDLZK3I.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/PM2OFWPYNIV73XOSUJDLZK3I.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/PM2OFWPYNIV73XOSUJDLZK3I.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/PM2OFWPYNIV73XOSUJDLZK3I.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/PM2OFWPYNIV73XOSUJDLZK3I.jpeg?width=1280"
+      },
+      "site_product_image_id": "PM2OFWPYNIV73XOSUJDLZK3I",
+      "updated_at": "2026-11-10T06:30:38.015Z",
+      "site_id": "672900839876723331",
+      "width": 2560,
+      "id": "PM2OFWPYNIV73XOSUJDLZK3I",
+      "height": 2560
+     },
+     {
+      "owner_id": "152630010",
+      "format": "jpeg",
+      "created_at": "2026-11-10T06:30:38.655Z",
+      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg",
+      "absolute_urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=1280"
+      },
+      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg",
+      "urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=1280"
+      },
+      "site_product_image_id": "RMKYTAHBEMTZO3IU2UL3MZOM",
+      "updated_at": "2026-11-10T06:30:38.61Z",
+      "site_id": "672900839876723331",
+      "width": 2560,
+      "id": "RMKYTAHBEMTZO3IU2UL3MZOM",
+      "height": 2560
+     },
+     {
+      "owner_id": "152630010",
+      "format": "jpeg",
+      "created_at": "2026-11-10T06:30:38.911Z",
+      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg",
+      "absolute_urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=1280"
+      },
+      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg",
+      "urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=1280"
+      },
+      "site_product_image_id": "DKZH7SPWTZB2L7IVI2JMN3WY",
+      "updated_at": "2026-11-10T06:30:38.863Z",
+      "site_id": "672900839876723331",
+      "width": 2560,
+      "id": "DKZH7SPWTZB2L7IVI2JMN3WY",
+      "height": 2560
+     },
+     {
+      "owner_id": "152630010",
+      "format": "jpeg",
+      "created_at": "2026-11-10T06:30:39.452Z",
+      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/YNZHUQCDWIY6KQR6L2KX7VEI.jpeg",
+      "absolute_urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/YNZHUQCDWIY6KQR6L2KX7VEI.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/YNZHUQCDWIY6KQR6L2KX7VEI.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/YNZHUQCDWIY6KQR6L2KX7VEI.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/YNZHUQCDWIY6KQR6L2KX7VEI.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/YNZHUQCDWIY6KQR6L2KX7VEI.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/YNZHUQCDWIY6KQR6L2KX7VEI.jpeg?width=1280"
+      },
+      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/YNZHUQCDWIY6KQR6L2KX7VEI.jpeg",
+      "urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/YNZHUQCDWIY6KQR6L2KX7VEI.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/YNZHUQCDWIY6KQR6L2KX7VEI.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/YNZHUQCDWIY6KQR6L2KX7VEI.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/YNZHUQCDWIY6KQR6L2KX7VEI.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/YNZHUQCDWIY6KQR6L2KX7VEI.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/YNZHUQCDWIY6KQR6L2KX7VEI.jpeg?width=1280"
+      },
+      "site_product_image_id": "YNZHUQCDWIY6KQR6L2KX7VEI",
+      "updated_at": "2026-11-10T06:30:39.41Z",
+      "site_id": "672900839876723331",
+      "width": 2560,
+      "id": "YNZHUQCDWIY6KQR6L2KX7VEI",
+      "height": 2560
+     },
+     {
+      "owner_id": "152630010",
+      "format": "jpeg",
+      "created_at": "2026-11-10T06:30:39.98Z",
+      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg",
+      "absolute_urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=1280"
+      },
+      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg",
+      "urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=1280"
+      },
+      "site_product_image_id": "NQISH4EXD7HSHVQLYISNUHN7",
+      "updated_at": "2026-11-10T06:30:39.923Z",
+      "site_id": "672900839876723331",
+      "width": 2560,
+      "id": "NQISH4EXD7HSHVQLYISNUHN7",
+      "height": 2560
+     },
+     {
+      "owner_id": "152630010",
+      "format": "jpeg",
+      "created_at": "2026-11-10T06:30:40.425Z",
+      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/QWUVQBRIM6Y54YSSAGKQ6JWV.jpeg",
+      "absolute_urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/QWUVQBRIM6Y54YSSAGKQ6JWV.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/QWUVQBRIM6Y54YSSAGKQ6JWV.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/QWUVQBRIM6Y54YSSAGKQ6JWV.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/QWUVQBRIM6Y54YSSAGKQ6JWV.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/QWUVQBRIM6Y54YSSAGKQ6JWV.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/QWUVQBRIM6Y54YSSAGKQ6JWV.jpeg?width=1280"
+      },
+      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/QWUVQBRIM6Y54YSSAGKQ6JWV.jpeg",
+      "urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/QWUVQBRIM6Y54YSSAGKQ6JWV.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/QWUVQBRIM6Y54YSSAGKQ6JWV.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/QWUVQBRIM6Y54YSSAGKQ6JWV.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/QWUVQBRIM6Y54YSSAGKQ6JWV.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/QWUVQBRIM6Y54YSSAGKQ6JWV.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/QWUVQBRIM6Y54YSSAGKQ6JWV.jpeg?width=1280"
+      },
+      "site_product_image_id": "QWUVQBRIM6Y54YSSAGKQ6JWV",
+      "updated_at": "2026-11-10T06:30:40.373Z",
+      "site_id": "672900839876723331",
+      "width": 2560,
+      "id": "QWUVQBRIM6Y54YSSAGKQ6JWV",
+      "height": 2560
+     },
+     {
+      "owner_id": "152630010",
+      "format": "jpeg",
+      "created_at": "2026-11-10T06:30:40.737Z",
+      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NPQZLKTYIJZ2BIF7TJGLDAOV.jpeg",
+      "absolute_urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NPQZLKTYIJZ2BIF7TJGLDAOV.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NPQZLKTYIJZ2BIF7TJGLDAOV.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NPQZLKTYIJZ2BIF7TJGLDAOV.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NPQZLKTYIJZ2BIF7TJGLDAOV.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NPQZLKTYIJZ2BIF7TJGLDAOV.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NPQZLKTYIJZ2BIF7TJGLDAOV.jpeg?width=1280"
+      },
+      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NPQZLKTYIJZ2BIF7TJGLDAOV.jpeg",
+      "urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NPQZLKTYIJZ2BIF7TJGLDAOV.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NPQZLKTYIJZ2BIF7TJGLDAOV.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NPQZLKTYIJZ2BIF7TJGLDAOV.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NPQZLKTYIJZ2BIF7TJGLDAOV.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NPQZLKTYIJZ2BIF7TJGLDAOV.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NPQZLKTYIJZ2BIF7TJGLDAOV.jpeg?width=1280"
+      },
+      "site_product_image_id": "NPQZLKTYIJZ2BIF7TJGLDAOV",
+      "updated_at": "2026-11-10T06:30:40.684Z",
+      "site_id": "672900839876723331",
+      "width": 2560,
+      "id": "NPQZLKTYIJZ2BIF7TJGLDAOV",
+      "height": 2560
+     },
+     {
+      "owner_id": "152630010",
+      "format": "jpeg",
+      "created_at": "2026-11-10T06:30:41.209Z",
+      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q7ZDIZMROTGPGL2M7VKSDRU2.jpeg",
+      "absolute_urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q7ZDIZMROTGPGL2M7VKSDRU2.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q7ZDIZMROTGPGL2M7VKSDRU2.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q7ZDIZMROTGPGL2M7VKSDRU2.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q7ZDIZMROTGPGL2M7VKSDRU2.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q7ZDIZMROTGPGL2M7VKSDRU2.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q7ZDIZMROTGPGL2M7VKSDRU2.jpeg?width=1280"
+      },
+      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q7ZDIZMROTGPGL2M7VKSDRU2.jpeg",
+      "urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q7ZDIZMROTGPGL2M7VKSDRU2.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q7ZDIZMROTGPGL2M7VKSDRU2.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q7ZDIZMROTGPGL2M7VKSDRU2.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q7ZDIZMROTGPGL2M7VKSDRU2.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q7ZDIZMROTGPGL2M7VKSDRU2.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/Q7ZDIZMROTGPGL2M7VKSDRU2.jpeg?width=1280"
+      },
+      "site_product_image_id": "Q7ZDIZMROTGPGL2M7VKSDRU2",
+      "updated_at": "2026-11-10T06:30:41.149Z",
+      "site_id": "672900839876723331",
+      "width": 2560,
+      "id": "Q7ZDIZMROTGPGL2M7VKSDRU2",
+      "height": 2560
+     },
+     {
+      "owner_id": "152630010",
+      "format": "jpeg",
+      "created_at": "2026-11-10T06:30:42.616Z",
+      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg",
+      "absolute_urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=1280"
+      },
+      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg",
+      "urls": {
+       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=320",
+       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=640",
+       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=80",
+       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=2560",
+       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=160",
+       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=1280"
+      },
+      "site_product_image_id": "R6GY76HY46KEKMGTNRVMZXST",
+      "updated_at": "2026-11-10T06:30:42.574Z",
+      "site_id": "672900839876723331",
+      "width": 2560,
+      "id": "R6GY76HY46KEKMGTNRVMZXST",
+      "height": 2560
+     }
+    ]
+   },
+   "categories": {
+    "data": []
+   }
+  },
+  {
    "id": "X4E37WSVHAWXU4GMQRG2KIT4",
    "owner_id": "152630010",
    "merchant_id": "MLEWKHPC5TX03",
@@ -14711,12 +13040,12 @@
    "avg_rating": null,
    "avg_rating_all": null,
    "inventory": {
-    "total": 15,
+    "total": 8,
     "all_variations_sold_out": false,
     "marked_sold_out_at_all_existing_locations": false,
     "marked_sold_out_skus_count": 0,
-    "all_inventory_total": 15,
-    "lowest": 15,
+    "all_inventory_total": 8,
+    "lowest": 8,
     "enabled": false,
     "some_variations_sold_out": false,
     "has_location_not_tracking": false
@@ -14763,9 +13092,9 @@
    "combo_type_details": {
     "slots": []
    },
-   "updated_date": "2026-10-11T22:09:21+00:00",
+   "updated_date": "2026-11-10T17:11:02+00:00",
    "created_date": "2026-07-16T04:10:53+00:00",
-   "indexed_date": "2026-10-20T11:59:14+00:00",
+   "indexed_date": "2026-11-10T17:11:11+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -15231,8 +13560,8 @@
  ],
  "meta": {
   "pagination": {
-   "total": 51,
-   "count": 51,
+   "total": 46,
+   "count": 46,
    "per_page": 200,
    "current_page": 1,
    "total_pages": 1,
