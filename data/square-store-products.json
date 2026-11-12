@@ -604,7 +604,7 @@
    "visibility_tl": "Visible",
    "name": "Strawesome    (Skin Health & Antioxidant)",
    "short_description": "<p><strong>NO ADDED SUGAR - Naturally Sweetened with Whole Fruit</strong></p><p>Organic Strawberry &amp; Organic Beet, Banana, Organic Lucuma Powder, Organic Naked Reds, Organic Dates, Organic Blue spirulina greek yogurt (lactose free)</p><p><strong><u>Nut-free | Tree nut-free ( no cross-contact)</u></strong></p><p><strong>Protein: 4g Fiber: 13g Sugar: 33g</strong></p>",
-   "popularity_score": 0.35,
+   "popularity_score": 0.13,
    "cross_sell_product_ids": [],
    "variation_type": "3",
    "product_type": "food",
@@ -704,7 +704,7 @@
    },
    "updated_date": "2026-10-11T22:09:21+00:00",
    "created_date": "2025-08-18T21:44:38+00:00",
-   "indexed_date": "2026-11-03T17:30:28+00:00",
+   "indexed_date": "2026-11-11T20:25:02+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -2509,7 +2509,7 @@
    "visibility_tl": "Visible",
    "name": "Recovery Bowl - 40g Protein (Icy Textures)",
    "short_description": "<p><strong><u>40g Protein \u2022 Muscle Recovery \u2022 Fiber-Rich</u></strong></p><p><strong>NO ADDED SUGAR - Naturally Sweetened with Whole Fruit</strong></p><p><br></p><p><strong><u>Made Acai Base:</u></strong> Organic Unsweetened Acai \u2022 Banana \u2022 Organic Mix Blueberries \u2022 Organic Mango \u2022 Organic Dates \u2022 Organic Coconut Milk. \u2022 Organic pea protein powder unflavored</p><p><br></p><p><strong><u>Toppings:</u></strong><u> </u>Layers Crumble \u2022 Organic layers Granola \u2022 Banana \u2022 Organic Straw &amp; blueberries \u2022 Organic Sliced Almonds \u2022 Organic Hemp Heart \u2022 Organic Pumpkin seed \u2022 Organic Cacao nibs \u2022 Organic Goji berry \u2022 Organic Flaxseed \u2022 Organic Layers Oat/Chia pudding (Contain Tree Nuts (Almond Milk)</p><p><strong><u>Layers Crumble: Contains all tree nuts and dairy. Cross-contact with other nuts is possible.</u></strong></p>",
-   "popularity_score": 0.88,
+   "popularity_score": 0.2,
    "cross_sell_product_ids": [],
    "variation_type": "3",
    "product_type": "food",
@@ -2617,7 +2617,7 @@
    },
    "updated_date": "2026-10-15T04:43:41+00:00",
    "created_date": "2026-03-30T04:44:25+00:00",
-   "indexed_date": "2026-11-02T21:01:47+00:00",
+   "indexed_date": "2026-11-11T20:25:06+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -4257,7 +4257,7 @@
    },
    "updated_date": "2026-10-17T04:14:12+00:00",
    "created_date": "2025-09-12T20:49:38+00:00",
-   "indexed_date": "2026-11-10T06:35:57+00:00",
+   "indexed_date": "2026-11-11T20:24:55+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -6417,7 +6417,7 @@
    },
    "updated_date": "2026-05-24T06:34:24+00:00",
    "created_date": "2026-01-25T22:33:33+00:00",
-   "indexed_date": "2026-11-09T22:35:26+00:00",
+   "indexed_date": "2026-11-10T23:51:57+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -7288,7 +7288,7 @@
    },
    "updated_date": "2026-10-11T22:09:21+00:00",
    "created_date": "2025-10-22T04:01:10+00:00",
-   "indexed_date": "2026-11-03T17:30:29+00:00",
+   "indexed_date": "2026-11-11T20:25:02+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -8096,7 +8096,7 @@
    },
    "updated_date": "2026-11-03T16:58:18+00:00",
    "created_date": "2026-06-18T21:31:01+00:00",
-   "indexed_date": "2026-11-03T17:30:30+00:00",
+   "indexed_date": "2026-11-11T20:25:02+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -9582,7 +9582,7 @@
    },
    "updated_date": "2026-10-21T18:35:16+00:00",
    "created_date": "2026-01-16T23:55:05+00:00",
-   "indexed_date": "2026-11-10T06:36:01+00:00",
+   "indexed_date": "2026-11-11T20:25:07+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -9704,7 +9704,7 @@
    "visibility_tl": "Visible",
    "name": "Beny\u2019s Blendy   (Focus & Brain Support)",
    "short_description": "<p><strong>NO ADDED SUGAR - Naturally Sweetened with Whole Fruit</strong></p><p>Banana, Organic Mix Berries, Organic Fresh Spinach, Organic Flaxseed, Organic Dates, Organic Blue spirulina greek yogurt (Lactose free) <strong><u>Nut-free | Tree nut-free ( no cross-contact)</u></strong></p><p>Protein: 6g Fiber: 13g Sugar: 35g</p>",
-   "popularity_score": 0.25,
+   "popularity_score": 0.05,
    "cross_sell_product_ids": [],
    "variation_type": "3",
    "product_type": "food",
@@ -9804,7 +9804,7 @@
    },
    "updated_date": "2026-10-11T22:09:21+00:00",
    "created_date": "2025-08-18T21:44:38+00:00",
-   "indexed_date": "2026-11-03T17:30:29+00:00",
+   "indexed_date": "2026-11-11T20:25:03+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -11121,7 +11121,7 @@
    },
    "updated_date": "2026-10-21T19:51:07+00:00",
    "created_date": "2025-08-18T21:44:38+00:00",
-   "indexed_date": "2026-11-03T17:30:30+00:00",
+   "indexed_date": "2026-11-11T20:25:03+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -11347,7 +11347,7 @@
    },
    "updated_date": "2026-10-21T19:51:07+00:00",
    "created_date": "2026-02-28T21:20:17+00:00",
-   "indexed_date": "2026-11-03T17:30:29+00:00",
+   "indexed_date": "2026-11-11T20:25:01+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -11685,7 +11685,7 @@
    "visibility_tl": "Visible",
    "name": "Mango Coco",
    "short_description": "<p><strong>Steady Energy \u2022 Fiber-Rich </strong></p><p><strong><u>NO ADDED SUGAR - Naturally Sweetened with Whole Fruit</u></strong></p><p><br></p><p><strong>Layers-Made Base :</strong> Banana \u2022 Organic Mango \u2022 Organic Coconut Cream \u2022 Organic Dates \u2022 Organic Flaxseed \u2022 Sea Salt</p><p><br></p><p><strong>TOPPINGS :</strong> Layers Crumble \u2022 Organic Mango \u2022 Layers Granola \u2022 Organic Cacao Nibs \u2022 Layers Oat &amp; Chia Pudding (Contain Tree Nuts (Almond Milk)<strong><u> </u></strong> \u2022 Organic Cacao nibs \u2022 Organic Bee Pollen</p><p><strong><u>Layers Crumble: Contains all tree nuts and dairy. Cross-contact with other nuts is possible.</u></strong></p>",
-   "popularity_score": 0.35,
+   "popularity_score": 0.2,
    "cross_sell_product_ids": [],
    "variation_type": "3",
    "product_type": "food",
@@ -11791,7 +11791,7 @@
    },
    "updated_date": "2026-10-21T19:37:49+00:00",
    "created_date": "2026-06-30T04:21:59+00:00",
-   "indexed_date": "2026-11-02T21:01:48+00:00",
+   "indexed_date": "2026-11-11T20:25:08+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -11913,7 +11913,7 @@
    "visibility_tl": "Visible",
    "name": "Berry Much Love U (Classic Acai)",
    "short_description": "<p><strong><u>Antioxidant-Rich \u2022 Fiber-Rich \u2022 No Refined Sugar </u>Naturally Sweetened with Whole Fruit</strong></p><p><br></p><p><strong><u>Made A\u00e7a\u00ed Base</u>:</strong> Organic Unsweetened A\u00e7a\u00ed \u2022 Banana \u2022 Organic Mix Blueberries \u2022 Organic Mango \u2022 Organic Dates \u2022 Organic Coconut Milk</p><p><br></p><p><strong><u>Toppings</u>:</strong> Layers Crumble \u2022 Organic Granola \u2022 Banana \u2022 Organic Straw &amp; blueberries \u2022 Organic Goji berry \u2022 Organic Cacao nibs \u2022 Organic Layers Oat/Chia pudding (Contain Tree Nuts (Almond Milk)</p><p><strong><u>Layers Crumble: Contains all tree nuts and dairy. Cross-contact with other nuts is possible.</u></strong></p><p><br></p>",
-   "popularity_score": 1,
+   "popularity_score": 0.1,
    "cross_sell_product_ids": [],
    "variation_type": "3",
    "product_type": "food",
@@ -12019,7 +12019,7 @@
    },
    "updated_date": "2026-10-17T04:12:18+00:00",
    "created_date": "2025-08-18T22:24:32+00:00",
-   "indexed_date": "2026-11-02T21:01:48+00:00",
+   "indexed_date": "2026-11-11T20:25:09+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -12139,8 +12139,8 @@
    "square_id": "WWHVIRUMRFXOR3LHJ5EKMLAJ",
    "visibility": "visible",
    "visibility_tl": "Visible",
-   "name": "Onion Chips | 6 Bags | Non-GMO Vegan Veggie Chips",
-   "short_description": "Retails at $7.99 | 2.5 servings per bag \n\nFor veggie lovers and anyone who&#39;s ever loved an onion ring. Sells especially well in specialty grocery, wine and cheese shops, and hotel retail.\n\nThe adult version of a \u201cfun onion\u201d. Hand-sliced onion petals flash crisped in avocado oil and finished with sea salt \u2014 just four ingredients, nothing else. The crisping process cuts the onions\u2019 sharpness so what comes through is pure mellow sweetness. The perfect late night snack, cheese board pairing, or salad topper. Low-temperature cooking maintains natural nutrients, color, and real onion flavor. \n\nThe taste: Warm, mellow, and buttery sweet like the best part of an onion ring. Light, airy crunch with a caramelized sweetness that lingers. Deeply satisfying. \n\nAbout 3 fresh onions go into every bag.\n\nNon-GMO Certified, Vegan, Halal, Kosher, and free from all nine major allergens. Low sodium, high fiber, no preservatives, no added sugar, no fillers. ",
+   "name": "Onion Chips",
+   "short_description": "<p>Warm, mellow, and buttery sweet like the best part of an onion ring.</p><p><br></p>",
    "popularity_score": null,
    "cross_sell_product_ids": [],
    "variation_type": "3",
@@ -12164,8 +12164,8 @@
    },
    "only_subscribable": false,
    "fulfillable": true,
-   "site_link": "product/onion-chips-6-bags-non-gmo-vegan-veggie-chips/WWHVIRUMRFXOR3LHJ5EKMLAJ",
-   "absolute_site_link": "https://layerssuperfoodbar.square.site/product/onion-chips-6-bags-non-gmo-vegan-veggie-chips/WWHVIRUMRFXOR3LHJ5EKMLAJ",
+   "site_link": "product/onion-chips/WWHVIRUMRFXOR3LHJ5EKMLAJ",
+   "absolute_site_link": "https://layerssuperfoodbar.square.site/product/onion-chips/WWHVIRUMRFXOR3LHJ5EKMLAJ",
    "permalink": null,
    "seo_product_image_id": "NLFHHYWWUULQMYL4VM7YMBFI",
    "seo_page_description": null,
@@ -12186,50 +12186,50 @@
     "has_location_not_tracking": false
    },
    "price": {
-    "regular_high_with_subscriptions": 48,
-    "regular_low_formatted_with_modifiers": "$48.00",
-    "high_with_modifiers": 48,
-    "low_formatted_with_subscriptions": "$48.00",
-    "regular_high_formatted": "$48.00",
-    "high_with_subscriptions": 48,
-    "high_formatted_with_subscriptions": "$48.00",
-    "low_formatted": "$48.00",
-    "low_with_subscriptions_subunits": 4800,
-    "regular_high_formatted_with_subscriptions": "$48.00",
-    "high_with_subscriptions_subunits": 4800,
-    "low_with_modifiers_subunits": 4800,
-    "high": 48,
-    "low_with_modifiers": 48,
-    "regular_low_with_subscriptions_subunits": 4800,
-    "regular_low_formatted": "$48.00",
-    "low": 48,
-    "regular_high_with_subscriptions_subunits": 4800,
-    "low_subunits": 4800,
-    "regular_high_with_modifiers": 48,
-    "regular_low_with_subscriptions": 48,
-    "regular_high_with_modifiers_subunits": 4800,
-    "low_formatted_with_modifiers": "$48.00",
-    "regular_low_with_modifiers_subunits": 4800,
-    "low_with_subscriptions": 48,
-    "high_with_modifiers_subunits": 4800,
-    "high_formatted": "$48.00",
-    "regular_low": 48,
-    "high_formatted_with_modifiers": "$48.00",
-    "regular_low_subunits": 4800,
-    "regular_high_subunits": 4800,
-    "regular_low_with_modifiers": 48,
-    "high_subunits": 4800,
-    "regular_high": 48,
-    "regular_high_formatted_with_modifiers": "$48.00",
-    "regular_low_formatted_with_subscriptions": "$48.00"
+    "regular_high_with_subscriptions": 0,
+    "regular_low_formatted_with_modifiers": "$0.00",
+    "high_with_modifiers": 0,
+    "low_formatted_with_subscriptions": "$0.00",
+    "regular_high_formatted": null,
+    "high_with_subscriptions": 0,
+    "high_formatted_with_subscriptions": "$0.00",
+    "low_formatted": null,
+    "low_with_subscriptions_subunits": 0,
+    "regular_high_formatted_with_subscriptions": "$0.00",
+    "high_with_subscriptions_subunits": 0,
+    "low_with_modifiers_subunits": 0,
+    "high": 0,
+    "low_with_modifiers": 0,
+    "regular_low_with_subscriptions_subunits": 0,
+    "regular_low_formatted": null,
+    "low": 0,
+    "regular_high_with_subscriptions_subunits": 0,
+    "low_subunits": 0,
+    "regular_high_with_modifiers": 0,
+    "regular_low_with_subscriptions": 0,
+    "regular_high_with_modifiers_subunits": 0,
+    "low_formatted_with_modifiers": "$0.00",
+    "regular_low_with_modifiers_subunits": 0,
+    "low_with_subscriptions": 0,
+    "high_with_modifiers_subunits": 0,
+    "high_formatted": null,
+    "regular_low": 0,
+    "high_formatted_with_modifiers": "$0.00",
+    "regular_low_subunits": 0,
+    "regular_high_subunits": 0,
+    "regular_low_with_modifiers": 0,
+    "high_subunits": 0,
+    "regular_high": 0,
+    "regular_high_formatted_with_modifiers": "$0.00",
+    "regular_low_formatted_with_subscriptions": "$0.00"
    },
    "on_sale": false,
    "combo_type_details": {
     "slots": []
    },
-   "updated_date": "2026-11-10T06:30:42+00:00",
+   "updated_date": "2026-11-11T05:51:28+00:00",
    "created_date": "2026-11-10T06:30:36+00:00",
-   "indexed_date": "2026-11-10T06:30:49+00:00",
+   "indexed_date": "2026-11-11T05:51:41+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -12283,7 +12283,9 @@
      "absolute_url": "cdn3.editmysite.com/images/commerce/store-app/app/universal_product_placeholder.png"
     }
    },
-   "categoryIds": [],
+   "categoryIds": [
+    "RK2ABIUBNFDVNEKG3SWPCZJW"
+   ],
    "images": {
     "data": [
      {
@@ -12347,64 +12349,6 @@
      {
       "owner_id": "152630010",
       "format": "jpeg",
-      "created_at": "2026-11-10T06:30:38.655Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/RMKYTAHBEMTZO3IU2UL3MZOM.jpeg?width=1280"
-      },
-      "site_product_image_id": "RMKYTAHBEMTZO3IU2UL3MZOM",
-      "updated_at": "2026-11-10T06:30:38.61Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "RMKYTAHBEMTZO3IU2UL3MZOM",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-11-10T06:30:38.911Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/DKZH7SPWTZB2L7IVI2JMN3WY.jpeg?width=1280"
-      },
-      "site_product_image_id": "DKZH7SPWTZB2L7IVI2JMN3WY",
-      "updated_at": "2026-11-10T06:30:38.863Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "DKZH7SPWTZB2L7IVI2JMN3WY",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
       "created_at": "2026-11-10T06:30:39.452Z",
       "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/YNZHUQCDWIY6KQR6L2KX7VEI.jpeg",
       "absolute_urls": {
@@ -12429,35 +12373,6 @@
       "site_id": "672900839876723331",
       "width": 2560,
       "id": "YNZHUQCDWIY6KQR6L2KX7VEI",
-      "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-11-10T06:30:39.98Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/NQISH4EXD7HSHVQLYISNUHN7.jpeg?width=1280"
-      },
-      "site_product_image_id": "NQISH4EXD7HSHVQLYISNUHN7",
-      "updated_at": "2026-11-10T06:30:39.923Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "NQISH4EXD7HSHVQLYISNUHN7",
       "height": 2560
      },
      {
@@ -12546,40 +12461,25 @@
       "width": 2560,
       "id": "Q7ZDIZMROTGPGL2M7VKSDRU2",
       "height": 2560
-     },
-     {
-      "owner_id": "152630010",
-      "format": "jpeg",
-      "created_at": "2026-11-10T06:30:42.616Z",
-      "absolute_url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg",
-      "absolute_urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=1280"
-      },
-      "url": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg",
-      "urls": {
-       "320": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=320",
-       "640": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=640",
-       "80": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=80",
-       "2560": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=2560",
-       "160": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=160",
-       "1280": "https://152630010.cdn6.editmysite.com/uploads/1/5/2/6/152630010/R6GY76HY46KEKMGTNRVMZXST.jpeg?width=1280"
-      },
-      "site_product_image_id": "R6GY76HY46KEKMGTNRVMZXST",
-      "updated_at": "2026-11-10T06:30:42.574Z",
-      "site_id": "672900839876723331",
-      "width": 2560,
-      "id": "R6GY76HY46KEKMGTNRVMZXST",
-      "height": 2560
      }
     ]
    },
    "categories": {
-    "data": []
+    "data": [
+     {
+      "site_category_id": "RK2ABIUBNFDVNEKG3SWPCZJW",
+      "name": "Layers Wellness Market",
+      "seo_page_description": "",
+      "seo_page_title": "",
+      "og_title": null,
+      "og_description": null,
+      "site_link": "shop/layers-wellness-market/RK2ABIUBNFDVNEKG3SWPCZJW",
+      "permalink": "",
+      "ancestor_site_category_ids": [
+       "V37RL3MLBAUNXD3UE6G55KA3"
+      ]
+     }
+    ]
    }
   },
   {

@@ -716,6 +716,15 @@
      "price": "7.95",
      "calories": null,
      "category_id": "RK2ABIUBNFDVNEKG3SWPCZJW"
+    },
+    {
+     "id": "WWHVIRUMRFXOR3LHJ5EKMLAJ",
+     "kind": "Market",
+     "name": "Onion Chips",
+     "note": "",
+     "price": "0.00",
+     "calories": null,
+     "category_id": "RK2ABIUBNFDVNEKG3SWPCZJW"
     }
    ]
   }
