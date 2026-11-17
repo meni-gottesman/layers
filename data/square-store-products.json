@@ -604,7 +604,7 @@
    "visibility_tl": "Visible",
    "name": "Strawesome    (Skin Health & Antioxidant)",
    "short_description": "<p><strong>NO ADDED SUGAR - Naturally Sweetened with Whole Fruit</strong></p><p>Organic Strawberry &amp; Organic Beet, Banana, Organic Lucuma Powder, Organic Naked Reds, Organic Dates, Organic Blue spirulina greek yogurt (lactose free)</p><p><strong><u>Nut-free | Tree nut-free ( no cross-contact)</u></strong></p><p><strong>Protein: 4g Fiber: 13g Sugar: 33g</strong></p>",
-   "popularity_score": 0.13,
+   "popularity_score": 0.1,
    "cross_sell_product_ids": [],
    "variation_type": "3",
    "product_type": "food",
@@ -704,7 +704,7 @@
    },
    "updated_date": "2026-10-11T22:09:21+00:00",
    "created_date": "2025-08-18T21:44:38+00:00",
-   "indexed_date": "2026-11-13T17:24:22+00:00",
+   "indexed_date": "2026-11-16T18:28:11+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -3052,7 +3052,7 @@
    "per_order_max": 0,
    "allow_order_item_quantities": false,
    "badges": {
-    "out_of_stock": false,
+    "out_of_stock": true,
     "low_stock": false,
     "on_sale": false
    },
@@ -3069,14 +3069,14 @@
    "avg_rating": null,
    "avg_rating_all": null,
    "inventory": {
-    "total": 5,
-    "all_variations_sold_out": false,
-    "marked_sold_out_at_all_existing_locations": false,
-    "marked_sold_out_skus_count": 0,
-    "all_inventory_total": 5,
-    "lowest": 5,
+    "total": 0,
+    "all_variations_sold_out": true,
+    "marked_sold_out_at_all_existing_locations": true,
+    "marked_sold_out_skus_count": 1,
+    "all_inventory_total": 0,
+    "lowest": 0,
     "enabled": false,
-    "some_variations_sold_out": false,
+    "some_variations_sold_out": true,
     "has_location_not_tracking": false
    },
    "price": {
@@ -3123,7 +3123,7 @@
    },
    "updated_date": "2026-11-10T06:41:05+00:00",
    "created_date": "2026-08-26T04:42:13+00:00",
-   "indexed_date": "2026-11-14T17:24:42+00:00",
+   "indexed_date": "2026-11-17T20:33:44+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -4257,7 +4257,7 @@
    },
    "updated_date": "2026-10-17T04:14:12+00:00",
    "created_date": "2025-09-12T20:49:38+00:00",
-   "indexed_date": "2026-11-13T17:24:25+00:00",
+   "indexed_date": "2026-11-16T20:04:20+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -7288,7 +7288,7 @@
    },
    "updated_date": "2026-10-11T22:09:21+00:00",
    "created_date": "2025-10-22T04:01:10+00:00",
-   "indexed_date": "2026-11-13T17:24:23+00:00",
+   "indexed_date": "2026-11-16T18:28:11+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -7724,7 +7724,7 @@
    "allow_order_item_quantities": false,
    "badges": {
     "out_of_stock": false,
-    "low_stock": false,
+    "low_stock": true,
     "on_sale": false
    },
    "only_subscribable": false,
@@ -7740,12 +7740,12 @@
    "avg_rating": null,
    "avg_rating_all": null,
    "inventory": {
-    "total": 5,
+    "total": 4,
     "all_variations_sold_out": false,
     "marked_sold_out_at_all_existing_locations": false,
     "marked_sold_out_skus_count": 0,
-    "all_inventory_total": 5,
-    "lowest": 5,
+    "all_inventory_total": 4,
+    "lowest": 4,
     "enabled": false,
     "some_variations_sold_out": false,
     "has_location_not_tracking": false
@@ -7794,7 +7794,7 @@
    },
    "updated_date": "2026-11-10T06:43:25+00:00",
    "created_date": "2026-07-16T04:14:11+00:00",
-   "indexed_date": "2026-11-13T19:01:52+00:00",
+   "indexed_date": "2026-11-17T00:38:17+00:00",
    "preordering": {
     "pickup": null,
     "delivery": false,
@@ -8001,7 +8001,7 @@
    "visibility": "visible",
    "visibility_tl": "Visible",
    "name": "Mango Mellow - 19g Protein/7g Fiber",
-   "short_description": "<b>NO ADDED SUGAR - Naturally Sweetened with Whole Fruit</b> Banana, Organic Passion Fruits, Organic Mango, Organic Coconut Milk, Organic Medjool Dates, Organic Lion&#39;s Mane, Organic Creatine, Organic Sea Salt, Organic Flaxseed, Organic Collagen, Organic Greek Yogurt (Lactose free), Organic Charcoal Powder<b><br>19g Collagen Protein \u2022 5g Creatine \u2022 7g Fiber</b>",
+   "short_description": "<b>NO ADDED SUGAR - Naturally Sweetened with Whole Fruit</b> Banana, Organic Strawberry, Organic Mango, Organic Coconut Milk, Organic Medjool Dates, Organic Lion&#39;s Mane, Organic Creatine, Organic Sea Salt, Organic Flaxseed, Organic Collagen, Organic Greek Yogurt (Lactose free), Organic Charcoal Powder<b><br>19g Collagen Protein \u2022 5g Creatine \u2022 7g Fiber</b>",
    "popularity_score": 0.2,
    "cross_sell_product_ids": [],
    "variation_type": "3",
@@ -8094,9 +8094,9 @@
    "combo_type_details": {
     "slots": []
    },
-   "updated_date": "2026-11-03T16:58:18+00:00",
+   "updated_date": "2026-11-17T19:06:06+00:00",
    "created_date": "2026-06-18T21:31:01+00:00",
-   "indexed_date": "2026-11-13T17:24:22+00:00",
+   "indexed_date": "2026-11-17T19:06:17+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -9804,7 +9804,7 @@
    },
    "updated_date": "2026-10-11T22:09:21+00:00",
    "created_date": "2025-08-18T21:44:38+00:00",
-   "indexed_date": "2026-11-13T17:24:23+00:00",
+   "indexed_date": "2026-11-16T18:28:12+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -11121,7 +11121,7 @@
    },
    "updated_date": "2026-10-21T19:51:07+00:00",
    "created_date": "2025-08-18T21:44:38+00:00",
-   "indexed_date": "2026-11-13T17:24:23+00:00",
+   "indexed_date": "2026-11-16T18:28:10+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -11347,7 +11347,7 @@
    },
    "updated_date": "2026-10-21T19:51:07+00:00",
    "created_date": "2026-02-28T21:20:17+00:00",
-   "indexed_date": "2026-11-13T17:24:24+00:00",
+   "indexed_date": "2026-11-16T18:28:11+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
@@ -11563,7 +11563,7 @@
    },
    "updated_date": "2026-11-03T17:31:22+00:00",
    "created_date": "2026-07-19T23:08:01+00:00",
-   "indexed_date": "2026-11-14T04:33:50+00:00",
+   "indexed_date": "2026-11-16T18:28:10+00:00",
    "preordering": {
     "pickup": false,
     "delivery": false,
