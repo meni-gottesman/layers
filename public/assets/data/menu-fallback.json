@@ -619,15 +619,6 @@
      "category_id": "RK2ABIUBNFDVNEKG3SWPCZJW"
     },
     {
-     "id": "ZRW6S6SEQXNQMDFBIDJEKEPP",
-     "kind": "Market",
-     "name": "Mediterranean Herb Olive Medley",
-     "note": "",
-     "price": "2.25",
-     "calories": null,
-     "category_id": "RK2ABIUBNFDVNEKG3SWPCZJW"
-    },
-    {
      "id": "KY2YK265FHPXFAZW4C5WQBI3",
      "kind": "Market",
      "name": "Mix Veggie Chips",
@@ -691,15 +682,6 @@
      "category_id": "RK2ABIUBNFDVNEKG3SWPCZJW"
     },
     {
-     "id": "3AANKNCMOI4F2PXYZ4LOL262",
-     "kind": "Market",
-     "name": "Sea Salt Avocado Oil Kettle Potato Chips",
-     "note": "",
-     "price": "2.50",
-     "calories": null,
-     "category_id": "RK2ABIUBNFDVNEKG3SWPCZJW"
-    },
-    {
      "id": "YKIRNDDNDPNQTOSS43ELA4MA",
      "kind": "Market",
      "name": "Signature Avocado Oil Kettle Chips, Lil Heat Lil Sweet",
@@ -722,7 +704,7 @@
      "kind": "Market",
      "name": "Onion Chips",
      "note": "",
-     "price": "0.00",
+     "price": "7.95",
      "calories": null,
      "category_id": "RK2ABIUBNFDVNEKG3SWPCZJW"
     }
